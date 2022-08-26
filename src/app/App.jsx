@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import Router from "components/Router";
-import Layout from 'components/Layout'
+import Layout from 'components/Layout';
 import Spinner from 'components/Spinner'
 import './App.css';
 const App=({Component})=> {
@@ -9,7 +9,7 @@ const App=({Component})=> {
     <div className="App">
       {loaderVisible && <Spinner />}
       <header className="App-header">
-        <Layout/>
+        <Layout/>      
         <Router/>
       </header>
     </div>
