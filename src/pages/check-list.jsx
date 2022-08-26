@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 // import AlertModal from 'components/AlertModal';
 import { useDispatch } from 'react-redux';
-import {BodyContainer, FormBody} from "styles/pages/CheckList";
+import {BodyContainer, FormBody,TaskList} from "styles/pages/CheckList";
 import {getChecklistBySubcategory} from "redux/actions/checklist"
 
 const CheckList = () => {
@@ -65,7 +65,7 @@ const CheckList = () => {
 
     // Task List attached
     const lists = getResponse?.map((task,index)=>{
-        return <div key={index}>
+        return <TaskList key={index}>
                     <Controller
                         name={"task"+index}
                         control={control}
@@ -80,7 +80,7 @@ const CheckList = () => {
                 <div style={{'padding-left': '90px'}}>
                  {subList(index)}
                 </div>
-            </div>;
+            </TaskList>;
     });
     const formFields = () => {
         return (
