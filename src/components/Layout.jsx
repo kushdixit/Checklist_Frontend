@@ -1,12 +1,12 @@
 import { Fragment} from 'react';
-// import NavBar from "components/Navbar";
+ import NavBar from "components/Navbar";
 const Layout = ({ children }) => {
   return (
     <>
       <Fragment>
         <div className='appContainer'>
-          <div>{children}</div>
-          {/* <NavBar/> */}
+          <NavBar/>
+          {/* <div>{children}</div> */}
         </div>
       </Fragment>
     </>

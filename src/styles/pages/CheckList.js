@@ -4,22 +4,43 @@ export const BodyContainer = styled.div`
   padding-top: 29px;
   padding-bottom: 29px;
   width:100%;
-  display:flex;
+  form{
+    display: flex;
+    padding-left: 20px;
+  }
+  .submitBtn{
+    padding-top: 12px;
+    padding-left: 10px;
+  }
 `
 export const FormBody = styled.div`
   padding-top: 29px;
   padding-bottom: 29px;
   width: 100%;  
+  display: flex;
+  >div{
+    width: 100%;  
+  }
 `
-
+export const AddTask = styled.div` 
+  from{
+    display: flex;
+    padding-left: 15px;
+  }
+`
+export const AddBtn = styled.div` 
+    display: flex;
+    padding-left: 20px;
+  
+`
 export const TaskList = styled.div`
-    /* background-color: grey; */
     text-align: left;
     padding-left: 20px;
     padding-right: 20px;
    >div.checkbox-field{
       background-color: grey;
       padding-left: 20px;
+      margin-bottom: 10px;
    }
    .checkbox-container {
     font-size: 22px;

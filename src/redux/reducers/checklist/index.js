@@ -1,6 +1,6 @@
 import * as a from 'redux/actions/action_types'
 
-const getChecklistBySubcategory=(state, action)=>{
+const checklist=(state, action)=>{
     if (state === undefined) {
         state = null;
     }
@@ -11,4 +11,4 @@ const getChecklistBySubcategory=(state, action)=>{
             return state;
     }
 }
-export default getChecklistBySubcategory;
+export default checklist;
