@@ -1,11 +1,15 @@
 import React from "react";
+
 import { useForm, Controller } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 import TextInput from "components/FormElements/TextInput";
 import CheckboxInput from "components/FormElements/CheckboxInput";
-import { useNavigate } from "react-router-dom";
+import Button from "components/Button";
+
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
-import Button from "components/Button";
+
 import {  
   BodyContainer,
   RegistrationContainer,
@@ -26,31 +30,10 @@ const SignIn = () => {
   } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
-    // resolver: yupResolver(VALIDATION_SCHEMA),
     shouldFocusError: true,
   });
   const formData = async (data) => {
     navigate('/check-list')
-    // localStorage.clear();
-    // let dataObj = {
-    //   email: data.email,
-    //   password: data.password,
-    // };
-    // console.log("dataObj==",dataObj)
-    // const response = await dispatch(auth(dataObj));
-    // if (!response.error) {
-    //   if (data.rememberMe === true) {
-    //     localStorage.email = data.email;
-    //     localStorage.password = data.password;
-    //     localStorage.checkbox = data.rememberMe;
-    //   }
-    //   localStorage.setItem("userInfo", response?.data?.token);
-    //   router.push(ROUTER.DASHBOARD.LINK);
-    // } else {
-    //   setModalContent(response?.data?.response?.data?.message);
-    //   setModalLink("");
-    //   toggleModal();
-    // }
   };
 
 
@@ -58,7 +41,6 @@ const SignIn = () => {
         return (
           <FormBody>
             <form onSubmit={handleSubmit(formData)}>
-              {/* <Link to="/sign-out">SignIn</Link> */}
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Log In</Heading>
@@ -106,7 +88,7 @@ const SignIn = () => {
                     />
                     <h5
                       className="forgotPassword"
-                      // onClick={() => router.push(ROUTER.FORGOT_PASSWORD.LINK)}
+                  
                     >
                       Forgot Password?
                     </h5>
@@ -123,9 +105,8 @@ const SignIn = () => {
       };
 
     return (
-        <>
           <BodyContainer>{formFields()}</BodyContainer>         
-        </>
+        
       );
 }
 export default SignIn;

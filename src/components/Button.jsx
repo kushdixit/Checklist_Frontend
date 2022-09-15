@@ -21,7 +21,6 @@ const Button = ({ handleClick, style, type, children, disabled, id, buttonType }
 }
 
 Button.propTypes = {
-  // children: nodePropType.isRequired,
   type: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string,

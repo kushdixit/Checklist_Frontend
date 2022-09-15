@@ -1,38 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 import TextInput from "components/FormElements/TextInput";
 import CheckboxInput from "components/FormElements/CheckboxInput";
+import { getChecklistBySubcategory, addNewTask } from "redux/actions/checklist";
 import Button from "components/Button";
-// import AlertModal from 'components/AlertModal';
-import { useDispatch } from "react-redux";
+
 import {
   BodyContainer,
   FormBody,
   TaskList,
   AddBtn,
 } from "styles/pages/CheckList";
-import { getChecklistBySubcategory, addNewTask } from "redux/actions/checklist";
+
 
 const CheckList = () => {
   const dispatch = useDispatch();
   let [getResponse, setResponse] = useState();
   let [addTaskState, setAddTask] = useState(false);
-  //   const [modal, setModal] = useState(false)
-  //   const [modalContent, setModalContent] = useState('')
-  //   const [modalLink, setModalLink] = useState('/')
-  //   const toggleModal = () => setModal(!modal)
-  //   let title = ''
 
   const {
     setValue,
     handleSubmit,
-    // formState: { errors },
     control,
   } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
-    // resolver: yupResolver(VALIDATION_SCHEMA),
     shouldFocusError: true,
   });
 
@@ -44,16 +38,12 @@ const CheckList = () => {
     console.log("response==", response);
     if (response?.error) {
       console.log("response==", response?.data?.message);
-      // setModalContent(response?.data?.message)
-      // setModalLink('')
-      // toggleModal()
+
     } else {
-      // API Success Response
       setResponse(response?.data);
     }
   };
 
-  // Sub Task List attached
   const subList = (index) =>
     getResponse?.tasks[index]?.subTasks.map((task, subIndex) => {
       return (
@@ -73,7 +63,6 @@ const CheckList = () => {
       );
     });
 
-  // Task List attached
   const lists = getResponse?.tasks?.map((task, index) => {
     return (
       <TaskList key={index}>
@@ -118,11 +107,7 @@ const CheckList = () => {
     console.log("response==", response);
     if (response?.error) {
       console.log("response==", response?.data?.message);
-      // setModalContent(response?.data?.message)
-      // setModalLink('')
-      // toggleModal()
     } else {
-      // API Success Response
       setAddTask(false);
       setValue("taskName", "");
       fetchData();
@@ -164,15 +149,6 @@ const CheckList = () => {
         </AddBtn>
         {addTaskState && attachList()}
         {formFields()}
-
-        {/* <AlertModal
-            className="AlertModalSection"
-            isOpen={modal}
-            toggle={toggleModal}
-            title={title}
-            content={modalContent}
-            link={modalLink}
-            />    */}
       </BodyContainer>
     </>
   );

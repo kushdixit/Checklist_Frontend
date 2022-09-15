@@ -1,14 +1,13 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const BodyContainer = styled.div`
   padding-top: 29px;
   padding-bottom: 29px;
-`
+`;
 export const FormContainer = styled.div`
   max-width: 400px;
   width: 100%;
   margin: 0 auto;
-  /* padding-top: 67%; */
 `;
 export const Heading = styled.h4`
   color: #6f7172;
@@ -45,9 +44,12 @@ export const FormBody = styled.div`
 export const RememberSection = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   font-size: 12px;
   font-family: "poppinsRegular";
+  justify-content: space-evenly;
+  align-content: center;
+  gap: 48px;
   label {
     color: #4f5270;
     font-size: 12px;
@@ -98,7 +100,6 @@ export const AccountContainer = styled.div`
 export const RegistrationContainer = styled.div`
   display: flex;
   width: 100%;
-  /* min-height: 100vh; */
   a {
     color: #6f7172;
     font-family: "poppinsSemibold";
@@ -114,8 +115,9 @@ export const IconInputField = styled.div`
     font-family: "poppinsRegular" !important;
     text-align: left;
     font-size: 14px !important;
-
-    padding: 14px 41.5px;
+    padding: 12px 41.5px;
+    border-radius: 6px;
+    border: none;
     ::placeholder {
       font-family: "poppinsRegular" !important;
       font-size: 14px !important;
@@ -158,5 +160,4 @@ export const IconInputField = styled.div`
     right: 13px;
     cursor: pointer;
   }
-
 `;

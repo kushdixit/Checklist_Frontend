@@ -9,7 +9,7 @@ const TextInput = (props) => {
   return (
     <div className="app-input-text">
       <Controller
-        render={({ field: { onChange, value, rules } }) => (
+        render={({ field: { value, rules } }) => (
           <input
             className={props.disabled ? 'disabled' : ''}
             onChange={(e)=>{
@@ -30,13 +30,12 @@ const TextInput = (props) => {
             value={props?.value || value}
             rules={rules}
             name={props?.name}
-            // maxlength={props?.maxlength}
           />
         )}
         name={props?.name}
         control={props.control}
       />
-      <>
+      <div>
         {!showPassword
           ? props.type === 'password' && (
               <EndIcon
@@ -54,7 +53,7 @@ const TextInput = (props) => {
                 }}
               />
             )}
-      </>
+      </div>
     </div>
   )
 }

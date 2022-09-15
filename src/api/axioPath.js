@@ -4,7 +4,6 @@ import { USER_INITIATE } from 'redux/actions/action_types'
 import { store } from 'redux/index'
 
 const axioPath = axios.create({
-  // baseURL: process.env.PUBLIC_API_URL,
   baseURL: 'https://checklist-dev.thewitslab.com/api/',
   headers: {
     'Content-Type': 'application/json',
@@ -13,7 +12,6 @@ const axioPath = axios.create({
 
 axioPath.interceptors.request.use(
   function (config) {
-    // spinning start to show
     if (!config.hideLoader) {
       store.dispatch(showAppLoader())
     }
@@ -26,7 +24,6 @@ axioPath.interceptors.request.use(
 
 axioPath.interceptors.response.use(
   function (response) {
-    // spinning hide
     store.dispatch(hideAppLoader())
     return response
   },

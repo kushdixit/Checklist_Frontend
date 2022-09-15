@@ -1,16 +1,10 @@
 import React from 'react';
-// import { Link } from "react-router-dom";
 import { NavBarContainer} from 'styles/components/Navbar';
 
-const NavBar = ({ setShow, getShow }) => {
+const NavBar = () => (
 
-  return (
-    <>
-      <NavBarContainer>
-         {/* <Link to="/sign-In">SignIn</Link>   */}
-      </NavBarContainer>
-    </>
-  )
-}
+      <NavBarContainer/>
+
+)
 
 export default NavBar

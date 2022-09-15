@@ -1,20 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BodyContainer,FormBody} from "styles/pages/SignOut";
+import { BodyContainer,FormWrapper} from "styles/pages/SignOut";
 
 const SignUp = () => {
-    const formFields = () => {
-        return (
-          <FormBody>             
+    const formFields = () => (
+          <FormWrapper>             
             <Link to="/sign-In">SignUp</Link>  
-          </FormBody>
+          </FormWrapper>
         );
-      };
+     
 
     return (
-        <>
+  
           <BodyContainer>{formFields()}</BodyContainer>         
-        </>
+       
       );
 }
 export default SignUp;

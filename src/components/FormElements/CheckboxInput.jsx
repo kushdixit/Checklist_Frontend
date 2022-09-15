@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Controller } from 'react-hook-form'
 
 const CheckboxInput = (props) => (
   <div className={`checkbox-field ${props?.disabled && 'checkBoxDisable'}`}>
