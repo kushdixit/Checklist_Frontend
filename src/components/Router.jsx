@@ -3,8 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "pages/sign-in";
 import CheckList from "pages/check-list";
 
-const Router = () => {
-  return (
+const Router = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<CheckList />} />
@@ -13,6 +12,5 @@ const Router = () => {
       </Routes>
     </BrowserRouter>
   );
-};
 
 export default Router;

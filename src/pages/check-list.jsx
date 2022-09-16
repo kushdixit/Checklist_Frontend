@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
+import { useDispatch } from "react-redux";
 import TextInput from "components/FormElements/TextInput";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import Button from "components/Button";
-import { useDispatch } from "react-redux";
+import { getChecklistBySubcategory, addNewTask } from "redux/actions/checklist";
 import {
   BodyContainer,
   FormBody,
   TaskList,
   AddBtn,
 } from "styles/pages/CheckList";
-import { getChecklistBySubcategory, addNewTask } from "redux/actions/checklist";
 
 const CheckList = () => {
   const dispatch = useDispatch();
-  let [getResponse, setResponse] = useState();
-  let [addTaskState, setAddTask] = useState(false);
+  const [getResponse, setResponse] = useState();
+  const [addTaskState, setAddTask] = useState(false);
 
   const { setValue, handleSubmit, control } = useForm({
     mode: "onSubmit",
@@ -38,8 +38,7 @@ const CheckList = () => {
   };
   // Sub Task List attached
   const subList = (index) =>
-    getResponse?.tasks[index]?.subTasks.map((task, subIndex) => {
-      return (
+    getResponse?.tasks[index]?.subTasks.map((task, subIndex) => (
         <div key={subIndex}>
           <Controller
             name={"subTask" + index + "" + subIndex}
@@ -53,12 +52,10 @@ const CheckList = () => {
             )}
           />
         </div>
-      );
-    });
+    ));
 
   // Task List attached
-  const lists = getResponse?.tasks?.map((task, index) => {
-    return (
+  const lists = getResponse?.tasks?.map((task, index) =>  (
       <TaskList key={index}>
         <Controller
           name={"task" + index}
@@ -73,23 +70,19 @@ const CheckList = () => {
         />
         <div style={{ "padding-left": "90px" }}>{subList(index)}</div>
       </TaskList>
-    );
-  });
-  const formFields = () => {
-    return (
+    ));
+
+  const formFields = () => (
       <FormBody>
         <div>{lists}</div>
       </FormBody>
     );
-  };
 
   const addTask = () => {
     if (!addTaskState) setAddTask(true);
   };
 
-  const formData = async (data) => {
-    addTaskAPI(data);
-  };
+  const formData = async (data) => addTaskAPI(data);
 
   const addTaskAPI = async (val) => {
     let data = {
@@ -109,8 +102,7 @@ const CheckList = () => {
   const onChange = (e) => {
     setValue("taskName", e.target.value);
   };
-  const attachList = () => {
-    return (
+  const attachList = () => (
       <form onSubmit={handleSubmit(formData)}>
         <div>
           <Controller
@@ -133,9 +125,8 @@ const CheckList = () => {
         </div>
       </form>
     );
-  };
+    
   return (
-    <>
       <BodyContainer>
         <AddBtn>
           <Button handleClick={addTask}>ADD</Button>
@@ -143,7 +134,6 @@ const CheckList = () => {
         {addTaskState && attachList()}
         {formFields()}
       </BodyContainer>
-    </>
   );
 };
 export default CheckList;

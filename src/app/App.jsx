@@ -3,7 +3,7 @@ import Router from "components/Router";
 import Layout from "components/Layout";
 import Spinner from "components/Spinner";
 import "./App.css";
-const App = ({ Component, pageProps }) => {
+const App = () => {
   const loaderVisible = useSelector((state) => state.loader.loaderVisible);
   return (
     <div className="App">

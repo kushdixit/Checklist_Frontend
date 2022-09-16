@@ -12,7 +12,7 @@ const CheckboxInput = (props) => (
           props?.onChange(e.target.checked);
         }}
       />
-      <span className="checkMark"></span>
+      <span className="checkMark"/>
       {props?.label}
     </label>
   </div>

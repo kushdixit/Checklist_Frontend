@@ -1,12 +1,10 @@
 import React from "react";
 import { NavBarContainer } from "styles/components/Navbar";
 
-const NavBar = ({ setShow, getShow }) => {
-  return (
+const NavBar = () =>  (
     <>
-      <NavBarContainer></NavBarContainer>
+      <NavBarContainer/>
     </>
   );
-};
 
 export default NavBar;

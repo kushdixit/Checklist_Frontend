@@ -95,9 +95,9 @@ const SignIn = () => {
   };
 
   return (
-    <>
+    <div>
       <BodyContainer>{formFields()}</BodyContainer>
-    </>
+    </div>
   );
 };
 export default SignIn;

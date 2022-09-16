@@ -1,8 +1,8 @@
 import axioPath from "api/axioPath";
 import { UPDATE_DATA } from "redux/actions/action_types";
 
-export const getChecklistBySubcategory = (subcategoryId) => (dispatch) => {
-  return axioPath
+export const getChecklistBySubcategory = (subcategoryId) => (dispatch) =>
+  axioPath
     .get("v1/Task/GetChecklistBySubcategory/" + subcategoryId)
     .then((response) => {
       dispatch({ type: UPDATE_DATA, payload: response.data });
@@ -14,9 +14,9 @@ export const getChecklistBySubcategory = (subcategoryId) => (dispatch) => {
       }
       return { error: true, data: ex };
     });
-};
-export const addNewTask = (data) => (dispatch) => {
-  return axioPath
+
+export const addNewTask = (data) => (dispatch) =>
+  axioPath
     .post("v1/Task/tasks", data, {
       hideLoader: false,
     })
@@ -30,4 +30,3 @@ export const addNewTask = (data) => (dispatch) => {
       }
       return { error: true, data: ex };
     });
-};

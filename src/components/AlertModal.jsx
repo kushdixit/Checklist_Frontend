@@ -15,9 +15,7 @@ const AlertModal = ({
   handleClick,
 }) => {
   const redirectLink = (link) => {
-    if (link) {
-    }
-    toggle(!isOpen);
+    if (link) toggle(!isOpen);
   };
   return (
     <Container>
