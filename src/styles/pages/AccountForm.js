@@ -1,14 +1,13 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const BodyContainer = styled.div`
   padding-top: 29px;
   padding-bottom: 29px;
-`
+`;
 export const FormContainer = styled.div`
   max-width: 400px;
   width: 100%;
   margin: 0 auto;
-  /* padding-top: 67%; */
 `;
 export const Heading = styled.h4`
   color: #6f7172;
@@ -98,7 +97,6 @@ export const AccountContainer = styled.div`
 export const RegistrationContainer = styled.div`
   display: flex;
   width: 100%;
-  /* min-height: 100vh; */
   a {
     color: #6f7172;
     font-family: "poppinsSemibold";
@@ -158,5 +156,4 @@ export const IconInputField = styled.div`
     right: 13px;
     cursor: pointer;
   }
-
 `;

@@ -1,28 +1,26 @@
-import React, { useState } from 'react'
-import { Controller } from 'react-hook-form'
-import EndIcon from 'assets/SVG/PasswordIconText';
-import PasswordIconText from 'assets/SVG/PasswordIconText';
+import React, { useState } from "react";
+import { Controller } from "react-hook-form";
+import EndIcon from "assets/SVG/PasswordIconText";
+import PasswordIconText from "assets/SVG/PasswordIconText";
 
 const TextInput = (props) => {
-
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="app-input-text">
       <Controller
         render={({ field: { onChange, value, rules } }) => (
           <input
-            className={props.disabled ? 'disabled' : ''}
-            onChange={(e)=>{
-              console.log("==",e?.target.value)
-              props?.onChange(e)
-            }}           
+            className={props.disabled ? "disabled" : ""}
+            onChange={(e) => {
+              props?.onChange(e);
+            }}
             onFocus={(e) => {
-              if (props?.onFocus) props?.onFocus(e?.target?.value)
+              if (props?.onFocus) props?.onFocus(e?.target?.value);
             }}
             onBlur={(e) => {
-              if (props?.onBlur) props?.onBlur(e?.target?.value)
+              if (props?.onBlur) props?.onBlur(e?.target?.value);
             }}
-            type={!showPassword ? props.type : 'text'}
+            type={!showPassword ? props.type : "text"}
             placeholder={props.placeholder}
             defaultValue={props?.defaultValue}
             style={props?.style}
@@ -30,7 +28,6 @@ const TextInput = (props) => {
             value={props?.value || value}
             rules={rules}
             name={props?.name}
-            // maxlength={props?.maxlength}
           />
         )}
         name={props?.name}
@@ -38,25 +35,25 @@ const TextInput = (props) => {
       />
       <>
         {!showPassword
-          ? props.type === 'password' && (
+          ? props.type === "password" && (
               <EndIcon
                 className="passwordIcon"
                 onClick={() => {
-                  setShowPassword(!showPassword)
+                  setShowPassword(!showPassword);
                 }}
               />
             )
-          : props.type === 'password' && (
+          : props.type === "password" && (
               <PasswordIconText
                 className="passwordIcon"
                 onClick={() => {
-                  setShowPassword(!showPassword)
+                  setShowPassword(!showPassword);
                 }}
               />
             )}
       </>
     </div>
-  )
-}
+  );
+};
 
-export default TextInput
+export default TextInput;

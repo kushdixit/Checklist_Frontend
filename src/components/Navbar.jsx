@@ -1,16 +1,12 @@
-import React from 'react';
-// import { Link } from "react-router-dom";
-import { NavBarContainer} from 'styles/components/Navbar';
+import React from "react";
+import { NavBarContainer } from "styles/components/Navbar";
 
 const NavBar = ({ setShow, getShow }) => {
-
   return (
     <>
-      <NavBarContainer>
-         {/* <Link to="/sign-In">SignIn</Link>   */}
-      </NavBarContainer>
+      <NavBarContainer></NavBarContainer>
     </>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

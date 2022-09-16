@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const ButtonContainer = styled.div`
   .button {
@@ -56,4 +56,4 @@ export const ButtonContainer = styled.div`
       border: 0 !important;
     }
   }
-`
+`;

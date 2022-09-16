@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Container = styled.div`
   > Modal {
@@ -11,7 +11,6 @@ export const Container = styled.div`
       border: none !important;
 
       > div {
-        // padding-bottom: 15px;
         padding: 10px !important;
         h3 {
           padding: 24px 24px 0 24px;
@@ -38,4 +37,4 @@ export const Container = styled.div`
       margin: auto;
     }
   }
-`
+`;

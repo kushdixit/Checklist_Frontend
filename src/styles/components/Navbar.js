@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const NavBarContainer = styled.div`
   display: flex;
@@ -200,12 +200,6 @@ export const NavBarContainer = styled.div`
   .dropdownContentAdd:hover {
     opacity: 0.3;
   }
-  /* .DropdownContentSub:hover {
-    opacity: 0.3;
-  }
-  .addDropdownContent:hover {
-    opacity: 0.3;
-  } */
   .dropdown-content .dropdownContent:hover {
     background-color: #393939;
   }
@@ -242,17 +236,17 @@ export const NavBarContainer = styled.div`
     background-color: #393939;
     display: block;
   }
-`
+`;
 export const NavLogo = styled.div`
   img {
     position: relative;
     left: 30px;
     cursor: pointer;
   }
-`
+`;
 
 export const DropImage = styled.div`
   width: 20px;
   height: 20px;
   padding: 6px 22px 6px 16px;
-`
+`;

@@ -1,21 +1,17 @@
-import { Fragment} from 'react';
- import NavBar from "components/Navbar";
+import { Fragment } from "react";
 const Layout = ({ children }) => {
   return (
     <>
       <Fragment>
-        <div className='appContainer'>
-          <NavBar/>
-          {/* <div>{children}</div> */}
+        <div className="appContainer">
+          <div>{children}</div>
         </div>
       </Fragment>
     </>
   );
 };
 
-Layout.propTypes = {
-  // children: nodePropType.isRequired,
-};
+Layout.propTypes = {};
 
 Layout.defaultProps = {};
 
