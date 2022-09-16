@@ -1,19 +1,42 @@
-import React from 'react'
-import Button from 'components/Button'
-import { Modal, ModalBody, ModalFooter } from 'reactstrap'
-import { Container,ModalContent,AlertButton,ModalTitle,Paragraph } from 'styles/components/AlertModal'
+import React from "react";
+import { Modal, ModalBody, ModalFooter } from "reactstrap";
 
-const AlertModal = ({ isOpen, toggle, title, content, link, close, hideButton, handleClick }) => {
+import Button from "components/Button";
+
+import {
+  Container,
+  ModalContent,
+  AlertButton,
+  ModalTitle,
+  Paragraph,
+} from "styles/components/AlertModal";
+
+const AlertModal = ({
+  isOpen,
+  toggle,
+  title,
+  content,
+  link,
+  close,
+  hideButton,
+  handleClick,
+}) => {
   const redirectLink = (link) => {
     if (link) {
-      
+      console.log("link=======");
     }
-    toggle(!isOpen)
-  }
+    toggle(!isOpen);
+  };
   return (
     <Container>
-      <Modal isOpen={isOpen} toggle={toggle} backdrop={'static'} centered={true} className="alertModal">
-        <ModalContent >
+      <Modal
+        isOpen={isOpen}
+        toggle={toggle}
+        backdrop={"static"}
+        centered={true}
+        className="alertModal"
+      >
+        <ModalContent>
           <ModalBody>
             <div>
               <ModalTitle>{title}</ModalTitle>
@@ -24,14 +47,14 @@ const AlertModal = ({ isOpen, toggle, title, content, link, close, hideButton, h
             </div>
           </ModalBody>
           {!hideButton && (
-            <ModalFooter >
+            <ModalFooter>
               <AlertButton>
                 <Button
                   type="app-green-button submitBtn AlertBtn"
                   handleClick={() => {
-                    redirectLink(link)
-                    close && close()
-                    handleClick && handleClick()
+                    redirectLink(link);
+                    close && close();
+                    handleClick && handleClick();
                   }}
                 >
                   OK
@@ -42,9 +65,7 @@ const AlertModal = ({ isOpen, toggle, title, content, link, close, hideButton, h
         </ModalContent>
       </Modal>
     </Container>
-  )
-}
+  );
+};
 
-export default AlertModal
-
-
+export default AlertModal;

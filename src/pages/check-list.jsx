@@ -2,29 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
+import { getChecklistBySubcategory, addNewTask } from "redux/actions/checklist";
 import TextInput from "components/FormElements/TextInput";
 import CheckboxInput from "components/FormElements/CheckboxInput";
-import { getChecklistBySubcategory, addNewTask } from "redux/actions/checklist";
 import Button from "components/Button";
 
 import {
   BodyContainer,
   FormBody,
+  BodyWrapper,
   TaskList,
   AddBtn,
+  Form,
+  SubmitBtn,
 } from "styles/pages/CheckList";
-
 
 const CheckList = () => {
   const dispatch = useDispatch();
   let [getResponse, setResponse] = useState();
   let [addTaskState, setAddTask] = useState(false);
 
-  const {
-    setValue,
-    handleSubmit,
-    control,
-  } = useForm({
+  const { setValue, handleSubmit, control } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
@@ -38,7 +36,6 @@ const CheckList = () => {
     console.log("response==", response);
     if (response?.error) {
       console.log("response==", response?.data?.message);
-
     } else {
       setResponse(response?.data);
     }
@@ -84,7 +81,7 @@ const CheckList = () => {
   const formFields = () => {
     return (
       <FormBody>
-        <div>{lists}</div>
+        <BodyWrapper>{lists}</BodyWrapper>
       </FormBody>
     );
   };
@@ -102,9 +99,7 @@ const CheckList = () => {
       taskName: val.taskName,
       subCategoryId: 1,
     };
-    console.log("data==", data);
     const response = await dispatch(addNewTask(data));
-    console.log("response==", response);
     if (response?.error) {
       console.log("response==", response?.data?.message);
     } else {
@@ -118,7 +113,7 @@ const CheckList = () => {
   };
   const attachList = () => {
     return (
-      <form onSubmit={handleSubmit(formData)}>
+      <Form onSubmit={handleSubmit(formData)}>
         <div>
           <Controller
             name="newTask"
@@ -135,22 +130,20 @@ const CheckList = () => {
           placeholder="Enter Task name"
           onChange={onChange}
         />
-        <div className="submitBtn">
+        <SubmitBtn className="submitBtn">
           <Button>Submit</Button>
-        </div>
-      </form>
+        </SubmitBtn>
+      </Form>
     );
   };
   return (
-    <>
-      <BodyContainer>
-        <AddBtn>
-          <Button handleClick={addTask}>ADD</Button>
-        </AddBtn>
-        {addTaskState && attachList()}
-        {formFields()}
-      </BodyContainer>
-    </>
+    <BodyContainer>
+      <AddBtn>
+        <Button handleClick={addTask}>ADD</Button>
+      </AddBtn>
+      {addTaskState && attachList()}
+      {formFields()}
+    </BodyContainer>
   );
 };
 export default CheckList;

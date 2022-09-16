@@ -1,10 +1,11 @@
 import React from 'react'
+import {CheckboxContainer,InputCheckBox} from 'styles/components/CheckboxInput'
 
 const CheckboxInput = (props) => (
   <div className={`checkbox-field ${props?.disabled && 'checkBoxDisable'}`}>
     
-    <label className="checkbox-container">
-      <input
+    <CheckboxContainer className="checkbox-container">
+      <InputCheckBox
         {...props}
         checked={props.value}
         className="checkBox"
@@ -15,7 +16,7 @@ const CheckboxInput = (props) => (
       />
       <span className="checkMark"></span>
       {props?.label}
-    </label>
+    </CheckboxContainer>
   </div>
 )
 

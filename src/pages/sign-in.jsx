@@ -32,7 +32,7 @@ const SignIn = () => {
     reValidateMode: "onBlur",
     shouldFocusError: true,
   });
-  const formData = async (data) => {
+  const formData = async () => {
     navigate('/check-list')
   };
 
@@ -88,7 +88,6 @@ const SignIn = () => {
                     />
                     <h5
                       className="forgotPassword"
-                  
                     >
                       Forgot Password?
                     </h5>

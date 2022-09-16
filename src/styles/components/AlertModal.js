@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  > Modal {
-    > div {
-      padding: 10px !important;
-      button {
-        background: transparent;
-        margin-left: auto;
-      }
+  div {
+    padding: 10px !important;
+    button {
+      background: transparent;
+      margin-left: auto;
     }
   }
 
