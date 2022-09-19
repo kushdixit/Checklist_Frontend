@@ -8,7 +8,7 @@ const TextInput = (props) => {
   return (
     <div className="app-input-text">
       <Controller
-        render={({ field: { onChange, value, rules } }) => (
+        render={({ field: { value, rules } }) => (
           <input
             className={props.disabled ? "disabled" : ""}
             onChange={(e) => {

@@ -10,8 +10,8 @@ export const SpinnerContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 99999;
-  > img {
-    width: 80px;
-    z-index: "99999";
-  }
+`;
+export const LoaderImage = styled.img`
+  width: 80px;
+  z-index: "99999";
 `;

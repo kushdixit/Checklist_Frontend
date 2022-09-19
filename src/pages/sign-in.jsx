@@ -29,7 +29,8 @@ const SignIn = () => {
     reValidateMode: "onBlur",
     shouldFocusError: true,
   });
-  const formData = async (data) => {
+  
+  const formData = () => {
     navigate("/check-list");
   };
 
@@ -95,9 +96,7 @@ const SignIn = () => {
   };
 
   return (
-    <div>
       <BodyContainer>{formFields()}</BodyContainer>
-    </div>
   );
 };
 export default SignIn;
