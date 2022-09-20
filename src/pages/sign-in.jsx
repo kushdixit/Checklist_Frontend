@@ -29,9 +29,9 @@ const SignIn = () => {
     reValidateMode: "onBlur",
     shouldFocusError: true,
   });
-  
+
   const formData = () => {
-    navigate("/check-list");
+    navigate("/dashboard");
   };
 
   const formFields = () => {
@@ -95,8 +95,6 @@ const SignIn = () => {
     );
   };
 
-  return (
-      <BodyContainer>{formFields()}</BodyContainer>
-  );
+  return <BodyContainer>{formFields()}</BodyContainer>;
 };
 export default SignIn;
