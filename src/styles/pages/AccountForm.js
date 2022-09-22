@@ -104,7 +104,9 @@ export const RegistrationContainer = styled.div`
   .RememberSection {
   }
 `;
+export const ForgotPassword = styled.div`
 
+`;
 export const IconInputField = styled.div`
   margin-bottom: 15px;
   position: relative;
@@ -112,7 +114,6 @@ export const IconInputField = styled.div`
     font-family: "poppinsRegular" !important;
     text-align: left;
     font-size: 14px !important;
-
     padding: 14px 41.5px;
     ::placeholder {
       font-family: "poppinsRegular" !important;

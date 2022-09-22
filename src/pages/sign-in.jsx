@@ -83,7 +83,7 @@ const SignIn = () => {
                     />
                   )}
                 />
-                <h5 className="forgotPassword">Forgot Password?</h5>
+                <h5 className="forgotPassword" onClick={() =>   navigate("/forgotpassword")}>Forgot Password?</h5>
               </RememberSection>
               <Footer>
                 <Button>Log In</Button>
