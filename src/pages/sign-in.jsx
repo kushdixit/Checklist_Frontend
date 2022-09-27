@@ -16,6 +16,7 @@ import {
   RememberSection,
   Heading,
 } from "styles/pages/AccountForm";
+import Googlelogin from "components/GoogleAuth";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -87,6 +88,7 @@ const SignIn = () => {
               </RememberSection>
               <Footer>
                 <Button>Log In</Button>
+               < Googlelogin/>
               </Footer>
             </FormContainer>
           </RegistrationContainer>
