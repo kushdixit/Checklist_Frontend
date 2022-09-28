@@ -5,7 +5,7 @@ import { store } from 'redux/index'
 
 const axioPath = axios.create({
   // baseURL: process.env.PUBLIC_API_URL,
-  baseURL: 'https://checklist-dev.thewitslab.com/api/',
+  baseURL: 'http://112.196.2.202:8080/api/',
   headers: {
     'Content-Type': 'application/json',
   },
