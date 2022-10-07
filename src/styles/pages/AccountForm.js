@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
-export const BodyContainer = styled.div`
-  padding-top: 29px;
-  padding-bottom: 29px;
-`;
+export const BodyContainer = styled.div``;
 export const FormContainer = styled.div`
-  max-width: 400px;
+  max-width: 450px;
   width: 100%;
   margin: 0 auto;
 `;
 export const Heading = styled.h4`
-  color: #6f7172;
-  font-size: 25px;
+  color: #1d2e88;
+  font-weight: 700;
+  font-size: 24px;
   padding-bottom: 30px;
   font-family: "poppinsBold"; ;
 `;
@@ -37,18 +35,21 @@ export const BackLogo = styled.div`
 `;
 
 export const FormBody = styled.div`
-  max-width: 400px;
+  max-width: 450px;
   width: 100%;
   margin: 0 auto;
 `;
 export const RememberSection = styled.div`
   display: flex;
+  position: relative;
+  bottom: 40px;
+  right: 9px;
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
   font-family: "poppinsRegular";
   label {
-    color: #4f5270;
+    color: #1d2e88;
     font-size: 12px;
     font-family: "poppinsRegular";
     padding-left: 10px;
@@ -70,11 +71,11 @@ export const RememberSection = styled.div`
     cursor: pointer;
     font-size: 12px;
     font-family: "poppinsBold";
-    color: #6f7172;
-    margin-bottom: 0 !important;
+    color: #1d2e88;
+    margin-bottom: 0;
   }
   .checkMark {
-    top: -2px !important;
+    top: -2px t;
   }
 `;
 export const Footer = styled.div`
@@ -104,38 +105,46 @@ export const RegistrationContainer = styled.div`
   .RememberSection {
   }
 `;
-export const ForgotPassword = styled.div`
-
-`;
+export const ForgotPassword = styled.div``;
 export const IconInputField = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 35px;
   position: relative;
   input {
-    font-family: "poppinsRegular" !important;
+    font-family: "poppinsRegular";
     text-align: left;
-    font-size: 14px !important;
+    font-size: 14px;
     padding: 14px 41.5px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: 1px solid #c9c9c9;
+    width: 100%;
+    max-width: 370px;
+    background: unset;
     ::placeholder {
-      font-family: "poppinsRegular" !important;
-      font-size: 14px !important;
-      color: #4f5270 !important;
+      font-family: "poppinsRegular";
+      font-size: 16px;
+      color: #9d9d9d;
     }
 
     :-ms-input-placeholder {
-      font-family: "poppinsRegular" !important;
-      font-size: 14px !important;
-      color: #4f5270 !important;
+      font-family: "poppinsRegular";
+      font-size: 16px;
+      color: #9d9d9d;
     }
 
     ::-ms-input-placeholder {
-      font-family: "poppinsRegular" !important;
-      font-size: 14px !important;
-      color: #4f5270 !important;
+      font-family: "poppinsRegular";
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+    :focus-visible {
+      outline: unset;
     }
   }
 
   Button {
-    background: #393939 !important;
+    background: #9d9d9d;
   }
   .emailIcon {
     position: absolute;
@@ -157,4 +166,58 @@ export const IconInputField = styled.div`
     right: 13px;
     cursor: pointer;
   }
+`;
+export const LoginContainer = styled.div`
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+`;
+export const LeftContainer = styled.div`
+  flex: 1 1 0%;
+  display: flex;
+  background: #1d2e88;
+  text-align: center;
+  align-items: center;
+  > img {
+    margin: 0 auto;
+  }
+`;
+export const RightContainer = styled.div`
+  display: flex;
+
+  align-items: center;
+  flex: 1 1 0%;
+  position: relative;
+`;
+
+export const IconSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 57px 0;
+`;
+export const LeftIconSection = styled.div`
+  border: 1px solid #c9c9c9;
+  display: flex;
+  color: #606060;
+  font-size: 12px;
+  font-weight: 400;
+  width: 100%;
+  max-width: 188px;
+  border-radius: 8px;
+  padding: 11px 12px;
+`;
+export const RightIconSection = styled.div`
+  border: 1px solid #c9c9c9;
+  display: flex;
+  color: #606060;
+  font-size: 12px;
+  font-weight: 400;
+  width: 100%;
+  max-width: 188px;
+  border-radius: 8px;
+  padding: 11px 12px;
+`;
+
+export const IconText = styled.div`
+  padding: 9px;
 `;
