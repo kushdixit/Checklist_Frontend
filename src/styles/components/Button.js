@@ -5,7 +5,7 @@ export const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: white;
     text-align: center;
     white-space: nowrap;
@@ -13,7 +13,7 @@ export const ButtonContainer = styled.div`
     cursor: pointer;
     user-select: none;
     border: 1px solid transparent;
-    background: #393939;
+    background: #1d2e88;
     border-radius: 8px;
     box-shadow: 0 3px 6px #00000029;
     &:disabled,
@@ -24,7 +24,7 @@ export const ButtonContainer = styled.div`
     }
 
     &.primary {
-      background-color: #0047ba;
+      background-color: #9d9d9d;
     }
     &.no-style {
       border: 0;

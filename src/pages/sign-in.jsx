@@ -6,6 +6,11 @@ import { useNavigate } from "react-router-dom";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
+
+
+import Checklist from "assets/images/checklist.svg";
+import Google from "assets/images/google.svg";
+import Facebook from "assets/images/facebook.svg";
 import {
   BodyContainer,
   RegistrationContainer,
@@ -15,6 +20,13 @@ import {
   Footer,
   RememberSection,
   Heading,
+  LoginContainer,
+  LeftContainer,
+  RightContainer,
+  IconSection,
+  LeftIconSection,
+  RightIconSection,
+  IconText
 } from "styles/pages/AccountForm";
 
 const SignIn = () => {
@@ -36,16 +48,27 @@ const SignIn = () => {
 
   const formFields = () => {
     return (
+      <LoginContainer>
+        <LeftContainer>   <img src={Checklist} alt="Checklist" /></LeftContainer>
+        <RightContainer>
       <FormBody>
         <form onSubmit={handleSubmit(formData)}>
           <RegistrationContainer>
             <FormContainer>
               <Heading>Log In</Heading>
+              <IconSection>
+                <LeftIconSection>
+                <img src={Google} alt="Google" /><IconText>Login with Google</IconText>
+                </LeftIconSection>
+                <RightIconSection>
+                <img src={Facebook} alt="Facebook" /><IconText>Login with Facebook</IconText>
+                </RightIconSection>
+              </IconSection>
               <IconInputField>
                 <TextInput
-                  name="email"
+                  name="Email Address"
                   type="text"
-                  placeholder="Email"
+                  placeholder="Email Address"
                   control={control}
                 />
                 {
@@ -58,7 +81,7 @@ const SignIn = () => {
 
               <IconInputField>
                 <TextInput
-                  name="password"
+                  name="Password"
                   type="password"
                   placeholder="Password"
                   control={control}
@@ -92,6 +115,8 @@ const SignIn = () => {
           </RegistrationContainer>
         </form>
       </FormBody>
+      </RightContainer>
+      </LoginContainer>
     );
   };
 
