@@ -10,8 +10,6 @@ export const Heading = styled.h4`
   color: #1d2e88;
   font-weight: 700;
   font-size: 24px;
-  padding-bottom: 30px;
-  font-family: "poppinsBold"; ;
 `;
 export const ForgotEmailHeading = styled.span`
   color: #6f7172;
@@ -43,17 +41,15 @@ export const RememberSection = styled.div`
   display: flex;
   position: relative;
   bottom: 40px;
-  right: 9px;
+
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  font-family: "poppinsRegular";
+
   label {
+    display: flex;
     color: #1d2e88;
-    font-size: 12px;
-    font-family: "poppinsRegular";
-    padding-left: 10px;
-    padding-top: 0;
+    font-size: 8px;
   }
   > div:nth-child(2) {
     color: #2b3ed4;
@@ -70,12 +66,8 @@ export const RememberSection = styled.div`
   .forgotPassword {
     cursor: pointer;
     font-size: 12px;
-    font-family: "poppinsBold";
+
     color: #1d2e88;
-    margin-bottom: 0;
-  }
-  .checkMark {
-    top: -2px t;
   }
 `;
 export const Footer = styled.div`
@@ -110,7 +102,6 @@ export const IconInputField = styled.div`
   margin-bottom: 35px;
   position: relative;
   input {
-    font-family: "poppinsRegular";
     text-align: left;
     font-size: 14px;
     padding: 14px 41.5px;
@@ -122,19 +113,16 @@ export const IconInputField = styled.div`
     max-width: 370px;
     background: unset;
     ::placeholder {
-      font-family: "poppinsRegular";
       font-size: 16px;
       color: #9d9d9d;
     }
 
     :-ms-input-placeholder {
-      font-family: "poppinsRegular";
       font-size: 16px;
       color: #9d9d9d;
     }
 
     ::-ms-input-placeholder {
-      font-family: "poppinsRegular";
       font-size: 16px;
       color: #9d9d9d;
     }

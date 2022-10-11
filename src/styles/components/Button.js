@@ -1,6 +1,15 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.div`
+  .button.submit {
+    width: 100%;
+    max-width: 387px;
+    min-height: 40px;
+    background: #1d2e88;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
   .button {
     display: flex;
     align-items: center;

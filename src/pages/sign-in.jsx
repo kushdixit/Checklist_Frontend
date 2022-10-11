@@ -112,11 +112,14 @@ const SignIn = () => {
                 <Button>Log In</Button>
               </Footer>
             </FormContainer>
+
           </RegistrationContainer>
         </form>
       </FormBody>
       </RightContainer>
+    
       </LoginContainer>
+           
     );
   };
 
