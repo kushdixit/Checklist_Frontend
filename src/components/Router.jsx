@@ -15,6 +15,7 @@ const Router = () => (
       <Route path="check-list" element={<CheckList />} />
       <Route path="forgotpassword" element={<ForgotPassword />} />
       <Route path="resetPassword" element={<ResetPassword />} />
+   
     </Routes>
   </BrowserRouter>
 );
