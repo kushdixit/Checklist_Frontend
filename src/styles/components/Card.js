@@ -2,7 +2,9 @@ import styled from "styled-components";
 export const FirstSection = styled.div`
   display: flex;
   grid-gap: 37px;
-  margin: 0 5%;
+  width: 100%auto;
+  justify-content: center;
+  margin: 0 auto;
   flex-wrap: wrap;
 `;
 export const NewSection = styled.div``;

@@ -64,6 +64,7 @@ export const RememberSection = styled.div`
     margin-right: 6px;
   }
   .forgotPassword {
+    position: relative;
     cursor: pointer;
     font-size: 12px;
 

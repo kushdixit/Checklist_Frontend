@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useForm, Controller } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import CheckboxInput from "components/FormElements/CheckboxInput";
@@ -6,11 +6,12 @@ import { useNavigate } from "react-router-dom";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
-
+import React, { useState } from "react";
 
 import Checklist from "assets/images/checklist.svg";
 import Google from "assets/images/google.svg";
 import Facebook from "assets/images/facebook.svg";
+import AlertModal from "components/AlertModal";
 import {
   BodyContainer,
   RegistrationContainer,
@@ -31,6 +32,10 @@ import {
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const [modal, setModal] = useState(false);
+  function toggleab(data) {
+    setModal(data);
+  }
 
   const {
     handleSubmit,
@@ -48,6 +53,7 @@ const SignIn = () => {
 
   const formFields = () => {
     return (
+    
       <LoginContainer>
         <LeftContainer>   <img src={Checklist} alt="Checklist" /></LeftContainer>
         <RightContainer>
@@ -56,6 +62,7 @@ const SignIn = () => {
           <RegistrationContainer>
             <FormContainer>
               <Heading>Log In</Heading>
+              <AlertModal isOpen={modal} togglefunction={toggleab} />
               <IconSection>
                 <LeftIconSection>
                 <img src={Google} alt="Google" /><IconText>Login with Google</IconText>
@@ -64,6 +71,7 @@ const SignIn = () => {
                 <img src={Facebook} alt="Facebook" /><IconText>Login with Facebook</IconText>
                 </RightIconSection>
               </IconSection>
+        
               <IconInputField>
                 <TextInput
                   name="Email Address"
@@ -93,7 +101,7 @@ const SignIn = () => {
                 }
                 <LockIcon className="startIcon" />
               </IconInputField>
-
+             
               <RememberSection>
                 <Controller
                   name="rememberMe"
@@ -106,7 +114,8 @@ const SignIn = () => {
                     />
                   )}
                 />
-                <h5 className="forgotPassword" onClick={() =>   navigate("/forgotpassword")}>Forgot Password?</h5>
+                
+                <h5 className="forgotPassword" onClick={() => toggleab(true)}>Forgot Password?</h5>
               </RememberSection>
               <Footer>
                 <Button>Log In</Button>
