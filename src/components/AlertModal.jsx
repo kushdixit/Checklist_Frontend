@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const AlertModal = ({
   isOpen,
+  togglefunction,
   toggle,
   title,
   content,
@@ -25,6 +26,11 @@ const AlertModal = ({
         backdrop={"static"}
         centered={true}
         className="alertModal"
+         footer={false} 
+        
+         
+           width={1000} 
+           closable={false}
       >
         <div className="modal-content">
           <ModalBody>
@@ -38,6 +44,8 @@ const AlertModal = ({
           </ModalBody>
           {!hideButton && (
             <ModalFooter className="Modal-Content-Footer">
+              <MainSection>
+              <button onClick={() => togglefunction(false)}>x</button>
               <AlertButton>
                 <Button
                   type="app-green-button submitBtn AlertBtn"
@@ -50,6 +58,7 @@ const AlertModal = ({
                   OK
                 </Button>
               </AlertButton>
+              </MainSection>
             </ModalFooter>
           )}
         </div>
@@ -66,8 +75,18 @@ export const Testing = styled.div`
 `;
 
 export const AlertButton = styled.div`
+justify-content: center;
+    display: flex;
   .AlertBtn {
     width: 115px;
     height: 37px;
   }
+`;
+
+export const MainSection = styled.div`
+
+text-align: right;
+ width:100% ;
+ background:#000 ;
+ 
 `;
