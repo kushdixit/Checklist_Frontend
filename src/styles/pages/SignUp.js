@@ -70,7 +70,9 @@ export const RememberSection = styled.div`
     color: #1d2e88;
   }
 `;
-export const Footer = styled.div`
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
   margin-top: 65px;
   button {
     width: 100%;
@@ -208,4 +210,26 @@ export const RightIconSection = styled.div`
 
 export const IconText = styled.div`
   padding: 9px;
+`;
+export const LoginButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  background: #1d2e88;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px #00000029;
+`;
+export const Error = styled.div`
+  color: #d65e5e;
+  padding: 5px 0px;
+  font-size: 12px;
+  text-align: center;
 `;
