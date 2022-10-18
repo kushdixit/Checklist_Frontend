@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   NavBarContainer,
   NavSection,
@@ -8,6 +8,9 @@ import {
   IconInputField,
   Footer,
   Profile,
+  Morecontent,
+  ContentItem,
+  ImageSubSection
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import FirstImage from "assets/images/firstimage.jpg";
@@ -19,6 +22,7 @@ import { eraseCookie } from "../helpers/cookie";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const [isGood, setIsGood] = useState(false);
   const {
     handleSubmit,
     formState: { errors },
@@ -50,15 +54,34 @@ const NavBar = () => {
         <Footer>
           <Button className="button">+&nbsp; Create List</Button>
         </Footer>
+        <ImageSubSection>
         <SecondSubSection>
           <Profile>
             <h4>Admin</h4>
             <h5>Shivam</h5>
           </Profile>
-          <img src={FirstImage} alt="FirstImage" />
+          <button className="button" onClick={() => setIsGood(!isGood)}><img src={FirstImage} alt="FirstImage" /></button>
         </SecondSubSection>
+      
+          {isGood ?   <Morecontent>
+         <h5>Welcome !</h5>
+         <ContentItem
+         
+         >
+           Profile
+         </ContentItem>
+         <ContentItem
+          
+         >
+          Logout
+         </ContentItem>
+       
+       
+     </Morecontent> : null}
+        </ImageSubSection>
         <button onClick={logout}>Logout</button>
       </SecondSection>
+     
     </NavSection>
   );
 };

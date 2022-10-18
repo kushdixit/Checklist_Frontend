@@ -11,6 +11,7 @@ export const FirstSection = styled.div`
   }
 `;
 export const SecondSection = styled.div`
+  position: relative;
   display: flex;
   gap: 55px;
   width: 100%;
@@ -21,13 +22,19 @@ export const SecondSubSection = styled.div`
   gap: 10px;
   width: 100%;
   max-width: 124px;
+  position: relative;
   img {
     width: 42px;
     height: 42px;
     border-radius: 25px;
   }
+  .button {
+    background: unset;
+    border: unset;
+  }
 `;
 
+export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
   h4 {
     margin: 0;
@@ -97,6 +104,28 @@ export const IconInputField = styled.div`
       outline: unset;
     }
   }
+`;
+export const Morecontent = styled.div`
+  position: absolute;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  top: 60px;
+  /* right: 92px; */
+  box-shadow: rgb(163 183 223) 0px 0px 3px;
+  border-radius: 10px;
+  padding: 6px 26px;
+
+  width: 100%;
+  max-width: 123px;
+  h5 {
+    padding: 0;
+    margin: 4px 0;
+  }
+`;
+export const ContentItem = styled.div`
+  cursor: pointer;
 `;
 // export const NavBarContainer = styled.div`
 //   display: flex;

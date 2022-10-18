@@ -172,6 +172,9 @@ export const LeftContainer = styled.div`
   > img {
     margin: 0 auto;
   }
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 export const RightContainer = styled.div`
   display: flex;
