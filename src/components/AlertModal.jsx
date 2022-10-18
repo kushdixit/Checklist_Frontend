@@ -1,8 +1,23 @@
 import React from "react";
 import Button from "components/Button";
-import { Modal, ModalBody, ModalFooter } from "reactstrap";
+import {   ModalBody, ModalFooter } from "reactstrap";
 import { Container } from "styles/components/AlertModal";
 import styled from "styled-components";
+import ReactModal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    padding:'15px 20px',
+    width:'200px',
+  },
+};
+
 
 const AlertModal = ({
   isOpen,
@@ -19,20 +34,23 @@ const AlertModal = ({
     if (link) toggle(!isOpen);
   };
   return (
-    <Container>
-      <Modal
-        isOpen={isOpen}
-        toggle={toggle}
-        backdrop={"static"}
-        centered={true}
-        className="alertModal"
-         footer={false} 
-        
-         
-           width={1000} 
-           closable={false}
+       <ReactModal
+       isOpen={isOpen}
+      //  onAfterOpen={afterOpenModal}
+       onRequestClose={hideButton}
+       style={customStyles}
+       contentLabel="Example Modal"
+        // isOpen={isOpen}
+        // toggle={toggle}
+        // backdrop={"static"}
+        // centered={true}
+        // className="alertModal"
+        //  footer={false} 
+        //    width={1000} 
+        //    closable={false}
+        //    zIndex={200}
       >
-        <div className="modal-content">
+        {/* <div className="modal-content">
           <ModalBody>
             <div>
               <h3 className="modal-title">{title}</h3>
@@ -61,10 +79,19 @@ const AlertModal = ({
               </MainSection>
             </ModalFooter>
           )}
-        </div>
-      </Modal>
-    </Container>
-  );
+        </div> */}
+         <ButtonWrapper>
+                    <button className="button"
+                      onClick={() => togglefunction(false)}
+                    >
+                    x
+                    </button>
+                 
+                  </ButtonWrapper>
+ 
+        <Sub>Ok</Sub>
+      </ReactModal>
+   );
 };
 
 export default AlertModal;
@@ -86,7 +113,31 @@ justify-content: center;
 export const MainSection = styled.div`
 
 text-align: right;
- width:100% ;
+ width:200px ;
  background:#000 ;
  
+`;
+export const Sub = styled.div`
+
+display:flex ;
+justify-content:center ;
+ 
+`;
+export const ButtonWrapper = styled.div`
+
+  display: flex;
+  justify-content: flex-start;
+  button {
+    width: 100%;
+   justify-content:right ;
+   display:flex ;
+    border-radius: 10px;
+    box-shadow:unset ;
+    background:unset ;
+    color:#1D2E8B;
+    border:unset ;
+  }
+  button:hover {
+    opacity: 0.4;
+  }
 `;
