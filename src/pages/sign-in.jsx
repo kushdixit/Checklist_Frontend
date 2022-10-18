@@ -31,6 +31,7 @@ import {
   RightIconSection,
   IconText,
   Error,
+  Logo
 } from "styles/pages/AccountForm";
 
 const SignIn = () => {
@@ -72,6 +73,9 @@ const SignIn = () => {
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
+          <Logo>
+        <img src={Checklist} alt="Checklist" />
+        </Logo>
           <FormBody>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
