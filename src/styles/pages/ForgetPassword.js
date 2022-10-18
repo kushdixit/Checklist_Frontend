@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@ export const DataInput = styled.div`
     padding: 12px 0px;
     width: 100%;
     border-radius: 5px;
-    border: 1px solid #fff;
+    border: 1px solid #008cba;
     ::placeholder {
       font-family: "poppinsRegular" !important;
       font-size: 14px !important;

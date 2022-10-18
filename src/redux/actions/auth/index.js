@@ -1,6 +1,5 @@
 import axioPath from "api/axioPath";
 import { SIGN_IN } from "redux/actions/action_types";
-import { setCookie } from "../../../helpers/cookie";
 
 export const authLogin = (data) => async (dispatch) => {
   console.log(data);
@@ -10,8 +9,7 @@ export const authLogin = (data) => async (dispatch) => {
   };
   try {
     const response = await axioPath.post("v1/Account/userslogin", payload);
-    console.log("response", response);
-    setCookie("access_token", response.data.accessToken, 36000000);
+    localStorage.setItem("access_token", response.data.accessToken);
     dispatch({ type: SIGN_IN, payload: response.data });
     return { error: false, data: response.data };
   } catch (ex) {
@@ -23,13 +21,6 @@ export const authLogin = (data) => async (dispatch) => {
 };
 
 export const authSignup = (data) => async (dispatch) => {
-  console.log(data);
-  // const payload = {
-  //   firstName: "Test4",
-  //   lastName: "Test",
-  //   email: "test@gmail.com",
-  //   password: "12345",
-  // };
   const payload = {
     firstName: data.firstName,
     lastName: data.lastName,
@@ -56,7 +47,7 @@ export const forgotPassword = (data) => async (dispatch) => {
   };
   try {
     const response = await axioPath.put("v1/Account/forgotpassword", payload);
-    console.log("response", response);
+    return response.status;
   } catch (ex) {
     if (typeof ex == "string") {
       return { ex: { message: ex } };
@@ -65,10 +56,11 @@ export const forgotPassword = (data) => async (dispatch) => {
   }
 };
 
-export const resetPassword = (data) => async (dispatch) => {
+export const resetPassword = (pass, id) => async (dispatch) => {
+  console.log(pass, id);
   const payload = {
-    id: 1,
-    password: "12345",
+    id,
+    password: pass,
   };
   try {
     const response = await axioPath.put("v1/Account/resetpassword", payload);

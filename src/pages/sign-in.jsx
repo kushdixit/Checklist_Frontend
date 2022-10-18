@@ -31,7 +31,8 @@ import {
   RightIconSection,
   IconText,
   Error,
-  Logo
+  Logo,
+  SignUp,
 } from "styles/pages/AccountForm";
 
 const SignIn = () => {
@@ -42,7 +43,11 @@ const SignIn = () => {
       .matches(/^\S/, "First character cannot be Space ")
       .email("Please enter a valid Email")
       .max(255),
-    password: yup.string().required("Password is required").min(5),
+    password: yup.string().required("Password is required"),
+    // .matches(
+    //   /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{5,})/,
+    //   "Minimum five characters, at least one letter and one number and one special case Character"
+    // ),
   });
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
@@ -140,21 +145,13 @@ const SignIn = () => {
                     </h5>
                   </RememberSection>
                   <ButtonWrapper>
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/sign-up");
-                      }}
-                    >
-                      Sign Up
-                    </Button>
                     <Button>Log In</Button>
                   </ButtonWrapper>
                 </FormContainer>
               </RegistrationContainer>
             </form>
           </FormBody>
-          <button onClick={() => navigate("/sign-up")}>Sign Up</button>
+          <SignUp onClick={() => navigate("/sign-up")}>Sign Up?</SignUp>
         </RightContainer>
       </LoginContainer>
     );
