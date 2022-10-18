@@ -5,7 +5,7 @@ export const MainWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 export const Container = styled.div`
   width: 100%;
@@ -21,7 +21,7 @@ export const ResetWrapper = styled.div`
 `;
 export const PasswordInput = styled.div`
   input {
-    border: 1px solid #fff;
+    border: 1px solid #008cba;
     padding: 10px 0px;
     border-radius: 5px;
     width: 100%;
@@ -48,11 +48,17 @@ export const ResetButton = styled.button`
   border: 1px solid #008cba;
   color: #fff;
 `;
-export const ResetText = styled.div`
+export const ResetText = styled.input`
   font-size: 14px;
   font-weight: 800;
+  background: transparent;
+  border: navajowhite;
+  color: white;
 `;
 export const ResetHeading = styled.div`
   font-size: 35px;
   font-weight: 700;
+`;
+export const Form = styled.form`
+  height: 100%;
 `;

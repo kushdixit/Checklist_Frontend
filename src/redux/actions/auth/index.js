@@ -30,9 +30,9 @@ export const authSignup = (data) => async (dispatch) => {
 
   try {
     const response = await axioPath.post("v1/Account/usersignup", payload);
-    console.log("response", response);
-    // navigate to login Page
-    // return { error: false, data: jsonResponse.data };
+    localStorage.setItem("access_token", response.data.accessToken);
+    dispatch({ type: SIGN_IN, payload: response.data });
+    return { error: false, data: response.data };
   } catch (ex) {
     if (typeof ex == "string") {
       return { ex: { message: ex } };

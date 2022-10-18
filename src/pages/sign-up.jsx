@@ -79,8 +79,8 @@ const SignUp = () => {
   });
 
   const formData = async (data) => {
-    await store.dispatch(authSignup(data));
-    // if (res.error === false) navigate("/dashboard");
+    const res = await store.dispatch(authSignup(data));
+    if (res.error === false) navigate("/dashboard");
   };
 
   return (

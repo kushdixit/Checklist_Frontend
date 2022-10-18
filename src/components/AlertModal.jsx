@@ -1,8 +1,5 @@
 import React from "react";
 import ForgotPassword from "./forgetPassword";
-import Button from "components/Button";
-import { ModalBody, ModalFooter } from "reactstrap";
-import { Container } from "styles/components/AlertModal";
 import styled from "styled-components";
 import ReactModal from "react-modal";
 
@@ -21,20 +18,7 @@ const customStyles = {
   },
 };
 
-const AlertModal = ({
-  isOpen,
-  togglefunction,
-  toggle,
-  title,
-  content,
-  link,
-  close,
-  hideButton,
-  handleClick,
-}) => {
-  const redirectLink = (link) => {
-    if (link) toggle(!isOpen);
-  };
+const AlertModal = ({ isOpen, togglefunction, hideButton, notify }) => {
   return (
     <ReactModal
       isOpen={isOpen}
@@ -48,7 +32,7 @@ const AlertModal = ({
         </button>
       </ButtonWrapper>
 
-      <ForgotPassword />
+      <ForgotPassword notify={notify} togglefunction={togglefunction} />
     </ReactModal>
   );
 };
