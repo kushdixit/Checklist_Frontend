@@ -28,6 +28,7 @@ import {
   RightIconSection,
   IconText,
   Error,
+  SignIn,
 } from "styles/pages/SignUp";
 import { authSignup } from "../redux/actions/auth";
 import * as yup from "yup";
@@ -51,7 +52,14 @@ const SignUp = () => {
       .matches(/^\S/, "First character cannot be Space ")
       .email("Please enter a valid Email")
       .max(255),
-    password: yup.string().required("Password is required").min(5),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(8)
+      .matches(
+        /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{5,})/,
+        "Minimum five characters, at least one letter and one number and one special case Character"
+      ),
     passwordConfirmation: yup
       .string()
       .required("Confirm password is required")
@@ -174,13 +182,7 @@ const SignUp = () => {
               </RegistrationContainer>
             </form>
           </FormBody>
-          <LoginButton
-            onClick={() => {
-              navigate("/sign-in");
-            }}
-          >
-            Log In
-          </LoginButton>
+          <SignIn onClick={() => navigate("/sign-in")}>Sign In?</SignIn>
         </RightContainer>
       </LoginContainer>
     </>

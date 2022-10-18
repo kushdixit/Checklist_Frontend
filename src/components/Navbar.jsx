@@ -10,7 +10,7 @@ import {
   Profile,
   Morecontent,
   ContentItem,
-  ImageSubSection
+  ImageSubSection,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import FirstImage from "assets/images/firstimage.jpg";
@@ -18,7 +18,6 @@ import { useForm, Controller } from "react-hook-form";
 import Search from "assets/SVG/Search";
 import Button from "components/Button";
 import { useNavigate } from "react-router-dom";
-import { eraseCookie } from "../helpers/cookie";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ const NavBar = () => {
     shouldFocusError: true,
   });
   const logout = () => {
-    eraseCookie("access_token");
+    localStorage.removeItem("access_token");
     navigate("/");
   };
   return (
@@ -55,33 +54,25 @@ const NavBar = () => {
           <Button className="button">+&nbsp; Create List</Button>
         </Footer>
         <ImageSubSection>
-        <SecondSubSection>
-          <Profile>
-            <h4>Admin</h4>
-            <h5>Shivam</h5>
-          </Profile>
-          <button className="button" onClick={() => setIsGood(!isGood)}><img src={FirstImage} alt="FirstImage" /></button>
-        </SecondSubSection>
-      
-          {isGood ?   <Morecontent>
-         <h5>Welcome !</h5>
-         <ContentItem
-         
-         >
-           Profile
-         </ContentItem>
-         <ContentItem
-          
-         >
-          Logout
-         </ContentItem>
-       
-       
-     </Morecontent> : null}
+          <SecondSubSection>
+            <Profile>
+              <h4>Admin</h4>
+              <h5>Shivam</h5>
+            </Profile>
+            <button className="button" onClick={() => setIsGood(!isGood)}>
+              <img src={FirstImage} alt="FirstImage" />
+            </button>
+          </SecondSubSection>
+
+          {isGood ? (
+            <Morecontent>
+              <h5>Welcome !</h5>
+              <ContentItem>Profile</ContentItem>
+              <ContentItem onClick={logout}>Logout</ContentItem>
+            </Morecontent>
+          ) : null}
         </ImageSubSection>
-        <button onClick={logout}>Logout</button>
       </SecondSection>
-     
     </NavSection>
   );
 };

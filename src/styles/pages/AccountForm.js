@@ -73,8 +73,6 @@ export const RememberSection = styled.div`
 `;
 export const ButtonWrapper = styled.div`
   margin-top: 30px;
-  display: flex;
-  justify-content: flex-start;
   button {
     width: 100%;
     height: 50px;
@@ -178,7 +176,9 @@ export const LeftContainer = styled.div`
 `;
 export const RightContainer = styled.div`
   display: flex;
-
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   align-items: center;
   flex: 1 1 0%;
   position: relative;
@@ -220,4 +220,10 @@ export const Error = styled.div`
   padding: 5px 0px;
   font-size: 12px;
   text-align: center;
+`;
+export const SignUp = styled.div`
+  cursor: pointer;
+  font-size: 12px;
+  color: #1d2e88;
+  margin: 1rem;
 `;
