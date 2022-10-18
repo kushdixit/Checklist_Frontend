@@ -33,7 +33,11 @@ import {
   Error,
   Logo,
   SignUp,
+  UserHelper,
+  Forgot,
 } from "styles/pages/AccountForm";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   let schema = yup.object().shape({
@@ -54,6 +58,7 @@ const SignIn = () => {
   function toggleab(data) {
     setModal(data);
   }
+  const notify = () => toast("Password has been sent to you on mail");
 
   const {
     handleSubmit,
@@ -73,6 +78,8 @@ const SignIn = () => {
   const formFields = () => {
     return (
       <LoginContainer>
+        <ToastContainer />
+
         <LeftContainer>
           {" "}
           <img src={Checklist} alt="Checklist" />
@@ -86,7 +93,11 @@ const SignIn = () => {
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Log In</Heading>
-                  <AlertModal isOpen={modal} togglefunction={toggleab} />
+                  <AlertModal
+                    isOpen={modal}
+                    togglefunction={toggleab}
+                    notify={notify}
+                  />
                   <IconSection>
                     <LeftIconSection>
                       <img src={Google} alt="Google" />
@@ -136,13 +147,6 @@ const SignIn = () => {
                         />
                       )}
                     />
-
-                    <h5
-                      className="forgotPassword"
-                      onClick={() => toggleab(true)}
-                    >
-                      Forgot Password?
-                    </h5>
                   </RememberSection>
                   <ButtonWrapper>
                     <Button>Log In</Button>
@@ -151,7 +155,12 @@ const SignIn = () => {
               </RegistrationContainer>
             </form>
           </FormBody>
-          <SignUp onClick={() => navigate("/sign-up")}>Sign Up?</SignUp>
+          <UserHelper>
+            <Forgot className="forgotPassword" onClick={() => toggleab(true)}>
+              Forgot Password?
+            </Forgot>
+            <SignUp onClick={() => navigate("/sign-up")}>Sign Up?</SignUp>
+          </UserHelper>
         </RightContainer>
       </LoginContainer>
     );

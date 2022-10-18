@@ -233,6 +233,18 @@ export const Error = styled.div`
   font-size: 12px;
   text-align: center;
 `;
+
+export const UserHelper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const Forgot = styled.div`
+  cursor: pointer;
+  font-size: 12px;
+  color: #1d2e88;
+  margin: 1rem;
+`;
 export const SignUp = styled.div`
   cursor: pointer;
   font-size: 12px;

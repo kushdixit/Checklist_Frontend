@@ -4,7 +4,6 @@ import SignIn from "pages/sign-in";
 import SignUp from "pages/sign-up";
 import Dashboard from "pages/dashboard";
 import CheckList from "pages/check-list";
-import ResetPassword from "pages/resetPassword";
 
 const Router = () => {
   const [isLoggedIn, setIsLoggedIn] = useState();
@@ -20,7 +19,6 @@ const Router = () => {
         <Route path="sign-up" element={<SignUp />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="check-list" element={<CheckList />} />
-        <Route path="resetPassword" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>
   );

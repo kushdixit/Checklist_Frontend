@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button";
 import { BodyContainer } from "styles/pages/Dashboard";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
+import ResetPassword from "../components/resetPassword";
+
 const Dashboard = () => {
+  const [modal, setModal] = useState(false);
   const navigate = useNavigate();
+
+  function toggleab(data) {
+    setModal(data);
+  }
 
   const passwordReset = useSelector(
     (state) => state.auth.userData.isForgotPassword
@@ -21,12 +28,13 @@ const Dashboard = () => {
     if (!res) navigate("/");
   }, []);
 
-  // useEffect(() => {
-  //   if (passwordReset) navigate("/ResetPassword");
-  // }, [passwordReset]);
+  useEffect(() => {
+    if (passwordReset) toggleab(true);
+  }, [passwordReset]);
 
   return (
     <BodyContainer>
+      <ResetPassword isOpen={modal} togglefunction={toggleab} />
       <Navbar />
       Your Checklist
       <Button handleClick={addCheckList}>Plus</Button>
