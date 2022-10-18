@@ -35,8 +35,20 @@ export const BackLogo = styled.div`
 export const FormBody = styled.div`
   max-width: 450px;
   width: 100%;
-  margin: 0 auto;
+  margin: 12% auto;
 `;
+
+export const Logo = styled.div`
+  display: flex;
+  height: auto;
+  justify-content: right;
+  img {
+    display: flex;
+    width: 91px;
+    padding: 20px 50px;
+  }
+`;
+
 export const RememberSection = styled.div`
   display: flex;
   position: relative;
