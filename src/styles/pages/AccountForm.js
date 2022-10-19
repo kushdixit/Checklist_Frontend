@@ -42,6 +42,7 @@ export const Logo = styled.div`
   display: flex;
   height: auto;
   justify-content: right;
+  width: 100%;
   img {
     display: flex;
     width: 91px;
@@ -61,7 +62,7 @@ export const RememberSection = styled.div`
   label {
     display: flex;
     color: #1d2e88;
-    font-size: 8px;
+    font-size: 12px;
   }
   > div:nth-child(2) {
     color: #2b3ed4;

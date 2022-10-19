@@ -31,10 +31,11 @@ export const EmailWrapper = styled.div`
 `;
 export const DataInput = styled.div`
   input {
-    padding: 12px 0px;
+    padding: 12px 18px;
     width: 100%;
+    max-width: 417px;
     border-radius: 5px;
-    border: 1px solid #008cba;
+    border: 1px solid #c9c9c9;
     ::placeholder {
       font-family: "poppinsRegular" !important;
       font-size: 14px !important;
@@ -49,7 +50,8 @@ export const ResetWrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #008cba;
+
+  background: #1d2e88;
   color: #fff;
   padding: 10px 0px;
 `;

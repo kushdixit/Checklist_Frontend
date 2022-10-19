@@ -2,6 +2,8 @@ import TextInput from "components/FormElements/TextInput";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as Yup from 'yup'
 import {
   MainWrapper,
   Container,
@@ -30,7 +32,21 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
     console.log("inside");
     store.dispatch(resetPassword(data.example, passwordReset));
   };
-
+  const formSchema = Yup.object().shape({
+    password: Yup.string()
+      .required('Password is mendatory')
+      .min(3, 'Password must be at 3 char long'),
+    confirmPwd: Yup.string()
+      .required('Password is mendatory')
+      .oneOf([Yup.ref('password')], 'Passwords does not match'),
+  })
+  const formOptions = { resolver: yupResolver(formSchema) }
+  // const { register, handleSubmit, reset, formState } = useForm(formOptions)
+  // const { errors } = formState
+  function onSubmit(data) {
+    console.log(JSON.stringify(data, null, 4))
+    return false
+  }
   const passwordReset = useSelector((state) => state.auth.userData.id);
 
   const customStyles = {
@@ -66,17 +82,25 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
             <ResetWrapper>
               <PasswordInput>
                 <input
-                  {...register("example", { required: true })}
+                  name="password"
+                  type="password"
                   placeholder="Enter Password"
+                  {...register('password')}
+                  className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                 
                 />
-                {errors.example && <p>This field is required</p>}
+              <div className="invalid-feedback">{errors.confirmPwd?.message}</div>
               </PasswordInput>
               <PasswordInput>
                 <input
-                  {...register("exampleRequired", { required: true })}
+                  name="confirmPwd"
+                  type="password"
                   placeholder="Confirm Password"
+                  {...register('confirmPwd')}
+                  className={`form-control ${errors.confirmPwd ? 'is-invalid' : ''}`}
+                
                 />
-                {errors.exampleRequired && <p>This field is required</p>}
+               <div className="invalid-feedback">{errors.confirmPwd?.message}</div>
               </PasswordInput>
             </ResetWrapper>
             <ResetButton>
