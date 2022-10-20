@@ -154,13 +154,14 @@ const SignIn = () => {
                 </FormContainer>
               </RegistrationContainer>
             </form>
-          </FormBody>
-          <UserHelper>
+            <UserHelper>
             <Forgot className="forgotPassword" onClick={() => toggleab(true)}>
               Forgot Password?
             </Forgot>
             <SignUp onClick={() => navigate("/sign-up")}>Sign Up?</SignUp>
           </UserHelper>
+          </FormBody>
+        
         </RightContainer>
       </LoginContainer>
     );

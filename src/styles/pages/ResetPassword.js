@@ -9,7 +9,7 @@ export const MainWrapper = styled.div`
 `;
 export const Container = styled.div`
   width: 100%;
-  max-width: 300px;
+  max-width: 417px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -21,10 +21,12 @@ export const ResetWrapper = styled.div`
 `;
 export const PasswordInput = styled.div`
   input {
-    border: 1px solid #008cba;
-    padding: 10px 0px;
-    border-radius: 5px;
+    border: 1px solid #1d2e88;
+    padding: 12px 18px;
     width: 100%;
+    max-width: 380px;
+    border-radius: 5px;
+
     ::placeholder {
       padding-left: 10px;
     }
@@ -42,7 +44,7 @@ export const ConfirmWrapper = styled.input`
   }
 `;
 export const ResetButton = styled.button`
-  background-color: #008cba;
+  background-color: #1d2e88;
   padding: 13px 0px;
   border-radius: 5px;
   border: 1px solid #008cba;
@@ -56,8 +58,8 @@ export const ResetText = styled.input`
   color: white;
 `;
 export const ResetHeading = styled.div`
-  font-size: 35px;
-  font-weight: 700;
+  font-size: 34px;
+  font-weight: 400;
 `;
 export const Form = styled.form`
   height: 100%;

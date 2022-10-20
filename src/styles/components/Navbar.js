@@ -3,8 +3,12 @@ export const NavSection = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 5%;
+  flex-wrap: wrap;
 `;
 export const FirstSection = styled.div`
+  width: 100%;
+  max-width: 400px;
+
   h1 {
     margin: 0;
     color: #1d2e88;

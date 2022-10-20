@@ -170,6 +170,9 @@ export const LeftContainer = styled.div`
   > img {
     margin: 0 auto;
   }
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 export const RightContainer = styled.div`
   display: flex;
@@ -196,6 +199,7 @@ export const LeftIconSection = styled.div`
   max-width: 188px;
   border-radius: 8px;
   padding: 11px 12px;
+  cursor: pointer;
 `;
 export const RightIconSection = styled.div`
   border: 1px solid #c9c9c9;
@@ -207,6 +211,7 @@ export const RightIconSection = styled.div`
   max-width: 188px;
   border-radius: 8px;
   padding: 11px 12px;
+  cursor: pointer;
 `;
 
 export const IconText = styled.div`
@@ -229,10 +234,10 @@ export const LoginButton = styled.div`
   box-shadow: 0 3px 6px #00000029;
 `;
 export const Error = styled.div`
-  color: #d65e5e;
+  color: #e45829;
   padding: 5px 0px;
   font-size: 12px;
-  text-align: center;
+  text-align: left;
 `;
 export const SignIn = styled.div`
   cursor: pointer;
