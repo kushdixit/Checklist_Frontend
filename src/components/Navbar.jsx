@@ -51,7 +51,12 @@ const NavBar = () => {
           />
         </IconInputField>
         <Footer>
-          <Button className="button">+&nbsp; Create List</Button>
+          <Button
+            className="button"
+            handleClick={() => navigate("/check-list")}
+          >
+            +&nbsp; Create List
+          </Button>
         </Footer>
         <ImageSubSection>
           <SecondSubSection>
