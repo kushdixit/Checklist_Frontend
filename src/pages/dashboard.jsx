@@ -36,8 +36,6 @@ const Dashboard = () => {
     <BodyContainer>
       <ResetPassword isOpen={modal} togglefunction={toggleab} />
       <Navbar />
-      Your Checklist
-      <Button handleClick={addCheckList}>Plus</Button>
       <Card />
     </BodyContainer>
   );
