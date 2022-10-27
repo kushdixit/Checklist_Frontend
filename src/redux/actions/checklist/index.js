@@ -32,17 +32,15 @@ export const addNewTask = (data) => (dispatch) =>
       return { error: true, data: ex };
     });
 
-export const deleteTask = () => async (dispatch) => {
+export const deleteTask = (id) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  console.log("asfd");
   const payload = {
-    id: 64,
+    id,
   };
-  console.log(payload);
   try {
     const response = await fetch(
       "http://112.196.2.202:8080/api/v1/Task/tasks",
@@ -60,6 +58,7 @@ export const deleteTask = () => async (dispatch) => {
         body: JSON.stringify(payload),
       }
     );
+    dispatch(getChecklistBySubcategory(1));
 
     // const response = await axios.delete("http://112.196.2.202:8080/api/v1/Task/tasks", config, payload, {
     //     hideLoader: false,
@@ -77,25 +76,17 @@ export const deleteTask = () => async (dispatch) => {
   }
 };
 
-export const editTask = () => async (dispatch) => {
-  console.log("asfd");
+export const editTask = (taskName, id) => async (dispatch) => {
   const payload = {
-    id: 68,
-    taskName: "dsfdsf",
+    id,
+    taskName,
   };
-  console.log(payload);
   try {
     const response = await axioPath.put("v1/Task/tasks", payload, {
       hideLoader: false,
     });
-    console.log("response", response);
-    dispatch({ type: UPDATE_DATA, payload: response.data });
-    // return { error: false, data: response.data };
+    return response;
   } catch (ex) {
-    if (typeof ex == "string") {
-      console.log("err", ex);
-      return { ex: { message: ex } };
-    }
-    return { error: true, data: ex };
+    return ex.response;
   }
 };
