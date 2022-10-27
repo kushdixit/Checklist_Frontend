@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import TextInput from "components/FormElements/TextInput";
 import CheckboxInput from "components/FormElements/CheckboxInput";
@@ -12,7 +11,6 @@ import TaskWrapper from "../components/Task";
 const CheckList = () => {
   const dispatch = useDispatch();
   const [addTaskState, setAddTask] = useState(false);
-  const taskData = useSelector((state) => state.checklist);
 
   const { setValue, handleSubmit, control } = useForm({
     mode: "onSubmit",
@@ -31,7 +29,7 @@ const CheckList = () => {
   const formFields = () => (
     <FormBody>
       <div>
-        <TaskWrapper taskData={taskData} />
+        <TaskWrapper />
       </div>
     </FormBody>
   );
