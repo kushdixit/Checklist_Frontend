@@ -20,6 +20,7 @@ export const SecondSection = styled.div`
   gap: 55px;
   width: 100%;
   max-width: 760px;
+  flex-wrap: wrap;
 `;
 export const SecondSubSection = styled.div`
   display: flex;
@@ -80,7 +81,7 @@ export const Footer = styled.div`
 export const IconInputField = styled.div`
   position: relative;
   width: 100%;
-
+  max-width: 375px;
   input {
     text-align: left;
     font-size: 14px;
@@ -88,7 +89,7 @@ export const IconInputField = styled.div`
     border: 1px solid #c9c9c9;
     background: unset;
     width: 100%;
-    max-width: 300px;
+    max-width: 290px;
     border-radius: 20px;
     ::placeholder {
       font-size: 16px;
