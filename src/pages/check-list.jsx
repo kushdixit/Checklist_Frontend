@@ -5,24 +5,14 @@ import { useDispatch } from "react-redux";
 import TextInput from "components/FormElements/TextInput";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import Button from "components/Button";
-import {
-  getChecklistBySubcategory,
-  addNewTask,
-  deleteTask,
-  editTask,
-} from "redux/actions/checklist";
-import {
-  BodyContainer,
-  FormBody,
-  TaskList,
-  AddBtn,
-} from "styles/pages/CheckList";
+import { getChecklistBySubcategory, addNewTask } from "redux/actions/checklist";
+import { BodyContainer, FormBody, AddBtn } from "styles/pages/CheckList";
+import TaskWrapper from "../components/Task";
 
 const CheckList = () => {
   const dispatch = useDispatch();
-  const [getResponse, setResponse] = useState();
   const [addTaskState, setAddTask] = useState(false);
-  const [taskEdit, setTaskEdit] = useState(false);
+  const taskData = useSelector((state) => state.checklist);
 
   const { setValue, handleSubmit, control } = useForm({
     mode: "onSubmit",
@@ -34,69 +24,15 @@ const CheckList = () => {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    const response = await dispatch(getChecklistBySubcategory(1));
-    if (response?.error) {
-    } else {
-      // API Success Response
-      setResponse(response?.data);
-    }
+  const fetchData = () => {
+    dispatch(getChecklistBySubcategory(1));
   };
-
-  // Sub Task List attached
-  const subList = (index) =>
-    getResponse?.tasks[index]?.subTasks.map((task, subIndex) => (
-      <div key={subIndex}>
-        <Controller
-          name={"subTask" + index + "" + subIndex}
-          control={control}
-          render={({ field }) => (
-            <CheckboxInput
-              className="checkBox"
-              label={task?.subTaskName}
-              {...field}
-            />
-          )}
-        />
-      </div>
-    ));
-
-  const deleteHandler = () => {
-    console.log("adsa", deleteTask);
-    dispatch(deleteTask());
-  };
-  const editHandler = () => {
-    setTaskEdit(true);
-    const res = dispatch(editTask());
-    if (res) setTaskEdit(false);
-  };
-  // Task List attached
-  const lists = getResponse?.tasks?.map((task, index) => (
-    <TaskList key={index}>
-      {taskEdit ? (
-        <div>dshuf</div>
-      ) : (
-        <Controller
-          name={"task" + index}
-          control={control}
-          render={({ field }) => (
-            <CheckboxInput
-              className="checkBox"
-              label={task?.taskName}
-              {...field}
-            />
-          )}
-        />
-      )}
-      <button onClick={deleteHandler}>delete</button>
-      <button onClick={editHandler}>edit</button>
-      <div style={{ "padding-left": "90px" }}>{subList(index)}</div>
-    </TaskList>
-  ));
 
   const formFields = () => (
     <FormBody>
-      <div>{lists}</div>
+      <div>
+        <TaskWrapper taskData={taskData} />
+      </div>
     </FormBody>
   );
 
@@ -107,11 +43,9 @@ const CheckList = () => {
   const formData = async (data) => addTaskAPI(data);
 
   const addTaskAPI = async (val) => {
-    console.log(getResponse?.tasks.length);
     let data = {
       taskName: val.title,
-      // subCategoryId: getResponse?.tasks.length + 1 || 1,
-      subCategoryId: 2,
+      subCategoryId: 1,
     };
     const response = await dispatch(addNewTask(data));
 
