@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import CheckboxInput from "components/FormElements/CheckboxInput";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
   getChecklistBySubcategory,
@@ -10,15 +11,15 @@ import {
 import { TaskList } from "styles/pages/CheckList";
 import Button from "components/Button";
 import TextInput from "components/FormElements/TextInput";
-
-const SubList = ({ index, taskData }) => {
+import SubTask from "./SubTask";
+const SubList = ({ index, task }) => {
   const { setValue, handleSubmit, control } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
   });
 
-  return taskData?.tasks[index]?.subTasks.map((task, subIndex) => (
+  return task.subTasks.map((task, subIndex) => (
     <div key={subIndex}>
       <Controller
         name={"subTask" + index + "" + subIndex}
@@ -35,15 +36,14 @@ const SubList = ({ index, taskData }) => {
   ));
 };
 
-const TaskWrapper = ({ taskData }) => {
+const TaskWrapper = () => {
+  const taskData = useSelector((state) => state.checklist);
   return taskData?.tasks
     ?.filter((data) => data.isActive)
-    .map((task, index) => (
-      <Task task={task} index={index} taskData={taskData} />
-    ));
+    .map((task, index) => <Task task={task} index={index} />);
 };
 
-const Task = ({ task, index, taskData }) => {
+const Task = ({ task, index }) => {
   const dispatch = useDispatch();
   const [taskEdit, setTaskEdit] = useState(false);
 
@@ -71,7 +71,6 @@ const Task = ({ task, index, taskData }) => {
       alert(response.data.Message);
     }
   };
-
   return (
     <TaskList key={index}>
       {taskEdit ? (
@@ -88,6 +87,7 @@ const Task = ({ task, index, taskData }) => {
               <Button>Submit</Button>
             </div>
           </form>
+          <SubTask id={task.id} />
         </div>
       ) : (
         <Controller
@@ -111,7 +111,7 @@ const Task = ({ task, index, taskData }) => {
       </button>
       <button onClick={() => setTaskEdit(true)}>edit</button>
       <div style={{ "padding-left": "90px" }}>
-        <SubList index={index} taskData={taskData} />
+        <SubList index={index} task={task} />
       </div>
     </TaskList>
   );

@@ -90,3 +90,20 @@ export const editTask = (taskName, id) => async (dispatch) => {
     return ex.response;
   }
 };
+
+export const addSubTask = (subTaskName, taskId) => async (dispatch) => {
+  const payload = {
+    taskId,
+    subTaskName,
+  };
+  try {
+    const response = await axioPath.post("v1/SubTask/subtasks", payload, {
+      hideLoader: false,
+    });
+    console.log(response);
+    return response;
+  } catch (ex) {
+    console.log(ex);
+    return ex.response;
+  }
+};
