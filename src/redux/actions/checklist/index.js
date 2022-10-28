@@ -69,7 +69,6 @@ export const deleteTask = (id) => async (dispatch) => {
     // return { error: false, data: response.data };
   } catch (ex) {
     if (typeof ex == "string") {
-      console.log("err", ex);
       return { ex: { message: ex } };
     }
     return { error: true, data: ex };
@@ -91,6 +90,7 @@ export const editTask = (taskName, id) => async (dispatch) => {
   }
 };
 
+//SubTask APi's
 export const addSubTask = (subTaskName, taskId) => async (dispatch) => {
   const payload = {
     taskId,
@@ -100,10 +100,47 @@ export const addSubTask = (subTaskName, taskId) => async (dispatch) => {
     const response = await axioPath.post("v1/SubTask/subtasks", payload, {
       hideLoader: false,
     });
-    console.log(response);
     return response;
   } catch (ex) {
-    console.log(ex);
+    return ex.response;
+  }
+};
+
+export const deleteSubTask = (id) => async (dispatch) => {
+  const payload = {
+    id,
+  };
+  try {
+    const response = await fetch(
+      "http://112.196.2.202:8080/api/v1/SubTask/subtasks",
+      {
+        method: "DELETE",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(payload),
+      }
+    );
+    dispatch(getChecklistBySubcategory(1));
+  } catch (ex) {}
+};
+
+export const editSubTask = (subTaskName, id) => async (dispatch) => {
+  const payload = {
+    id,
+    subTaskName,
+  };
+  try {
+    const response = await axioPath.put("v1/SubTask/subtasks", payload, {
+      hideLoader: false,
+    });
+    return response;
+  } catch (ex) {
     return ex.response;
   }
 };
