@@ -3,23 +3,18 @@ import { Controller } from "react-hook-form";
 import EndIcon from "assets/SVG/PasswordIconText";
 import PasswordIconText from "assets/SVG/PasswordIconText";
 
-
 import styled from "styled-components";
 import { unstable_HistoryRouter } from "react-router-dom";
 const TextInput = (props) => {
-  console.log('props', props?.value)
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="app-input-text">
       <Controller
-        render={({ field: { value, rules ,onChange} }) => (
-         
+        render={({ field: { value, rules, onChange } }) => (
           <input
             className={props.disabled ? "disabled" : ""}
-         
             onChange={(e) => {
               onChange(e);
-
             }}
             onFocus={(e) => {
               if (props?.onFocus) props?.onFocus(e?.target?.value);
@@ -35,9 +30,7 @@ const TextInput = (props) => {
             value={props?.value || value}
             rules={rules}
             name={props?.name}
-            
           />
-          
         )}
         name={props?.name}
         control={props.control}

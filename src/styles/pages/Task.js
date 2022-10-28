@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BodyContainer = styled.div`
+export const BodyWrapper = styled.div`
   padding: 30px 0;
   background: #fff;
 `;
@@ -69,4 +69,44 @@ export const IconInputField = styled.div`
 
 export const SubTaskSection = styled.div`
   margin: 0 5%;
+`;
+
+export const ShortContainer = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 80px;
+  /* background: #ffffff; */
+  /* border: 1px solid #e9e9e9; */
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: flex;
+  padding: 8px 6px 6px 13px;
+`;
+export const ShortBy = styled.div`
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+`;
+export const SortWrapper = styled.div`
+  z-index: 1;
+  position: absolute;
+  background: #fff;
+  box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.09);
+  border-radius: 10px;
+  max-width: 111px;
+  width: 100%;
+  text-align: left;
+  right: 10px;
+  top: 40px;
+  padding: 10px 20px;
+`;
+export const SortText = styled.button`
+  font-family: "OutfitMedium";
+  font-size: 12px;
+  line-height: 24px;
+`;
+export const SortTextDiv = styled.div`
+  font-family: "OutfitMedium";
+  font-size: 12px;
+  line-height: 24px;
 `;
