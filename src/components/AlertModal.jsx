@@ -13,8 +13,8 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "15px 20px",
-    width: "50vw",
-    height: "75vh",
+    width: "25vw",
+    height: "65vh",
     overflowY: "hidden",
   },
 };
@@ -76,6 +76,8 @@ export const ButtonWrapper = styled.div`
     background: unset;
     color: #1d2e8b;
     border: unset;
+    font-size: 22px;
+    font-weight: 700;
   }
   button:hover {
     opacity: 0.4;
