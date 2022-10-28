@@ -2,9 +2,9 @@ import axioPath from "api/axioPath";
 import axios from "axios";
 import { UPDATE_DATA } from "redux/actions/action_types";
 
-export const getChecklistBySubcategory = (subcategoryId) => (dispatch) =>
+export const getChecklistBySubcategory = (Checklistid) => (dispatch) =>
   axioPath
-    .get("v1/Task/GetChecklistBySubcategory/" + subcategoryId)
+    .get("v1/Task/GetChecklistByCheckList/" + Checklistid)
     .then((response) => {
       dispatch({ type: UPDATE_DATA, payload: response.data });
       return { error: false, data: response.data };
@@ -91,7 +91,7 @@ export const editTask = (taskName, id) => async (dispatch) => {
 };
 
 //SubTask APi's
-export const addSubTask = (subTaskName, taskId) => async (dispatch) => {
+export const addSubTaskApi = (subTaskName, taskId) => async (dispatch) => {
   const payload = {
     taskId,
     subTaskName,

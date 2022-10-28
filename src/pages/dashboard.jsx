@@ -35,7 +35,7 @@ const Dashboard = () => {
   return (
     <BodyContainer>
       <ResetPassword isOpen={modal} togglefunction={toggleab} />
-      <Navbar />
+      <Navbar search={true} buttonType="Create List" />
       <Card />
     </BodyContainer>
   );

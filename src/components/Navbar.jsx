@@ -19,7 +19,7 @@ import Search from "assets/SVG/Search";
 import Button from "components/Button";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
   const [isGood, setIsGood] = useState(false);
   const {
@@ -42,20 +42,22 @@ const NavBar = () => {
         <h1>Checklist</h1>
       </FirstSection>
       <SecondSection>
-        <IconInputField>
-          <TextInput
-            name=""
-            type="text"
-            placeholder="Find Something Here"
-            control={control}
-          />
-        </IconInputField>
+        {search && (
+          <IconInputField>
+            <TextInput
+              name=""
+              type="text"
+              placeholder="Find Something Hereeee"
+              control={control}
+            />
+          </IconInputField>
+        )}
         <Footer>
           <Button
             className="button"
             handleClick={() => navigate("/check-list")}
           >
-            +&nbsp; Create List
+            {`+ ${buttonType}`}
           </Button>
         </Footer>
         <ImageSubSection>

@@ -19,7 +19,32 @@ const customStyles = {
   },
 };
 
-const AlertModal = ({ isOpen, togglefunction, hideButton, notify,modalType }) => {
+// const taskStyles={
+//   content:{
+//     position: absolute;
+//     inset: 32% 50% auto auto;
+//     border: 1px
+// px
+//  solid rgb(204, 204, 204);
+//     background: rgb(255, 255, 255);
+//     overflow: auto hidden;
+//     border-radius: 4px;
+//     outline: none;
+//     padding: 15px 20px;
+//     margin-right: -50%;
+//     /* transform: translate(-50%, -50%); */
+//     width: 12vw;
+//     height: 27vh;
+//   }
+// }
+
+const AlertModal = ({
+  isOpen,
+  togglefunction,
+  hideButton,
+  notify,
+  modalType,
+}) => {
   return (
     <ReactModal
       isOpen={isOpen}
@@ -32,9 +57,11 @@ const AlertModal = ({ isOpen, togglefunction, hideButton, notify,modalType }) =>
           x
         </button>
       </ButtonWrapper>
-    {modalType =='forgot'?(<ForgotPassword notify={notify} togglefunction={togglefunction} />):(<EditTask notifynew={notify} togglefunctionnew={togglefunction} />)}
-      
-      
+      {modalType == "forgot" ? (
+        <ForgotPassword notify={notify} togglefunction={togglefunction} />
+      ) : (
+        <EditTask notifynew={notify} togglefunctionnew={togglefunction} />
+      )}
     </ReactModal>
   );
 };
