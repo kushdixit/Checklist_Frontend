@@ -94,6 +94,7 @@ const SignIn = () => {
                 <FormContainer>
                   <Heading>Log In</Heading>
                   <AlertModal
+                  modalType="forgot"
                     isOpen={modal}
                     togglefunction={toggleab}
                     notify={notify}

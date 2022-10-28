@@ -1,5 +1,6 @@
 import React from "react";
 import ForgotPassword from "./forgetPassword";
+import EditTask from "./editTask";
 import styled from "styled-components";
 import ReactModal from "react-modal";
 
@@ -18,7 +19,7 @@ const customStyles = {
   },
 };
 
-const AlertModal = ({ isOpen, togglefunction, hideButton, notify }) => {
+const AlertModal = ({ isOpen, togglefunction, hideButton, notify,modalType }) => {
   return (
     <ReactModal
       isOpen={isOpen}
@@ -31,8 +32,9 @@ const AlertModal = ({ isOpen, togglefunction, hideButton, notify }) => {
           x
         </button>
       </ButtonWrapper>
-
-      <ForgotPassword notify={notify} togglefunction={togglefunction} />
+    {modalType =='forgot'?(<ForgotPassword notify={notify} togglefunction={togglefunction} />):(<EditTask notifynew={notify} togglefunctionnew={togglefunction} />)}
+      
+      
     </ReactModal>
   );
 };
