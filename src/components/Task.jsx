@@ -12,34 +12,13 @@ import { TaskList } from "styles/pages/CheckList";
 import Button from "components/Button";
 import TextInput from "components/FormElements/TextInput";
 import SubTask from "./SubTask";
-const SubList = ({ index, task }) => {
-  const { setValue, handleSubmit, control } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-    shouldFocusError: true,
-  });
-
-  return task.subTasks.map((task, subIndex) => (
-    <div key={subIndex}>
-      <Controller
-        name={"subTask" + index + "" + subIndex}
-        control={control}
-        render={({ field }) => (
-          <CheckboxInput
-            className="checkBox"
-            label={task?.subTaskName}
-            {...field}
-          />
-        )}
-      />
-    </div>
-  ));
-};
+import SubListWrapper from "./SubList";
 
 const TaskWrapper = () => {
   const taskData = useSelector((state) => state.checklist);
   return taskData?.tasks
     ?.filter((data) => data.isActive)
+    .reverse()
     .map((task, index) => <Task task={task} index={index} />);
 };
 
@@ -62,7 +41,6 @@ const Task = ({ task, index }) => {
 
   const updateTask = async (data) => {
     const response = await dispatch(editTask(data?.update, task.id));
-    console.log(response);
     if (response.status == 204) {
       dispatch(getChecklistBySubcategory(1));
       setValue("update", "");
@@ -111,7 +89,7 @@ const Task = ({ task, index }) => {
       </button>
       <button onClick={() => setTaskEdit(true)}>edit</button>
       <div style={{ "padding-left": "90px" }}>
-        <SubList index={index} task={task} />
+        <SubListWrapper index={index} task={task} />
       </div>
     </TaskList>
   );

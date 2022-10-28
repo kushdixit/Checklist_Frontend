@@ -23,7 +23,6 @@ const SubTask = ({ id }) => {
 
   const subTaskformData = async (data) => {
     const response = await dispatch(addSubTask(data?.subTask, id));
-    console.log(response);
     if (response.status == 201) {
       dispatch(getChecklistBySubcategory(1));
       setValue("subTask", "");
