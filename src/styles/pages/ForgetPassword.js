@@ -7,6 +7,19 @@ export const MainWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const MainWrapperNew = styled.div`
+  width: 100%;
+  max-width: 215px;
+  height: 100%;
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 0;
+`;
 export const Container = styled.div`
   height: 100%;
   width: 100%;
@@ -21,8 +34,9 @@ export const DataWrapper = styled.form`
   gap: 30px;
 `;
 export const Heading = styled.div`
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 500;
+  color: #1d2e8b;
 `;
 export const EmailWrapper = styled.div`
   display: flex;
@@ -31,9 +45,9 @@ export const EmailWrapper = styled.div`
 `;
 export const DataInput = styled.div`
   input {
-    padding: 12px 18px;
+    padding: 12px 0;
     width: 100%;
-    max-width: 417px;
+
     border-radius: 5px;
     border: 1px solid #c9c9c9;
     ::placeholder {
@@ -42,6 +56,18 @@ export const DataInput = styled.div`
       color: #4f5270 !important;
       padding-left: 10px;
     }
+  }
+`;
+
+export const DataInputNew = styled.div`
+  display: flex;
+  font-size: 20px;
+  color: #1d2e88;
+  padding: 10px 0;
+  align-items: center;
+  svg {
+    width: 76px;
+    height: 50px;
   }
 `;
 export const ResetWrapper = styled.button`

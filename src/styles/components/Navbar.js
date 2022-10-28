@@ -89,7 +89,7 @@ export const IconInputField = styled.div`
     border: 1px solid #c9c9c9;
     background: unset;
     width: 100%;
-    max-width: 290px;
+    max-width: 300px;
     border-radius: 20px;
     ::placeholder {
       font-size: 16px;
