@@ -40,10 +40,15 @@ export const MainTaskSection = styled.div`
   display: flex;
   svg {
     cursor: pointer;
+    padding-right: 10px;
   }
   img {
     width: 27px;
     padding: 17px 18px 17px 0;
+  }
+  .button {
+    font-size: 1rem;
+    padding: 9px 20px;
   }
 `;
 
@@ -55,8 +60,8 @@ export const IconInputField = styled.div`
   padding: 0 12px;
   input {
     text-align: left;
-    font-size: 14px;
-    padding: 8px 0;
+    font-size: 24px;
+
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
@@ -65,12 +70,25 @@ export const IconInputField = styled.div`
 
     background: unset;
   }
+  input:focus-visible {
+    outline: unset;
+  }
 `;
 
 export const SubTaskSection = styled.div`
   margin: 0 5%;
+  .div {
+    margin: 0 5%;
+  }
 `;
 
+export const AddSubTask = styled.div`
+  margin: 0 5%;
+  .button {
+    font-size: 1rem;
+    padding: 9px 20px;
+  }
+`;
 export const ShortContainer = styled.div`
   position: relative;
   width: 100%;
@@ -93,20 +111,22 @@ export const SortWrapper = styled.div`
   background: #fff;
   box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.09);
   border-radius: 10px;
-  max-width: 111px;
-  width: 100%;
+
+  width: 211px;
   text-align: left;
   right: 10px;
   top: 40px;
-  padding: 10px 20px;
+  padding: 20px 10px 0 26px;
 `;
 export const SortText = styled.button`
-  font-family: "OutfitMedium";
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 16px;
   line-height: 24px;
 `;
 export const SortTextDiv = styled.div`
-  font-family: "OutfitMedium";
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 16px;
   line-height: 24px;
+  display: flex;
+  color: #1d2e88;
 `;

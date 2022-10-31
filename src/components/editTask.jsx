@@ -23,6 +23,7 @@ const EditTask = ({ notifynew, togglefunctionnew }) => {
           right: "auto",
           bottom: "auto",
           marginRight: "-50%",
+          inset: "50% auto auto 78% !important" ,
           transform: "translate(-50%, -50%)",
           padding: "15px 20px",
           width: "20vw",
@@ -40,6 +41,7 @@ const EditTask = ({ notifynew, togglefunctionnew }) => {
   };
 
   return (
+    
     <MainWrapperNew>
       
             <DataInputNew>

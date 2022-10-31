@@ -21,6 +21,7 @@ export const SecondSection = styled.div`
   width: 100%;
   max-width: 760px;
   flex-wrap: wrap;
+  justify-content: right;
 `;
 export const SecondSubSection = styled.div`
   display: flex;
