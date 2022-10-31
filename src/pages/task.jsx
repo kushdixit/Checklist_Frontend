@@ -32,7 +32,7 @@ const Task = () => {
   return (
     <Section>
       <BodyWrapper>
-        <Navbar search={true} buttonType="Add" />
+        <Navbar search={false} buttonType="Save" />
       </BodyWrapper>
       <Title>
         <TitleSection>

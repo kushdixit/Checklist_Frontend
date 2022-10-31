@@ -22,6 +22,7 @@ import {
   TaskIconImage,
   SubTaskSection,
   SubSection,
+  AddSubTask,
 } from "styles/pages/Task";
 
 const SubTask = ({ id, setAddSubTask, addSubTask }) => {
@@ -48,10 +49,10 @@ const SubTask = ({ id, setAddSubTask, addSubTask }) => {
   };
 
   return (
-    <div>
-      <ToastContainer />
+    <AddSubTask>
+   
       <form
-        style={{ width: "100%", display: "flex" }}
+        style={{  display: "flex" }}
         onSubmit={handleSubmit(subTaskformData)}
       >
         <IconInputField>
@@ -87,7 +88,7 @@ const SubTask = ({ id, setAddSubTask, addSubTask }) => {
           <Button>Submit</Button>
         </div>
       </form> */}
-    </div>
+    </AddSubTask>
   );
 };
 

@@ -21,7 +21,8 @@ import {
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
 import TaskIcon from "assets/SVG/TaskIcon";
-
+import Edit from "assets/SVG/Edit";
+import Delete from "assets/SVG/Delete";
 const SubList = ({ subIndex, task, index }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
   const [modal, setModal] = useState(false);
@@ -109,7 +110,7 @@ const SubList = ({ subIndex, task, index }) => {
                       setValue("updateSubTask", task?.subTaskName);
                     }}
                   >
-                    Edit Sub Task
+                    <Edit />Edit Sub Task
                   </SortTextDiv>
                   <SortTextDiv
                     onClick={() => {
@@ -117,7 +118,7 @@ const SubList = ({ subIndex, task, index }) => {
                       taskdeleteHandler(task.id);
                     }}
                   >
-                    Delete Sub Task
+                   <Delete />  Delete Sub Task
                   </SortTextDiv>
                 </SortWrapper>
               )}
