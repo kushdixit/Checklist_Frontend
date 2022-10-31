@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useForm, Controller } from "react-hook-form";
-import CheckboxInput from "components/FormElements/CheckboxInput";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import {
   getChecklistBySubcategory,
@@ -12,27 +11,16 @@ import TextInput from "components/FormElements/TextInput";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
-  BodyWrapper,
-  Title,
-  Section,
-  TitleSection,
-  TaskSection,
   MainTaskSection,
   IconInputField,
   TaskIconImage,
-  SubTaskSection,
-  SubSection,
   ShortBy,
   SortWrapper,
   ShortContainer,
-  ShortImage,
-  SortText,
   SortTextDiv,
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
 import TaskIcon from "assets/SVG/TaskIcon";
-import AlertModal from "components/AlertModal";
-import SubTaskIcon from "assets/SVG/SubTaskIcon";
 
 const SubList = ({ subIndex, task, index }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
@@ -56,19 +44,6 @@ const SubList = ({ subIndex, task, index }) => {
     setModal(data);
   }
 
-  const {
-    handleSubmit: submitData,
-    formState: { errors },
-    control: formControl,
-  } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-  });
-
-  const onTaskChange = (e) => {
-    setValue("update", e.target.value);
-  };
-
   const dispatch = useDispatch();
   const { setValue, handleSubmit, control } = useForm({
     mode: "onSubmit",
@@ -76,15 +51,15 @@ const SubList = ({ subIndex, task, index }) => {
     shouldFocusError: true,
   });
 
-  const taskdeleteHandler = async (id) => {
-    const res = await dispatch(deleteSubTask(id));
+  const taskdeleteHandler = (id) => {
+    dispatch(deleteSubTask(id));
   };
   const onChange = (e) => {
     setValue("updateSubTask", e.target.value);
   };
   const updateSubTaskHandler = async (data) => {
     const response = await dispatch(editSubTask(data?.updateSubTask, task.id));
-    if (response.status == 204) {
+    if (response.status === 204) {
       dispatch(getChecklistBySubcategory(1));
       setValue("updateSubTask", "");
       setSubTaskEdit(false);
@@ -125,7 +100,7 @@ const SubList = ({ subIndex, task, index }) => {
             }}
           >
             <ShortBy>
-              <Colon onClick={() => toggleab(true)} />
+              <Colon onClick={() => toggleab(!modal)} />
               {isOpenSort && (
                 <SortWrapper ref={wrapperRef}>
                   <SortTextDiv
@@ -150,44 +125,6 @@ const SubList = ({ subIndex, task, index }) => {
           </ShortContainer>
         </form>
       </MainTaskSection>
-      {/* {subTaskEdit ? (
-        <div>
-          <form onSubmit={handleSubmit(updateSubTaskHandler)}>
-            <TextInput
-              name="updateSubTask"
-              control={control}
-              type="text"
-              placeholder="Update Task"
-              onChange={onChange}
-            />
-            <div className="submitBtn">
-              <Button>Submit</Button>
-            </div>
-          </form>
-        </div>
-      ) : (
-        <div>
-          <Controller
-            name={"subTask" + index + "" + subIndex}
-            control={control}
-            render={({ field }) => (
-              <CheckboxInput
-                className="checkBox"
-                label={task?.subTaskName}
-                {...field}
-              />
-            )}
-          />
-          <button onClick={() => setSubTaskEdit(true)}>edit</button>
-          <button
-            onClick={() => {
-              taskdeleteHandler(task.id);
-            }}
-          >
-            delete
-          </button>
-        </div>
-      )} */}
     </div>
   );
 };

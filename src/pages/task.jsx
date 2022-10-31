@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import TextInput from "components/FormElements/TextInput";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   BodyWrapper,
   Title,
@@ -13,11 +11,9 @@ import {
   IconInputField,
   TaskIconImage,
   SubTaskSection,
-  SubSection,
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
 import AlertModal from "components/AlertModal";
-import { store } from "redux/index";
 import Colon from "assets/SVG/Colon";
 import TaskIcon from "assets/SVG/TaskIcon";
 import SubTaskIcon from "assets/SVG/SubTaskIcon";
@@ -28,11 +24,7 @@ const Task = () => {
   function toggleab(data) {
     setModal(data);
   }
-  const {
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm({
+  const { control } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
   });
@@ -42,7 +34,6 @@ const Task = () => {
       <BodyWrapper>
         <Navbar search={true} buttonType="Add" />
       </BodyWrapper>
-
       <Title>
         <TitleSection>
           <h3>Title</h3>
@@ -54,11 +45,9 @@ const Task = () => {
           <TaskIconImage>
             <TaskIcon />
           </TaskIconImage>
-
           <IconInputField>
             <TextInput name="" type="text" placeholder="" control={control} />
           </IconInputField>
-
           <Colon onClick={() => toggleab(true)} />
         </MainTaskSection>
         <AlertModal isOpen={modal} togglefunction={toggleab} modalType="task" />
