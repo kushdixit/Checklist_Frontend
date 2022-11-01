@@ -41,9 +41,8 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
 
   return (
     <AddSubTask>
-   
       <form
-        style={{  display: "flex" }}
+        style={{ display: "flex" }}
         onSubmit={handleSubmit(subTaskformData)}
       >
         <IconInputField>
@@ -58,32 +57,7 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
           <Button>Save</Button>
         </div>
       </form>
-<<<<<<< HEAD
-    </div>
-=======
-      {/* <form onSubmit={handleSubmit(subTaskformData)}>
-        <div>
-          <Controller
-            name="subTaskCheckBox"
-            control={control}
-            render={({ field }) => (
-              <CheckboxInput className="checkBox" {...field} />
-            )}
-          />
-        </div>
-        <TextInput
-          name="subTask"
-          control={control}
-          type="text"
-          placeholder="Enter Sub Task name"
-          onChange={onChange}
-        />
-        <div className="submitBtn">
-          <Button>Submit</Button>
-        </div>
-      </form> */}
     </AddSubTask>
->>>>>>> 40c5730ce195e56d29f30ef6bd5b934f4d6b294f
   );
 };
 
