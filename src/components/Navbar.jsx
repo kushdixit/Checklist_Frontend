@@ -41,8 +41,9 @@ const NavBar = ({ search, buttonType }) => {
       <FirstSection>
         <h1>Checklist</h1>
       </FirstSection>
+    
       <SecondSection>
-        {search && (
+      {search && (
           <IconInputField>
             <TextInput
               name=""
@@ -79,7 +80,9 @@ const NavBar = ({ search, buttonType }) => {
             </Morecontent>
           ) : null}
         </ImageSubSection>
+        
       </SecondSection>
+        
     </NavSection>
   );
 };

@@ -11,10 +11,11 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
+    borderRadius:"19px",
     transform: "translate(-50%, -50%)",
-    padding: "15px 20px",
-    width: "25vw",
-    height: "65vh",
+    padding: "15px 35px",
+    width: "auto",
+    height: "auto",
     overflowY: "hidden",
   },
 };
@@ -60,7 +61,7 @@ const AlertModal = ({
       {modalType == "forgot" ? (
         <ForgotPassword notify={notify} togglefunction={togglefunction} />
       ) : (
-        <EditTask notifynew={notify} togglefunctionnew={togglefunction} />
+        <EditTask notifynew={notify} togglefunctionnew={togglefunction} style={{  inset: '50% auto auto 78%' }} />
       )}
     </ReactModal>
   );

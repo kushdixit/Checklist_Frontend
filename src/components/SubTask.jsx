@@ -6,7 +6,19 @@ import { useDispatch } from "react-redux";
 import { addSubTaskApi, getChecklistBySubcategory } from "redux/actions/task";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { IconInputField } from "styles/pages/Task";
+import {
+  BodyWrapper,
+  Title,
+  Section,
+  TitleSection,
+  TaskSection,
+  MainTaskSection,
+  IconInputField,
+  TaskIconImage,
+  SubTaskSection,
+  SubSection,
+  AddSubTask,
+} from "styles/pages/Task";
 
 const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
   const dispatch = useDispatch();
@@ -28,10 +40,10 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
   };
 
   return (
-    <div>
-      <ToastContainer />
+    <AddSubTask>
+   
       <form
-        style={{ width: "100%", display: "flex" }}
+        style={{  display: "flex" }}
         onSubmit={handleSubmit(subTaskformData)}
       >
         <IconInputField>
@@ -46,7 +58,32 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
           <Button>Save</Button>
         </div>
       </form>
+<<<<<<< HEAD
     </div>
+=======
+      {/* <form onSubmit={handleSubmit(subTaskformData)}>
+        <div>
+          <Controller
+            name="subTaskCheckBox"
+            control={control}
+            render={({ field }) => (
+              <CheckboxInput className="checkBox" {...field} />
+            )}
+          />
+        </div>
+        <TextInput
+          name="subTask"
+          control={control}
+          type="text"
+          placeholder="Enter Sub Task name"
+          onChange={onChange}
+        />
+        <div className="submitBtn">
+          <Button>Submit</Button>
+        </div>
+      </form> */}
+    </AddSubTask>
+>>>>>>> 40c5730ce195e56d29f30ef6bd5b934f4d6b294f
   );
 };
 

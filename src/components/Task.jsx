@@ -27,6 +27,9 @@ import {
 import Colon from "assets/SVG/Colon";
 import TaskIcon from "assets/SVG/TaskIcon";
 import SubTaskIcon from "assets/SVG/SubTaskIcon";
+import Edit from "assets/SVG/Edit";
+import Delete from "assets/SVG/Delete";
+import Arrow from "assets/SVG/Arrow";
 
 const TaskWrapper = ({ checkListId }) => {
   const taskData = useSelector((state) => state.checklist);
@@ -130,17 +133,17 @@ const Task = ({ task, index, checkListId }) => {
                       setValue("update", task?.taskName);
                     }}
                   >
-                    Edit Task
+                    <Edit /> Edit Task
                   </SortTextDiv>
                   <SortTextDiv
                     onClick={() => {
                       deleteHandler(task.id);
                     }}
                   >
-                    Delete Task
+                    <Delete /> Delete Task
                   </SortTextDiv>
                   <SortTextDiv onClick={() => setAddSubTask(!addSubTask)}>
-                    Add Sub Task
+                    <Arrow /> Add Sub Task
                   </SortTextDiv>
                 </SortWrapper>
               )}
