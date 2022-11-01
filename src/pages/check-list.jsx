@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
-import { getChecklistBySubcategory, addNewTask } from "redux/actions/checklist";
+import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
 import { BodyContainer, FormBody } from "styles/pages/CheckList";
 import TaskWrapper from "../components/Task";
 import {
@@ -18,9 +19,12 @@ import {
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
 import TaskIcon from "assets/SVG/TaskIcon";
+import { useLocation } from "react-router-dom";
 
 const CheckList = () => {
   const dispatch = useDispatch();
+  const { state } = useLocation();
+  const checklistName = useSelector((state) => state.checklist.checklistName);
 
   const {
     handleSubmit: submitData,
@@ -32,13 +36,13 @@ const CheckList = () => {
   });
 
   useEffect(() => {
-    dispatch(getChecklistBySubcategory(1));
+    dispatch(getChecklistBySubcategory(state.id));
   }, []);
 
   const formFields = () => (
     <FormBody>
       <div>
-        <TaskWrapper />
+        <TaskWrapper checkListId={state.id} />
       </div>
     </FormBody>
   );
@@ -48,14 +52,14 @@ const CheckList = () => {
   const addTaskAPI = async (val) => {
     let data = {
       taskName: val.title,
-      checklistMasterId: 1,
+      checklistMasterId: state.id,
     };
     const response = await dispatch(addNewTask(data));
 
     if (response?.error) {
     } else {
       setValue("title", "");
-      dispatch(getChecklistBySubcategory(1));
+      dispatch(getChecklistBySubcategory(state.id));
     }
   };
 
@@ -66,8 +70,7 @@ const CheckList = () => {
       </BodyWrapper>
       <Title>
         <TitleSection>
-          <h3>Title</h3>
-          <h4>Description</h4>
+          <h3>{checklistName}</h3>
         </TitleSection>
       </Title>
       <TaskSection>

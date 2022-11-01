@@ -5,7 +5,7 @@ import {
   getChecklistBySubcategory,
   editSubTask,
   deleteSubTask,
-} from "redux/actions/checklist";
+} from "redux/actions/task";
 import Button from "components/Button";
 import TextInput from "components/FormElements/TextInput";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,7 +22,7 @@ import {
 import Colon from "assets/SVG/Colon";
 import TaskIcon from "assets/SVG/TaskIcon";
 
-const SubList = ({ subIndex, task, index }) => {
+const SubList = ({ subIndex, task, index, checkListId }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
@@ -52,7 +52,7 @@ const SubList = ({ subIndex, task, index }) => {
   });
 
   const taskdeleteHandler = (id) => {
-    dispatch(deleteSubTask(id));
+    dispatch(deleteSubTask(id, checkListId));
   };
   const onChange = (e) => {
     setValue("updateSubTask", e.target.value);
@@ -60,7 +60,7 @@ const SubList = ({ subIndex, task, index }) => {
   const updateSubTaskHandler = async (data) => {
     const response = await dispatch(editSubTask(data?.updateSubTask, task.id));
     if (response.status === 204) {
-      dispatch(getChecklistBySubcategory(1));
+      dispatch(getChecklistBySubcategory(checkListId));
       setValue("updateSubTask", "");
       setSubTaskEdit(false);
     } else {
@@ -129,12 +129,17 @@ const SubList = ({ subIndex, task, index }) => {
   );
 };
 
-const SubListWrapper = ({ index, task }) => {
+const SubListWrapper = ({ index, task, checkListId }) => {
   return task.subTasks
     ?.filter((data) => data.isActive)
     .reverse()
     .map((task, subIndex) => (
-      <SubList task={task} subIndex={subIndex} index={index} />
+      <SubList
+        task={task}
+        subIndex={subIndex}
+        index={index}
+        checkListId={checkListId}
+      />
     ));
 };
 

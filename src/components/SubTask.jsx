@@ -1,45 +1,25 @@
-import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import CheckboxInput from "components/FormElements/CheckboxInput";
+import React from "react";
+import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
-import { AddBtn } from "styles/pages/CheckList";
 import { useDispatch } from "react-redux";
-import {
-  addSubTaskApi,
-  getChecklistBySubcategory,
-} from "redux/actions/checklist";
+import { addSubTaskApi, getChecklistBySubcategory } from "redux/actions/task";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  BodyWrapper,
-  Title,
-  Section,
-  TitleSection,
-  TaskSection,
-  MainTaskSection,
-  IconInputField,
-  TaskIconImage,
-  SubTaskSection,
-  SubSection,
-} from "styles/pages/Task";
+import { IconInputField } from "styles/pages/Task";
 
-const SubTask = ({ id, setAddSubTask, addSubTask }) => {
+const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
   const dispatch = useDispatch();
   const { setValue, handleSubmit, control } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
   });
-  const onChange = (e) => {
-    setValue("subTask", e.target.value);
-  };
 
   const subTaskformData = async (data) => {
-    console.log("dsgffds", data);
     const response = await dispatch(addSubTaskApi(data?.subTask, id));
-    if (response.status == 201) {
-      dispatch(getChecklistBySubcategory(1));
+    if (response.status === 201) {
+      dispatch(getChecklistBySubcategory(checkListId));
       setValue("subTask", "");
       setAddSubTask(!addSubTask);
     } else {
@@ -66,27 +46,6 @@ const SubTask = ({ id, setAddSubTask, addSubTask }) => {
           <Button>Save</Button>
         </div>
       </form>
-      {/* <form onSubmit={handleSubmit(subTaskformData)}>
-        <div>
-          <Controller
-            name="subTaskCheckBox"
-            control={control}
-            render={({ field }) => (
-              <CheckboxInput className="checkBox" {...field} />
-            )}
-          />
-        </div>
-        <TextInput
-          name="subTask"
-          control={control}
-          type="text"
-          placeholder="Enter Sub Task name"
-          onChange={onChange}
-        />
-        <div className="submitBtn">
-          <Button>Submit</Button>
-        </div>
-      </form> */}
     </div>
   );
 };

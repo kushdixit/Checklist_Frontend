@@ -6,7 +6,7 @@ import {
   getChecklistBySubcategory,
   deleteTask,
   editTask,
-} from "redux/actions/checklist";
+} from "redux/actions/task";
 import { TaskList } from "styles/pages/CheckList";
 import Button from "components/Button";
 import TextInput from "components/FormElements/TextInput";
@@ -28,15 +28,17 @@ import Colon from "assets/SVG/Colon";
 import TaskIcon from "assets/SVG/TaskIcon";
 import SubTaskIcon from "assets/SVG/SubTaskIcon";
 
-const TaskWrapper = () => {
+const TaskWrapper = ({ checkListId }) => {
   const taskData = useSelector((state) => state.checklist);
   return taskData?.tasks
     ?.filter((data) => data.isActive)
     .reverse()
-    .map((task, index) => <Task task={task} index={index} />);
+    .map((task, index) => (
+      <Task task={task} index={index} checkListId={checkListId} />
+    ));
 };
 
-const Task = ({ task, index }) => {
+const Task = ({ task, index, checkListId }) => {
   const dispatch = useDispatch();
   const [taskEdit, setTaskEdit] = useState(false);
   const [addSubTask, setAddSubTask] = useState(false);
@@ -75,14 +77,14 @@ const Task = ({ task, index }) => {
     shouldFocusError: true,
   });
   const deleteHandler = (id) => {
-    dispatch(deleteTask(id));
+    dispatch(deleteTask(id, checkListId));
     setIsOpenSort(false);
   };
 
   const formData = async (data) => {
     const response = await dispatch(editTask(data?.update, task.id));
     if (response.status === 204) {
-      dispatch(getChecklistBySubcategory(1));
+      dispatch(getChecklistBySubcategory(checkListId));
       setValue("update", "");
       setTaskEdit(false);
     } else {
@@ -155,10 +157,11 @@ const Task = ({ task, index }) => {
           task={task}
           setAddSubTask={setAddSubTask}
           addSubTask={addSubTask}
+          checkListId={checkListId}
         />
       )}
       <div style={{ "padding-left": "90px" }}>
-        <SubListWrapper index={index} task={task} />
+        <SubListWrapper index={index} task={task} checkListId={checkListId} />
       </div>
     </TaskList>
   );

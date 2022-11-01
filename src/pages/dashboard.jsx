@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button";
 import { BodyContainer } from "styles/pages/Dashboard";
-import Card from "../components/Card";
+import ChecklistCards from "../components/ChecklistCards";
 import Navbar from "../components/Navbar";
 import ResetPassword from "../components/resetPassword";
 
@@ -18,7 +18,6 @@ const Dashboard = () => {
   const passwordReset = useSelector(
     (state) => state.auth.userData.isForgotPassword
   );
-  console.log(passwordReset);
   const addCheckList = () => {
     navigate("/check-list");
   };
@@ -36,7 +35,7 @@ const Dashboard = () => {
     <BodyContainer>
       <ResetPassword isOpen={modal} togglefunction={toggleab} />
       <Navbar search={true} buttonType="Create List" />
-      <Card />
+      <ChecklistCards />
     </BodyContainer>
   );
 };
