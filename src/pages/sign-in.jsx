@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import CheckboxInput from "components/FormElements/CheckboxInput";
@@ -60,6 +60,12 @@ const SignIn = () => {
   }
   const notify = () => toast("Password has been sent to you on mail");
 
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) navigate("/dashboard");
+    else navigate("/sign-in");
+  }, []);
+
   const {
     handleSubmit,
     formState: { errors },
@@ -86,15 +92,15 @@ const SignIn = () => {
         </LeftContainer>
         <RightContainer>
           <Logo>
-        <img src={Checklist} alt="Checklist" />
-        </Logo>
+            <img src={Checklist} alt="Checklist" />
+          </Logo>
           <FormBody>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Log In</Heading>
                   <AlertModal
-                  modalType="forgot"
+                    modalType="forgot"
                     isOpen={modal}
                     togglefunction={toggleab}
                     notify={notify}
@@ -156,13 +162,12 @@ const SignIn = () => {
               </RegistrationContainer>
             </form>
             <UserHelper>
-            <Forgot className="forgotPassword" onClick={() => toggleab(true)}>
-              Forgot Password?
-            </Forgot>
-            <SignUp onClick={() => navigate("/sign-up")}>Sign Up?</SignUp>
-          </UserHelper>
+              <Forgot className="forgotPassword" onClick={() => toggleab(true)}>
+                Forgot Password?
+              </Forgot>
+              <SignUp onClick={() => navigate("/sign-up")}>Sign Up?</SignUp>
+            </UserHelper>
           </FormBody>
-        
         </RightContainer>
       </LoginContainer>
     );

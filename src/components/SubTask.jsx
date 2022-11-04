@@ -4,21 +4,9 @@ import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
 import { useDispatch } from "react-redux";
 import { addSubTaskApi, getChecklistBySubcategory } from "redux/actions/task";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  BodyWrapper,
-  Title,
-  Section,
-  TitleSection,
-  TaskSection,
-  MainTaskSection,
-  IconInputField,
-  TaskIconImage,
-  SubTaskSection,
-  SubSection,
-  AddSubTask,
-} from "styles/pages/Task";
+import { IconInputField, AddSubTask } from "styles/pages/Task";
 
 const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
   const dispatch = useDispatch();
