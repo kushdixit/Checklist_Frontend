@@ -2,10 +2,18 @@ import styled from "styled-components";
 export const FirstSection = styled.div`
   display: flex;
   grid-gap: 37px;
-  width: 100%auto;
+  width: 100%;
   justify-content: center;
-  margin: 0 auto;
+
+  margin: 0 10px;
   flex-wrap: wrap;
+`;
+
+export const CardMainSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
 export const NewSection = styled.div``;
 export const SubSection = styled.div`
@@ -16,9 +24,16 @@ export const SubSection = styled.div`
   max-width: 400px;
 `;
 export const SubSectionNew = styled.div`
-  margin: 0 5%;
+  margin: 0 auto;
   font-size: 20px;
   font-weight: 700;
+  width: 100%;
+  max-width: 1735px;
+  font-size: 20px;
+  font-weight: 700;
+  h2 {
+    padding-left: 10px;
+  }
 `;
 export const Image = styled.div`
   width: 100%;
@@ -29,7 +44,7 @@ export const Wrap = styled.div`
   justify-content: space-between;
 `;
 export const ColonImage = styled.div`
-  padding: 24px 40px;
+  padding: 16px 40px;
 `;
 export const WrapSubSection = styled.div`
   padding: 12px 0 0 33px;

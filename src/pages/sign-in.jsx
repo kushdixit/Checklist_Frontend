@@ -7,6 +7,7 @@ import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import Checklist from "assets/images/checklist.svg";
+import ChecklistLogo from "assets/images/checklistlogo.png";
 import Google from "assets/images/google.svg";
 import Facebook from "assets/images/facebook.svg";
 import AlertModal from "components/AlertModal";
@@ -86,7 +87,7 @@ const SignIn = () => {
         </LeftContainer>
         <RightContainer>
           <Logo>
-        <img src={Checklist} alt="Checklist" />
+        <img src={ChecklistLogo} alt="ChecklistLogo" />
         </Logo>
           <FormBody>
             <form onSubmit={handleSubmit(formData)}>

@@ -8,6 +8,7 @@ import {
   FirstSection,
   NewSection,
   SubSectionNew,
+  CardMainSection
 } from "styles/components/Card";
 import { getChecklist } from "redux/actions/checklist";
 import { useSelector } from "react-redux";
@@ -39,13 +40,14 @@ const ChecklistCards = ({ data, props }) => {
           );
         })}
       </NewSection>
+      <CardMainSection>
       <FirstSection>
-        {allChecklist
-          .filter((item) => item.isActive)
+        {allChecklist?.filter((item) => item.isActive)
           .map((item, index) => {
             return <Card index={index} item={item} Checklist={Checklist} />;
           })}
       </FirstSection>
+      </CardMainSection>
     </>
   );
 };

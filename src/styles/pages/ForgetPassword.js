@@ -46,7 +46,8 @@ export const EmailWrapper = styled.div`
 `;
 export const DataInput = styled.div`
   input {
-    padding: 12px 0;
+    max-width: 360px;
+    padding: 12px 19px;
     width: 100%;
 
     border-radius: 5px;
