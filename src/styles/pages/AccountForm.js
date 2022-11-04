@@ -9,7 +9,7 @@ export const FormContainer = styled.div`
 export const Heading = styled.h4`
   color: #1d2e88;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 25px;
 `;
 export const ForgotEmailHeading = styled.span`
   color: #6f7172;
@@ -35,7 +35,7 @@ export const BackLogo = styled.div`
 export const FormBody = styled.div`
   max-width: 450px;
   width: 100%;
-  margin: 12% auto;
+  margin: 0 auto;
 `;
 
 export const Logo = styled.div`
@@ -43,9 +43,10 @@ export const Logo = styled.div`
   height: auto;
   justify-content: right;
   width: 100%;
+  padding: 19px 0 40px;
   img {
     display: flex;
-    width: 91px;
+
     padding: 20px 50px;
   }
 `;
@@ -190,9 +191,7 @@ export const LeftContainer = styled.div`
 export const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
+
   flex: 1 1 0%;
   position: relative;
 `;
@@ -242,13 +241,13 @@ export const UserHelper = styled.div`
 `;
 export const Forgot = styled.div`
   cursor: pointer;
-  font-size: 12px;
+  font-size: 15px;
   color: #1d2e88;
   margin: 1rem;
 `;
 export const SignUp = styled.div`
   cursor: pointer;
-  font-size: 12px;
+  font-size: 15px;
   color: #1d2e88;
   margin: 1rem;
 `;

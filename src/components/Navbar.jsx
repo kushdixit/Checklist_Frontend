@@ -11,6 +11,9 @@ import {
   Morecontent,
   ContentItem,
   ImageSubSection,
+  SubNavSection,
+   HeadingText,
+   IconWrapper
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import FirstImage from "assets/images/firstimage.jpg";
@@ -18,7 +21,8 @@ import { useForm, Controller } from "react-hook-form";
 import Search from "assets/SVG/Search";
 import Button from "components/Button";
 import { useNavigate } from "react-router-dom";
-
+import SearchNew from "assets/SVG/SearchNew";
+import Icon from "assets/SVG/LockIcon";
 const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
   const [isGood, setIsGood] = useState(false);
@@ -38,8 +42,9 @@ const NavBar = ({ search, buttonType }) => {
   return (
     // <NavBarContainer/>
     <NavSection>
+      <SubNavSection>
       <FirstSection>
-        <h1>Checklist</h1>
+        <HeadingText>Checklist</HeadingText>
       </FirstSection>
     
       <SecondSection>
@@ -51,8 +56,13 @@ const NavBar = ({ search, buttonType }) => {
               placeholder="Find Something Hereeee"
               control={control}
             />
+            <IconWrapper>
+          <SearchNew/>
+          </IconWrapper>
           </IconInputField>
+           
         )}
+         
         <Footer>
           <Button
             className="button"
@@ -82,7 +92,7 @@ const NavBar = ({ search, buttonType }) => {
         </ImageSubSection>
         
       </SecondSection>
-        
+      </SubNavSection>
     </NavSection>
   );
 };

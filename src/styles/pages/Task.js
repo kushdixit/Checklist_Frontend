@@ -116,17 +116,19 @@ export const SortWrapper = styled.div`
   text-align: left;
   right: 10px;
   top: 40px;
-  padding: 20px 10px 0 26px;
+  padding: 20px 10px 10px 26px;
 `;
 export const SortText = styled.button`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+  box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.09);
 `;
 export const SortTextDiv = styled.div`
   font-weight: 500;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 26px;
   display: flex;
   color: #1d2e88;
+  gap: 10px;
 `;

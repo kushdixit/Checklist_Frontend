@@ -2,8 +2,10 @@ import styled from "styled-components";
 export const NavSection = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 5%;
+  margin: 0 auto;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 1735px;
 `;
 export const FirstSection = styled.div`
   width: 100%;
@@ -23,6 +25,13 @@ export const SecondSection = styled.div`
   flex-wrap: wrap;
   justify-content: right;
 `;
+export const HeadingText = styled.div`
+  font-size: 30px;
+  color: #1d2e88;
+  padding-left: 10px;
+  font-weight: 700;
+`;
+
 export const SecondSubSection = styled.div`
   display: flex;
   gap: 10px;
@@ -40,6 +49,12 @@ export const SecondSubSection = styled.div`
   }
 `;
 
+export const SubNavSection = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
   h4 {
@@ -132,6 +147,13 @@ export const Morecontent = styled.div`
 `;
 export const ContentItem = styled.div`
   cursor: pointer;
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+
+  right: 12px;
+  top: 9px;
 `;
 // export const NavBarContainer = styled.div`
 //   display: flex;
