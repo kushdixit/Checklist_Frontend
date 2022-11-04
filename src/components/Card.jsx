@@ -16,6 +16,8 @@ import Colon from "assets/SVG/Colon";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteChecklist } from "redux/actions/checklist";
+import Edit from "assets/SVG/Edit";
+import Delete from "assets/SVG/Delete";
 
 const Card = ({ item, index, Checklist }) => {
   const [modal, setModal] = useState(false);
@@ -70,12 +72,12 @@ const Card = ({ item, index, Checklist }) => {
                       navigate("/check-list", { state: { id: item.id } })
                     }
                   >
-                    Edit CheckList
+                     <Edit />Edit CheckList
                   </SortTextDiv>
                   <SortTextDiv
                     onClick={() => dispatch(deleteChecklist(item.id))}
                   >
-                    Delete CheckList
+                    <Delete />  Delete CheckList
                   </SortTextDiv>
                 </SortWrapper>
               )}
