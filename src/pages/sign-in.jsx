@@ -93,13 +93,8 @@ const SignIn = () => {
         </LeftContainer>
         <RightContainer>
           <Logo>
-<<<<<<< HEAD
-            <img src={Checklist} alt="Checklist" />
-          </Logo>
-=======
         <img src={ChecklistLogo} alt="ChecklistLogo" />
         </Logo>
->>>>>>> 0c830bc6ed58d0407ce71724f99d6fc8b1425607
           <FormBody>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>

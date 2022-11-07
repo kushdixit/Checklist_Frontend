@@ -35,8 +35,7 @@ const SignUp = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    if (token) navigate("/dashboard");
-    else navigate("/sign-in");
+    token && navigate("/dashboard");
   }, []);
 
   let schema = yup.object().shape({
