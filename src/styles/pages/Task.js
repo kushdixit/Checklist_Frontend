@@ -132,3 +132,15 @@ export const SortTextDiv = styled.div`
   color: #1d2e88;
   gap: 10px;
 `;
+
+export const ButtonSection = styled.div``;
+export const ChecklistWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const EditChecklistButtonWrapper = styled.div`
+  display: flex;
+  margin: 0.5rem;
+`;

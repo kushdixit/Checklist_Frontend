@@ -51,3 +51,19 @@ export const addNewChecklist =
       return ex.response;
     }
   };
+
+export const editChecklistApi = (checklistName, id) => async (dispatch) => {
+  const payload = {
+    id,
+    checklistName,
+  };
+  try {
+    const response = await axioPath.put("v1/CheckList/checklists", payload, {
+      hideLoader: false,
+    });
+    console.log(response);
+    // dispatch({ type: SET_CHECKLIST, payload: response.data });
+  } catch (ex) {
+    console.log(ex);
+  }
+};

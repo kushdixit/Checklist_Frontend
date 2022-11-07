@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
 import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
+import { editChecklistApi } from "redux/actions/checklist";
 import { BodyContainer, FormBody } from "styles/pages/CheckList";
 import TaskWrapper from "../components/Task";
 import {
@@ -16,16 +16,21 @@ import {
   MainTaskSection,
   IconInputField,
   TaskIconImage,
+  ButtonSection,
+  ChecklistWrapper,
+  EditChecklistButtonWrapper,
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
 import TaskIcon from "assets/SVG/TaskIcon";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const CheckList = () => {
+  const [editChecklist, setEditChecklist] = useState(false);
   const dispatch = useDispatch();
   const { state } = useLocation();
   const navigate = useNavigate();
   const checklistName = useSelector((state) => state.checklist?.checklistName);
+  const checklistId = useSelector((state) => state.checklist?.id);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -35,6 +40,15 @@ const CheckList = () => {
   const {
     handleSubmit: submitData,
     control: formControl,
+    setValue: checklistValue,
+  } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onBlur",
+  });
+
+  const {
+    handleSubmit: submitChecklist,
+    control: checklistFormControl,
     setValue,
   } = useForm({
     mode: "onSubmit",
@@ -42,31 +56,39 @@ const CheckList = () => {
   });
 
   useEffect(() => {
-    dispatch(getChecklistBySubcategory(state.id));
+    dispatch(getChecklistBySubcategory(state?.id));
   }, []);
 
   const formFields = () => (
     <FormBody>
       <div>
-        <TaskWrapper checkListId={state.id} />
+        <TaskWrapper checkListId={state?.id} />
       </div>
     </FormBody>
   );
 
   const formData = async (data) => addTaskAPI(data);
 
+  const editChecklistHandler = async (data) => {
+    const res = await dispatch(editChecklistApi(data?.checklist, checklistId));
+  };
+
   const addTaskAPI = async (val) => {
     let data = {
       taskName: val.title,
-      checklistMasterId: state.id,
+      checklistMasterId: state?.id,
     };
     const response = await dispatch(addNewTask(data));
 
     if (response?.error) {
     } else {
       setValue("title", "");
-      dispatch(getChecklistBySubcategory(state.id));
+      dispatch(getChecklistBySubcategory(state?.id));
     }
+  };
+
+  const onChange = (e) => {
+    checklistValue("checklist", e.target.value);
   };
 
   return (
@@ -75,9 +97,49 @@ const CheckList = () => {
         <Navbar search={false} buttonType="Add" />
       </BodyWrapper>
       <Title>
-        <TitleSection>
-          <h3>{checklistName}</h3>
-        </TitleSection>
+        {!editChecklist ? (
+          <ChecklistWrapper>
+            <TitleSection>
+              <h3>{checklistName}</h3>
+            </TitleSection>
+            <ButtonSection>
+              <Button
+                handleClick={() => {
+                  setEditChecklist(!editChecklist);
+                }}
+              >
+                Edit
+              </Button>
+            </ButtonSection>
+          </ChecklistWrapper>
+        ) : (
+          <form
+            style={{ width: "100%", display: "flex" }}
+            onSubmit={submitChecklist(editChecklistHandler)}
+          >
+            <IconInputField>
+              <TextInput
+                name="checklist"
+                type="text"
+                placeholder={checklistName}
+                control={checklistFormControl}
+                onChange={onChange}
+              />
+            </IconInputField>
+            <EditChecklistButtonWrapper className="submitBtn">
+              <Button>Save</Button>
+              <Button
+                style={{ marginLeft: "0.25rem" }}
+                handleClick={(e) => {
+                  e.preventDefault();
+                  setEditChecklist(!editChecklist);
+                }}
+              >
+                Cancel
+              </Button>
+            </EditChecklistButtonWrapper>
+          </form>
+        )}
       </Title>
       <TaskSection>
         <MainTaskSection>
