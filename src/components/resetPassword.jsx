@@ -1,9 +1,8 @@
-import TextInput from "components/FormElements/TextInput";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as Yup from 'yup'
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 import {
   MainWrapper,
   Container,
@@ -23,7 +22,6 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const Resethandler = (data) => {
@@ -34,20 +32,20 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
   };
   const formSchema = Yup.object().shape({
     password: Yup.string()
-      .required('Password is mendatory')
-      .min(3, 'Password must be at 3 char long'),
+      .required("Password is mendatory")
+      .min(3, "Password must be at 3 char long"),
     confirmPwd: Yup.string()
-      .required('Password is mendatory')
-      .oneOf([Yup.ref('password')], 'Passwords does not match'),
-  })
-  const formOptions = { resolver: yupResolver(formSchema) }
+      .required("Password is mendatory")
+      .oneOf([Yup.ref("password")], "Passwords does not match"),
+  });
+  const formOptions = { resolver: yupResolver(formSchema) };
   // const { register, handleSubmit, reset, formState } = useForm(formOptions)
   // const { errors } = formState
   function onSubmit(data) {
-    console.log(JSON.stringify(data, null, 4))
-    return false
+    console.log(JSON.stringify(data, null, 4));
+    return false;
   }
-  const passwordReset = useSelector((state) => state.auth.userData.id);
+  const passwordReset = useSelector((state) => state.auth?.userData.id);
 
   const customStyles = {
     content: {
@@ -85,22 +83,28 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
                   name="password"
                   type="password"
                   placeholder="Enter Password"
-                  {...register('password')}
-                  className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                 
+                  {...register("password")}
+                  className={`form-control ${
+                    errors.password ? "is-invalid" : ""
+                  }`}
                 />
-              <div className="invalid-feedback">{errors.confirmPwd?.message}</div>
+                <div className="invalid-feedback">
+                  {errors.confirmPwd?.message}
+                </div>
               </PasswordInput>
               <PasswordInput>
                 <input
                   name="confirmPwd"
                   type="password"
                   placeholder="Confirm Password"
-                  {...register('confirmPwd')}
-                  className={`form-control ${errors.confirmPwd ? 'is-invalid' : ''}`}
-                
+                  {...register("confirmPwd")}
+                  className={`form-control ${
+                    errors.confirmPwd ? "is-invalid" : ""
+                  }`}
                 />
-               <div className="invalid-feedback">{errors.confirmPwd?.message}</div>
+                <div className="invalid-feedback">
+                  {errors.confirmPwd?.message}
+                </div>
               </PasswordInput>
             </ResetWrapper>
             <ResetButton>

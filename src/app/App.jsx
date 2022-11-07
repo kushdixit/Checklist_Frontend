@@ -4,7 +4,7 @@ import Layout from "components/Layout";
 import Spinner from "components/Spinner";
 
 const App = () => {
-  const loaderVisible = useSelector((state) => state.loader.loaderVisible);
+  const loaderVisible = useSelector((state) => state.loader?.loaderVisible);
   return (
     <div className="App">
       {loaderVisible && <Spinner />}

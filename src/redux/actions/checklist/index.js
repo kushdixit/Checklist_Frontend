@@ -7,7 +7,6 @@ export const getChecklist = () => async (dispatch) => {
       hideLoader: false,
     });
     dispatch({ type: SET_CHECKLIST, payload: response.data });
-    console.log(response);
   } catch (ex) {
     console.log(ex);
   }

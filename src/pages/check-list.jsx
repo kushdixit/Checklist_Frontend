@@ -19,19 +19,17 @@ import {
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
 import TaskIcon from "assets/SVG/TaskIcon";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CheckList = () => {
   const dispatch = useDispatch();
   const { state } = useLocation();
   const navigate = useNavigate();
-  const checklistName = useSelector((state) => state.checklist.checklistName);
+  const checklistName = useSelector((state) => state.checklist?.checklistName);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    if (token) navigate("/dashboard");
-    else navigate("/sign-in");
+    if (!token) navigate("/sign-in");
   }, []);
 
   const {
