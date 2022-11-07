@@ -25,7 +25,21 @@ const Card = ({ item, index, Checklist }) => {
   const dispatch = useDispatch();
   const wrapperRef = useRef();
   const navigate = useNavigate();
+  useEffect(() => {
+    function handleClickOutside(event: { target: any }) {
+      if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
+        setIsOpenSort(false);
+      }
+    }
 
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
+  function toggleab(data) {
+    setModal(data);
+  }
   useEffect(() => {
     function handleClickOutside(event: { target: any }) {
       if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
