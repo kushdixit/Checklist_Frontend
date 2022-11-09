@@ -19,7 +19,7 @@ import { deleteChecklist } from "redux/actions/checklist";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
 
-const Card = ({ item, index, Checklist }) => {
+const Card = ({ item, index, Checklist, isEditable }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const dispatch = useDispatch();
@@ -75,29 +75,32 @@ const Card = ({ item, index, Checklist }) => {
               : item.dateCreated?.split("T")[0]}
           </h3>
         </WrapSubSection>
-        <ColonImage>
-          <ShortContainer onClick={() => setIsOpenSort(true)}>
-            <ShortBy>
-              <Colon onClick={() => toggleab(!modal)} />
-              {isOpenSort && (
-                <SortWrapper ref={wrapperRef}>
-                  <SortTextDiv
-                    onClick={() =>
-                      navigate("/check-list", { state: { id: item.id } })
-                    }
-                  >
-                     <Edit />Edit CheckList
-                  </SortTextDiv>
-                  <SortTextDiv
-                    onClick={() => dispatch(deleteChecklist(item.id))}
-                  >
-                    <Delete />  Delete CheckList
-                  </SortTextDiv>
-                </SortWrapper>
-              )}
-            </ShortBy>
-          </ShortContainer>
-        </ColonImage>
+        {isEditable && (
+          <ColonImage>
+            <ShortContainer onClick={() => setIsOpenSort(true)}>
+              <ShortBy>
+                <Colon onClick={() => toggleab(!modal)} />
+                {isOpenSort && (
+                  <SortWrapper ref={wrapperRef}>
+                    <SortTextDiv
+                      onClick={() =>
+                        navigate("/check-list", { state: { id: item.id } })
+                      }
+                    >
+                      <Edit />
+                      Edit CheckList
+                    </SortTextDiv>
+                    <SortTextDiv
+                      onClick={() => dispatch(deleteChecklist(item.id))}
+                    >
+                      <Delete /> Delete CheckList
+                    </SortTextDiv>
+                  </SortWrapper>
+                )}
+              </ShortBy>
+            </ShortContainer>
+          </ColonImage>
+        )}
       </Wrap>
     </SubSection>
   );
