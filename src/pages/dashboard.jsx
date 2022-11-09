@@ -5,12 +5,14 @@ import { BodyContainer } from "styles/pages/Dashboard";
 import ChecklistCards from "../components/ChecklistCards";
 import Navbar from "../components/Navbar";
 import ResetPassword from "../components/resetPassword";
-import { getAllTemplate } from "redux/actions/template";
+import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
+import YourTemplate from "components/YourTemplate";
 
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
 
   function toggleab(data) {
     setModal(data);
@@ -23,6 +25,7 @@ const Dashboard = () => {
   useEffect(() => {
     const res = localStorage.getItem("access_token");
     if (!res) navigate("/");
+    dispatch(getAllTemplateByEmail(userEmail));
     dispatch(getAllTemplate());
   }, []);
 
@@ -35,6 +38,7 @@ const Dashboard = () => {
     <BodyContainer>
       <ResetPassword isOpen={modal} togglefunction={toggleab} />
       <Navbar search={true} buttonType="Create List" />
+      <YourTemplate />
       {allTemplate?.map((item, id) => (
         <ChecklistCards key={id} item={item} />
       ))}
