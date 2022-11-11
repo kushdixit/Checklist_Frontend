@@ -21,7 +21,7 @@ export const SecondSection = styled.div`
   display: flex;
   gap: 55px;
   width: 100%;
-  max-width: 760px;
+  max-width: 1332px;
   flex-wrap: wrap;
   justify-content: right;
 `;
@@ -34,10 +34,7 @@ export const HeadingText = styled.div`
 
 export const SecondSubSection = styled.div`
   display: flex;
-  gap: 10px;
-  width: 100%;
-  max-width: 124px;
-  position: relative;
+
   img {
     width: 42px;
     height: 42px;
@@ -53,7 +50,6 @@ export const SubNavSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
 `;
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`

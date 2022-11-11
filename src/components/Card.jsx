@@ -19,27 +19,13 @@ import { deleteChecklist } from "redux/actions/checklist";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
 
-const Card = ({ item, index, Checklist, isEditable }) => {
+const Card = ({ item, index, Checklist }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const dispatch = useDispatch();
   const wrapperRef = useRef();
   const navigate = useNavigate();
-  useEffect(() => {
-    function handleClickOutside(event: { target: any }) {
-      if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
-        setIsOpenSort(false);
-      }
-    }
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [wrapperRef]);
-  function toggleab(data) {
-    setModal(data);
-  }
   useEffect(() => {
     function handleClickOutside(event: { target: any }) {
       if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
@@ -56,12 +42,7 @@ const Card = ({ item, index, Checklist, isEditable }) => {
     setModal(data);
   }
   return (
-    <SubSection
-      key={index}
-      onClick={() =>
-        isEditable && navigate("/check-list", { state: { id: item.id } })
-      }
-    >
+    <SubSection key={index}>
       <Image>
         <img
           src={Checklist[0]?.image}
@@ -80,31 +61,29 @@ const Card = ({ item, index, Checklist, isEditable }) => {
               : item.dateCreated?.split("T")[0]}
           </h3>
         </WrapSubSection>
-        {isEditable && (
-          <ColonImage>
-            <ShortContainer onClick={() => setIsOpenSort(true)}>
-              <ShortBy>
-                <Colon onClick={() => toggleab(!modal)} />
-                {isOpenSort && (
-                  <SortWrapper ref={wrapperRef}>
-                    <SortTextDiv>
-                      <Edit />
-                      Edit CheckList
-                    </SortTextDiv>
-                    <SortTextDiv
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(deleteChecklist(item.id));
-                      }}
-                    >
-                      <Delete /> Delete CheckList
-                    </SortTextDiv>
-                  </SortWrapper>
-                )}
-              </ShortBy>
-            </ShortContainer>
-          </ColonImage>
-        )}
+        <ColonImage>
+          <ShortContainer onClick={() => setIsOpenSort(true)}>
+            <ShortBy>
+              <Colon onClick={() => toggleab(!modal)} />
+              {isOpenSort && (
+                <SortWrapper ref={wrapperRef}>
+                  <SortTextDiv
+                    onClick={() =>
+                      navigate("/check-list", { state: { id: item.id } })
+                    }
+                  >
+                     <Edit />Edit CheckList
+                  </SortTextDiv>
+                  <SortTextDiv
+                    onClick={() => dispatch(deleteChecklist(item.id))}
+                  >
+                    <Delete />  Delete CheckList
+                  </SortTextDiv>
+                </SortWrapper>
+              )}
+            </ShortBy>
+          </ShortContainer>
+        </ColonImage>
       </Wrap>
     </SubSection>
   );

@@ -12,8 +12,8 @@ import {
 } from "styles/components/Card";
 import Card from "./Card";
 import { useSelector } from "react-redux";
-import FirstImage from "assets/images/firstimage.jpg";
-
+// import FirstImage from "assets/images/firstimage.jpg";
+import FirstImage from "assets/images/checklist.svg";
 const YourTemplate = () => {
   const templateData = useSelector((state) => state.Template?.yourTemplate);
   const Checklist = [

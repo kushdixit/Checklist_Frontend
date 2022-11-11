@@ -92,7 +92,7 @@ const NavBar = ({ search, buttonType }) => {
           <ImageSubSection>
             <SecondSubSection>
               <Profile>
-                <h4>Admin</h4>
+                <h4>Admin </h4>
                 <h5>Shivam</h5>
               </Profile>
               <button className="button" onClick={() => setIsGood(!isGood)}>
