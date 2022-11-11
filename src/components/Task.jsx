@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
@@ -30,6 +30,7 @@ import SubTaskIcon from "assets/SVG/SubTaskIcon";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
 import Arrow from "assets/SVG/Arrow";
+import CheckboxInput from "components/FormElements/CheckboxInput";
 
 const TaskWrapper = ({ checkListId }) => {
   const taskData = useSelector((state) => state.checklist);
@@ -103,6 +104,13 @@ const Task = ({ task, index, checkListId }) => {
           <TaskIcon />
         </TaskIconImage>
         <form style={{ width: "100%" }} onSubmit={submitData(formData)}>
+          <Controller
+            name="rememberMe"
+            control={formControl}
+            render={({ field }) => (
+              <CheckboxInput className="checkBox" {...field} />
+            )}
+          />
           <IconInputField>
             <TextInput
               name="update"

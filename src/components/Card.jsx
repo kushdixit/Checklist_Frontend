@@ -56,7 +56,12 @@ const Card = ({ item, index, Checklist, isEditable }) => {
     setModal(data);
   }
   return (
-    <SubSection key={index}>
+    <SubSection
+      key={index}
+      onClick={() =>
+        isEditable && navigate("/check-list", { state: { id: item.id } })
+      }
+    >
       <Image>
         <img
           src={Checklist[0]?.image}
@@ -82,16 +87,15 @@ const Card = ({ item, index, Checklist, isEditable }) => {
                 <Colon onClick={() => toggleab(!modal)} />
                 {isOpenSort && (
                   <SortWrapper ref={wrapperRef}>
-                    <SortTextDiv
-                      onClick={() =>
-                        navigate("/check-list", { state: { id: item.id } })
-                      }
-                    >
+                    <SortTextDiv>
                       <Edit />
                       Edit CheckList
                     </SortTextDiv>
                     <SortTextDiv
-                      onClick={() => dispatch(deleteChecklist(item.id))}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(deleteChecklist(item.id));
+                      }}
                     >
                       <Delete /> Delete CheckList
                     </SortTextDiv>

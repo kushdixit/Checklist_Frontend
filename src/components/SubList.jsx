@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import {
   getChecklistBySubcategory,
@@ -23,6 +23,7 @@ import Colon from "assets/SVG/Colon";
 import TaskIcon from "assets/SVG/TaskIcon";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
+import CheckboxInput from "components/FormElements/CheckboxInput";
 
 const SubList = ({ subIndex, task, index, checkListId }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
@@ -81,6 +82,13 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
           style={{ width: "100%" }}
           onSubmit={handleSubmit(updateSubTaskHandler)}
         >
+          <Controller
+            name="rememberMe"
+            control={control}
+            render={({ field }) => (
+              <CheckboxInput className="checkBox" {...field} />
+            )}
+          />
           <IconInputField>
             <TextInput
               name="updateSubTask"

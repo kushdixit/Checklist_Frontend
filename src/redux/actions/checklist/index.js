@@ -1,5 +1,6 @@
 import axioPath from "api/axioPath";
 import { SET_CHECKLIST } from "redux/actions/action_types";
+import { getChecklistBySubcategory } from "redux/actions/task/index";
 
 export const getChecklist = () => async (dispatch) => {
   try {
@@ -64,10 +65,12 @@ export const editChecklistApi = (checklistName, id) => async (dispatch) => {
     const response = await axioPath.put("v1/CheckList/checklists", payload, {
       hideLoader: false,
     });
-    console.log(response);
+    dispatch(getChecklistBySubcategory(id));
+
+    return { error: false, message: response?.status };
     // dispatch({ type: SET_CHECKLIST, payload: response.data });
   } catch (ex) {
-    console.log(ex);
+    return { error: true, message: ex?.response?.data?.Message };
   }
 };
 
@@ -81,7 +84,7 @@ export const addTempChecklist = (checklistName, email) => async (dispatch) => {
     const response = await axioPath.post("v1/CheckList/checklists", payload, {
       hideLoader: false,
     });
-    dispatch(getChecklist());
+    dispatch(getChecklistBySubcategory(response.data));
     return { error: false, message: response?.statusText };
   } catch (ex) {
     return { error: true, message: ex?.response?.data?.Message };

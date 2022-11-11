@@ -13,6 +13,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const templateData = useSelector((state) => state.Template?.yourTemplate);
 
   function toggleab(data) {
     setModal(data);
@@ -38,7 +39,7 @@ const Dashboard = () => {
     <BodyContainer>
       <ResetPassword isOpen={modal} togglefunction={toggleab} />
       <Navbar search={true} buttonType="Create List" />
-      <YourTemplate />
+      {templateData != null && <YourTemplate />}
       {allTemplate?.map((item, id) => (
         <ChecklistCards key={id} item={item} />
       ))}

@@ -71,6 +71,8 @@ const CheckList = () => {
 
   const editChecklistHandler = async (data) => {
     const res = await dispatch(editChecklistApi(data?.checklist, checklistId));
+    if (res.error) console.log("error");
+    else setEditChecklist(!editChecklist);
   };
 
   const addTaskAPI = async (val) => {
@@ -82,13 +84,14 @@ const CheckList = () => {
 
     if (response?.error) {
     } else {
-      setValue("title", "");
+      console.log("here");
+      checklistValue("title", "");
       dispatch(getChecklistBySubcategory(state?.id));
     }
   };
 
   const onChange = (e) => {
-    checklistValue("checklist", e.target.value);
+    setValue("checklist", e.target.value);
   };
 
   return (

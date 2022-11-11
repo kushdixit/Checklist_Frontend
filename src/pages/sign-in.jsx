@@ -86,15 +86,14 @@ const SignIn = () => {
     return (
       <LoginContainer>
         <ToastContainer />
-
         <LeftContainer>
           {" "}
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
           <Logo>
-        <img src={ChecklistLogo} alt="ChecklistLogo" />
-        </Logo>
+            <img src={ChecklistLogo} alt="ChecklistLogo" />
+          </Logo>
           <FormBody>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
@@ -116,7 +115,6 @@ const SignIn = () => {
                       <IconText>Login with Facebook</IconText>
                     </RightIconSection>
                   </IconSection>
-
                   <IconInputField>
                     <TextInput
                       name="email"
@@ -127,7 +125,6 @@ const SignIn = () => {
                     {<Error>{errors.email && errors.email.message}</Error>}
                     <EmailIcon className="emailIcon" />
                   </IconInputField>
-
                   <IconInputField>
                     <TextInput
                       name="password"
@@ -142,7 +139,6 @@ const SignIn = () => {
                     }
                     <LockIcon className="startIcon" />
                   </IconInputField>
-
                   <RememberSection>
                     <Controller
                       name="rememberMe"

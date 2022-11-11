@@ -133,7 +133,9 @@ export const SortTextDiv = styled.div`
   gap: 10px;
 `;
 
-export const ButtonSection = styled.div``;
+export const ButtonSection = styled.div`
+  margin-right: 4.5rem;
+`;
 export const ChecklistWrapper = styled.div`
   width: 100%;
   display: flex;
