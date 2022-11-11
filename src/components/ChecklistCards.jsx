@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import FirstImage from "assets/images/firstimage.jpg";
+// import FirstImage from "assets/images/firstimage.jpg";
+import FirstImage from "assets/images/checklist.svg";
 import SecondImage from "assets/images/secondimage.jpg";
 import ThirdImage from "assets/images/thirdimage.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import FourthImage from "assets/images/firstimage.jpg";
+import Checklist from "assets/images/checklist.svg";
 import Button from "components/Button";
 import TextInput from "components/FormElements/TextInput";
 import {

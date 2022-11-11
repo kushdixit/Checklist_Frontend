@@ -4,9 +4,16 @@ export const BodyWrapper = styled.div`
   padding: 30px 0;
   background: #fff;
 `;
-
+export const TitleFormSection = styled.div`
+  background: #fff;
+`;
 export const Title = styled.div`
   background: #fff;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1760px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Section = styled.div`
@@ -15,11 +22,9 @@ export const Section = styled.div`
 
 export const TitleSection = styled.div`
   color: #1d2e88;
-  margin: 0.5% 5%;
+
   padding: 18px 0;
   h3 {
-    padding: 10px 0 13px 0;
-    margin: 0;
     font-size: 24px;
     font-weight: 600;
   }
@@ -35,7 +40,9 @@ export const TaskSection = styled.div`
 `;
 
 export const MainTaskSection = styled.div`
-  margin: 0.5% 5%;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1735px;
   padding: 20px 0;
   display: flex;
   svg {
@@ -76,14 +83,22 @@ export const IconInputField = styled.div`
 `;
 
 export const SubTaskSection = styled.div`
-  margin: 0 5%;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1644px;
+
   .div {
-    margin: 0 5%;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1644px;
   }
 `;
 
 export const AddSubTask = styled.div`
-  margin: 0 5%;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1644px;
+
   .button {
     font-size: 1rem;
     padding: 9px 20px;
@@ -134,15 +149,24 @@ export const SortTextDiv = styled.div`
 `;
 
 export const ButtonSection = styled.div`
-  margin-right: 4.5rem;
+  .button {
+    font-size: 1rem;
+    padding: 9px 20px;
+  }
 `;
 export const ChecklistWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1735px;
+  margin: 8px auto;
 `;
 export const EditChecklistButtonWrapper = styled.div`
   display: flex;
   margin: 0.5rem;
+  .button {
+    font-size: 1rem;
+    padding: 9px 20px;
+  }
 `;

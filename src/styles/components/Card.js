@@ -14,6 +14,8 @@ export const CardMainSection = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: 1735px;
+  margin: 0 auto;
 `;
 
 export const Section = styled.div``;
@@ -130,7 +132,16 @@ export const SubSectionNew = styled.div`
 `;
 export const Image = styled.div`
   width: 100%;
+
+  text-align: center;
   height: auto;
+  align-items: center;
+  img {
+    width: 100%;
+    max-width: 275px;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 export const Wrap = styled.div`
   display: flex;

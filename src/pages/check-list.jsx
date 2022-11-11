@@ -19,6 +19,7 @@ import {
   ButtonSection,
   ChecklistWrapper,
   EditChecklistButtonWrapper,
+  TitleFormSection
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
 import TaskIcon from "assets/SVG/TaskIcon";
@@ -99,6 +100,7 @@ const CheckList = () => {
       <BodyWrapper>
         <Navbar search={false} buttonType="Add" />
       </BodyWrapper>
+      <TitleFormSection>
       <Title>
         {!editChecklist ? (
           <ChecklistWrapper>
@@ -144,6 +146,7 @@ const CheckList = () => {
           </form>
         )}
       </Title>
+      </TitleFormSection>
       <TaskSection>
         <MainTaskSection>
           <TaskIconImage>
