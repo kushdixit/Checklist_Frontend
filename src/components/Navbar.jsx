@@ -30,7 +30,9 @@ const NavBar = ({ search, buttonType }) => {
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const templateDataLength = useSelector(
-    (state) => state.Template?.yourTemplate[0]?.checklists.length
+    (state) =>
+      state.Template?.yourTemplate != null &&
+      state.Template?.yourTemplate[0]?.checklists.length
   );
 
   const [isGood, setIsGood] = useState(false);
@@ -60,7 +62,7 @@ const NavBar = ({ search, buttonType }) => {
       <ToastContainer />
       <SubNavSection>
         <FirstSection>
-          <HeadingText>Checklist</HeadingText>
+          <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
         </FirstSection>
 
         <SecondSection>
