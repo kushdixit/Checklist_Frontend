@@ -36,6 +36,10 @@ export const TaskList = styled.div`
     padding-left: 20px;
     margin-bottom: 10px;
   }
+  input[type="checkbox"] {
+    width: 24px; /*Desired width*/
+    height: 24px; /*Desired height*/
+  }
   .checkbox-container {
     font-size: 22px;
     font-family: "poppinsSemibold";
