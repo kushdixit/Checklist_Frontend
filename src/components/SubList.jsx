@@ -14,19 +14,17 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   MainTaskSection,
   IconInputField,
-  TaskIconImage,
   ShortBy,
   SortWrapper,
   ShortContainer,
   SortTextDiv,
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
-import TaskIcon from "assets/SVG/TaskIcon";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 
-const SubList = ({ subIndex, task, index, checkListId }) => {
+const SubList = ({ subIndex, task, index, checkListId, isEditable }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
@@ -87,30 +85,30 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
     <div key={subIndex}>
       <ToastContainer />
       <MainTaskSection>
-        <TaskIconImage>
-          <TaskIcon />
-        </TaskIconImage>
         <form
           style={{ width: "100%" }}
           onSubmit={handleSubmit(updateSubTaskHandler)}
         >
-          <Controller
-            name="rememberMe"
-            control={control}
-            render={({ field }) => (
-              <CheckboxInput
-                className="checkBox"
-                {...field}
-                onChange={(e) => {
-                  console.log(e);
-                  taskEditable &&
-                    reset({
-                      rememberMe: e,
-                    });
-                }}
-              />
-            )}
-          />
+          {!subTaskEdit && (
+            <Controller
+              name="rememberMe"
+              control={control}
+              render={({ field }) => (
+                <CheckboxInput
+                  className="checkBox"
+                  {...field}
+                  onChange={(e) => {
+                    console.log(e);
+                    taskEditable &&
+                      isEditable &&
+                      reset({
+                        rememberMe: e,
+                      });
+                  }}
+                />
+              )}
+            />
+          )}
           <IconInputField>
             <TextInput
               name="updateSubTask"
@@ -126,7 +124,7 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
               <Button>Save</Button>
             </div>
           )}
-          {taskEditable && (
+          {isEditable && taskEditable && (
             <ShortContainer
               onClick={() => {
                 setIsOpenSort(true);
@@ -164,7 +162,7 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
   );
 };
 
-const SubListWrapper = ({ index, task, checkListId }) => {
+const SubListWrapper = ({ index, task, checkListId, isEditable }) => {
   return task.subTasks
     ?.filter((data) => data.isActive)
     .reverse()
@@ -174,6 +172,7 @@ const SubListWrapper = ({ index, task, checkListId }) => {
         subIndex={subIndex}
         index={index}
         checkListId={checkListId}
+        isEditable={isEditable}
       />
     ));
 };

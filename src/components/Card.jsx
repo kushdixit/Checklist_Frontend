@@ -46,10 +46,9 @@ const Card = ({ item, index, Checklist, isEditable }) => {
     <SubSection
       key={index}
       onClick={() => {
-        isEditable &&
-          navigate("/check-list", {
-            state: { id: item.id, showEditable: true },
-          });
+        navigate("/check-list", {
+          state: { id: item.id, showEditable: true, isEditable },
+        });
       }}
     >
       <Image>

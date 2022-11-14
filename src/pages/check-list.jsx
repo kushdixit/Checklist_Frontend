@@ -64,7 +64,7 @@ const CheckList = () => {
   const formFields = () => (
     <FormBody>
       <div>
-        <TaskWrapper checkListId={state?.id} />
+        <TaskWrapper checkListId={state?.id} isEditable={state?.isEditable} />
       </div>
     </FormBody>
   );
@@ -103,6 +103,7 @@ const CheckList = () => {
           search={false}
           buttonType="Add"
           showEditable={state?.showEditable}
+          isEditable={state?.isEditable}
         />
       </BodyWrapper>
       <TitleFormSection>
@@ -112,7 +113,7 @@ const CheckList = () => {
               <TitleSection>
                 <h3>{checklistName}</h3>
               </TitleSection>
-              {taskEditable && (
+              {state?.isEditable && taskEditable && (
                 <ButtonSection>
                   <Button
                     handleClick={() => {
@@ -155,7 +156,7 @@ const CheckList = () => {
         </Title>
       </TitleFormSection>
       <TaskSection>
-        {taskEditable && (
+        {state?.isEditable && taskEditable && (
           <MainTaskSection>
             <TaskIconImage>
               <TaskIcon />

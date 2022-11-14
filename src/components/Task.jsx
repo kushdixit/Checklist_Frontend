@@ -17,7 +17,6 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   MainTaskSection,
   IconInputField,
-  TaskIconImage,
   SubTaskSection,
   ShortBy,
   SortWrapper,
@@ -25,24 +24,28 @@ import {
   SortTextDiv,
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
-import TaskIcon from "assets/SVG/TaskIcon";
 import SubTaskIcon from "assets/SVG/SubTaskIcon";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
 import Arrow from "assets/SVG/Arrow";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 
-const TaskWrapper = ({ checkListId }) => {
+const TaskWrapper = ({ checkListId, isEditable }) => {
   const taskData = useSelector((state) => state.checklist);
   return taskData?.tasks
     ?.filter((data) => data.isActive)
     .reverse()
     .map((task, index) => (
-      <Task task={task} index={index} checkListId={checkListId} />
+      <Task
+        task={task}
+        index={index}
+        checkListId={checkListId}
+        isEditable={isEditable}
+      />
     ));
 };
 
-const Task = ({ task, index, checkListId }) => {
+const Task = ({ task, index, checkListId, isEditable }) => {
   const dispatch = useDispatch();
   const [taskEdit, setTaskEdit] = useState(false);
   const [addSubTask, setAddSubTask] = useState(false);
@@ -96,13 +99,6 @@ const Task = ({ task, index, checkListId }) => {
   };
 
   const formData = async (data) => {
-    dispatch(
-      editTaskStatus(
-        task?.id,
-        checkListId,
-        data.rememberMe == true ? true : false
-      )
-    );
     const response = await dispatch(editTask(data?.update, task.id));
     if (response.status === 204) {
       dispatch(getChecklistBySubcategory(checkListId));
@@ -117,28 +113,26 @@ const Task = ({ task, index, checkListId }) => {
     <TaskList key={index}>
       <ToastContainer />
       <MainTaskSection>
-        <TaskIconImage>
-          <TaskIcon />
-        </TaskIconImage>
         <form style={{ width: "100%" }} onSubmit={submitData(formData)}>
-          {/* {taskEditable && ( */}
-          <Controller
-            name="rememberMe"
-            control={formControl}
-            render={({ field }) => (
-              <CheckboxInput
-                className="checkBox"
-                {...field}
-                onChange={(e) => {
-                  taskEditable &&
-                    reset({
-                      rememberMe: e,
-                    });
-                }}
-              />
-            )}
-          />
-          {/* )} */}
+          {!taskEdit && (
+            <Controller
+              name="rememberMe"
+              control={formControl}
+              render={({ field }) => (
+                <CheckboxInput
+                  className="checkBox"
+                  {...field}
+                  onChange={(e) => {
+                    taskEditable &&
+                      isEditable &&
+                      reset({
+                        rememberMe: e,
+                      });
+                  }}
+                />
+              )}
+            />
+          )}
           <IconInputField>
             <TextInput
               name="update"
@@ -155,7 +149,7 @@ const Task = ({ task, index, checkListId }) => {
               <Button>Save</Button>
             </div>
           )}
-          {taskEditable && (
+          {isEditable && taskEditable && (
             <ShortContainer
               onClick={() => {
                 setIsOpenSort(true);
@@ -190,7 +184,7 @@ const Task = ({ task, index, checkListId }) => {
           )}
         </form>
       </MainTaskSection>
-      {taskEditable && (
+      {isEditable && taskEditable && (
         <SubTaskSection>
           <SubTaskIcon onClick={() => setAddSubTask(!addSubTask)} />
         </SubTaskSection>
@@ -205,7 +199,12 @@ const Task = ({ task, index, checkListId }) => {
         />
       )}
       <div style={{ "padding-left": "90px" }}>
-        <SubListWrapper index={index} task={task} checkListId={checkListId} />
+        <SubListWrapper
+          index={index}
+          task={task}
+          checkListId={checkListId}
+          isEditable={isEditable}
+        />
       </div>
     </TaskList>
   );
