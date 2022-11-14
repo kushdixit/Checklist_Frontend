@@ -132,13 +132,14 @@ export const SubSectionNew = styled.div`
 `;
 export const Image = styled.div`
   width: 100%;
-
-  text-align: center;
-  height: auto;
   align-items: center;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  height: 260px;
   img {
     width: 100%;
-    max-width: 275px;
+    max-width: 200px;
     justify-content: center;
     align-items: center;
   }
@@ -156,13 +157,13 @@ export const WrapSubSection = styled.div`
     margin: 0;
     padding: 0;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 21px;
   }
   h3 {
     color: #505050;
     margin: 0;
     padding: 0;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 13px;
   }
 `;

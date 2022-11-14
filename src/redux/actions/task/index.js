@@ -135,3 +135,41 @@ export const editSubTask = (subTaskName, id) => async (dispatch) => {
     return ex.response;
   }
 };
+
+export const editTaskStatus =
+  (id, checkListId, ischecked) => async (dispatch) => {
+    console.log(ischecked);
+    const payload = {
+      id,
+      ischecked,
+    };
+    try {
+      const response = await axioPath.put("v1/Task/taskstatus", payload, {
+        hideLoader: false,
+      });
+      console.log(response);
+      dispatch(getChecklistBySubcategory(checkListId));
+      return response;
+    } catch (ex) {
+      return ex.response;
+    }
+  };
+
+export const editSubTaskStatus =
+  (id, checkListId, ischecked) => async (dispatch) => {
+    console.log(ischecked);
+    const payload = {
+      id,
+      ischecked,
+    };
+    try {
+      const response = await axioPath.put("v1/Task/taskstatus", payload, {
+        hideLoader: false,
+      });
+      console.log(response);
+      dispatch(getChecklistBySubcategory(checkListId));
+      return response;
+    } catch (ex) {
+      return ex.response;
+    }
+  };

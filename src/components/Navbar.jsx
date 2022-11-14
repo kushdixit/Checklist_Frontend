@@ -18,21 +18,24 @@ import TextInput from "components/FormElements/TextInput";
 import FirstImage from "assets/images/firstimage.jpg";
 import { useForm } from "react-hook-form";
 import Button from "components/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SearchNew from "assets/SVG/SearchNew";
 import { addTempChecklist } from "redux/actions/checklist";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SET_IS_EDITABLE } from "redux/actions/action_types";
 
 const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
-  const templateDataLength = useSelector(
+  const taskEditable = useSelector((state) => state.editable?.isEditable);
+  const YourTemplates = useSelector(
     (state) =>
       state.Template?.yourTemplate != null &&
-      state.Template?.yourTemplate[0]?.checklists.length
+      state.Template?.yourTemplate[0]?.checklists
   );
 
   const [isGood, setIsGood] = useState(false);
@@ -52,10 +55,18 @@ const NavBar = ({ search, buttonType }) => {
 
   const newTemplateHandler = async () => {
     const res = await dispatch(
-      addTempChecklist(`Your Checklist ${templateDataLength + 1}`, userEmail)
+      addTempChecklist(
+        `Your Checkslisstt ${YourTemplates[YourTemplates.length - 1]?.id + 1}`,
+        userEmail
+      )
     );
     if (res.error) toast(res.message);
-    else navigate("/check-list");
+    else {
+      dispatch({ type: SET_IS_EDITABLE, payload: true });
+      navigate("/check-list", {
+        state: { id: res?.id, showEditable: false },
+      });
+    }
   };
   return (
     <NavSection>
@@ -88,6 +99,17 @@ const NavBar = ({ search, buttonType }) => {
                 {`+ ${buttonType}`}
               </Button>
             </Footer>
+          )}
+          {state?.showEditable && (
+            <div>
+              <Button
+                handleClick={() =>
+                  dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
+                }
+              >
+                {`${taskEditable ? "Close Edit" : "Edit Tasks"}`}
+              </Button>
+            </div>
           )}
           <ImageSubSection>
             <SecondSubSection>

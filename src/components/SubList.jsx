@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getChecklistBySubcategory,
   editSubTask,
   deleteSubTask,
+  editSubTaskStatus,
 } from "redux/actions/task";
 import Button from "components/Button";
 import TextInput from "components/FormElements/TextInput";
@@ -30,6 +31,7 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const wrapperRef = useRef();
+  const taskEditable = useSelector((state) => state.editable?.isEditable);
 
   useEffect(() => {
     function handleClickOutside(event: { target: any }) {
@@ -48,10 +50,13 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
   }
 
   const dispatch = useDispatch();
-  const { setValue, handleSubmit, control } = useForm({
+  const { setValue, handleSubmit, control, reset } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
+    defaultValues: {
+      rememberMe: task?.ischecked,
+    },
   });
 
   const taskdeleteHandler = (id) => {
@@ -61,6 +66,13 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
     setValue("updateSubTask", e.target.value);
   };
   const updateSubTaskHandler = async (data) => {
+    dispatch(
+      editSubTaskStatus(
+        task?.id,
+        checkListId,
+        data.rememberMe == true ? true : false
+      )
+    );
     const response = await dispatch(editSubTask(data?.updateSubTask, task.id));
     if (response.status === 204) {
       dispatch(getChecklistBySubcategory(checkListId));
@@ -86,7 +98,17 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
             name="rememberMe"
             control={control}
             render={({ field }) => (
-              <CheckboxInput className="checkBox" {...field} />
+              <CheckboxInput
+                className="checkBox"
+                {...field}
+                onChange={(e) => {
+                  console.log(e);
+                  taskEditable &&
+                    reset({
+                      rememberMe: e,
+                    });
+                }}
+              />
             )}
           />
           <IconInputField>
@@ -104,36 +126,38 @@ const SubList = ({ subIndex, task, index, checkListId }) => {
               <Button>Save</Button>
             </div>
           )}
-          <ShortContainer
-            onClick={() => {
-              setIsOpenSort(true);
-            }}
-          >
-            <ShortBy>
-              <Colon onClick={() => toggleab(!modal)} />
-              {isOpenSort && (
-                <SortWrapper ref={wrapperRef}>
-                  <SortTextDiv
-                    onClick={() => {
-                      setSubTaskEdit(!subTaskEdit);
-                      setValue("updateSubTask", task?.subTaskName);
-                    }}
-                  >
-                    <Edit />
-                    Edit Sub Task
-                  </SortTextDiv>
-                  <SortTextDiv
-                    onClick={() => {
-                      console.log("dsfs");
-                      taskdeleteHandler(task.id);
-                    }}
-                  >
-                    <Delete /> Delete Sub Task
-                  </SortTextDiv>
-                </SortWrapper>
-              )}
-            </ShortBy>
-          </ShortContainer>
+          {taskEditable && (
+            <ShortContainer
+              onClick={() => {
+                setIsOpenSort(true);
+              }}
+            >
+              <ShortBy>
+                <Colon onClick={() => toggleab(!modal)} />
+                {isOpenSort && (
+                  <SortWrapper ref={wrapperRef}>
+                    <SortTextDiv
+                      onClick={() => {
+                        setSubTaskEdit(!subTaskEdit);
+                        setValue("updateSubTask", task?.subTaskName);
+                      }}
+                    >
+                      <Edit />
+                      Edit Sub Task
+                    </SortTextDiv>
+                    <SortTextDiv
+                      onClick={() => {
+                        console.log("dsfs");
+                        taskdeleteHandler(task.id);
+                      }}
+                    >
+                      <Delete /> Delete Sub Task
+                    </SortTextDiv>
+                  </SortWrapper>
+                )}
+              </ShortBy>
+            </ShortContainer>
+          )}
         </form>
       </MainTaskSection>
     </div>
