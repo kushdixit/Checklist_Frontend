@@ -19,18 +19,19 @@ import {
   ButtonSection,
   ChecklistWrapper,
   EditChecklistButtonWrapper,
-  TitleFormSection
+  TitleFormSection,
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
 import TaskIcon from "assets/SVG/TaskIcon";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const CheckList = () => {
+  const { state } = useLocation();
   const [editChecklist, setEditChecklist] = useState(false);
   const dispatch = useDispatch();
-  const { state } = useLocation();
   const navigate = useNavigate();
   const checklistName = useSelector((state) => state.checklist?.checklistName);
+  const taskEditable = useSelector((state) => state.editable?.isEditable);
   const checklistId = useSelector((state) => state.checklist?.id);
 
   useEffect(() => {
@@ -98,77 +99,85 @@ const CheckList = () => {
   return (
     <Section>
       <BodyWrapper>
-        <Navbar search={false} buttonType="Add" />
+        <Navbar
+          search={false}
+          buttonType="Add"
+          showEditable={state?.showEditable}
+        />
       </BodyWrapper>
       <TitleFormSection>
-      <Title>
-        {!editChecklist ? (
-          <ChecklistWrapper>
-            <TitleSection>
-              <h3>{checklistName}</h3>
-            </TitleSection>
-            <ButtonSection>
-              <Button
-                handleClick={() => {
-                  setEditChecklist(!editChecklist);
-                }}
-              >
-                Edit
-              </Button>
-            </ButtonSection>
-          </ChecklistWrapper>
-        ) : (
-          <form
-            style={{ width: "100%", display: "flex" }}
-            onSubmit={submitChecklist(editChecklistHandler)}
-          >
-            <IconInputField>
-              <TextInput
-                name="checklist"
-                type="text"
-                placeholder={checklistName}
-                control={checklistFormControl}
-                onChange={onChange}
-              />
-            </IconInputField>
-            <EditChecklistButtonWrapper className="submitBtn">
-              <Button>Save</Button>
-              <Button
-                style={{ marginLeft: "0.25rem" }}
-                handleClick={(e) => {
-                  e.preventDefault();
-                  setEditChecklist(!editChecklist);
-                }}
-              >
-                Cancel
-              </Button>
-            </EditChecklistButtonWrapper>
-          </form>
-        )}
-      </Title>
+        <Title>
+          {!editChecklist ? (
+            <ChecklistWrapper>
+              <TitleSection>
+                <h3>{checklistName}</h3>
+              </TitleSection>
+              {taskEditable && (
+                <ButtonSection>
+                  <Button
+                    handleClick={() => {
+                      setEditChecklist(!editChecklist);
+                    }}
+                  >
+                    Edit
+                  </Button>
+                </ButtonSection>
+              )}
+            </ChecklistWrapper>
+          ) : (
+            <form
+              style={{ width: "100%", display: "flex" }}
+              onSubmit={submitChecklist(editChecklistHandler)}
+            >
+              <IconInputField>
+                <TextInput
+                  name="checklist"
+                  type="text"
+                  placeholder={checklistName}
+                  control={checklistFormControl}
+                  onChange={onChange}
+                />
+              </IconInputField>
+              <EditChecklistButtonWrapper className="submitBtn">
+                <Button>Save</Button>
+                <Button
+                  style={{ marginLeft: "0.25rem" }}
+                  handleClick={(e) => {
+                    e.preventDefault();
+                    setEditChecklist(!editChecklist);
+                  }}
+                >
+                  Cancel
+                </Button>
+              </EditChecklistButtonWrapper>
+            </form>
+          )}
+        </Title>
       </TitleFormSection>
       <TaskSection>
-        <MainTaskSection>
-          <TaskIconImage>
-            <TaskIcon />
-          </TaskIconImage>
-          <form
-            style={{ width: "100%", display: "flex" }}
-            onSubmit={submitData(formData)}
-          >
-            <IconInputField>
-              <TextInput
-                name="title"
-                type="text"
-                placeholder="Enter Task Name"
-                control={formControl}
-              />
-            </IconInputField>
-            <div className="submitBtn">
-              <Button>Save</Button>
-            </div>
-          </form>
-        </MainTaskSection>
+        {taskEditable && (
+          <MainTaskSection>
+            <TaskIconImage>
+              <TaskIcon />
+            </TaskIconImage>
+            <form
+              style={{ width: "100%", display: "flex" }}
+              onSubmit={submitData(formData)}
+            >
+              <IconInputField>
+                <TextInput
+                  name="title"
+                  type="text"
+                  placeholder="Enter Task Name"
+                  control={formControl}
+                />
+              </IconInputField>
+              <div className="submitBtn">
+                <Button>Save</Button>
+              </div>
+            </form>
+          </MainTaskSection>
+        )}
       </TaskSection>
       <BodyContainer>{formFields()}</BodyContainer>
     </Section>

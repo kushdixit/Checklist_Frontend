@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getChecklistBySubcategory,
   deleteTask,
   editTask,
+  editTaskStatus,
 } from "redux/actions/task";
 import { TaskList } from "styles/pages/CheckList";
 import Button from "components/Button";
@@ -49,6 +49,7 @@ const Task = ({ task, index, checkListId }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const wrapperRef = useRef();
+  const taskEditable = useSelector((state) => state.editable?.isEditable);
 
   useEffect(() => {
     function handleClickOutside(event: { target: any }) {
@@ -66,12 +67,21 @@ const Task = ({ task, index, checkListId }) => {
     setModal(data);
   }
 
-  const { handleSubmit: submitData, control: formControl } = useForm({
+  const {
+    handleSubmit: submitData,
+    control: formControl,
+    register,
+    reset,
+  } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
+    defaultValues: {
+      rememberMe: task?.ischecked,
+    },
   });
 
   const onTaskChange = (e) => {
+    console.log(e);
     setValue("update", e.target.value);
   };
 
@@ -86,6 +96,13 @@ const Task = ({ task, index, checkListId }) => {
   };
 
   const formData = async (data) => {
+    dispatch(
+      editTaskStatus(
+        task?.id,
+        checkListId,
+        data.rememberMe == true ? true : false
+      )
+    );
     const response = await dispatch(editTask(data?.update, task.id));
     if (response.status === 204) {
       dispatch(getChecklistBySubcategory(checkListId));
@@ -104,13 +121,24 @@ const Task = ({ task, index, checkListId }) => {
           <TaskIcon />
         </TaskIconImage>
         <form style={{ width: "100%" }} onSubmit={submitData(formData)}>
+          {/* {taskEditable && ( */}
           <Controller
             name="rememberMe"
             control={formControl}
             render={({ field }) => (
-              <CheckboxInput className="checkBox" {...field} />
+              <CheckboxInput
+                className="checkBox"
+                {...field}
+                onChange={(e) => {
+                  taskEditable &&
+                    reset({
+                      rememberMe: e,
+                    });
+                }}
+              />
             )}
           />
+          {/* )} */}
           <IconInputField>
             <TextInput
               name="update"
@@ -119,6 +147,7 @@ const Task = ({ task, index, checkListId }) => {
               control={formControl}
               disabled={!taskEdit}
               onChange={onTaskChange}
+              ref={register}
             />
           </IconInputField>
           {taskEdit && (
@@ -126,43 +155,47 @@ const Task = ({ task, index, checkListId }) => {
               <Button>Save</Button>
             </div>
           )}
-          <ShortContainer
-            onClick={() => {
-              setIsOpenSort(true);
-            }}
-          >
-            <ShortBy>
-              <Colon onClick={() => toggleab(!modal)} />
-              {isOpenSort && (
-                <SortWrapper ref={wrapperRef}>
-                  <SortTextDiv
-                    onClick={() => {
-                      setTaskEdit(!taskEdit);
-                      setValue("update", task?.taskName);
-                    }}
-                  >
-                    <Edit /> Edit Task
-                  </SortTextDiv>
-                  <SortTextDiv
-                    onClick={() => {
-                      deleteHandler(task.id);
-                    }}
-                  >
-                    <Delete /> Delete Task
-                  </SortTextDiv>
-                  <SortTextDiv onClick={() => setAddSubTask(!addSubTask)}>
-                    <Arrow /> Add Sub Task
-                  </SortTextDiv>
-                </SortWrapper>
-              )}
-            </ShortBy>
-          </ShortContainer>
+          {taskEditable && (
+            <ShortContainer
+              onClick={() => {
+                setIsOpenSort(true);
+              }}
+            >
+              <ShortBy>
+                <Colon onClick={() => toggleab(!modal)} />
+                {isOpenSort && (
+                  <SortWrapper ref={wrapperRef}>
+                    <SortTextDiv
+                      onClick={() => {
+                        setTaskEdit(!taskEdit);
+                        setValue("update", task?.taskName);
+                      }}
+                    >
+                      <Edit /> Edit Task
+                    </SortTextDiv>
+                    <SortTextDiv
+                      onClick={() => {
+                        deleteHandler(task.id);
+                      }}
+                    >
+                      <Delete /> Delete Task
+                    </SortTextDiv>
+                    <SortTextDiv onClick={() => setAddSubTask(!addSubTask)}>
+                      <Arrow /> Add Sub Task
+                    </SortTextDiv>
+                  </SortWrapper>
+                )}
+              </ShortBy>
+            </ShortContainer>
+          )}
         </form>
       </MainTaskSection>
-      <SubTaskSection>
-        <SubTaskIcon onClick={() => setAddSubTask(!addSubTask)} />
-      </SubTaskSection>
-      {addSubTask && (
+      {taskEditable && (
+        <SubTaskSection>
+          <SubTaskIcon onClick={() => setAddSubTask(!addSubTask)} />
+        </SubTaskSection>
+      )}
+      {taskEditable && addSubTask && (
         <SubTask
           id={task.id}
           task={task}

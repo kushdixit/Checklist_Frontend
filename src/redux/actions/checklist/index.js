@@ -84,8 +84,8 @@ export const addTempChecklist = (checklistName, email) => async (dispatch) => {
     const response = await axioPath.post("v1/CheckList/checklists", payload, {
       hideLoader: false,
     });
-    dispatch(getChecklistBySubcategory(response.data));
-    return { error: false, message: response?.statusText };
+    response?.data && dispatch(getChecklistBySubcategory(response?.data));
+    return { error: false, message: response?.statusText, id: response?.data };
   } catch (ex) {
     return { error: true, message: ex?.response?.data?.Message };
   }

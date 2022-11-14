@@ -18,8 +18,9 @@ import { useNavigate } from "react-router-dom";
 import { deleteChecklist } from "redux/actions/checklist";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
+import { SET_IS_EDITABLE } from "redux/actions/action_types";
 
-const Card = ({ item, index, Checklist }) => {
+const Card = ({ item, index, Checklist, isEditable }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const dispatch = useDispatch();
@@ -42,7 +43,15 @@ const Card = ({ item, index, Checklist }) => {
     setModal(data);
   }
   return (
-    <SubSection key={index}>
+    <SubSection
+      key={index}
+      onClick={() => {
+        isEditable &&
+          navigate("/check-list", {
+            state: { id: item.id, showEditable: true },
+          });
+      }}
+    >
       <Image>
         <img
           src={Checklist[0]?.image}
@@ -61,29 +70,35 @@ const Card = ({ item, index, Checklist }) => {
               : item.dateCreated?.split("T")[0]}
           </h3>
         </WrapSubSection>
-        <ColonImage>
-          <ShortContainer onClick={() => setIsOpenSort(true)}>
-            <ShortBy>
-              <Colon onClick={() => toggleab(!modal)} />
-              {isOpenSort && (
-                <SortWrapper ref={wrapperRef}>
-                  <SortTextDiv
-                    onClick={() =>
-                      navigate("/check-list", { state: { id: item.id } })
-                    }
-                  >
-                     <Edit />Edit CheckList
-                  </SortTextDiv>
-                  <SortTextDiv
-                    onClick={() => dispatch(deleteChecklist(item.id))}
-                  >
-                    <Delete />  Delete CheckList
-                  </SortTextDiv>
-                </SortWrapper>
-              )}
-            </ShortBy>
-          </ShortContainer>
-        </ColonImage>
+        {/* {isEditable && (
+          <ColonImage>
+            <ShortContainer onClick={() => setIsOpenSort(true)}>
+              <ShortBy>
+                <Colon onClick={() => toggleab(!modal)} />
+                {isOpenSort && (
+                  <SortWrapper ref={wrapperRef}>
+                    <SortTextDiv
+                      onClick={() => {
+                        dispatch({ type: SET_IS_EDITABLE, payload: false });
+                        navigate("/check-list", {
+                          state: { id: item.id, showEditable: true },
+                        });
+                      }}
+                    >
+                      <Edit />
+                      View CheckList
+                    </SortTextDiv>
+                    <SortTextDiv
+                      onClick={() => dispatch(deleteChecklist(item.id))}
+                    >
+                      <Delete /> Delete CheckList
+                    </SortTextDiv>
+                  </SortWrapper>
+                )}
+              </ShortBy>
+            </ShortContainer>
+          </ColonImage>
+        )} */}
       </Wrap>
     </SubSection>
   );
