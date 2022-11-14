@@ -64,10 +64,11 @@ const NavBar = ({ search, buttonType, isEditable }) => {
     else {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       navigate("/check-list", {
-        state: { id: res?.id, showEditable: false },
+        state: { id: res?.id, showEditable: false, isEditable: true },
       });
     }
   };
+
   return (
     <NavSection>
       <ToastContainer />
