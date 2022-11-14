@@ -26,7 +26,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 
-const NavBar = ({ search, buttonType }) => {
+const NavBar = ({ search, buttonType, isEditable }) => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch();
@@ -100,14 +100,14 @@ const NavBar = ({ search, buttonType }) => {
               </Button>
             </Footer>
           )}
-          {state?.showEditable && (
+          {isEditable && state?.showEditable && (
             <div>
               <Button
                 handleClick={() =>
                   dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
                 }
               >
-                {`${taskEditable ? "Close Edit" : "Edit Tasks"}`}
+                {`${taskEditable ? "Done" : "Edit"}`}
               </Button>
             </div>
           )}
