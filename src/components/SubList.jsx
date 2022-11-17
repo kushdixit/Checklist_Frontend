@@ -20,11 +20,10 @@ import {
   SortTextDiv,
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
-import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 
-const SubList = ({ subIndex, task, index, checkListId, isEditable }) => {
+const SubList = ({ subIndex, task, checkListId, showEditable }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
@@ -64,13 +63,6 @@ const SubList = ({ subIndex, task, index, checkListId, isEditable }) => {
     setValue("updateSubTask", e.target.value);
   };
   const updateSubTaskHandler = async (data) => {
-    dispatch(
-      editSubTaskStatus(
-        task?.id,
-        checkListId,
-        data.rememberMe == true ? true : false
-      )
-    );
     const response = await dispatch(editSubTask(data?.updateSubTask, task.id));
     if (response.status === 204) {
       dispatch(getChecklistBySubcategory(checkListId));
@@ -98,12 +90,18 @@ const SubList = ({ subIndex, task, index, checkListId, isEditable }) => {
                   className="checkBox"
                   {...field}
                   onChange={(e) => {
-                    console.log(e);
-                    taskEditable &&
-                      isEditable &&
+                    showEditable &&
                       reset({
                         rememberMe: e,
                       });
+                    showEditable &&
+                      dispatch(
+                        editSubTaskStatus(
+                          task?.id,
+                          checkListId,
+                          e === true ? true : false
+                        )
+                      );
                   }}
                 />
               )}
@@ -115,16 +113,11 @@ const SubList = ({ subIndex, task, index, checkListId, isEditable }) => {
               type="text"
               placeholder={task?.subTaskName}
               control={control}
-              disabled={!subTaskEdit}
+              disabled={!taskEditable}
               onChange={onChange}
             />
           </IconInputField>
-          {subTaskEdit && (
-            <div className="submitBtn">
-              <Button>Save</Button>
-            </div>
-          )}
-          {isEditable && taskEditable && (
+          {taskEditable && (
             <ShortContainer
               onClick={() => {
                 setIsOpenSort(true);
@@ -136,16 +129,6 @@ const SubList = ({ subIndex, task, index, checkListId, isEditable }) => {
                   <SortWrapper ref={wrapperRef}>
                     <SortTextDiv
                       onClick={() => {
-                        setSubTaskEdit(!subTaskEdit);
-                        setValue("updateSubTask", task?.subTaskName);
-                      }}
-                    >
-                      <Edit />
-                      Edit Sub Task
-                    </SortTextDiv>
-                    <SortTextDiv
-                      onClick={() => {
-                        console.log("dsfs");
                         taskdeleteHandler(task.id);
                       }}
                     >
@@ -156,13 +139,18 @@ const SubList = ({ subIndex, task, index, checkListId, isEditable }) => {
               </ShortBy>
             </ShortContainer>
           )}
+          {taskEditable && (
+            <div className="submitBtn">
+              <Button>Save</Button>
+            </div>
+          )}
         </form>
       </MainTaskSection>
     </div>
   );
 };
 
-const SubListWrapper = ({ index, task, checkListId, isEditable }) => {
+const SubListWrapper = ({ index, task, checkListId, showEditable }) => {
   return task.subTasks
     ?.filter((data) => data.isActive)
     .reverse()
@@ -172,7 +160,7 @@ const SubListWrapper = ({ index, task, checkListId, isEditable }) => {
         subIndex={subIndex}
         index={index}
         checkListId={checkListId}
-        isEditable={isEditable}
+        showEditable={showEditable}
       />
     ));
 };

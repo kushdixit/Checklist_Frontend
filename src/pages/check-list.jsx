@@ -64,7 +64,10 @@ const CheckList = () => {
   const formFields = () => (
     <FormBody>
       <div>
-        <TaskWrapper checkListId={state?.id} isEditable={state?.isEditable} />
+        <TaskWrapper
+          checkListId={state?.id}
+          showEditable={state?.showEditable}
+        />
       </div>
     </FormBody>
   );
@@ -86,7 +89,6 @@ const CheckList = () => {
 
     if (response?.error) {
     } else {
-      console.log("here");
       checklistValue("title", "");
       dispatch(getChecklistBySubcategory(state?.id));
     }
@@ -103,64 +105,35 @@ const CheckList = () => {
           search={false}
           buttonType="Add"
           showEditable={state?.showEditable}
-          isEditable={state?.isEditable}
         />
       </BodyWrapper>
       <TitleFormSection>
         <Title>
-          {!editChecklist ? (
-            <ChecklistWrapper>
-              <TitleSection>
-                <h3>{checklistName}</h3>
-              </TitleSection>
-              {state?.isEditable && taskEditable && (
-                <ButtonSection>
-                  <Button
-                    handleClick={() => {
-                      setEditChecklist(!editChecklist);
-                    }}
-                  >
-                    Edit
-                  </Button>
-                </ButtonSection>
-              )}
-            </ChecklistWrapper>
-          ) : (
-            <form
-              style={{ width: "100%", display: "flex" }}
-              onSubmit={submitChecklist(editChecklistHandler)}
-            >
-              <IconInputField>
-                <TextInput
-                  name="checklist"
-                  type="text"
-                  placeholder={checklistName}
-                  control={checklistFormControl}
-                  onChange={onChange}
-                />
-              </IconInputField>
+          <form
+            style={{ width: "100%", display: "flex" }}
+            onSubmit={submitChecklist(editChecklistHandler)}
+          >
+            <IconInputField>
+              <TextInput
+                name="checklist"
+                type="text"
+                placeholder={checklistName}
+                control={checklistFormControl}
+                onChange={onChange}
+                disabled={!taskEditable}
+              />
+            </IconInputField>
+            {taskEditable && (
               <EditChecklistButtonWrapper className="submitBtn">
                 <Button>Save</Button>
-                <Button
-                  style={{ marginLeft: "0.25rem" }}
-                  handleClick={(e) => {
-                    e.preventDefault();
-                    setEditChecklist(!editChecklist);
-                  }}
-                >
-                  Cancel
-                </Button>
               </EditChecklistButtonWrapper>
-            </form>
-          )}
+            )}
+          </form>
         </Title>
       </TitleFormSection>
       <TaskSection>
-        {state?.isEditable && taskEditable && (
+        {taskEditable && (
           <MainTaskSection>
-            <TaskIconImage>
-              <TaskIcon />
-            </TaskIconImage>
             <form
               style={{ width: "100%", display: "flex" }}
               onSubmit={submitData(formData)}

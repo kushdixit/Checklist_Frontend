@@ -72,7 +72,7 @@ export const IconInputField = styled.div`
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
-    border-bottom-color: #1d2e88;
+    border-bottom-color: ${(props) => props.color};
     width: 100%;
 
     background: unset;

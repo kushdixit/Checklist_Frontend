@@ -41,7 +41,7 @@ const YourTemplate = () => {
                   index={index}
                   item={subItem}
                   Checklist={Checklist}
-                  isEditable={true}
+                  showEditable={true}
                 />
               );
             })}

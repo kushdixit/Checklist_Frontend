@@ -26,7 +26,7 @@ export const SecondSection = styled.div`
   justify-content: right;
 `;
 export const HeadingText = styled.div`
-  font-size: 30px;
+  font-size: 3.293rem;
   color: #1d2e88;
   padding-left: 10px;
   font-weight: 700;
@@ -133,7 +133,7 @@ export const Morecontent = styled.div`
   box-shadow: rgb(163 183 223) 0px 0px 3px;
   border-radius: 10px;
   padding: 6px 26px;
-
+  z-index: 100;
   width: 100%;
   max-width: 123px;
   h5 {
