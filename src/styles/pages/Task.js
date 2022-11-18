@@ -37,6 +37,7 @@ export const TitleSection = styled.div`
 `;
 export const TaskSection = styled.div`
   background: #fff;
+  margin: 1.5rem 0rem 1rem 1rem;
 `;
 
 export const MainTaskSection = styled.div`

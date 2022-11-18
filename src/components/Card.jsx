@@ -14,6 +14,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
+import newchecklist from "assets/images/newchecklist.jpg";
 
 const Card = ({ item, index, Checklist, showEditable }) => {
   const [modal, setModal] = useState(false);
@@ -49,7 +50,7 @@ const Card = ({ item, index, Checklist, showEditable }) => {
     >
       <Image>
         <img
-          src={Checklist[0]?.image}
+          src={newchecklist}
           alt="Rectangle"
           width={"100%"}
           height={"auto"}

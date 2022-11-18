@@ -131,8 +131,8 @@ const CheckList = () => {
           </form>
         </Title>
       </TitleFormSection>
-      <TaskSection>
-        {taskEditable && (
+      {taskEditable && (
+        <TaskSection>
           <MainTaskSection>
             <form
               style={{ width: "100%", display: "flex" }}
@@ -151,8 +151,8 @@ const CheckList = () => {
               </div>
             </form>
           </MainTaskSection>
-        )}
-      </TaskSection>
+        </TaskSection>
+      )}
       <BodyContainer>{formFields()}</BodyContainer>
     </Section>
   );

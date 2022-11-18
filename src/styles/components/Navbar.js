@@ -26,7 +26,7 @@ export const SecondSection = styled.div`
   justify-content: right;
 `;
 export const HeadingText = styled.div`
-  font-size: 3.293rem;
+  font-size: 3vw;
   color: #1d2e88;
   padding-left: 10px;
   font-weight: 700;
