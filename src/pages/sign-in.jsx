@@ -111,7 +111,11 @@ const SignIn = () => {
                       <IconText>Login with Google</IconText>
                     </LeftIconSection>
                     <RightIconSection>
-                      <img src={Facebook} alt="Facebook" />
+                      <img
+                        src={Facebook}
+                        alt="Facebook"
+                        styles={{ width: "auto", height: "auto" }}
+                      />
                       <IconText>Login with Facebook</IconText>
                     </RightIconSection>
                   </IconSection>
