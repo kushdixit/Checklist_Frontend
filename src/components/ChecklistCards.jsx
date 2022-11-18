@@ -125,7 +125,7 @@ const ChecklistCards = ({ item }) => {
                   index={index}
                   item={subItem}
                   Checklist={Checklist}
-                  isEditable={false}
+                  showEditable={false}
                 />
               );
             })}

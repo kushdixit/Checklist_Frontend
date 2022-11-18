@@ -142,6 +142,7 @@ export const Image = styled.div`
     max-width: 200px;
     justify-content: center;
     align-items: center;
+    opacity: 0.8;
   }
 `;
 export const Wrap = styled.div`

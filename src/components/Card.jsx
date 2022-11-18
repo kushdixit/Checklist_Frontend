@@ -9,18 +9,13 @@ import {
   SubSection,
   Image,
   Wrap,
-  ColonImage,
   WrapSubSection,
 } from "styles/components/Card";
-import Colon from "assets/SVG/Colon";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteChecklist } from "redux/actions/checklist";
-import Edit from "assets/SVG/Edit";
-import Delete from "assets/SVG/Delete";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 
-const Card = ({ item, index, Checklist, isEditable }) => {
+const Card = ({ item, index, Checklist, showEditable }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const dispatch = useDispatch();
@@ -46,8 +41,9 @@ const Card = ({ item, index, Checklist, isEditable }) => {
     <SubSection
       key={index}
       onClick={() => {
+        dispatch({ type: SET_IS_EDITABLE, payload: false });
         navigate("/check-list", {
-          state: { id: item.id, showEditable: true, isEditable },
+          state: { id: item.id, showEditable: showEditable },
         });
       }}
     >

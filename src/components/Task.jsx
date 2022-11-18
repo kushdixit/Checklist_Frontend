@@ -30,7 +30,7 @@ import Delete from "assets/SVG/Delete";
 import Arrow from "assets/SVG/Arrow";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 
-const TaskWrapper = ({ checkListId, isEditable }) => {
+const TaskWrapper = ({ checkListId, showEditable }) => {
   const taskData = useSelector((state) => state.checklist);
   return taskData?.tasks
     ?.filter((data) => data.isActive)
@@ -40,12 +40,12 @@ const TaskWrapper = ({ checkListId, isEditable }) => {
         task={task}
         index={index}
         checkListId={checkListId}
-        isEditable={isEditable}
+        showEditable={showEditable}
       />
     ));
 };
 
-const Task = ({ task, index, checkListId, isEditable }) => {
+const Task = ({ task, index, checkListId, showEditable }) => {
   const dispatch = useDispatch();
   const [taskEdit, setTaskEdit] = useState(false);
   const [addSubTask, setAddSubTask] = useState(false);
@@ -83,10 +83,7 @@ const Task = ({ task, index, checkListId, isEditable }) => {
     },
   });
 
-  const onTaskChange = (e) => {
-    console.log(e);
-    setValue("update", e.target.value);
-  };
+  const onTaskChange = (e) => setValue("update", e.target.value);
 
   const { setValue } = useForm({
     mode: "onSubmit",
@@ -123,11 +120,18 @@ const Task = ({ task, index, checkListId, isEditable }) => {
                   className="checkBox"
                   {...field}
                   onChange={(e) => {
-                    taskEditable &&
-                      isEditable &&
+                    showEditable &&
                       reset({
                         rememberMe: e,
                       });
+                    showEditable &&
+                      dispatch(
+                        editTaskStatus(
+                          task?.id,
+                          checkListId,
+                          e == true ? true : false
+                        )
+                      );
                   }}
                 />
               )}
@@ -139,17 +143,13 @@ const Task = ({ task, index, checkListId, isEditable }) => {
               type="text"
               placeholder={task?.taskName}
               control={formControl}
-              disabled={!taskEdit}
+              disabled={!taskEditable}
               onChange={onTaskChange}
               ref={register}
+              color={taskEditable ? "transparent" : "1d2e88"}
             />
           </IconInputField>
-          {taskEdit && (
-            <div className="submitBtn">
-              <Button>Save</Button>
-            </div>
-          )}
-          {isEditable && taskEditable && (
+          {taskEditable && (
             <ShortContainer
               onClick={() => {
                 setIsOpenSort(true);
@@ -159,14 +159,6 @@ const Task = ({ task, index, checkListId, isEditable }) => {
                 <Colon onClick={() => toggleab(!modal)} />
                 {isOpenSort && (
                   <SortWrapper ref={wrapperRef}>
-                    <SortTextDiv
-                      onClick={() => {
-                        setTaskEdit(!taskEdit);
-                        setValue("update", task?.taskName);
-                      }}
-                    >
-                      <Edit /> Edit Task
-                    </SortTextDiv>
                     <SortTextDiv
                       onClick={() => {
                         deleteHandler(task.id);
@@ -182,14 +174,19 @@ const Task = ({ task, index, checkListId, isEditable }) => {
               </ShortBy>
             </ShortContainer>
           )}
+          {taskEditable && (
+            <div className="submitBtn">
+              <Button>Save</Button>
+            </div>
+          )}
         </form>
       </MainTaskSection>
-      {isEditable && taskEditable && (
+      {taskEditable && (
         <SubTaskSection>
           <SubTaskIcon onClick={() => setAddSubTask(!addSubTask)} />
         </SubTaskSection>
       )}
-      {taskEditable && addSubTask && (
+      {addSubTask && (
         <SubTask
           id={task.id}
           task={task}
@@ -203,7 +200,7 @@ const Task = ({ task, index, checkListId, isEditable }) => {
           index={index}
           task={task}
           checkListId={checkListId}
-          isEditable={isEditable}
+          showEditable={showEditable}
         />
       </div>
     </TaskList>

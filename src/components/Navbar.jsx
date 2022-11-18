@@ -26,7 +26,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 
-const NavBar = ({ search, buttonType, isEditable }) => {
+const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const NavBar = ({ search, buttonType, isEditable }) => {
     else {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       navigate("/check-list", {
-        state: { id: res?.id, showEditable: false, isEditable: true },
+        state: { id: res?.id, showEditable: false },
       });
     }
   };
@@ -101,7 +101,7 @@ const NavBar = ({ search, buttonType, isEditable }) => {
               </Button>
             </Footer>
           )}
-          {isEditable && state?.showEditable && (
+          {state?.showEditable && (
             <div>
               <Button
                 handleClick={() =>
