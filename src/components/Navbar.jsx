@@ -32,11 +32,7 @@ const NavBar = ({ search, buttonType }) => {
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const taskEditable = useSelector((state) => state.editable?.isEditable);
-  const YourTemplates = useSelector(
-    (state) =>
-      state.Template?.yourTemplate != null &&
-      state.Template?.yourTemplate[0]?.checklists
-  );
+  const YourTemplates = useSelector((state) => state.task?.allChecklist);
 
   const [isGood, setIsGood] = useState(false);
   const {
@@ -56,7 +52,7 @@ const NavBar = ({ search, buttonType }) => {
   const newTemplateHandler = async () => {
     const res = await dispatch(
       addTempChecklist(
-        `Your Checkslisstt ${YourTemplates[YourTemplates.length - 1]?.id + 1}`,
+        `Your Checkslist ${YourTemplates[YourTemplates.length - 1]?.id + 1}`,
         userEmail
       )
     );

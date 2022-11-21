@@ -240,7 +240,6 @@ export const Error = styled.div`
   color: #e45829;
   padding: 5px 0px;
   font-size: 12px;
-  text-align: left;
 `;
 export const SignIn = styled.div`
   cursor: pointer;
