@@ -5,7 +5,6 @@ export const BodyWrapper = styled.div`
   background: #fff;
 `;
 export const TitleFormSection = styled.div`
-  margin: 1.5rem 1.5rem 1rem 1rem;
   background: #fff;
 `;
 
@@ -39,7 +38,6 @@ export const TitleSection = styled.div`
 `;
 export const TaskSection = styled.div`
   background: #fff;
-  margin: 1.5rem 3rem 1rem 2.5rem;
 `;
 
 export const MainTaskSection = styled.div`

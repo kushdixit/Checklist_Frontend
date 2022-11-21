@@ -3,8 +3,6 @@ import { Controller } from "react-hook-form";
 import EndIcon from "assets/SVG/PasswordIconText";
 import PasswordIconText from "assets/SVG/PasswordIconText";
 
-import styled from "styled-components";
-import { unstable_HistoryRouter } from "react-router-dom";
 const TextInput = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
