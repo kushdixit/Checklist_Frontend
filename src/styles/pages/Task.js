@@ -5,8 +5,10 @@ export const BodyWrapper = styled.div`
   background: #fff;
 `;
 export const TitleFormSection = styled.div`
+  margin: 1.5rem 1.5rem 1rem 1rem;
   background: #fff;
 `;
+
 export const Title = styled.div`
   background: #fff;
   margin: 0 auto;
@@ -37,14 +39,14 @@ export const TitleSection = styled.div`
 `;
 export const TaskSection = styled.div`
   background: #fff;
-  margin: 1.5rem 0rem 1rem 1rem;
+  margin: 1.5rem 3rem 1rem 2.5rem;
 `;
 
 export const MainTaskSection = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: 1735px;
-  padding: 20px 0;
+  padding: 10px 0;
   display: flex;
   svg {
     cursor: pointer;

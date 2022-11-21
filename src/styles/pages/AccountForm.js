@@ -46,7 +46,8 @@ export const Logo = styled.div`
   padding: 19px 0 40px;
   img {
     display: flex;
-
+    height: auto;
+    width: auto;
     padding: 20px 50px;
   }
 `;
