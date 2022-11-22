@@ -26,6 +26,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import Logout from "assets/SVG/Logout";
 import AlertModal from "components/AlertModal";
+import { useForm } from "react-hook-form";
 
 const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
@@ -43,6 +44,17 @@ const NavBar = ({ search, buttonType }) => {
   function toggleab(data) {
     setModal(data);
   }
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onBlur",
+    shouldFocusError: true,
+  });
+
   const logout = () => {
     localStorage.removeItem("access_token");
     navigate("/");
@@ -78,6 +90,7 @@ const NavBar = ({ search, buttonType }) => {
                 name=""
                 type="text"
                 placeholder="Find Something Here"
+                control={control}
               />
               <IconWrapper>
                 <SearchNew />
