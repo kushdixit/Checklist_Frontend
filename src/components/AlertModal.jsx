@@ -1,6 +1,6 @@
 import React from "react";
 import ForgotPassword from "./forgetPassword";
-import EditTask from "./editTask";
+import LogoutModal from "./LogoutModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/AlertModal";
 
@@ -39,15 +39,19 @@ const AlertModal = ({
           x
         </button>
       </ButtonWrapper>
-      {modalType === "forgot" ? (
+      {modalType === "logout" && (
+        <LogoutModal togglefunction={togglefunction} notify={notify} />
+      )}
+      {modalType === "forgot" && (
         <ForgotPassword notify={notify} togglefunction={togglefunction} />
-      ) : (
+      )}
+      {/* {modalType === "forgot" && (
         <EditTask
           notifynew={notify}
           togglefunctionnew={togglefunction}
           style={{ inset: "50% auto auto 78%" }}
         />
-      )}
+      )} */}
     </ReactModal>
   );
 };

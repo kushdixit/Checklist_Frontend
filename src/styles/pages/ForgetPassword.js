@@ -44,6 +44,12 @@ export const EmailWrapper = styled.div`
   gap: 20px;
   margin-bottom: 30px;
 `;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+`;
 export const DataInput = styled.div`
   input {
     max-width: 360px;
@@ -89,4 +95,11 @@ export const ResetText = styled.div`
 `;
 export const ErrorMessage = styled.div`
   color: red;
+`;
+export const ModalButton = styled.div`
+  border: 1px solid transparent;
+  background: #1d2e88;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
 `;
