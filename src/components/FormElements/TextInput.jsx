@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
-import EndIcon from "assets/SVG/PasswordIconText";
-import PasswordIconText from "assets/SVG/PasswordIconText";
+import Hide from "../../assets/SVG/Hide";
+import Eye from "../../assets/SVG/Eye";
 
 const TextInput = (props) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +37,7 @@ const TextInput = (props) => {
       <>
         {!showPassword
           ? props.type === "password" && (
-              <EndIcon
+              <Eye
                 className="passwordIcon"
                 onClick={() => {
                   setShowPassword(!showPassword);
@@ -45,7 +45,7 @@ const TextInput = (props) => {
               />
             )
           : props.type === "password" && (
-              <PasswordIconText
+              <Hide
                 className="passwordIcon"
                 onClick={() => {
                   setShowPassword(!showPassword);

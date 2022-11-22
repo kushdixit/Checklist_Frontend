@@ -18,10 +18,8 @@ const ForgotPassword = ({ notify, togglefunction }) => {
   const { handleSubmit, control } = useForm({ mode: "onChange" });
   const forgotPass = async (data) => {
     const res = await store.dispatch(forgotPassword(data));
-    if (res === 204) {
-      notify();
-      togglefunction(false);
-    }
+    notify(res);
+    if (res === 204) togglefunction(false);
   };
 
   return (
@@ -40,7 +38,9 @@ const ForgotPassword = ({ notify, togglefunction }) => {
               />
             </DataInput>
             <ResetWrapper>
-              <ResetText>RESET PASSWORD</ResetText>
+              <ResetText handleSubmit={(e) => e.preventDefault()}>
+                Reset Password
+              </ResetText>
             </ResetWrapper>
           </EmailWrapper>
         </DataWrapper>

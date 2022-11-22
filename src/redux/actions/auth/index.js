@@ -52,7 +52,7 @@ export const forgotPassword = (data) => async (dispatch) => {
     if (typeof ex == "string") {
       return { ex: { message: ex } };
     }
-    return { error: true, data: ex };
+    return 400;
   }
 };
 

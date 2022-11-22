@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
-import CheckboxInput from "components/FormElements/CheckboxInput";
 import { useNavigate } from "react-router-dom";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import Checklist from "assets/images/checklist.svg";
-import ChecklistLogo from "assets/images/checklistlogo.png";
 import Google from "assets/images/google.svg";
 import Facebook from "assets/images/facebook.svg";
 import AlertModal from "components/AlertModal";
@@ -32,10 +30,10 @@ import {
   RightIconSection,
   IconText,
   Error,
-  Logo,
   SignUp,
   UserHelper,
   Forgot,
+  ChecklistHeader,
 } from "styles/pages/AccountForm";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -49,17 +47,17 @@ const SignIn = () => {
       .email("Please enter a valid Email")
       .max(255),
     password: yup.string().required("Password is required"),
-    // .matches(
-    //   /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{5,})/,
-    //   "Minimum five characters, at least one letter and one number and one special case Character"
-    // ),
   });
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   function toggleab(data) {
     setModal(data);
   }
-  const notify = () => toast("Password has been sent to you on mail");
+  const notify = (res) =>
+    res == 204
+      ? toast("Please check your mail for temporary password")
+      : toast("Please enter correct email");
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -78,6 +76,7 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
   const formData = async (data) => {
+    rememberMe && localStorage.setItem("remember_", data);
     const res = await store.dispatch(authLogin(data));
     if (res.error === false) navigate("/dashboard");
   };
@@ -91,10 +90,8 @@ const SignIn = () => {
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
-          <Logo>
-            <img src={ChecklistLogo} alt="ChecklistLogo" />
-          </Logo>
           <FormBody>
+            <ChecklistHeader>CheckList</ChecklistHeader>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
@@ -138,23 +135,22 @@ const SignIn = () => {
                     />
                     {
                       <Error>
-                        {errors?.password && errors?.password?.message}
+                        {!modal &&
+                          errors?.password &&
+                          errors?.password?.message}
                       </Error>
                     }
                     <LockIcon className="startIcon" />
                   </IconInputField>
                   <RememberSection>
-                    <Controller
-                      name="rememberMe"
-                      control={control}
-                      render={({ field }) => (
-                        <CheckboxInput
-                          className="checkBox"
-                          label="Remember Me"
-                          {...field}
-                        />
-                      )}
+                    <input
+                      className="checkBox"
+                      type="checkbox"
+                      label="Remember Me"
+                      id="checkbox_id"
+                      onChange={(e) => setRememberMe(e.target.checked)}
                     />
+                    <label for="checkbox_id">Remember Me</label>
                   </RememberSection>
                   <ButtonWrapper>
                     <Button>Log In</Button>
@@ -166,7 +162,7 @@ const SignIn = () => {
               <Forgot className="forgotPassword" onClick={() => toggleab(true)}>
                 Forgot Password?
               </Forgot>
-              <SignUp onClick={() => navigate("/sign-up")}>Sign Up?</SignUp>
+              <SignUp onClick={() => navigate("/sign-up")}>Sign Up</SignUp>
             </UserHelper>
           </FormBody>
         </RightContainer>

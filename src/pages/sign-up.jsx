@@ -9,6 +9,7 @@ import { store } from "redux/index";
 import Checklist from "assets/images/checklist.svg";
 import Google from "assets/images/google.svg";
 import Facebook from "assets/images/facebook.svg";
+import User from "assets/SVG/User";
 import {
   RegistrationContainer,
   FormContainer,
@@ -25,6 +26,8 @@ import {
   IconText,
   Error,
   SignIn,
+  ChecklistHeader,
+  UserLogoWrapper,
 } from "styles/pages/SignUp";
 import { authSignup } from "../redux/actions/auth";
 import * as yup from "yup";
@@ -42,8 +45,7 @@ const SignUp = () => {
     firstName: yup
       .string()
       .required("First name can't be empty")
-      .matches(/^\S/, "First character cannot be Space ")
-      .min(5),
+      .matches(/^\S/, "First character cannot be Space "),
     lastName: yup
       .string()
       .required("Last name can't be empty")
@@ -75,7 +77,7 @@ const SignUp = () => {
     control,
   } = useForm({
     mode: "onSubmit",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(schema),
   });
@@ -94,6 +96,7 @@ const SignUp = () => {
         </LeftContainer>
         <RightContainer>
           <FormBody>
+            <ChecklistHeader>CheckList</ChecklistHeader>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
@@ -124,7 +127,9 @@ const SignUp = () => {
                         {errors.firstName && errors.firstName.message}
                       </Error>
                     }
-                    <EmailIcon className="emailIcon" />
+                    <UserLogoWrapper>
+                      <User />
+                    </UserLogoWrapper>
                   </IconInputField>
                   <IconInputField>
                     <TextInput
@@ -138,7 +143,9 @@ const SignUp = () => {
                         {errors.lastName && errors.lastName.message}
                       </Error>
                     }
-                    <EmailIcon className="emailIcon" />
+                    <UserLogoWrapper>
+                      <User />
+                    </UserLogoWrapper>
                   </IconInputField>
                   <IconInputField>
                     <TextInput
@@ -188,7 +195,7 @@ const SignUp = () => {
               </RegistrationContainer>
             </form>
           </FormBody>
-          <SignIn onClick={() => navigate("/sign-in")}>Sign In?</SignIn>
+          <SignIn onClick={() => navigate("/sign-in")}>Sign In</SignIn>
         </RightContainer>
       </LoginContainer>
     </>
