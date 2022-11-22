@@ -5,6 +5,7 @@ export const FirstSection = styled.div`
   width: 100%;
   justify-content: flex-start;
   margin: 0 10px;
+  flex-wrap: wrap;
 `;
 
 export const CardMainSection = styled.div`

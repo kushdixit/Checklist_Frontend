@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
-import Button from "components/Button";
 import { useDispatch } from "react-redux";
 import { addSubTaskApi, getChecklistBySubcategory } from "redux/actions/task";
 import { toast } from "react-toastify";
@@ -39,11 +38,9 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
             type="text"
             placeholder="Add Sub Task"
             control={control}
+            handlekeyPress={(e) => subTaskformData()}
           />
         </IconInputField>
-        <div className="submitBtn">
-          <Button>Save</Button>
-        </div>
       </form>
     </AddSubTask>
   );

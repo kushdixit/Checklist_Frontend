@@ -13,9 +13,9 @@ import {
   SubNavSection,
   HeadingText,
   IconWrapper,
+  InitialsWrapper,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
-import FirstImage from "assets/images/firstimage.jpg";
 import { useForm } from "react-hook-form";
 import Button from "components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
+import Logout from "assets/SVG/Logout";
 
 const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
@@ -33,6 +34,8 @@ const NavBar = ({ search, buttonType }) => {
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const taskEditable = useSelector((state) => state.editable?.isEditable);
   const YourTemplates = useSelector((state) => state.task?.allChecklist);
+  const firstName = useSelector((state) => state.auth?.userData?.firstName);
+  const lastName = useSelector((state) => state.auth?.userData?.lastName);
 
   const [isGood, setIsGood] = useState(false);
   const {
@@ -111,17 +114,19 @@ const NavBar = ({ search, buttonType }) => {
           <ImageSubSection>
             <SecondSubSection>
               <Profile>
-                <h4>Admin </h4>
-                <h5>Shivam</h5>
+                <h4>{firstName}</h4>
               </Profile>
               <button className="button" onClick={() => setIsGood(!isGood)}>
-                <img src={FirstImage} alt="FirstImage" />
+                <InitialsWrapper>
+                  <div>
+                    {firstName[0]} {lastName[0]}
+                  </div>
+                </InitialsWrapper>
               </button>
             </SecondSubSection>
             {isGood ? (
               <Morecontent>
-                <h5>Welcome !</h5>
-                <ContentItem>Profile</ContentItem>
+                <Logout style={{ width: "15px", marginRight: "0.25rem" }} />
                 <ContentItem onClick={logout}>Logout</ContentItem>
               </Morecontent>
             ) : null}

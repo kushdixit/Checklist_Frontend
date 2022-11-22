@@ -10,6 +10,7 @@ export const Heading = styled.h4`
   color: #1d2e88;
   font-weight: 700;
   font-size: 24px;
+  margin: 2.5rem 0rem 0rem;
 `;
 export const ForgotEmailHeading = styled.span`
   color: #6f7172;
@@ -98,9 +99,13 @@ export const RegistrationContainer = styled.div`
   .RememberSection {
   }
 `;
-export const ForgotPassword = styled.div``;
+export const UserLogoWrapper = styled.div`
+  position: absolute;
+  top: 12px;
+  left: 8px;
+`;
 export const IconInputField = styled.div`
-  margin-bottom: 35px;
+  margin-bottom: 1rem;
   position: relative;
   input {
     text-align: left;
@@ -190,7 +195,7 @@ export const RightContainer = styled.div`
 export const IconSection = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 57px 0;
+  margin: 2.5rem 0rem 1rem;
 `;
 export const LeftIconSection = styled.div`
   border: 1px solid #c9c9c9;
@@ -246,4 +251,11 @@ export const SignIn = styled.div`
   font-size: 12px;
   color: #1d2e88;
   margin: 1rem;
+`;
+
+export const ChecklistHeader = styled.div`
+  font-size: 2.7vw;
+  color: #1d2e88;
+  font-weight: 700;
+  margin: 1rem 0rem 0rem;
 `;

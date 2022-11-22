@@ -9,8 +9,7 @@ export const NavSection = styled.div`
 `;
 export const FirstSection = styled.div`
   width: 100%;
-  max-width: 400px;
-
+  max-width: 100px;
   h1 {
     margin: 0;
     color: #1d2e88;
@@ -21,8 +20,6 @@ export const SecondSection = styled.div`
   display: flex;
   gap: 55px;
   width: 100%;
-  max-width: 1332px;
-  flex-wrap: wrap;
   justify-content: right;
 `;
 export const HeadingText = styled.div`
@@ -53,6 +50,9 @@ export const SubNavSection = styled.div`
 `;
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
   h4 {
     margin: 0;
     padding: 0;
@@ -123,25 +123,27 @@ export const IconInputField = styled.div`
   }
 `;
 export const Morecontent = styled.div`
+  display: flex;
+  padding: 1rem;
   position: absolute;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   top: 60px;
-  /* right: 92px; */
+  right: 18px;
   box-shadow: rgb(163 183 223) 0px 0px 3px;
   border-radius: 10px;
-  padding: 6px 26px;
   z-index: 100;
   width: 100%;
   background: white;
-  max-width: 123px;
+  max-width: 82px;
   h5 {
     padding: 0;
     margin: 4px 0;
   }
 `;
+
 export const ContentItem = styled.div`
   cursor: pointer;
 `;
@@ -151,4 +153,15 @@ export const IconWrapper = styled.div`
 
   right: 12px;
   top: 9px;
+`;
+
+export const InitialsWrapper = styled.div`
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #1d2e88;
+  border-radius: 50%;
 `;

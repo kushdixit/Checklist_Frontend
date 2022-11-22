@@ -32,32 +32,22 @@ export const BackLogo = styled.div`
   }
 `;
 
+export const ChecklistHeader = styled.div`
+  font-size: 2.7vw;
+  color: #1d2e88;
+  font-weight: 700;
+`;
+
 export const FormBody = styled.div`
   max-width: 450px;
   width: 100%;
   margin: 0 auto;
 `;
 
-export const Logo = styled.div`
-  display: flex;
-  height: auto;
-  justify-content: right;
-  width: 100%;
-  padding: 19px 0 40px;
-  img {
-    display: flex;
-    height: auto;
-    width: auto;
-    padding: 20px 50px;
-  }
-`;
-
 export const RememberSection = styled.div`
   display: flex;
   position: relative;
   bottom: 40px;
-
-  justify-content: space-between;
   align-items: center;
   font-size: 12px;
 
@@ -104,7 +94,6 @@ export const AccountContainer = styled.div`
   align-items: center;
 `;
 export const RegistrationContainer = styled.div`
-  display: flex;
   width: 100%;
   a {
     color: #6f7172;
@@ -191,8 +180,7 @@ export const LeftContainer = styled.div`
 `;
 export const RightContainer = styled.div`
   display: flex;
-  flex-direction: column;
-
+  align-items: center;
   flex: 1 1 0%;
   position: relative;
 `;
