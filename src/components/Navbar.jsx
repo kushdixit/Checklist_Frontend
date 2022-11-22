@@ -121,12 +121,12 @@ const NavBar = ({ search, buttonType }) => {
                   <div>
                     {firstName[0]} {lastName[0]}
                   </div>
-                  <Logout style={{ width: "15px", marginRight: "0.25rem" }} />
                 </InitialsWrapper>
               </button>
             </SecondSubSection>
             {isGood ? (
               <Morecontent>
+                <Logout style={{ width: "15px", marginRight: "0.25rem" }} />
                 <ContentItem onClick={logout}>Logout</ContentItem>
               </Morecontent>
             ) : null}

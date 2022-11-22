@@ -123,6 +123,7 @@ export const IconInputField = styled.div`
   }
 `;
 export const Morecontent = styled.div`
+  display: flex;
   padding: 1rem;
   position: absolute;
   -webkit-box-pack: center;

@@ -20,7 +20,6 @@ import {
   IconInputField,
   FormBody,
   ButtonWrapper,
-  RememberSection,
   Heading,
   LoginContainer,
   LeftContainer,
@@ -50,7 +49,6 @@ const SignIn = () => {
   });
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   function toggleab(data) {
     setModal(data);
   }
@@ -76,7 +74,6 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
   const formData = async (data) => {
-    rememberMe && localStorage.setItem("remember_", data);
     const res = await store.dispatch(authLogin(data));
     if (res.error === false) navigate("/dashboard");
   };
@@ -142,16 +139,6 @@ const SignIn = () => {
                     }
                     <LockIcon className="startIcon" />
                   </IconInputField>
-                  <RememberSection>
-                    <input
-                      className="checkBox"
-                      type="checkbox"
-                      label="Remember Me"
-                      id="checkbox_id"
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                    />
-                    <label for="checkbox_id">Remember Me</label>
-                  </RememberSection>
                   <ButtonWrapper>
                     <Button>Log In</Button>
                   </ButtonWrapper>

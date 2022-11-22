@@ -35,7 +35,7 @@ const TextInput = (props) => {
         control={props.control}
       />
       <>
-        {!showPassword
+        {showPassword
           ? props.type === "password" && (
               <Eye
                 className="passwordIcon"
