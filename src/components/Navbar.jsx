@@ -16,7 +16,6 @@ import {
   InitialsWrapper,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
-import { useForm } from "react-hook-form";
 import Button from "components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchNew from "assets/SVG/SearchNew";
@@ -26,6 +25,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import Logout from "assets/SVG/Logout";
+import AlertModal from "components/AlertModal";
 
 const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
@@ -38,15 +38,11 @@ const NavBar = ({ search, buttonType }) => {
   const lastName = useSelector((state) => state.auth?.userData?.lastName);
 
   const [isGood, setIsGood] = useState(false);
-  const {
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-    shouldFocusError: true,
-  });
+  const [modal, setModal] = useState(false);
+
+  function toggleab(data) {
+    setModal(data);
+  }
   const logout = () => {
     localStorage.removeItem("access_token");
     navigate("/");
@@ -75,7 +71,6 @@ const NavBar = ({ search, buttonType }) => {
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
         </FirstSection>
-
         <SecondSection>
           {search && (
             <IconInputField>
@@ -83,7 +78,6 @@ const NavBar = ({ search, buttonType }) => {
                 name=""
                 type="text"
                 placeholder="Find Something Here"
-                control={control}
               />
               <IconWrapper>
                 <SearchNew />
@@ -127,11 +121,17 @@ const NavBar = ({ search, buttonType }) => {
             {isGood ? (
               <Morecontent>
                 <Logout style={{ width: "15px", marginRight: "0.25rem" }} />
-                <ContentItem onClick={logout}>Logout</ContentItem>
+                <ContentItem onClick={() => toggleab(true)}>Logout</ContentItem>
               </Morecontent>
             ) : null}
           </ImageSubSection>
         </SecondSection>
+        <AlertModal
+          modalType="logout"
+          isOpen={modal}
+          togglefunction={toggleab}
+          notify={logout}
+        />
       </SubNavSection>
     </NavSection>
   );
