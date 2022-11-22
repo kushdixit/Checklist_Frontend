@@ -7,7 +7,6 @@ import {
   deleteSubTask,
   editSubTaskStatus,
 } from "redux/actions/task";
-import Button from "components/Button";
 import TextInput from "components/FormElements/TextInput";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -59,9 +58,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
   const taskdeleteHandler = (id) => {
     dispatch(deleteSubTask(id, checkListId));
   };
-  const onChange = (e) => {
-    setValue("updateSubTask", e.target.value);
-  };
+
   const updateSubTaskHandler = async (data) => {
     const response = await dispatch(editSubTask(data?.updateSubTask, task.id));
     if (response.status === 204) {
@@ -114,7 +111,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
               placeholder={task?.subTaskName}
               control={control}
               disabled={!taskEditable}
-              onChange={onChange}
+              handlekeyPress={(e) => updateSubTaskHandler()}
             />
           </IconInputField>
           {taskEditable && (
@@ -138,11 +135,6 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
                 )}
               </ShortBy>
             </ShortContainer>
-          )}
-          {taskEditable && (
-            <div className="submitBtn">
-              <Button>Save</Button>
-            </div>
           )}
         </form>
       </MainTaskSection>

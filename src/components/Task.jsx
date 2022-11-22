@@ -75,6 +75,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
     control: formControl,
     register,
     reset,
+    setValue,
   } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
@@ -83,13 +84,6 @@ const Task = ({ task, index, checkListId, showEditable }) => {
     },
   });
 
-  const onTaskChange = (e) => setValue("update", e.target.value);
-
-  const { setValue } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-    shouldFocusError: true,
-  });
   const deleteHandler = (id) => {
     dispatch(deleteTask(id, checkListId));
     setIsOpenSort(false);
@@ -97,8 +91,8 @@ const Task = ({ task, index, checkListId, showEditable }) => {
 
   const formData = async (data) => {
     const response = await dispatch(editTask(data?.update, task.id));
+    dispatch(getChecklistBySubcategory(checkListId));
     if (response.status === 204) {
-      dispatch(getChecklistBySubcategory(checkListId));
       setValue("update", "");
       setTaskEdit(false);
     } else {
@@ -144,9 +138,9 @@ const Task = ({ task, index, checkListId, showEditable }) => {
               placeholder={task?.taskName}
               control={formControl}
               disabled={!taskEditable}
-              onChange={onTaskChange}
               ref={register}
               color={taskEditable ? "transparent" : "1d2e88"}
+              handlekeyPress={(e) => formData()}
             />
           </IconInputField>
           {taskEditable && (
@@ -173,11 +167,6 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                 )}
               </ShortBy>
             </ShortContainer>
-          )}
-          {taskEditable && (
-            <div className="submitBtn">
-              <Button>Save</Button>
-            </div>
           )}
         </form>
       </MainTaskSection>

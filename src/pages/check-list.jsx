@@ -11,18 +11,13 @@ import {
   BodyWrapper,
   Title,
   Section,
-  TitleSection,
   TaskSection,
   MainTaskSection,
   IconInputField,
-  TaskIconImage,
-  ButtonSection,
-  ChecklistWrapper,
   EditChecklistButtonWrapper,
   TitleFormSection,
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
-import TaskIcon from "assets/SVG/TaskIcon";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const CheckList = () => {
@@ -76,6 +71,7 @@ const CheckList = () => {
 
   const editChecklistHandler = async (data) => {
     const res = await dispatch(editChecklistApi(data?.checklist, checklistId));
+    setValue("checklist", "");
     if (res.error) console.log("error");
     else setEditChecklist(!editChecklist);
   };
@@ -121,6 +117,7 @@ const CheckList = () => {
                 control={checklistFormControl}
                 onChange={onChange}
                 disabled={!taskEditable}
+                handlekeyPress={(e) => editChecklistHandler()}
               />
             </IconInputField>
             {taskEditable && (
@@ -144,11 +141,9 @@ const CheckList = () => {
                   type="text"
                   placeholder="Enter Task Name"
                   control={formControl}
+                  handlekeyPress={(e) => formData()}
                 />
               </IconInputField>
-              <div className="submitBtn">
-                <Button>Save</Button>
-              </div>
             </form>
           </MainTaskSection>
         </TaskSection>

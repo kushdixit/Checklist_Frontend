@@ -28,6 +28,7 @@ const TextInput = (props) => {
             value={props?.value || value}
             rules={rules}
             name={props?.name}
+            onKeyPress={(e) => e.key === "Enter" && props?.handlekeyPress(e)}
           />
         )}
         name={props?.name}
