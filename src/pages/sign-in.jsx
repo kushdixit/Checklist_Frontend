@@ -92,8 +92,9 @@ const SignIn = () => {
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
+        <ChecklistHeader>CheckList</ChecklistHeader>
           <FormBody>
-            <ChecklistHeader>CheckList</ChecklistHeader>
+           
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
