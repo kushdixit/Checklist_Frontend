@@ -36,6 +36,11 @@ export const ChecklistHeader = styled.div`
   font-size: 2.7vw;
   color: #1d2e88;
   font-weight: 700;
+  display: flex;
+  width: 100%;
+  max-width: 747px;
+  margin: 4rem 0 0rem;
+  justify-content: space-evenly;
 `;
 
 export const FormBody = styled.div`
@@ -179,7 +184,6 @@ export const LeftContainer = styled.div`
   }
 `;
 export const RightContainer = styled.div`
-  display: flex;
   align-items: center;
   flex: 1 1 0%;
   position: relative;
@@ -214,7 +218,11 @@ export const RightIconSection = styled.div`
 `;
 
 export const IconText = styled.div`
-  padding: 9px;
+  width: 100%;
+  align-items: center;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
 `;
 export const Error = styled.div`
   color: #d65e5e;

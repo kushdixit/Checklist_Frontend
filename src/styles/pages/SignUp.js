@@ -183,7 +183,6 @@ export const LeftContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -223,7 +222,11 @@ export const RightIconSection = styled.div`
 `;
 
 export const IconText = styled.div`
-  padding: 9px;
+  width: 100%;
+  align-items: center;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
 `;
 export const LoginButton = styled.div`
   display: flex;
@@ -257,5 +260,10 @@ export const ChecklistHeader = styled.div`
   font-size: 2.7vw;
   color: #1d2e88;
   font-weight: 700;
-  margin: 1rem 0rem 0rem;
+  display: flex;
+  width: 100%;
+  max-width: 747px;
+
+  justify-content: space-evenly;
+  margin: 4rem 0 0rem;
 `;

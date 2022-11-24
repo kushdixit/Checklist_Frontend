@@ -5,7 +5,7 @@ import { store } from "redux/index";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import styled from "styled-components";
 const Facebook = () => {
   const navigate = useNavigate();
   const responseFacebook = async (data) => {
@@ -28,6 +28,7 @@ const Facebook = () => {
   return (
     <div>
       <ToastContainer />
+      <FacebookSection>
       <FacebookLogin
         appId="561436628788154"
         autoLoad={false}
@@ -36,8 +37,25 @@ const Facebook = () => {
         cssClass="my-facebook-button-class"
         icon="fa-facebook"
       />
+      </FacebookSection>
     </div>
   );
 };
 
 export default Facebook;
+export const FacebookSection = styled.div`
+background: unset;
+    border: unset;
+    font-size: 16px;
+ .my-facebook-button-class{
+  background: unset;
+    border: unset;
+    font-size: 16px;
+
+ }
+ .fa-facebook{
+  color: #1d2e88;
+    padding: 4px 7px;
+    font-size: 18px;
+ }
+`;

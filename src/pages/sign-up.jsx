@@ -104,8 +104,9 @@ const SignUp = () => {
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
+        <ChecklistHeader>CheckList</ChecklistHeader>
           <FormBody>
-            <ChecklistHeader>CheckList</ChecklistHeader>
+           
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
@@ -114,7 +115,7 @@ const SignUp = () => {
                     <LeftIconSection>
                       {/* <img src={Google} alt="Google" /> */}
                       <IconText>
-                        <Google />
+                        <Facebook />
                       </IconText>
                     </LeftIconSection>
                     <RightIconSection>
@@ -123,8 +124,9 @@ const SignUp = () => {
                         alt="Facebook"
                         styles={{ width: "auto", height: "auto" }}
                       /> */}
+                     
                       <IconText>
-                        <Facebook />
+                        <Google />
                       </IconText>
                     </RightIconSection>
                   </IconSection>
