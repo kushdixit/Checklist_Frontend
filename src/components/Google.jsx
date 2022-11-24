@@ -30,43 +30,41 @@ const Google = () => {
     <div>
       <ToastContainer />
       <GoogleSection>
-      <GoogleLogin
-        clientId="889277139020-75dbj8v51vs4af256tggoooibgpkqnao.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-        className="my-google-button-class"
-        icon="fa-google"
-    
-      />
+        <GoogleLogin
+          clientId="889277139020-75dbj8v51vs4af256tggoooibgpkqnao.apps.googleusercontent.com"
+          buttonText="Login with Google"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+          className="my-google-button-class"
+          icon="fa-google"
+        />
       </GoogleSection>
     </div>
   );
 };
 
 export default Google;
-export const  GoogleSection = styled.div`
-background: unset;
-    border: unset;
-    font-size: 16px;
-    box-shadow:unset;  
-    
- 
- .my-google-button-class{
+
+export const GoogleSection = styled.div`
   background: unset;
+  border: unset;
+  font-size: 16px;
+  box-shadow: unset;
+
+  .my-google-button-class {
+    background: unset;
     border: unset;
-    font-size: 16px !important; 
-    box-shadow:unset !important;    
-    color:#000 !important;
- }
- div{
-  margin-right:0 !important;
- }
- .fa-google{
-  color: #1d2e88;
+    font-size: 16px !important;
+    box-shadow: unset !important;
+    color: #000 !important;
+  }
+  div {
+    margin-right: 0 !important;
+  }
+  .fa-google {
+    color: #1d2e88;
     padding: 4px 7px;
     font-size: 18px;
- }
-
+  }
 `;

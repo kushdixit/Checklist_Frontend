@@ -57,7 +57,7 @@ export const resetPassword = (pass, id) => async (dispatch) => {
   };
   try {
     const response = await axioPath.put("v1/Account/resetpassword", payload);
-    console.log("response", response);
+    return response.status;
   } catch (ex) {
     if (typeof ex == "string") {
       return { ex: { message: ex } };

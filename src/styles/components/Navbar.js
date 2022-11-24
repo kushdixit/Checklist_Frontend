@@ -9,7 +9,7 @@ export const NavSection = styled.div`
 `;
 export const FirstSection = styled.div`
   width: 100%;
-  max-width: 100px;
+  max-width: 211px;
   h1 {
     margin: 0;
     color: #1d2e88;
@@ -18,6 +18,7 @@ export const FirstSection = styled.div`
 export const SecondSection = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   gap: 55px;
   width: 100%;
   justify-content: right;
@@ -142,6 +143,7 @@ export const Morecontent = styled.div`
     padding: 0;
     margin: 4px 0;
   }
+  cursor: pointer;
 `;
 
 export const ContentItem = styled.div`

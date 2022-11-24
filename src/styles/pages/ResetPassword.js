@@ -64,3 +64,8 @@ export const ResetHeading = styled.div`
 export const Form = styled.form`
   height: 100%;
 `;
+export const Error = styled.div`
+  color: #e45829;
+  padding: 5px 0px;
+  font-size: 12px;
+`;
