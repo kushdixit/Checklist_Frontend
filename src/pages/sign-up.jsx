@@ -7,8 +7,6 @@ import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import { store } from "redux/index";
 import Checklist from "assets/images/checklist.svg";
-// import Google from "assets/images/google.svg";
-// import Facebook from "assets/images/facebook.svg";
 import User from "assets/SVG/User";
 import {
   RegistrationContainer,
@@ -104,27 +102,20 @@ const SignUp = () => {
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
-        <ChecklistHeader>CheckList</ChecklistHeader>
           <FormBody>
-           
+            <ChecklistHeader>CheckList</ChecklistHeader>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Sign Up</Heading>
                   <IconSection>
                     <LeftIconSection>
-                      {/* <img src={Google} alt="Google" /> */}
                       <IconText>
                         <Facebook />
                       </IconText>
                     </LeftIconSection>
                     <RightIconSection>
-                      {/* <img
-                        src={Facebook}
-                        alt="Facebook"
-                        styles={{ width: "auto", height: "auto" }}
-                      /> */}
-                     
+                      {" "}
                       <IconText>
                         <Google />
                       </IconText>
@@ -209,8 +200,8 @@ const SignUp = () => {
                 </FormContainer>
               </RegistrationContainer>
             </form>
+            <SignIn onClick={() => navigate("/sign-in")}>Sign In</SignIn>
           </FormBody>
-          <SignIn onClick={() => navigate("/sign-in")}>Sign In</SignIn>
         </RightContainer>
       </LoginContainer>
     </>

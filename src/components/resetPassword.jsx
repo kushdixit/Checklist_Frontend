@@ -18,6 +18,7 @@ import { resetPassword } from "../redux/actions/auth";
 import { store } from "redux/index";
 import styled from "styled-components";
 import ReactModal from "react-modal";
+import { SIGN_IN } from "redux/actions/action_types";
 
 const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
   const formSchema = Yup.object().shape({
@@ -45,10 +46,17 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
   });
 
   const resetId = useSelector((state) => state.auth?.userData.id);
+  const userData = useSelector((state) => state.auth?.userData);
   const Resethandler = async (data) => {
     if (data.password === data.confirmPwd) {
       const res = await store.dispatch(resetPassword(data.password, resetId));
-      if (res === 204) togglefunction(false);
+      if (res === 204) {
+        store.dispatch({
+          type: SIGN_IN,
+          payload: { ...userData, isForgotPassword: false },
+        });
+        togglefunction(false);
+      }
     }
   };
 

@@ -6,7 +6,6 @@ import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import Checklist from "assets/images/checklist.svg";
-// import Facebook from "assets/images/facebook.svg";
 import AlertModal from "components/AlertModal";
 import { store } from "redux/index";
 import { authLogin } from "../redux/actions/auth";
@@ -92,9 +91,8 @@ const SignIn = () => {
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
-        <ChecklistHeader>CheckList</ChecklistHeader>
           <FormBody>
-           
+            <ChecklistHeader>CheckList</ChecklistHeader>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
@@ -107,17 +105,11 @@ const SignIn = () => {
                   />
                   <IconSection>
                     <LeftIconSection>
-                      {/* <img src={Google} alt="Google" /> */}
                       <IconText>
                         <Facebook />
                       </IconText>
                     </LeftIconSection>
                     <RightIconSection>
-                      {/* <img
-                        src={Facebook}
-                        alt="Facebook"
-                        styles={{ width: "auto", height: "auto" }}
-                      /> */}
                       <IconText>
                         <Google />
                       </IconText>

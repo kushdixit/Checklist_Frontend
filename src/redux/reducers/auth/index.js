@@ -1,22 +1,19 @@
-import {
-  USER_INITIATE,
-  SIGN_IN,
-} from 'redux/actions/action_types'
+import { USER_INITIATE, SIGN_IN } from "redux/actions/action_types";
 
 const INITIAL_STATE = {
   userData: null,
   createPassword: null,
   changePassword: null,
   getInvestors: null,
-}
+};
 const auth = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case USER_INITIATE:
-      return INITIAL_STATE
+      return INITIAL_STATE;
     case SIGN_IN:
-      return { ...state, userData: payload }
+      return { ...state, userData: payload };
     default:
-      return state
+      return state;
   }
-}
-export default auth
+};
+export default auth;

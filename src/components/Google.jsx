@@ -49,13 +49,13 @@ export default Google;
 export const GoogleSection = styled.div`
   background: unset;
   border: unset;
-  font-size: 16px;
+  font-size: 14px;
   box-shadow: unset;
 
   .my-google-button-class {
     background: unset;
     border: unset;
-    font-size: 16px !important;
+    font-size: 14px !important;
     box-shadow: unset !important;
     color: #000 !important;
   }
@@ -65,6 +65,6 @@ export const GoogleSection = styled.div`
   .fa-google {
     color: #1d2e88;
     padding: 4px 7px;
-    font-size: 18px;
+    font-size: 24px;
   }
 `;

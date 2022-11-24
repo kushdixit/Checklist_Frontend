@@ -40,7 +40,6 @@ export const ChecklistHeader = styled.div`
   width: 100%;
   max-width: 747px;
   margin: 4rem 0 0rem;
-  justify-content: space-evenly;
 `;
 
 export const FormBody = styled.div`
@@ -192,7 +191,7 @@ export const RightContainer = styled.div`
 export const IconSection = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 57px 0;
+  margin: 2.5rem 0rem 1rem;
 `;
 export const LeftIconSection = styled.div`
   border: 1px solid #c9c9c9;

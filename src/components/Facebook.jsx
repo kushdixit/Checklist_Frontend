@@ -29,14 +29,14 @@ const Facebook = () => {
     <div>
       <ToastContainer />
       <FacebookSection>
-      <FacebookLogin
-        appId="561436628788154"
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={responseFacebook}
-        cssClass="my-facebook-button-class"
-        icon="fa-facebook"
-      />
+        <FacebookLogin
+          appId="561436628788154"
+          autoLoad={false}
+          fields="name,email,picture"
+          callback={responseFacebook}
+          cssClass="my-facebook-button-class"
+          icon="fa-facebook"
+        />
       </FacebookSection>
     </div>
   );
@@ -44,18 +44,17 @@ const Facebook = () => {
 
 export default Facebook;
 export const FacebookSection = styled.div`
-background: unset;
-    border: unset;
-    font-size: 16px;
- .my-facebook-button-class{
   background: unset;
+  border: unset;
+  font-size: 16px;
+  .my-facebook-button-class {
+    background: unset;
     border: unset;
-    font-size: 16px;
-
- }
- .fa-facebook{
-  color: #1d2e88;
+    font-size: 14px;
+  }
+  .fa-facebook {
+    color: #1d2e88;
     padding: 4px 7px;
-    font-size: 18px;
- }
+    font-size: 24px;
+  }
 `;

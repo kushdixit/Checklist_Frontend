@@ -37,7 +37,7 @@ const Dashboard = () => {
 
   return (
     <BodyContainer>
-      {/* <ResetPassword isOpen={modal} togglefunction={toggleab} /> */}
+      <ResetPassword isOpen={modal} togglefunction={toggleab} />
       <Navbar search={true} buttonType="Create List" />
       {templateData != null && <YourTemplate />}
       {allTemplate?.map((item, id) => (

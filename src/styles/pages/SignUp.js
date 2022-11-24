@@ -9,8 +9,7 @@ export const FormContainer = styled.div`
 export const Heading = styled.h4`
   color: #1d2e88;
   font-weight: 700;
-  font-size: 24px;
-  margin: 2.5rem 0rem 0rem;
+  font-size: 25px;
 `;
 export const ForgotEmailHeading = styled.span`
   color: #6f7172;
@@ -254,6 +253,7 @@ export const SignIn = styled.div`
   font-size: 12px;
   color: #1d2e88;
   margin: 1rem;
+  text-align: center;
 `;
 
 export const ChecklistHeader = styled.div`
@@ -263,7 +263,5 @@ export const ChecklistHeader = styled.div`
   display: flex;
   width: 100%;
   max-width: 747px;
-
-  justify-content: space-evenly;
   margin: 4rem 0 0rem;
 `;
