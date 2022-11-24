@@ -6,8 +6,7 @@ import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import Checklist from "assets/images/checklist.svg";
-import Google from "assets/images/google.svg";
-import Facebook from "assets/images/facebook.svg";
+// import Facebook from "assets/images/facebook.svg";
 import AlertModal from "components/AlertModal";
 import { store } from "redux/index";
 import { authLogin } from "../redux/actions/auth";
@@ -36,6 +35,8 @@ import {
 } from "styles/pages/AccountForm";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Google from "components/Google";
+import Facebook from "components/Facebook";
 
 const SignIn = () => {
   let schema = yup.object().shape({
@@ -48,14 +49,19 @@ const SignIn = () => {
     password: yup.string().required("Password is required"),
   });
   const navigate = useNavigate();
+
+  const [showError, setShowError] = useState(true);
   const [modal, setModal] = useState(false);
+
   function toggleab(data) {
     setModal(data);
   }
-  const notify = (res) =>
+  const notify = (res) => {
+    setShowError(true);
     res == 204
       ? toast("Please check your mail for temporary password")
       : toast("Please enter correct email");
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -69,12 +75,12 @@ const SignIn = () => {
     control,
   } = useForm({
     mode: "onSubmit",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(schema),
   });
   const formData = async (data) => {
-    const res = await store.dispatch(authLogin(data));
+    const res = await store.dispatch(authLogin(data.email, data.password));
     if (res.error === false) navigate("/dashboard");
   };
 
@@ -83,7 +89,6 @@ const SignIn = () => {
       <LoginContainer>
         <ToastContainer />
         <LeftContainer>
-          {" "}
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
@@ -101,16 +106,20 @@ const SignIn = () => {
                   />
                   <IconSection>
                     <LeftIconSection>
-                      <img src={Google} alt="Google" />
-                      <IconText>Login with Google</IconText>
+                      {/* <img src={Google} alt="Google" /> */}
+                      <IconText>
+                        <Facebook />
+                      </IconText>
                     </LeftIconSection>
                     <RightIconSection>
-                      <img
+                      {/* <img
                         src={Facebook}
                         alt="Facebook"
                         styles={{ width: "auto", height: "auto" }}
-                      />
-                      <IconText>Login with Facebook</IconText>
+                      /> */}
+                      <IconText>
+                        <Google />
+                      </IconText>
                     </RightIconSection>
                   </IconSection>
                   <IconInputField>
@@ -120,7 +129,7 @@ const SignIn = () => {
                       placeholder="Email Address"
                       control={control}
                     />
-                    {<Error>{errors.email && errors.email.message}</Error>}
+                    <Error>{errors.email && errors.email.message}</Error>
                     <EmailIcon className="emailIcon" />
                   </IconInputField>
                   <IconInputField>
@@ -132,7 +141,7 @@ const SignIn = () => {
                     />
                     {
                       <Error>
-                        {!modal &&
+                        {showError &&
                           errors?.password &&
                           errors?.password?.message}
                       </Error>
@@ -146,7 +155,13 @@ const SignIn = () => {
               </RegistrationContainer>
             </form>
             <UserHelper>
-              <Forgot className="forgotPassword" onClick={() => toggleab(true)}>
+              <Forgot
+                className="forgotPassword"
+                onClick={() => {
+                  setShowError(false);
+                  toggleab(true);
+                }}
+              >
                 Forgot Password?
               </Forgot>
               <SignUp onClick={() => navigate("/sign-up")}>Sign Up</SignUp>

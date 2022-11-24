@@ -7,8 +7,8 @@ import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import { store } from "redux/index";
 import Checklist from "assets/images/checklist.svg";
-import Google from "assets/images/google.svg";
-import Facebook from "assets/images/facebook.svg";
+// import Google from "assets/images/google.svg";
+// import Facebook from "assets/images/facebook.svg";
 import User from "assets/SVG/User";
 import {
   RegistrationContainer,
@@ -32,6 +32,8 @@ import {
 import { authSignup } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Google from "components/Google";
+import Facebook from "components/Facebook";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -83,7 +85,14 @@ const SignUp = () => {
   });
 
   const formData = async (data) => {
-    const res = await store.dispatch(authSignup(data));
+    const payload = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+      issocial: 0,
+    };
+    const res = await store.dispatch(authSignup(payload));
     if (res.error === false) navigate("/dashboard");
   };
 
@@ -103,16 +112,20 @@ const SignUp = () => {
                   <Heading>Sign Up</Heading>
                   <IconSection>
                     <LeftIconSection>
-                      <img src={Google} alt="Google" />
-                      <IconText>Login with Google</IconText>
+                      {/* <img src={Google} alt="Google" /> */}
+                      <IconText>
+                        <Google />
+                      </IconText>
                     </LeftIconSection>
                     <RightIconSection>
-                      <img
+                      {/* <img
                         src={Facebook}
                         alt="Facebook"
                         styles={{ width: "auto", height: "auto" }}
-                      />
-                      <IconText>Login with Facebook</IconText>
+                      /> */}
+                      <IconText>
+                        <Facebook />
+                      </IconText>
                     </RightIconSection>
                   </IconSection>
                   <IconInputField>

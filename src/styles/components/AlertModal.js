@@ -42,6 +42,7 @@ export const Container = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
+  cursor: pointer;
   button {
     width: 100%;
     justify-content: right;

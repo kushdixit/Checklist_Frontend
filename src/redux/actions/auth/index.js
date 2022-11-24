@@ -1,11 +1,10 @@
 import axioPath from "api/axioPath";
 import { SIGN_IN } from "redux/actions/action_types";
 
-export const authLogin = (data) => async (dispatch) => {
-  console.log(data);
+export const authLogin = (email, password) => async (dispatch) => {
   const payload = {
-    email: data.email,
-    password: data.password,
+    email,
+    password,
   };
   try {
     const response = await axioPath.post("v1/Account/userslogin", payload);
@@ -20,16 +19,10 @@ export const authLogin = (data) => async (dispatch) => {
   }
 };
 
-export const authSignup = (data) => async (dispatch) => {
-  const payload = {
-    firstName: data.firstName,
-    lastName: data.lastName,
-    email: data.email,
-    password: data.password,
-  };
-
+export const authSignup = (payload) => async (dispatch) => {
   try {
     const response = await axioPath.post("v1/Account/usersignup", payload);
+    console.log("response", response);
     localStorage.setItem("access_token", response.data.accessToken);
     dispatch({ type: SIGN_IN, payload: response.data });
     return { error: false, data: response.data };
