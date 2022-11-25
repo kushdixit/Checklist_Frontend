@@ -111,13 +111,13 @@ const SignUp = () => {
                   <IconSection>
                     <LeftIconSection>
                       <IconText>
-                        <Facebook />
+                        <Facebook type="signup" />
                       </IconText>
                     </LeftIconSection>
                     <RightIconSection>
                       {" "}
                       <IconText>
-                        <Google />
+                        <Google type="signup" />
                       </IconText>
                     </RightIconSection>
                   </IconSection>

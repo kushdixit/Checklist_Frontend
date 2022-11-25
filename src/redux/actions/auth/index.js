@@ -1,11 +1,7 @@
 import axioPath from "api/axioPath";
 import { SIGN_IN } from "redux/actions/action_types";
 
-export const authLogin = (email, password) => async (dispatch) => {
-  const payload = {
-    email,
-    password,
-  };
+export const authLogin = (payload) => async (dispatch) => {
   try {
     const response = await axioPath.post("v1/Account/userslogin", payload);
     localStorage.setItem("access_token", response.data.accessToken);

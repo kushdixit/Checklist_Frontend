@@ -79,7 +79,12 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
   const formData = async (data) => {
-    const res = await store.dispatch(authLogin(data.email, data.password));
+    const payload = {
+      email: data.email,
+      password: data.password,
+      issocial: 0,
+    };
+    const res = await store.dispatch(authLogin(payload));
     if (res.error === false) navigate("/dashboard");
   };
 
@@ -93,25 +98,25 @@ const SignIn = () => {
         <RightContainer>
           <FormBody>
             <ChecklistHeader>CheckList</ChecklistHeader>
+            <AlertModal
+              modalType="forgot"
+              isOpen={modal}
+              togglefunction={toggleab}
+              notify={notify}
+            />
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Log In</Heading>
-                  <AlertModal
-                    modalType="forgot"
-                    isOpen={modal}
-                    togglefunction={toggleab}
-                    notify={notify}
-                  />
                   <IconSection>
                     <LeftIconSection>
                       <IconText>
-                        <Facebook />
+                        <Facebook type="login" />
                       </IconText>
                     </LeftIconSection>
                     <RightIconSection>
                       <IconText>
-                        <Google />
+                        <Google type="login" />
                       </IconText>
                     </RightIconSection>
                   </IconSection>
