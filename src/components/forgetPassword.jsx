@@ -35,6 +35,7 @@ const ForgotPassword = ({ notify, togglefunction }) => {
                 type="email"
                 placeholder="Email"
                 control={control}
+                style={{ width: "16vw" }}
               />
             </DataInput>
             <ResetWrapper>

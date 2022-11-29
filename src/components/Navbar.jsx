@@ -16,7 +16,8 @@ import {
   InitialsWrapper,
   BurgerSection,
   BurgerSubSection,
-  LogoSection
+  LogoSection,
+  SpaceSection,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -86,12 +87,16 @@ const NavBar = ({ search, buttonType }) => {
   return (
     <NavSection>
       <ToastContainer />
-      <BurgerSection  onClick={() => {toggleabc(true); }}>
-      <Burger/>
+      <BurgerSection
+        onClick={() => {
+          toggleabc(true);
+        }}
+      >
+        <Burger />
         <LogoSection>Checklist</LogoSection>
-       
+        <SpaceSection></SpaceSection>
       </BurgerSection>
-    
+
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
@@ -165,7 +170,7 @@ const NavBar = ({ search, buttonType }) => {
           togglefunction={toggleab}
           notify={logout}
         />
-          <AlertModal
+        <AlertModal
           modalType="burger"
           isOpen={openmodal}
           togglefunction={toggleabc}
