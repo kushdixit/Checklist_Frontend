@@ -230,10 +230,6 @@ export const Error = styled.div`
   color: #d65e5e;
   padding: 5px 0px;
   font-size: 12px;
-<<<<<<< HEAD
-  text-align: left;
-=======
->>>>>>> 7e730f63af56b1b8723ce61f7680e9bb708cf42f
 `;
 
 export const UserHelper = styled.div`
