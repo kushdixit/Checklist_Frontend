@@ -3,7 +3,7 @@ export const FirstSection = styled.div`
   display: flex;
   grid-gap: 37px;
   width: 100%;
-  justify-content: center;
+ 
   margin: 0 10px;
   flex-wrap: wrap;
   @media (max-width: 1012px) {
