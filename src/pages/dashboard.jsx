@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { BodyContainer } from "styles/pages/Dashboard";
 import ChecklistCards from "../components/ChecklistCards";
 import Navbar from "../components/Navbar";
-
 import ResetPassword from "../components/resetPassword";
 import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
 import YourTemplate from "components/YourTemplate";

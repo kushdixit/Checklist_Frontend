@@ -40,7 +40,9 @@ export const ChecklistHeader = styled.div`
   width: 100%;
   max-width: 747px;
   margin: 4rem 0 0rem;
-  justify-content: space-evenly;
+  @media (max-width: 1024px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const FormBody = styled.div`
@@ -82,7 +84,7 @@ export const RememberSection = styled.div`
   }
 `;
 export const ButtonWrapper = styled.div`
-  margin-top: 30px;
+  margin-top: 3rem;
   button {
     width: 100%;
     height: 50px;
@@ -146,7 +148,7 @@ export const IconInputField = styled.div`
   }
   .emailIcon {
     position: absolute;
-    top: 18px;
+    top: 14px;
     left: 12px;
     width: 15px;
     height: 15px;
@@ -160,7 +162,7 @@ export const IconInputField = styled.div`
   }
   .passwordIcon {
     position: absolute;
-    top: 17px;
+    top: 13px;
     right: 13px;
     cursor: pointer;
   }
@@ -192,7 +194,7 @@ export const RightContainer = styled.div`
 export const IconSection = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 57px 0;
+  margin: 2.5rem 0rem 2rem;
 `;
 export const LeftIconSection = styled.div`
   border: 1px solid #c9c9c9;
@@ -228,7 +230,10 @@ export const Error = styled.div`
   color: #d65e5e;
   padding: 5px 0px;
   font-size: 12px;
+<<<<<<< HEAD
   text-align: left;
+=======
+>>>>>>> 7e730f63af56b1b8723ce61f7680e9bb708cf42f
 `;
 
 export const UserHelper = styled.div`

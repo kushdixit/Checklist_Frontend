@@ -12,40 +12,53 @@ import {
   ResetText,
   ResetHeading,
   Form,
+  Error,
 } from "styles/pages/ResetPassword";
 import { resetPassword } from "../redux/actions/auth";
 import { store } from "redux/index";
 import styled from "styled-components";
 import ReactModal from "react-modal";
+import { SIGN_IN } from "redux/actions/action_types";
 
 const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const Resethandler = (data) => {
-    console.log(data);
-    console.log("data", data);
-    console.log("inside");
-    store.dispatch(resetPassword(data.example, passwordReset));
-  };
   const formSchema = Yup.object().shape({
     password: Yup.string()
-      .required("Password is mendatory")
-      .min(3, "Password must be at 3 char long"),
+      .required("Password is required")
+      .min(8)
+      .matches(
+        /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{5,})/,
+        "Minimum five characters, at least one letter and one number and one special case Character"
+      ),
     confirmPwd: Yup.string()
       .required("Password is mendatory")
       .oneOf([Yup.ref("password")], "Passwords does not match"),
   });
-  const formOptions = { resolver: yupResolver(formSchema) };
-  // const { register, handleSubmit, reset, formState } = useForm(formOptions)
-  // const { errors } = formState
-  function onSubmit(data) {
-    console.log(JSON.stringify(data, null, 4));
-    return false;
-  }
-  const passwordReset = useSelector((state) => state.auth?.userData.id);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onChange",
+    shouldFocusError: true,
+    resolver: yupResolver(formSchema),
+  });
+
+  const resetId = useSelector((state) => state.auth?.userData.id);
+  const userData = useSelector((state) => state.auth?.userData);
+  const Resethandler = async (data) => {
+    if (data.password === data.confirmPwd) {
+      const res = await store.dispatch(resetPassword(data.password, resetId));
+      if (res === 204) {
+        store.dispatch({
+          type: SIGN_IN,
+          payload: { ...userData, isForgotPassword: false },
+        });
+        togglefunction(false);
+      }
+    }
+  };
 
   const customStyles = {
     content: {
@@ -56,8 +69,6 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "15px 20px",
-      width: "50vw",
-      height: "75vh",
       overflowY: "hidden",
     },
   };
@@ -68,11 +79,6 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
       style={customStyles}
       contentLabel="Example Modal"
     >
-      <ButtonWrapper>
-        <button className="button" onClick={() => togglefunction(false)}>
-          x
-        </button>
-      </ButtonWrapper>
       <Form onSubmit={handleSubmit(Resethandler)}>
         <MainWrapper>
           <Container>
@@ -88,9 +94,9 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
                     errors.password ? "is-invalid" : ""
                   }`}
                 />
-                <div className="invalid-feedback">
-                  {errors.confirmPwd?.message}
-                </div>
+                <Error className="invalid-feedback">
+                  {errors.password?.message}
+                </Error>
               </PasswordInput>
               <PasswordInput>
                 <input
@@ -102,9 +108,9 @@ const ResetPassword = ({ isOpen, togglefunction, hideButton }) => {
                     errors.confirmPwd ? "is-invalid" : ""
                   }`}
                 />
-                <div className="invalid-feedback">
+                <Error className="invalid-feedback">
                   {errors.confirmPwd?.message}
-                </div>
+                </Error>
               </PasswordInput>
             </ResetWrapper>
             <ResetButton>

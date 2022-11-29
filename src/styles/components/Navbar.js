@@ -12,7 +12,11 @@ export const NavSection = styled.div`
 `;
 export const FirstSection = styled.div`
   width: 100%;
+<<<<<<< HEAD
   max-width: 288px;
+=======
+  max-width: 211px;
+>>>>>>> 7e730f63af56b1b8723ce61f7680e9bb708cf42f
   h1 {
     margin: 0;
     color: #1d2e88;
@@ -24,6 +28,7 @@ export const FirstSection = styled.div`
 export const SecondSection = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   gap: 55px;
   width: 100%;
   justify-content: right;
@@ -167,6 +172,7 @@ export const Morecontent = styled.div`
     padding: 0;
     margin: 4px 0;
   }
+  cursor: pointer;
 `;
 
 export const ContentItem = styled.div`
@@ -181,14 +187,17 @@ export const IconWrapper = styled.div`
 `;
 
 export const InitialsWrapper = styled.div`
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   background: #1d2e88;
   border-radius: 50%;
+  div {
+    font-size: 1rem;
+  }
 `;
 export const DataWrapper = styled.form`
   display: flex;

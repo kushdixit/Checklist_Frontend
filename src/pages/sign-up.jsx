@@ -7,8 +7,6 @@ import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import { store } from "redux/index";
 import Checklist from "assets/images/checklist.svg";
-// import Google from "assets/images/google.svg";
-// import Facebook from "assets/images/facebook.svg";
 import User from "assets/SVG/User";
 import {
   RegistrationContainer,
@@ -20,10 +18,6 @@ import {
   LoginContainer,
   LeftContainer,
   RightContainer,
-  IconSection,
-  LeftIconSection,
-  RightIconSection,
-  IconText,
   Error,
   SignIn,
   ChecklistHeader,
@@ -32,8 +26,6 @@ import {
 import { authSignup } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Google from "components/Google";
-import Facebook from "components/Facebook";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -104,32 +96,12 @@ const SignUp = () => {
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
-        <ChecklistHeader>CheckList</ChecklistHeader>
           <FormBody>
-           
+            <ChecklistHeader>CheckList</ChecklistHeader>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Sign Up</Heading>
-                  <IconSection>
-                    <LeftIconSection>
-                      {/* <img src={Google} alt="Google" /> */}
-                      <IconText>
-                        <Facebook />
-                      </IconText>
-                    </LeftIconSection>
-                    <RightIconSection>
-                      {/* <img
-                        src={Facebook}
-                        alt="Facebook"
-                        styles={{ width: "auto", height: "auto" }}
-                      /> */}
-                     
-                      <IconText>
-                        <Google />
-                      </IconText>
-                    </RightIconSection>
-                  </IconSection>
                   <IconInputField>
                     <TextInput
                       name="firstName"
@@ -209,8 +181,8 @@ const SignUp = () => {
                 </FormContainer>
               </RegistrationContainer>
             </form>
+            <SignIn onClick={() => navigate("/sign-in")}>Sign In</SignIn>
           </FormBody>
-          <SignIn onClick={() => navigate("/sign-in")}>Sign In</SignIn>
         </RightContainer>
       </LoginContainer>
     </>

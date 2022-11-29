@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
+
 const Facebook = () => {
   const navigate = useNavigate();
-  const responseFacebook = async (data) => {
+
+  const signupHandler = async (data) => {
     const userName = data.name.split(" ");
     const payload = {
       firstName: userName[0],
@@ -25,18 +27,22 @@ const Facebook = () => {
     else toast("Error");
   };
 
+  const responseFacebook = async (data) => {
+    signupHandler(data);
+  };
+
   return (
     <div>
       <ToastContainer />
       <FacebookSection>
-      <FacebookLogin
-        appId="561436628788154"
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={responseFacebook}
-        cssClass="my-facebook-button-class"
-        icon="fa-facebook"
-      />
+        <FacebookLogin
+          appId="561436628788154"
+          autoLoad={false}
+          fields="name,email,picture"
+          callback={responseFacebook}
+          cssClass="my-facebook-button-class"
+          icon="fa-facebook"
+        />
       </FacebookSection>
     </div>
   );
@@ -44,18 +50,17 @@ const Facebook = () => {
 
 export default Facebook;
 export const FacebookSection = styled.div`
-background: unset;
-    border: unset;
-    font-size: 16px;
- .my-facebook-button-class{
   background: unset;
+  border: unset;
+  font-size: 16px;
+  .my-facebook-button-class {
+    background: unset;
     border: unset;
-    font-size: 16px;
-
- }
- .fa-facebook{
-  color: #1d2e88;
+    font-size: 14px;
+  }
+  .fa-facebook {
+    color: #1d2e88;
     padding: 4px 7px;
-    font-size: 18px;
- }
+    font-size: 24px;
+  }
 `;

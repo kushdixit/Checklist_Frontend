@@ -100,7 +100,7 @@ const NavBar = ({ search, buttonType }) => {
               <TextInput
                 name=""
                 type="text"
-                placeholder="Find Something Here"
+                placeholder="Search"
                 control={control}
               />
               <IconWrapper>
@@ -132,20 +132,27 @@ const NavBar = ({ search, buttonType }) => {
           <ImageSubSection>
             <SecondSubSection>
               <Profile>
-                <h4>{firstName}</h4>
+                <h4>
+                  {firstName} {lastName}
+                </h4>
               </Profile>
               <button className="button" onClick={() => setIsGood(!isGood)}>
                 <InitialsWrapper>
                   <div>
-                    {firstName[0]} {lastName[0]}
+                    {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
                   </div>
                 </InitialsWrapper>
               </button>
             </SecondSubSection>
             {isGood ? (
-              <Morecontent>
-                <Logout style={{ width: "15px", marginRight: "0.25rem" }} />
-                <ContentItem onClick={() => toggleab(true)}>Logout</ContentItem>
+              <Morecontent onClick={() => toggleab(true)}>
+                <Logout
+                  style={{
+                    width: "15px",
+                    marginRight: "0.25rem",
+                  }}
+                />
+                <ContentItem>Logout</ContentItem>
               </Morecontent>
             ) : null}
           </ImageSubSection>

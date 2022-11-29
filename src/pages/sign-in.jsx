@@ -6,7 +6,6 @@ import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import Checklist from "assets/images/checklist.svg";
-// import Facebook from "assets/images/facebook.svg";
 import AlertModal from "components/AlertModal";
 import { store } from "redux/index";
 import { authLogin } from "../redux/actions/auth";
@@ -80,10 +79,15 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
   const formData = async (data) => {
-    const res = await store.dispatch(authLogin(data.email, data.password));
+    const payload = {
+      email: data.email,
+      password: data.password,
+      issocial: 0,
+    };
+    const res = await store.dispatch(authLogin(payload));
     if (res.error === false) navigate("/dashboard");
+    else toast(`User doesn't exist.Please create a new account`);
   };
-
   const formFields = () => {
     return (
       <LoginContainer>
@@ -92,32 +96,25 @@ const SignIn = () => {
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
         <RightContainer>
-        <ChecklistHeader>CheckList</ChecklistHeader>
           <FormBody>
-           
+            <ChecklistHeader>CheckList</ChecklistHeader>
+            <AlertModal
+              modalType="forgot"
+              isOpen={modal}
+              togglefunction={toggleab}
+              notify={notify}
+            />
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Log In</Heading>
-                  <AlertModal
-                    modalType="forgot"
-                    isOpen={modal}
-                    togglefunction={toggleab}
-                    notify={notify}
-                  />
                   <IconSection>
                     <LeftIconSection>
-                      {/* <img src={Google} alt="Google" /> */}
                       <IconText>
                         <Facebook />
                       </IconText>
                     </LeftIconSection>
                     <RightIconSection>
-                      {/* <img
-                        src={Facebook}
-                        alt="Facebook"
-                        styles={{ width: "auto", height: "auto" }}
-                      /> */}
                       <IconText>
                         <Google />
                       </IconText>

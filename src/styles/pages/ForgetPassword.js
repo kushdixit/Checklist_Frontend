@@ -34,7 +34,7 @@ export const DataWrapper = styled.form`
   gap: 30px;
 `;
 export const Heading = styled.div`
-  font-size: 35px;
+  font-size: 16px;
   font-weight: 500;
   color: #1d2e8b;
 `;
@@ -54,8 +54,6 @@ export const DataInput = styled.div`
   input {
     max-width: 360px;
     padding: 12px 19px;
-    width: 100%;
-
     border-radius: 5px;
     border: 1px solid #c9c9c9;
     ::placeholder {
