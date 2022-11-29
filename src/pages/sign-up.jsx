@@ -26,6 +26,8 @@ import {
 import { authSignup } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -86,11 +88,15 @@ const SignUp = () => {
     };
     const res = await store.dispatch(authSignup(payload));
     if (res.error === false) navigate("/dashboard");
+    else if (res.data.response.data.Message === "Already exist.")
+      toast("Email already exist.Please try Logging in");
+    else toast("Error");
   };
 
   return (
     <>
       <LoginContainer>
+        <ToastContainer />
         <LeftContainer>
           {" "}
           <img src={Checklist} alt="Checklist" />

@@ -86,7 +86,7 @@ const SignIn = () => {
     };
     const res = await store.dispatch(authLogin(payload));
     if (res.error === false) navigate("/dashboard");
-    else toast(`User doesn't exist.Please create a new account`);
+    else toast(`User doesn't exist.`);
   };
   const formFields = () => {
     return (
