@@ -12,11 +12,8 @@ export const NavSection = styled.div`
 `;
 export const FirstSection = styled.div`
   width: 100%;
-<<<<<<< HEAD
-  max-width: 288px;
-=======
-  max-width: 211px;
->>>>>>> 7e730f63af56b1b8723ce61f7680e9bb708cf42f
+  max-width: 253px;
+  display: flex;
   h1 {
     margin: 0;
     color: #1d2e88;
@@ -31,6 +28,7 @@ export const SecondSection = styled.div`
   align-items: center;
   gap: 55px;
   width: 100%;
+  max-width: 1494px;
   justify-content: right;
   @media (max-width: 767px) {
     display: none;
@@ -41,6 +39,8 @@ export const HeadingText = styled.div`
   color: #1d2e88;
   padding-left: 10px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
 `;
 
 export const BurgerSection = styled.div`
@@ -114,7 +114,7 @@ export const Footer = styled.div`
 export const IconInputField = styled.div`
   position: relative;
   width: 100%;
-  max-width: 375px;
+  max-width: 350px;
   input {
     position: relative;
     text-align: left;
@@ -122,8 +122,9 @@ export const IconInputField = styled.div`
     padding: 12px 41.5px;
     border: 1px solid #c9c9c9;
     background: unset;
+
+    max-width: 277px;
     width: 100%;
-    max-width: 300px;
     border-radius: 20px;
     ::placeholder {
       font-size: 16px;
@@ -145,7 +146,7 @@ export const IconInputField = styled.div`
   }
   @media (max-width: 1012px) {
     width: 100%;
-    max-width: 249px;
+    max-width: 253px;
     input {
       width: unset;
       max-width: unset;
