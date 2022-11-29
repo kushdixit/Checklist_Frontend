@@ -15,7 +15,8 @@ import {
   IconWrapper,
   InitialsWrapper,
   BurgerSection,
-  BurgerSubSection
+  BurgerSubSection,
+  LogoSection
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -29,7 +30,7 @@ import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import Logout from "assets/SVG/Logout";
 import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
-import Burger from "assets/images/burger.png";
+import Burger from "assets/SVG/Burger";
 import BurgerModal from "./burgerModal";
 const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
@@ -86,10 +87,11 @@ const NavBar = ({ search, buttonType }) => {
     <NavSection>
       <ToastContainer />
       <BurgerSection  onClick={() => {toggleabc(true); }}>
-        <img src={Burger} alt="Burger" />
-      
+      <Burger/>
+        <LogoSection>Checklist</LogoSection>
+       
       </BurgerSection>
-      
+    
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>

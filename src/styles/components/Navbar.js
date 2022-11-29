@@ -43,10 +43,33 @@ export const HeadingText = styled.div`
   align-items: center;
 `;
 
+export const LogoSection = styled.div`
+  display: none;
+  @media (max-width: 767px) {
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+    color: #1d2e88;
+    font-size: 4vw;
+    font-weight: 700;
+    max-width: 627px;
+  }
+`;
 export const BurgerSection = styled.div`
   display: none;
   @media (max-width: 767px) {
-    display: block;
+    display: flex;
+    padding-left: 9px;
+    svg {
+      background: #1d2e88;
+      /* height: 40px; */
+      align-items: center;
+      display: flex;
+      padding: 15px;
+      border-radius: 7px;
+      font-size: 20px;
+    }
   }
 `;
 export const BurgerSubSection = styled.div``;
