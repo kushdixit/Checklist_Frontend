@@ -86,8 +86,8 @@ const SignIn = () => {
     };
     const res = await store.dispatch(authLogin(payload));
     if (res.error === false) navigate("/dashboard");
+    else toast(`User doesn't exist.Please create a new account`);
   };
-
   const formFields = () => {
     return (
       <LoginContainer>
@@ -111,12 +111,12 @@ const SignIn = () => {
                   <IconSection>
                     <LeftIconSection>
                       <IconText>
-                        <Facebook type="login" />
+                        <Facebook />
                       </IconText>
                     </LeftIconSection>
                     <RightIconSection>
                       <IconText>
-                        <Google type="login" />
+                        <Google />
                       </IconText>
                     </RightIconSection>
                   </IconSection>

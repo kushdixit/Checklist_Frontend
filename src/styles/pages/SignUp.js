@@ -72,7 +72,7 @@ export const RememberSection = styled.div`
 `;
 export const ButtonWrapper = styled.div`
   display: block;
-  margin-top: 65px;
+  margin-top: 2rem;
   button {
     width: 100%;
     height: 50px;
@@ -141,7 +141,7 @@ export const IconInputField = styled.div`
   }
   .emailIcon {
     position: absolute;
-    top: 18px;
+    top: 14px;
     left: 12px;
     width: 15px;
     height: 15px;
@@ -155,7 +155,7 @@ export const IconInputField = styled.div`
   }
   .passwordIcon {
     position: absolute;
-    top: 17px;
+    top: 13px;
     right: 13px;
     cursor: pointer;
   }
@@ -250,7 +250,7 @@ export const Error = styled.div`
 `;
 export const SignIn = styled.div`
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
   color: #1d2e88;
   margin: 1rem;
   text-align: center;
@@ -264,4 +264,7 @@ export const ChecklistHeader = styled.div`
   width: 100%;
   max-width: 747px;
   margin: 4rem 0 0rem;
+  @media (max-width: 1024px) {
+    font-size: 2.5rem;
+  }
 `;

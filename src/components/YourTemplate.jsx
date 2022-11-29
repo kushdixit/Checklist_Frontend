@@ -9,11 +9,13 @@ import {
   IconInputField,
   SelectFieldSection,
   ButtonSection,
+  EmptyMessage,
 } from "styles/components/Card";
 import Card from "./Card";
 import { useSelector } from "react-redux";
 // import FirstImage from "assets/images/firstimage.jpg";
 import FirstImage from "assets/images/checklist.svg";
+
 const YourTemplate = () => {
   const templateData = useSelector((state) => state.Template?.yourTemplate);
   const Checklist = [
@@ -47,6 +49,9 @@ const YourTemplate = () => {
             })}
         </FirstSection>
       </CardMainSection>
+      {templateData[0].checklists.length == 0 && (
+        <EmptyMessage>Your Template is currently empty</EmptyMessage>
+      )}
     </>
   );
 };

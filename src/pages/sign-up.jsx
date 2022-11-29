@@ -18,10 +18,6 @@ import {
   LoginContainer,
   LeftContainer,
   RightContainer,
-  IconSection,
-  LeftIconSection,
-  RightIconSection,
-  IconText,
   Error,
   SignIn,
   ChecklistHeader,
@@ -30,8 +26,6 @@ import {
 import { authSignup } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Google from "components/Google";
-import Facebook from "components/Facebook";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -108,19 +102,6 @@ const SignUp = () => {
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Sign Up</Heading>
-                  <IconSection>
-                    <LeftIconSection>
-                      <IconText>
-                        <Facebook type="signup" />
-                      </IconText>
-                    </LeftIconSection>
-                    <RightIconSection>
-                      {" "}
-                      <IconText>
-                        <Google type="signup" />
-                      </IconText>
-                    </RightIconSection>
-                  </IconSection>
                   <IconInputField>
                     <TextInput
                       name="firstName"

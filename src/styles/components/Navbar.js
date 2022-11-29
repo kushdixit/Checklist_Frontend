@@ -158,12 +158,15 @@ export const IconWrapper = styled.div`
 `;
 
 export const InitialsWrapper = styled.div`
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   background: #1d2e88;
   border-radius: 50%;
+  div {
+    font-size: 1rem;
+  }
 `;

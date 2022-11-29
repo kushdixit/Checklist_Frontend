@@ -1,25 +1,14 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-import { authSignup, authLogin } from "../redux/actions/auth";
+import { authSignup } from "../redux/actions/auth";
 import { store } from "redux/index";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 
-const Google = ({ type }) => {
+const Google = () => {
   const navigate = useNavigate();
-
-  const loginHandler = async (data) => {
-    const payload = {
-      email: data.wt.cu,
-      password: "",
-      issocial: 1,
-    };
-    const res = await store.dispatch(authLogin(payload));
-    if (res.error === false) navigate("/dashboard");
-    else toast(res.data.response.data.Message);
-  };
 
   const signupHandler = async (data) => {
     const payload = {
@@ -30,7 +19,6 @@ const Google = ({ type }) => {
       issocial: 1,
     };
     const res = await store.dispatch(authSignup(payload));
-    console.log("res", res, res.data.response.data.Message);
     if (res.error === false) navigate("/dashboard");
     else if (res.data.response.data.Message === "Already exist.")
       toast("Email already exist.Please try Logging in");
@@ -38,7 +26,7 @@ const Google = ({ type }) => {
   };
 
   const responseGoogle = (data) => {
-    type === "login" ? loginHandler(data) : signupHandler(data);
+    signupHandler(data);
   };
 
   return (

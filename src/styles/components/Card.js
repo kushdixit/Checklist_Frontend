@@ -3,7 +3,7 @@ export const FirstSection = styled.div`
   display: flex;
   grid-gap: 37px;
   width: 100%;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 0 10px;
   flex-wrap: wrap;
 `;
@@ -166,4 +166,8 @@ export const WrapSubSection = styled.div`
     font-weight: 500;
     font-size: 13px;
   }
+`;
+export const EmptyMessage = styled.div`
+  justify-content: flex-start;
+  padding-left: 1rem;
 `;

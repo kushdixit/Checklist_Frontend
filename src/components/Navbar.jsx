@@ -89,7 +89,7 @@ const NavBar = ({ search, buttonType }) => {
               <TextInput
                 name=""
                 type="text"
-                placeholder="Find Something Here"
+                placeholder="Search"
                 control={control}
               />
               <IconWrapper>
