@@ -6,13 +6,23 @@ export const NavSection = styled.div`
   flex-wrap: wrap;
   width: 100%;
   max-width: 1735px;
+  @media (max-width: 767px) {
+    display: unset;
+  }
 `;
 export const FirstSection = styled.div`
   width: 100%;
+<<<<<<< HEAD
+  max-width: 288px;
+=======
   max-width: 211px;
+>>>>>>> 7e730f63af56b1b8723ce61f7680e9bb708cf42f
   h1 {
     margin: 0;
     color: #1d2e88;
+  }
+  @media (max-width: 767px) {
+    display: none;
   }
 `;
 export const SecondSection = styled.div`
@@ -22,6 +32,9 @@ export const SecondSection = styled.div`
   gap: 55px;
   width: 100%;
   justify-content: right;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 export const HeadingText = styled.div`
   font-size: 3vw;
@@ -30,6 +43,13 @@ export const HeadingText = styled.div`
   font-weight: 700;
 `;
 
+export const BurgerSection = styled.div`
+  display: none;
+  @media (max-width: 767px) {
+    display: block;
+  }
+`;
+export const BurgerSubSection = styled.div``;
 export const SecondSubSection = styled.div`
   display: flex;
 
@@ -96,6 +116,7 @@ export const IconInputField = styled.div`
   width: 100%;
   max-width: 375px;
   input {
+    position: relative;
     text-align: left;
     font-size: 14px;
     padding: 12px 41.5px;
@@ -120,6 +141,14 @@ export const IconInputField = styled.div`
     }
     :focus-visible {
       outline: unset;
+    }
+  }
+  @media (max-width: 1012px) {
+    width: 100%;
+    max-width: 249px;
+    input {
+      width: unset;
+      max-width: unset;
     }
   }
 `;
@@ -169,4 +198,33 @@ export const InitialsWrapper = styled.div`
   div {
     font-size: 1rem;
   }
+`;
+export const DataWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
+export const Heading = styled.div`
+  font-size: 35px;
+  font-weight: 500;
+  color: #1d2e8b;
+`;
+
+export const Section = styled.div`
+  position: absolute;
+  left: 0;
+`;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+`;
+export const ModalButton = styled.div`
+  border: 1px solid transparent;
+  background: #1d2e88;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
 `;

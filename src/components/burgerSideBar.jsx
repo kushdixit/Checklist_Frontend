@@ -30,7 +30,6 @@ import Logout from "assets/SVG/Logout";
 import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
 import Burger from "assets/images/burger.png";
-import BurgerModal from "./burgerModal";
 const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -43,9 +42,9 @@ const NavBar = ({ search, buttonType }) => {
 
   const [isGood, setIsGood] = useState(false);
   const [modal, setModal] = useState(false);
-  const [openmodal, setOpenModal] = useState(false);
+
   function toggleabc(data) {
-    setOpenModal(data);
+    setModal(data);
   }
   function toggleab(data) {
     setModal(data);
@@ -100,7 +99,7 @@ const NavBar = ({ search, buttonType }) => {
               <TextInput
                 name=""
                 type="text"
-                placeholder="Search"
+                placeholder="Find Something Here"
                 control={control}
               />
               <IconWrapper>
@@ -132,27 +131,20 @@ const NavBar = ({ search, buttonType }) => {
           <ImageSubSection>
             <SecondSubSection>
               <Profile>
-                <h4>
-                  {firstName} {lastName}
-                </h4>
+                <h4>{firstName}</h4>
               </Profile>
               <button className="button" onClick={() => setIsGood(!isGood)}>
                 <InitialsWrapper>
                   <div>
-                    {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
+                    {firstName[0]} {lastName[0]}
                   </div>
                 </InitialsWrapper>
               </button>
             </SecondSubSection>
             {isGood ? (
-              <Morecontent onClick={() => toggleab(true)}>
-                <Logout
-                  style={{
-                    width: "15px",
-                    marginRight: "0.25rem",
-                  }}
-                />
-                <ContentItem>Logout</ContentItem>
+              <Morecontent>
+                <Logout style={{ width: "15px", marginRight: "0.25rem" }} />
+                <ContentItem onClick={() => toggleab(true)}>Logout</ContentItem>
               </Morecontent>
             ) : null}
           </ImageSubSection>
@@ -162,12 +154,6 @@ const NavBar = ({ search, buttonType }) => {
           isOpen={modal}
           togglefunction={toggleab}
           notify={logout}
-        />
-          <AlertModal
-          modalType="burger"
-          isOpen={openmodal}
-          togglefunction={toggleabc}
-          notify={BurgerModal}
         />
       </SubNavSection>
     </NavSection>

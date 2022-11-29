@@ -6,6 +6,8 @@ export const FirstSection = styled.div`
   justify-content: center;
   margin: 0 10px;
   flex-wrap: wrap;
+  @media (max-width: 1012px) {
+ justify-content:center ;
 `;
 
 export const CardMainSection = styled.div`
@@ -128,6 +130,8 @@ export const SubSectionNew = styled.div`
   h2 {
     padding-left: 10px;
   }
+  @media (max-width: 1012px) {
+   width:unset ;
 `;
 export const Image = styled.div`
   width: 100%;

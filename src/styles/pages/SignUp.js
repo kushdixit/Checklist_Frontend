@@ -250,10 +250,18 @@ export const Error = styled.div`
 `;
 export const SignIn = styled.div`
   cursor: pointer;
+<<<<<<< HEAD
+  font-size: 17px;
+  color: #1d2e88;
+  text-align: center;
+  padding: 10px;
+  font-weight: 400;
+=======
   font-size: 16px;
   color: #1d2e88;
   margin: 1rem;
   text-align: center;
+>>>>>>> 7e730f63af56b1b8723ce61f7680e9bb708cf42f
 `;
 
 export const ChecklistHeader = styled.div`

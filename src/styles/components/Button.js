@@ -47,7 +47,7 @@ export const ButtonContainer = styled.div`
       outline: none;
     }
     &:hover {
-      opacity: 0.6;
+      opacity: 1;
     }
     &.withWhiteBorder {
       border-radius: 2px;
