@@ -1,11 +1,13 @@
 import React from "react";
 import ForgotPassword from "./forgetPassword";
 import LogoutModal from "./LogoutModal";
+import BurgerModal from "./burgerModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/AlertModal";
 
 const customStyles = {
   content: {
+  
     top: "50%",
     left: "50%",
     right: "auto",
@@ -34,16 +36,21 @@ const AlertModal = ({
       style={customStyles}
       contentLabel="Example Modal"
     >
+    
       <ButtonWrapper>
         <button className="button" onClick={() => togglefunction(false)}>
           x
         </button>
+  
       </ButtonWrapper>
       {modalType === "logout" && (
         <LogoutModal togglefunction={togglefunction} notify={notify} />
       )}
       {modalType === "forgot" && (
         <ForgotPassword notify={notify} togglefunction={togglefunction} />
+      )}
+        {modalType === "burger" && (
+        <BurgerModal notify={notify} togglefunction={togglefunction}/>
       )}
       {/* {modalType === "forgot" && (
         <EditTask

@@ -228,7 +228,7 @@ export const Error = styled.div`
   color: #d65e5e;
   padding: 5px 0px;
   font-size: 12px;
-  text-align: center;
+  text-align: left;
 `;
 
 export const UserHelper = styled.div`

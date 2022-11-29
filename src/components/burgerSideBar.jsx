@@ -30,7 +30,6 @@ import Logout from "assets/SVG/Logout";
 import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
 import Burger from "assets/images/burger.png";
-import BurgerModal from "./burgerModal";
 const NavBar = ({ search, buttonType }) => {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -43,9 +42,9 @@ const NavBar = ({ search, buttonType }) => {
 
   const [isGood, setIsGood] = useState(false);
   const [modal, setModal] = useState(false);
-  const [openmodal, setOpenModal] = useState(false);
+
   function toggleabc(data) {
-    setOpenModal(data);
+    setModal(data);
   }
   function toggleab(data) {
     setModal(data);
@@ -155,12 +154,6 @@ const NavBar = ({ search, buttonType }) => {
           isOpen={modal}
           togglefunction={toggleab}
           notify={logout}
-        />
-          <AlertModal
-          modalType="burger"
-          isOpen={openmodal}
-          togglefunction={toggleabc}
-          notify={BurgerModal}
         />
       </SubNavSection>
     </NavSection>

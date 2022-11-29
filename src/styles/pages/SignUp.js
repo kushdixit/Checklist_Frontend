@@ -142,7 +142,7 @@ export const IconInputField = styled.div`
   }
   .emailIcon {
     position: absolute;
-    top: 18px;
+    top: 14px;
     left: 12px;
     width: 15px;
     height: 15px;
@@ -251,9 +251,11 @@ export const Error = styled.div`
 `;
 export const SignIn = styled.div`
   cursor: pointer;
-  font-size: 12px;
+  font-size: 17px;
   color: #1d2e88;
-  margin: 1rem;
+  text-align: center;
+  padding: 10px;
+  font-weight: 400;
 `;
 
 export const ChecklistHeader = styled.div`
