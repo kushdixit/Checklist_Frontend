@@ -125,11 +125,15 @@ export const Footer = styled.div`
   }
 `;
 export const SubSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   box-shadow: rgb(163 183 223) 0px 0px 3px;
   border-radius: 10px;
   height: auto;
   max-width: 400px;
+  padding: 0rem 1rem;
 `;
 export const SubSectionNew = styled.div`
   margin: 0 auto;
@@ -168,9 +172,10 @@ export const Image = styled.div`
 export const Wrap = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 export const ColonImage = styled.div`
-  padding: 16px 40px;
+  padding: 0rem 1rem 0rem 0rem;
 `;
 export const WrapSubSection = styled.div`
   vertical-align: middle;

@@ -42,7 +42,7 @@ const NavBar = ({ search, buttonType }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    function handleClickOutside(event: { target: any }) {
+    function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
         setLogoutModal(false);
       }

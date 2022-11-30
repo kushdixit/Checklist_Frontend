@@ -55,7 +55,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
   const taskEditable = useSelector((state) => state.editable?.isEditable);
 
   useEffect(() => {
-    function handleClickOutside(event: { target: any }) {
+    function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
         setIsOpenSort(false);
       }
