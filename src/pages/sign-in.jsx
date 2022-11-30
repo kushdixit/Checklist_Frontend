@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
+import ErrorComponent from "components/Error";
 import { useNavigate } from "react-router-dom";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
@@ -32,8 +33,6 @@ import {
   Forgot,
   ChecklistHeader,
 } from "styles/pages/AccountForm";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Google from "components/Google";
 import Facebook from "components/Facebook";
 
@@ -50,6 +49,8 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const [showError, setShowError] = useState(true);
+  const [loginError, setLoginError] = useState(false);
+  const [resetError, setResetError] = useState(false);
   const [modal, setModal] = useState(false);
 
   function toggleab(data) {
@@ -57,9 +58,7 @@ const SignIn = () => {
   }
   const notify = (res) => {
     setShowError(true);
-    res == 204
-      ? toast("Please check your mail for temporary password")
-      : toast("Please enter correct email");
+    setResetError(true);
   };
 
   useEffect(() => {
@@ -78,7 +77,9 @@ const SignIn = () => {
     shouldFocusError: true,
     resolver: yupResolver(schema),
   });
+
   const formData = async (data) => {
+    setLoginError(false);
     const payload = {
       email: data.email,
       password: data.password,
@@ -86,12 +87,11 @@ const SignIn = () => {
     };
     const res = await store.dispatch(authLogin(payload));
     if (res.error === false) navigate("/dashboard");
-    else toast(`User doesn't exist or password is wrong`);
+    else setLoginError(true);
   };
   const formFields = () => {
     return (
       <LoginContainer>
-        <ToastContainer />
         <LeftContainer>
           <img src={Checklist} alt="Checklist" />
         </LeftContainer>
@@ -152,6 +152,17 @@ const SignIn = () => {
                 </FormContainer>
               </RegistrationContainer>
             </form>
+            {loginError && (
+              <ErrorComponent
+                message=" User doesn't exist or password is wrong"
+                primary="#d65e5e"
+                secondary="#f0d3d3"
+              />
+            )}
+            {resetError && (
+              <ErrorComponent message="Please check your mail for temporary password" />
+            )}
+
             <UserHelper>
               <Forgot
                 className="forgotPassword"

@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import { useNavigate } from "react-router-dom";
+import ErrorComponent from "components/Error";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
@@ -26,11 +27,10 @@ import {
 import { authSignup } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [signinError, setSigninError] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -79,6 +79,7 @@ const SignUp = () => {
   });
 
   const formData = async (data) => {
+    setSigninError(false);
     const payload = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -88,15 +89,12 @@ const SignUp = () => {
     };
     const res = await store.dispatch(authSignup(payload));
     if (res.error === false) navigate("/dashboard");
-    else if (res.data.response.data.Message === "Already exist.")
-      toast("Email already exist.Please try Logging in");
-    else toast("Error");
+    else setSigninError(true);
   };
 
   return (
     <>
       <LoginContainer>
-        <ToastContainer />
         <LeftContainer>
           {" "}
           <img src={Checklist} alt="Checklist" />
@@ -187,6 +185,13 @@ const SignUp = () => {
                 </FormContainer>
               </RegistrationContainer>
             </form>
+            {signinError && (
+              <ErrorComponent
+                message="Email already exist.Please try Logging in"
+                primary="#d65e5e"
+                secondary="#f0d3d3"
+              />
+            )}
             <SignIn onClick={() => navigate("/sign-in")}>Sign In</SignIn>
           </FormBody>
         </RightContainer>

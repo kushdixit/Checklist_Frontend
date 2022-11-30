@@ -249,3 +249,15 @@ export const SignUp = styled.div`
   color: #1d2e88;
   margin: 1rem;
 `;
+export const ErrorWrapper = styled.div`
+  margin-top: 0.3rem;
+  color: ${(props) => (props.primary ? props.primary : "#3c763d")};
+  background-color: ${(props) =>
+    props.secondary ? props.secondary : "#dff0d8"};
+  border-color: #d6e9c6;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+`;
