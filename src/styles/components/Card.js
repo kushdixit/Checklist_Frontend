@@ -3,12 +3,24 @@ export const FirstSection = styled.div`
   display: flex;
   grid-gap: 37px;
   width: 100%;
- 
+
   margin: 0 10px;
   flex-wrap: wrap;
   @media (max-width: 1012px) {
- justify-content:center ;
+    justify-content: center;
+  }
 `;
+
+export const WrapSubSectionNew = styled.div`
+  h3 {
+    margin: 0;
+    padding: 0;
+    color: #8d8e9b;
+    font-size: 14px;
+    font-weight: 400;
+  }
+`;
+export const WrapSection = styled.div``;
 
 export const CardMainSection = styled.div`
   display: flex;
@@ -116,7 +128,7 @@ export const SubSection = styled.div`
   width: 100%;
   box-shadow: rgb(163 183 223) 0px 0px 3px;
   border-radius: 10px;
-  height: 347px;
+  height: auto;
   max-width: 400px;
 `;
 export const SubSectionNew = styled.div`
@@ -131,18 +143,23 @@ export const SubSectionNew = styled.div`
     padding-left: 10px;
   }
   @media (max-width: 1012px) {
-   width:unset ;
+    width: unset;
+  }
 `;
 export const Image = styled.div`
   width: 100%;
   align-items: center;
   vertical-align: middle;
   display: flex;
+
+  height: 170px;
   justify-content: center;
-  height: 260px;
+
+  max-width: 120px;
+
   img {
-    width: 100%;
-    max-width: 200px;
+    height: 90px;
+    width: 90px;
     justify-content: center;
     align-items: center;
     opacity: 0.8;
@@ -150,13 +167,16 @@ export const Image = styled.div`
 `;
 export const Wrap = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 `;
 export const ColonImage = styled.div`
   padding: 16px 40px;
 `;
 export const WrapSubSection = styled.div`
-  padding: 12px 0 0 33px;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+
   h2 {
     margin: 0;
     padding: 0;
