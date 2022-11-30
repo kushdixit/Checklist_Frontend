@@ -10,12 +10,14 @@ import {
   Image,
   Wrap,
   WrapSubSection,
+  WrapSubSectionNew,
+  WrapSection
 } from "styles/components/Card";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import newchecklist from "assets/images/newchecklist.jpg";
-
+import checklisticon from "assets/images/checklisticon.jpg";
 const Card = ({ item, index, Checklist, showEditable }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
@@ -48,24 +50,29 @@ const Card = ({ item, index, Checklist, showEditable }) => {
         });
       }}
     >
+      <Wrap>
       <Image>
         <img
-          src={newchecklist}
+          src={checklisticon}
           alt="Rectangle"
           width={"100%"}
           height={"auto"}
         />{" "}
       </Image>
-      <Wrap>
+      <WrapSection>
         <WrapSubSection>
           <h2>{item.checklistName}</h2>
-          <h3>
+        
+        </WrapSubSection>
+        <WrapSubSectionNew>
+        <h3>
             {" "}
             {item.dateUpdated
               ? item.dateUpdated?.split("T")[0]
               : item.dateCreated?.split("T")[0]}
           </h3>
-        </WrapSubSection>
+        </WrapSubSectionNew>
+        </WrapSection>
         {/* {isEditable && (
           <ColonImage>
             <ShortContainer onClick={() => setIsOpenSort(true)}>
