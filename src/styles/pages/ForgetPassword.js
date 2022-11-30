@@ -31,6 +31,7 @@ export const Container = styled.div`
 export const DataWrapper = styled.form`
   display: flex;
   flex-direction: column;
+  text-align: center;
   gap: 30px;
 `;
 export const Heading = styled.div`

@@ -213,8 +213,8 @@ export const Morecontent = styled.div`
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  top: 60px;
-  right: 18px;
+  top: 75px;
+  right: 34px;
   box-shadow: rgb(163 183 223) 0px 0px 3px;
   border-radius: 10px;
   z-index: 100;

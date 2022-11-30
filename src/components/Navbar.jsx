@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   NavSection,
   FirstSection,
@@ -15,12 +15,10 @@ import {
   IconWrapper,
   InitialsWrapper,
   BurgerSection,
-  BurgerSubSection,
   LogoSection,
   LogoSearchSection,
   WrapperSize,
-  InitialsWrapperNew
-
+  InitialsWrapperNew,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -34,24 +32,34 @@ import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import Logout from "assets/SVG/Logout";
 import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
-import Burger from "assets/SVG/Burger";
-import BurgerModal from "./burgerModal";
+
 const NavBar = ({ search, buttonType }) => {
+  const [logoutModal, setLogoutModal] = useState(false);
+  const [modal, setModal] = useState(false);
+  const wrapperRef = useRef();
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    function handleClickOutside(event: { target: any }) {
+      if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
+        setLogoutModal(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
+
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const taskEditable = useSelector((state) => state.editable?.isEditable);
   const YourTemplates = useSelector((state) => state.task?.allChecklist);
   const firstName = useSelector((state) => state.auth?.userData?.firstName);
   const lastName = useSelector((state) => state.auth?.userData?.lastName);
 
-  const [isGood, setIsGood] = useState(false);
-  const [modal, setModal] = useState(false);
-  // const [openmodal, setOpenModal] = useState(false);
-  // function toggleabc(data) {
-  //   setOpenModal(data);
-  // }
   function toggleab(data) {
     setModal(data);
   }
@@ -90,38 +98,41 @@ const NavBar = ({ search, buttonType }) => {
   return (
     <NavSection>
       <ToastContainer />
-      <BurgerSection >
-      {/* <Burger/> */}
-      <ImageSubSection>
-            <SecondSubSection>
-              <Profile>
-                <h4>
-                  {firstName} {lastName}
-                </h4>
-              </Profile>
-              <button className="button" onClick={() => setIsGood(!isGood)}>
-                <InitialsWrapperNew>
-                  <WrapperSize>
-                    {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
-                  </WrapperSize>
-                </InitialsWrapperNew>
-              </button>
-            </SecondSubSection>
-            {isGood ? (
-              <Morecontent onClick={() => toggleab(true)}>
-                <Logout
-                  style={{
-                    width: "15px",
-                    marginRight: "0.25rem",
-                  }}
-                />
-                <ContentItem>Logout</ContentItem>
-              </Morecontent>
-            ) : null}
-          </ImageSubSection>
-          <LogoSearchSection>
-        <LogoSection>Checklist</LogoSection>
-        {search && (
+      <BurgerSection>
+        {/* <Burger/> */}
+        <ImageSubSection>
+          <SecondSubSection>
+            <Profile>
+              <h4>
+                {firstName} {lastName}
+              </h4>
+            </Profile>
+            <button
+              className="button"
+              onClick={() => setLogoutModal(!logoutModal)}
+            >
+              <InitialsWrapperNew>
+                <WrapperSize>
+                  {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
+                </WrapperSize>
+              </InitialsWrapperNew>
+            </button>
+          </SecondSubSection>
+          {logoutModal ? (
+            <Morecontent onClick={() => toggleab(true)}>
+              <Logout
+                style={{
+                  width: "15px",
+                  marginRight: "0.25rem",
+                }}
+              />
+              <ContentItem>Logout</ContentItem>
+            </Morecontent>
+          ) : null}
+        </ImageSubSection>
+        <LogoSearchSection>
+          <LogoSection>Checklist</LogoSection>
+          {search && (
             <IconInputField>
               <TextInput
                 name=""
@@ -134,30 +145,25 @@ const NavBar = ({ search, buttonType }) => {
               </IconWrapper>
             </IconInputField>
           )}
-          
-          </LogoSearchSection>
-          {search && (
-            <Footer>
-              <Button
-                className="button"
-                handleClick={() => newTemplateHandler()}
-              >
-                {`+ ${buttonType}`}
-              </Button>
-            </Footer>
-          )}
-          {state?.showEditable && (
-            <div>
-              <Button
-                handleClick={() =>
-                  dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
-                }
-              >
-                {`${taskEditable ? "Done" : "Edit"}`}
-              </Button>
-            </div>
-          )}
-
+        </LogoSearchSection>
+        {search && (
+          <Footer>
+            <Button className="button" handleClick={() => newTemplateHandler()}>
+              {`+ ${buttonType}`}
+            </Button>
+          </Footer>
+        )}
+        {state?.showEditable && (
+          <div>
+            <Button
+              handleClick={() =>
+                dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
+              }
+            >
+              {`${taskEditable ? "Done" : "Edit"}`}
+            </Button>
+          </div>
+        )}
       </BurgerSection>
 
       <SubNavSection>
@@ -203,28 +209,33 @@ const NavBar = ({ search, buttonType }) => {
             <SecondSubSection>
               <Profile>
                 <h4>
-                  {firstName} {lastName}
+                  {firstName[0].toUpperCase() + firstName.slice(1)}{" "}
+                  {lastName[0].toUpperCase() + lastName.slice(1)}
                 </h4>
               </Profile>
-              <button className="button" onClick={() => setIsGood(!isGood)}>
+              <button
+                className="button"
+                onClick={() => setLogoutModal(!logoutModal)}
+                ref={wrapperRef}
+              >
                 <InitialsWrapper>
                   <div>
                     {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
                   </div>
                 </InitialsWrapper>
+                {logoutModal ? (
+                  <Morecontent onClick={() => toggleab(true)}>
+                    <Logout
+                      style={{
+                        width: "15px",
+                        marginRight: "0.25rem",
+                      }}
+                    />
+                    <ContentItem>Logout</ContentItem>
+                  </Morecontent>
+                ) : null}
               </button>
             </SecondSubSection>
-            {isGood ? (
-              <Morecontent onClick={() => toggleab(true)}>
-                <Logout
-                  style={{
-                    width: "15px",
-                    marginRight: "0.25rem",
-                  }}
-                />
-                <ContentItem>Logout</ContentItem>
-              </Morecontent>
-            ) : null}
           </ImageSubSection>
         </SecondSection>
         <AlertModal
@@ -233,8 +244,6 @@ const NavBar = ({ search, buttonType }) => {
           togglefunction={toggleab}
           notify={logout}
         />
-         
-
       </SubNavSection>
     </NavSection>
   );
