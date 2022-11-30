@@ -48,6 +48,13 @@ export const HeadingText = styled.div`
   align-items: center;
 `;
 
+export const LogoSearchSection = styled.div`
+  display: none;
+  @media (max-width: 767px) {
+    display: block;
+  }
+`;
+
 export const LogoSection = styled.div`
   display: none;
   @media (max-width: 767px) {
@@ -56,7 +63,7 @@ export const LogoSection = styled.div`
 
     justify-content: center;
     color: #1d2e88;
-    font-size: 4vw;
+    font-size: 3vw;
     font-weight: 700;
     max-width: 625px;
   }
@@ -65,22 +72,31 @@ export const BurgerSection = styled.div`
   display: none;
   @media (max-width: 767px) {
     display: flex;
-    padding-left: 9px;
-    svg {
-      background: #1d2e88;
-      /* height: 40px; */
-      align-items: center;
-      display: flex;
-      padding: 15px;
-      border-radius: 7px;
-      font-size: 20px;
-    }
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 63px;
   }
+`;
+
+export const InitialsWrapperNew = styled.div`
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #1d2e88;
+  border-radius: 50%;
+`;
+
+export const WrapperSize = styled.div`
+  font-size: 0.8rem;
 `;
 export const BurgerSubSection = styled.div``;
 export const SecondSubSection = styled.div`
   display: flex;
-
+  margin-left: 10px;
   img {
     width: 42px;
     height: 42px;
@@ -125,9 +141,17 @@ export const Profile = styled.div`
 export const Footer = styled.div`
   width: 100%;
   max-width: 156px;
+  @media (max-width: 767px) {
+    max-width: 118px;
+    padding-right: 10px;
+  }
   .button {
     border-radius: 30px;
     height: 43px;
+    @media (max-width: 767px) {
+      height: 40px;
+      font-size: 1rem;
+    }
   }
   button {
     width: 100%;
@@ -202,6 +226,10 @@ export const Morecontent = styled.div`
     margin: 4px 0;
   }
   cursor: pointer;
+  @media (max-width: 767px) {
+    top: 80px;
+    left: 18px;
+  }
 `;
 
 export const ContentItem = styled.div`

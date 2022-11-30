@@ -17,7 +17,10 @@ import {
   BurgerSection,
   BurgerSubSection,
   LogoSection,
-  SpaceSection,
+  LogoSearchSection,
+  WrapperSize,
+  InitialsWrapperNew
+
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -45,10 +48,10 @@ const NavBar = ({ search, buttonType }) => {
 
   const [isGood, setIsGood] = useState(false);
   const [modal, setModal] = useState(false);
-  const [openmodal, setOpenModal] = useState(false);
-  function toggleabc(data) {
-    setOpenModal(data);
-  }
+  // const [openmodal, setOpenModal] = useState(false);
+  // function toggleabc(data) {
+  //   setOpenModal(data);
+  // }
   function toggleab(data) {
     setModal(data);
   }
@@ -87,14 +90,74 @@ const NavBar = ({ search, buttonType }) => {
   return (
     <NavSection>
       <ToastContainer />
-      <BurgerSection
-        onClick={() => {
-          toggleabc(true);
-        }}
-      >
-        <Burger />
+      <BurgerSection >
+      {/* <Burger/> */}
+      <ImageSubSection>
+            <SecondSubSection>
+              <Profile>
+                <h4>
+                  {firstName} {lastName}
+                </h4>
+              </Profile>
+              <button className="button" onClick={() => setIsGood(!isGood)}>
+                <InitialsWrapperNew>
+                  <WrapperSize>
+                    {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
+                  </WrapperSize>
+                </InitialsWrapperNew>
+              </button>
+            </SecondSubSection>
+            {isGood ? (
+              <Morecontent onClick={() => toggleab(true)}>
+                <Logout
+                  style={{
+                    width: "15px",
+                    marginRight: "0.25rem",
+                  }}
+                />
+                <ContentItem>Logout</ContentItem>
+              </Morecontent>
+            ) : null}
+          </ImageSubSection>
+          <LogoSearchSection>
         <LogoSection>Checklist</LogoSection>
-        <SpaceSection></SpaceSection>
+        {search && (
+            <IconInputField>
+              <TextInput
+                name=""
+                type="text"
+                placeholder="Search"
+                control={control}
+              />
+              <IconWrapper>
+                <SearchNew />
+              </IconWrapper>
+            </IconInputField>
+          )}
+          
+          </LogoSearchSection>
+          {search && (
+            <Footer>
+              <Button
+                className="button"
+                handleClick={() => newTemplateHandler()}
+              >
+                {`+ ${buttonType}`}
+              </Button>
+            </Footer>
+          )}
+          {state?.showEditable && (
+            <div>
+              <Button
+                handleClick={() =>
+                  dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
+                }
+              >
+                {`${taskEditable ? "Done" : "Edit"}`}
+              </Button>
+            </div>
+          )}
+
       </BurgerSection>
 
       <SubNavSection>
@@ -170,12 +233,8 @@ const NavBar = ({ search, buttonType }) => {
           togglefunction={toggleab}
           notify={logout}
         />
-        <AlertModal
-          modalType="burger"
-          isOpen={openmodal}
-          togglefunction={toggleabc}
-          notify={BurgerModal}
-        />
+         
+
       </SubNavSection>
     </NavSection>
   );
