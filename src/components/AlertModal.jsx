@@ -7,7 +7,6 @@ import { ButtonWrapper } from "styles/components/AlertModal";
 
 const customStyles = {
   content: {
-  
     top: "50%",
     left: "50%",
     right: "auto",
@@ -16,7 +15,7 @@ const customStyles = {
     borderRadius: "19px",
     transform: "translate(-50%, -50%)",
     padding: "15px 35px",
-    width: "auto",
+    width: "18vw",
     height: "auto",
     overflowY: "hidden",
   },
@@ -36,12 +35,10 @@ const AlertModal = ({
       style={customStyles}
       contentLabel="Example Modal"
     >
-    
       <ButtonWrapper>
         <button className="button" onClick={() => togglefunction(false)}>
           x
         </button>
-  
       </ButtonWrapper>
       {modalType === "logout" && (
         <LogoutModal togglefunction={togglefunction} notify={notify} />
@@ -49,8 +46,8 @@ const AlertModal = ({
       {modalType === "forgot" && (
         <ForgotPassword notify={notify} togglefunction={togglefunction} />
       )}
-        {modalType === "burger" && (
-        <BurgerModal notify={notify} togglefunction={togglefunction}/>
+      {modalType === "burger" && (
+        <BurgerModal notify={notify} togglefunction={togglefunction} />
       )}
       {/* {modalType === "forgot" && (
         <EditTask

@@ -22,6 +22,11 @@ export const FirstSection = styled.div`
     display: none;
   }
 `;
+
+export const SpaceSection = styled.div`
+  width: 100%;
+  max-width: 80px;
+`;
 export const SecondSection = styled.div`
   position: relative;
   display: flex;
@@ -60,7 +65,7 @@ export const LogoSection = styled.div`
     color: #1d2e88;
     font-size: 3vw;
     font-weight: 700;
-    max-width: 627px;
+    max-width: 625px;
   }
 `;
 export const BurgerSection = styled.div`
@@ -193,7 +198,7 @@ export const IconInputField = styled.div`
   }
   @media (max-width: 1012px) {
     width: 100%;
-    max-width: 253px;
+    max-width: 234px;
     input {
       width: unset;
       max-width: unset;

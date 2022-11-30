@@ -11,6 +11,7 @@ export const ButtonContainer = styled.div`
   }
 
   .button {
+    opacity: 0.85;
     display: flex;
     align-items: center;
     justify-content: center;

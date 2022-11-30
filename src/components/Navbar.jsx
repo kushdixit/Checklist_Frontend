@@ -20,6 +20,7 @@ import {
   LogoSearchSection,
   WrapperSize,
   InitialsWrapperNew
+
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -156,8 +157,9 @@ const NavBar = ({ search, buttonType }) => {
               </Button>
             </div>
           )}
+
       </BurgerSection>
-    
+
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
@@ -232,6 +234,7 @@ const NavBar = ({ search, buttonType }) => {
           notify={logout}
         />
          
+
       </SubNavSection>
     </NavSection>
   );
