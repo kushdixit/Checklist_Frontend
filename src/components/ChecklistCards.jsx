@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import FirstImage from "assets/images/checklist.svg";
 import SecondImage from "assets/images/secondimage.jpg";
 import ThirdImage from "assets/images/thirdimage.jpg";
+import DashboardIcon from "assets/SVG/DashboardIcon";
+
 import { useDispatch, useSelector } from "react-redux";
 import FourthImage from "assets/images/firstimage.jpg";
 import Checklist from "assets/images/checklist.svg";
