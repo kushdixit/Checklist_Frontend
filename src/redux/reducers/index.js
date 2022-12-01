@@ -5,6 +5,7 @@ import checklist from "redux/reducers/checklist";
 import task from "redux/reducers/task";
 import Template from "redux/reducers/template";
 import editable from "redux/reducers/editable";
+import search from "redux/reducers/searched";
 
 export default combineReducers({
   loader,
@@ -13,4 +14,5 @@ export default combineReducers({
   task,
   Template,
   editable,
+  search,
 });

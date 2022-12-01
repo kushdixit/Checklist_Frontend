@@ -24,17 +24,19 @@ import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchNew from "assets/SVG/SearchNew";
+import Cancel from "assets/SVG/cancel";
 import { addTempChecklist } from "redux/actions/checklist";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { SET_IS_EDITABLE } from "redux/actions/action_types";
+import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
 import Logout from "assets/SVG/Logout";
 import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
 
 const NavBar = ({ search, buttonType }) => {
   const [logoutModal, setLogoutModal] = useState(false);
+  const [iconHandle, setIconHandle] = useState();
   const [modal, setModal] = useState(false);
   const wrapperRef = useRef();
   const navigate = useNavigate();
@@ -65,14 +67,20 @@ const NavBar = ({ search, buttonType }) => {
   }
 
   const {
-    handleSubmit,
-    formState: { errors },
-    control,
+    handleSubmit: submitData,
+    control: formControl,
+    watch,
   } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
-    shouldFocusError: true,
   });
+
+  useEffect(() => {
+    const subscription = watch((value) =>
+      setIconHandle(value?.listSearch.length)
+    );
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   const logout = () => {
     localStorage.removeItem("access_token");
@@ -95,11 +103,13 @@ const NavBar = ({ search, buttonType }) => {
     }
   };
 
+  const searchData = async (data) =>
+    dispatch({ type: SET_SEARCH, payload: data?.listSearch });
+
   return (
     <NavSection>
       <ToastContainer />
       <BurgerSection>
-        {/* <Burger/> */}
         <ImageSubSection>
           <SecondSubSection>
             <Profile>
@@ -133,17 +143,20 @@ const NavBar = ({ search, buttonType }) => {
         <LogoSearchSection>
           <LogoSection>Checklist</LogoSection>
           {search && (
-            <IconInputField>
-              <TextInput
-                name=""
-                type="text"
-                placeholder="Search"
-                control={control}
-              />
-              <IconWrapper>
-                <SearchNew />
-              </IconWrapper>
-            </IconInputField>
+            <form
+              style={{ width: "100%", display: "flex" }}
+              onSubmit={submitData(searchData)}
+            >
+              <IconInputField>
+                <TextInput
+                  control={formControl}
+                  name="listSearch"
+                  type="text"
+                  placeholder="Search"
+                  handlekeyPress={(e) => searchData()}
+                />
+              </IconInputField>
+            </form>
           )}
         </LogoSearchSection>
         {search && (
@@ -173,15 +186,39 @@ const NavBar = ({ search, buttonType }) => {
         <SecondSection>
           {search && (
             <IconInputField>
-              <TextInput
-                name=""
-                type="text"
-                placeholder="Search"
-                control={control}
-              />
-              <IconWrapper>
-                <SearchNew />
-              </IconWrapper>
+              <form
+                style={{ width: "100%", display: "flex" }}
+                onSubmit={submitData(searchData)}
+              >
+                <IconInputField>
+                  <TextInput
+                    name="listSearch"
+                    type="text"
+                    placeholder="Search"
+                    control={formControl}
+                    onChange={() => {
+                      console.log("dhj");
+                    }}
+                    handlekeyPress={(e) => searchData()}
+                  />
+                </IconInputField>
+                <IconWrapper>
+                  <Button
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      boxShadow: "none",
+                    }}
+                  >
+                    {(iconHandle === 0 || iconHandle === undefined) && (
+                      <SearchNew />
+                    )}
+                  </Button>
+                  {iconHandle > 1 && (
+                    <Cancel onClick={() => console.log("pressed")} />
+                  )}
+                </IconWrapper>
+              </form>
             </IconInputField>
           )}
           {search && (

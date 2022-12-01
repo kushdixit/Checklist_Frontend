@@ -237,10 +237,9 @@ export const ContentItem = styled.div`
 `;
 
 export const IconWrapper = styled.div`
-  position: absolute;
-
-  right: 12px;
-  top: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const InitialsWrapper = styled.div`
