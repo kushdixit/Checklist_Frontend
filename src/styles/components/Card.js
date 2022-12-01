@@ -132,8 +132,8 @@ export const SubSection = styled.div`
   box-shadow: rgb(163 183 223) 0px 0px 3px;
   border-radius: 10px;
   height: auto;
-  max-width: 400px;
-  padding: 0rem 1rem;
+  max-width: 313px;
+  padding: 20px 0px;
 `;
 export const SubSectionNew = styled.div`
   margin: 0 auto;
@@ -151,16 +151,15 @@ export const SubSectionNew = styled.div`
   }
 `;
 export const Image = styled.div`
-  width: 100%;
   align-items: center;
   vertical-align: middle;
   display: flex;
 
-  height: 170px;
   justify-content: center;
 
-  max-width: 120px;
-
+  svg {
+    width: 60px;
+  }
   img {
     height: 90px;
     width: 90px;
@@ -173,6 +172,7 @@ export const Wrap = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding: 0 13px;
 `;
 export const ColonImage = styled.div`
   padding: 0rem 1rem 0rem 0rem;
@@ -186,7 +186,7 @@ export const WrapSubSection = styled.div`
     margin: 0;
     padding: 0;
     font-weight: 600;
-    font-size: 21px;
+    font-size: 17px;
   }
   h3 {
     color: #505050;
