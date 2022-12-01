@@ -22,7 +22,7 @@ import checklisticon from "assets/images/checklisticon.jpg";
 import Colon from "assets/SVG/Colon";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
-
+import DashboardIcon from "assets/SVG/DashboardIcon";
 const Card = ({ item, index, Checklist, showEditable }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
@@ -56,12 +56,13 @@ const Card = ({ item, index, Checklist, showEditable }) => {
         }}
       >
         <Image>
-          <img
+      <DashboardIcon/>
+          {/* <img
             src={checklisticon}
             alt="Rectangle"
             width={"100%"}
             height={"auto"}
-          />{" "}
+          />{" "} */}
         </Image>
         <WrapSection>
           <WrapSubSection>
@@ -78,7 +79,7 @@ const Card = ({ item, index, Checklist, showEditable }) => {
         </WrapSection>
       </Wrap>
       {/* {isEditable && ( */}
-      <ColonImage>
+      {/* <ColonImage>
         <ShortContainer onClick={() => setIsOpenSort(true)}>
           <ShortBy>
             <Colon onClick={() => toggleab(!modal)} />
@@ -107,7 +108,7 @@ const Card = ({ item, index, Checklist, showEditable }) => {
             )}
           </ShortBy>
         </ShortContainer>
-      </ColonImage>
+      </ColonImage> */}
       {/* )} */}
     </SubSection>
   );
