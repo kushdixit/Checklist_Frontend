@@ -63,7 +63,7 @@ export const LogoSection = styled.div`
 
     justify-content: center;
     color: #1d2e88;
-    font-size: 3vw;
+    font-size: 2rem;
     font-weight: 700;
     max-width: 625px;
   }
@@ -72,16 +72,22 @@ export const BurgerSection = styled.div`
   display: none;
   @media (max-width: 767px) {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    gap: 63px;
+    gap: 1rem;
   }
+`;
+export const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: inherit;
+  width: 100%;
 `;
 
 export const InitialsWrapperNew = styled.div`
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,12 +150,15 @@ export const Footer = styled.div`
   @media (max-width: 767px) {
     max-width: 118px;
     padding-right: 10px;
+    display: flex;
+    justify-content: end;
   }
   .button {
     border-radius: 30px;
     height: 43px;
     @media (max-width: 767px) {
-      height: 40px;
+      height: 3rem;
+      width: 3rem;
       font-size: 1rem;
     }
   }

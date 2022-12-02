@@ -19,6 +19,7 @@ import {
   LogoSearchSection,
   WrapperSize,
   InitialsWrapperNew,
+  HeaderWrapper,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -35,13 +36,18 @@ import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
 
 const NavBar = ({ search, buttonType }) => {
-  const [logoutModal, setLogoutModal] = useState(false);
-  const [iconHandle, setIconHandle] = useState();
-  const [modal, setModal] = useState(false);
   const wrapperRef = useRef();
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch();
+  const [logoutModal, setLogoutModal] = useState(false);
+  const [iconHandle, setIconHandle] = useState();
+  const [modal, setModal] = useState(false);
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const taskEditable = useSelector((state) => state.editable?.isEditable);
+  const YourTemplates = useSelector((state) => state.task?.allChecklist);
+  const firstName = useSelector((state) => state.auth?.userData?.firstName);
+  const lastName = useSelector((state) => state.auth?.userData?.lastName);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -55,12 +61,6 @@ const NavBar = ({ search, buttonType }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [wrapperRef]);
-
-  const userEmail = useSelector((state) => state.auth?.userData?.email);
-  const taskEditable = useSelector((state) => state.editable?.isEditable);
-  const YourTemplates = useSelector((state) => state.task?.allChecklist);
-  const firstName = useSelector((state) => state.auth?.userData?.firstName);
-  const lastName = useSelector((state) => state.auth?.userData?.lastName);
 
   function toggleab(data) {
     setModal(data);
@@ -110,75 +110,71 @@ const NavBar = ({ search, buttonType }) => {
     <NavSection>
       <ToastContainer />
       <BurgerSection>
-        <ImageSubSection>
-          <SecondSubSection>
-            <Profile>
-              <h4>
-                {firstName} {lastName}
-              </h4>
-            </Profile>
-            <button
-              className="button"
-              onClick={() => setLogoutModal(!logoutModal)}
-            >
-              <InitialsWrapperNew>
-                <WrapperSize>
-                  {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
-                </WrapperSize>
-              </InitialsWrapperNew>
-            </button>
-          </SecondSubSection>
-          {logoutModal ? (
-            <Morecontent onClick={() => toggleab(true)}>
-              <Logout
-                style={{
-                  width: "15px",
-                  marginRight: "0.25rem",
-                }}
-              />
-              <ContentItem>Logout</ContentItem>
-            </Morecontent>
-          ) : null}
-        </ImageSubSection>
-        <LogoSearchSection>
-          <LogoSection>Checklist</LogoSection>
-          {search && (
-            <form
-              style={{ width: "100%", display: "flex" }}
-              onSubmit={submitData(searchData)}
-            >
-              <IconInputField>
-                <TextInput
-                  control={formControl}
-                  name="listSearch"
-                  type="text"
-                  placeholder="Search"
-                  handlekeyPress={(e) => searchData()}
+        <HeaderWrapper>
+          <ImageSubSection>
+            <SecondSubSection>
+              <button
+                className="button"
+                onClick={() => setLogoutModal(!logoutModal)}
+              >
+                <InitialsWrapperNew>
+                  <WrapperSize>
+                    {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
+                  </WrapperSize>
+                </InitialsWrapperNew>
+              </button>
+            </SecondSubSection>
+            {logoutModal ? (
+              <Morecontent onClick={() => toggleab(true)}>
+                <Logout
+                  style={{
+                    width: "15px",
+                    marginRight: "0.25rem",
+                  }}
                 />
-              </IconInputField>
-            </form>
+                <ContentItem>Logout</ContentItem>
+              </Morecontent>
+            ) : null}
+          </ImageSubSection>
+          <LogoSearchSection>
+            <LogoSection>Checklist</LogoSection>
+            {search && (
+              <form onSubmit={submitData(searchData)}>
+                <IconInputField>
+                  <TextInput
+                    control={formControl}
+                    name="listSearch"
+                    type="text"
+                    placeholder="Search"
+                    handlekeyPress={(e) => searchData()}
+                  />
+                </IconInputField>
+              </form>
+            )}
+          </LogoSearchSection>
+          {search && (
+            <Footer>
+              <Button
+                className="button"
+                handleClick={() => newTemplateHandler()}
+              >
+                {`+`}
+              </Button>
+            </Footer>
           )}
-        </LogoSearchSection>
-        {search && (
-          <Footer>
-            <Button className="button" handleClick={() => newTemplateHandler()}>
-              {`+ ${buttonType}`}
-            </Button>
-          </Footer>
-        )}
-        {state?.showEditable && (
-          <div>
-            <Button
-              handleClick={() =>
-                dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
-              }
-            >
-              {`${taskEditable ? "Done" : "Edit"}`}
-            </Button>
-          </div>
-        )}
+          {state?.showEditable && (
+            <div>
+              <Button
+                handleClick={() =>
+                  dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
+                }
+              >
+                {`${taskEditable ? "Done" : "Edit"}`}
+              </Button>
+            </div>
+          )}
+        </HeaderWrapper>
       </BurgerSection>
-
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
