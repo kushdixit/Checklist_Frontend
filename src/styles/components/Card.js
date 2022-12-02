@@ -9,6 +9,9 @@ export const FirstSection = styled.div`
   @media (max-width: 1012px) {
     justify-content: center;
   }
+  @media (max-width: 1722px) {
+    padding: 0 22px;
+  }
 `;
 
 export const WrapSubSectionNew = styled.div`
@@ -145,6 +148,9 @@ export const SubSectionNew = styled.div`
   font-weight: 700;
   h2 {
     padding-left: 10px;
+    @media (max-width: 1722px) {
+      padding: 0 30px;
+    }
   }
   @media (max-width: 1012px) {
     width: unset;
