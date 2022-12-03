@@ -33,7 +33,7 @@ export const SecondSection = styled.div`
   align-items: center;
   gap: 55px;
   width: 100%;
-  max-width: 1494px;
+  max-width: 1446px;
   justify-content: right;
   @media (max-width: 767px) {
     display: none;
@@ -77,12 +77,28 @@ export const BurgerSection = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    form {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+`;
+
+export const SearchSection = styled.div`
+  @media (max-width: 767px) {
+    width: 100%;
   }
 `;
 export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: inherit;
   width: 100%;
+  @media (max-width: 1722px) {
+    padding: 0 30px;
+  }
+  @media (max-width: 767px) {
+    padding: 0 0;
+  }
 `;
 
 export const InitialsWrapperNew = styled.div`
@@ -97,7 +113,7 @@ export const InitialsWrapperNew = styled.div`
 `;
 
 export const WrapperSize = styled.div`
-  font-size: 0.8rem;
+  font-size: 1.1rem;
 `;
 export const BurgerSubSection = styled.div``;
 export const SecondSubSection = styled.div`
@@ -118,6 +134,9 @@ export const SubNavSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1722px) {
+    padding: 0 30px;
+  }
 `;
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
@@ -149,7 +168,7 @@ export const Footer = styled.div`
   max-width: 156px;
   @media (max-width: 767px) {
     max-width: 118px;
-    padding-right: 10px;
+
     display: flex;
     justify-content: end;
   }
@@ -159,7 +178,7 @@ export const Footer = styled.div`
     @media (max-width: 767px) {
       height: 3rem;
       width: 3rem;
-      font-size: 1rem;
+      font-size: 2rem;
     }
   }
   button {
@@ -207,10 +226,25 @@ export const IconInputField = styled.div`
   }
   @media (max-width: 1012px) {
     width: 100%;
-    max-width: 234px;
+    max-width: 212px;
     input {
       width: unset;
       max-width: unset;
+    }
+  }
+  @media (max-width: 1120px) {
+    width: 100%;
+    max-width: 212px;
+    input {
+      width: unset;
+      max-width: unset;
+    }
+  }
+  @media (max-width: 767px) {
+    input {
+      width: 100%;
+
+      justify-content: center;
     }
   }
 `;
