@@ -20,7 +20,8 @@ import {
   WrapperSize,
   InitialsWrapperNew,
   HeaderWrapper,
-  SearchSection
+  SearchSection,
+  IconWrapperNew
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -174,11 +175,14 @@ const NavBar = ({ search, buttonType }) => {
                     placeholder="Search"
                     handlekeyPress={(e) => searchData()}
                   />
+                   
                 </IconInputField>
+               
               </form>
             )}
             </SearchSection>
       </BurgerSection>
+   
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
