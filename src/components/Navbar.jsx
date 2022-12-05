@@ -20,7 +20,7 @@ import {
   WrapperSize,
   InitialsWrapperNew,
   HeaderWrapper,
-  SearchSection
+  SearchSection,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -43,6 +43,7 @@ const NavBar = ({ search, buttonType }) => {
   const dispatch = useDispatch();
   const [logoutModal, setLogoutModal] = useState(false);
   const [iconHandle, setIconHandle] = useState();
+  const [updateSearch, SetUpdateSearch] = useState("");
   const [modal, setModal] = useState(false);
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const taskEditable = useSelector((state) => state.editable?.isEditable);
@@ -83,6 +84,12 @@ const NavBar = ({ search, buttonType }) => {
     return () => subscription.unsubscribe();
   }, [watch]);
 
+  useEffect(() => {
+    if (updateSearch == "") {
+      dispatch({ type: SET_SEARCH, payload: "" });
+    } else dispatch({ type: SET_SEARCH, payload: updateSearch });
+  }, [updateSearch]);
+
   const logout = () => {
     localStorage.removeItem("access_token");
     navigate("/");
@@ -104,8 +111,15 @@ const NavBar = ({ search, buttonType }) => {
     }
   };
 
-  const searchData = async (data) =>
+  const searchData = (data) => {
     dispatch({ type: SET_SEARCH, payload: data?.listSearch });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Backspace") {
+      SetUpdateSearch((prev) => prev.slice(0, -1));
+    }
+  };
 
   return (
     <NavSection>
@@ -120,7 +134,8 @@ const NavBar = ({ search, buttonType }) => {
               >
                 <InitialsWrapperNew>
                   <WrapperSize>
-                    {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
+                    <h4>{firstName[0].toUpperCase()}</h4>
+                    <h4> {lastName[0].toUpperCase()}</h4>
                   </WrapperSize>
                 </InitialsWrapperNew>
               </button>
@@ -139,7 +154,6 @@ const NavBar = ({ search, buttonType }) => {
           </ImageSubSection>
           <LogoSearchSection>
             <LogoSection>Checklist</LogoSection>
-           
           </LogoSearchSection>
           {search && (
             <Footer>
@@ -147,7 +161,7 @@ const NavBar = ({ search, buttonType }) => {
                 className="button"
                 handleClick={() => newTemplateHandler()}
               >
-                {`+`}
+                +
               </Button>
             </Footer>
           )}
@@ -164,20 +178,20 @@ const NavBar = ({ search, buttonType }) => {
           )}
         </HeaderWrapper>
         <SearchSection>
-        {search && (
-              <form onSubmit={submitData(searchData)}>
-                <IconInputField>
-                  <TextInput
-                    control={formControl}
-                    name="listSearch"
-                    type="text"
-                    placeholder="Search"
-                    handlekeyPress={(e) => searchData()}
-                  />
-                </IconInputField>
-              </form>
-            )}
-            </SearchSection>
+          {search && (
+            <form onSubmit={submitData(searchData)}>
+              <IconInputField>
+                <TextInput
+                  control={formControl}
+                  name="listSearch"
+                  type="text"
+                  placeholder="Search"
+                  handlekeyPress={(e) => searchData()}
+                />
+              </IconInputField>
+            </form>
+          )}
+        </SearchSection>
       </BurgerSection>
       <SubNavSection>
         <FirstSection>
@@ -196,10 +210,10 @@ const NavBar = ({ search, buttonType }) => {
                     type="text"
                     placeholder="Search"
                     control={formControl}
-                    onChange={() => {
-                      console.log("dhj");
+                    handleKeyDown={handleKeyDown}
+                    handlekeyPress={(e) => {
+                      SetUpdateSearch((prev) => prev + e.key);
                     }}
-                    handlekeyPress={(e) => searchData()}
                   />
                 </IconInputField>
                 <IconWrapper>
@@ -210,13 +224,8 @@ const NavBar = ({ search, buttonType }) => {
                       boxShadow: "none",
                     }}
                   >
-                    {(iconHandle === 0 || iconHandle === undefined) && (
-                      <SearchNew />
-                    )}
+                    <SearchNew />
                   </Button>
-                  {iconHandle > 1 && (
-                    <Cancel onClick={() => console.log("pressed")} />
-                  )}
                 </IconWrapper>
               </form>
             </IconInputField>

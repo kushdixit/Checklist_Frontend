@@ -30,7 +30,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
   const taskEditable = useSelector((state) => state.editable?.isEditable);
 
   useEffect(() => {
-    function handleClickOutside(event: { target: any }) {
+    function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
         setIsOpenSort(false);
       }
@@ -111,7 +111,9 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
               placeholder={task?.subTaskName}
               control={control}
               disabled={!taskEditable}
-              handlekeyPress={(e) => updateSubTaskHandler()}
+              handlekeyPress={(e) =>
+                e.key === "Enter" && updateSubTaskHandler()
+              }
             />
           </IconInputField>
           {taskEditable && (

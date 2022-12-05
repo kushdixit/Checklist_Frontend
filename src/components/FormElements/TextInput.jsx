@@ -5,6 +5,7 @@ import Eye from "../../assets/SVG/Eye";
 
 const TextInput = (props) => {
   const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="app-input-text">
       <Controller
@@ -28,7 +29,8 @@ const TextInput = (props) => {
             value={props?.value || value}
             rules={rules}
             name={props?.name}
-            onKeyPress={(e) => e.key === "Enter" && props?.handlekeyPress(e)}
+            onKeyPress={(e) => props?.handlekeyPress(e)}
+            onKeyDown={(e) => props?.handleKeyDown(e)}
           />
         )}
         name={props?.name}

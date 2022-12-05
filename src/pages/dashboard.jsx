@@ -46,8 +46,32 @@ const Dashboard = () => {
         item.checklistName.toLowerCase().includes(searchedValue?.toLowerCase())
       );
       setSearchedData(res);
-    }
+    } else setSearchedData([]);
   }, [searchedValue]);
+
+  console.log("hahaha", searchedData);
+
+  // const data = [{
+  //   userDetails:{
+  //     name:'name';
+  //     profile?:profile
+  //   },
+  //   pastAppointment:[{
+  //     hospitalData:{},
+  //     Date:'',
+  //     appointmentStatus:'',
+  //     slot_Timming:'',
+  //   }],
+  //   hospitalData:[{
+  //     hospitalName:'',
+  //     speciality:'',
+  //     established:'',
+  //     review:'',
+  //     rating:'',
+  //     dailyPatient:'',
+  //     address:'',
+  //   }]
+  // }]
 
   return (
     <BodyContainer>

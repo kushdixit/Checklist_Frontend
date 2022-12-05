@@ -117,7 +117,9 @@ const CheckList = () => {
                 control={checklistFormControl}
                 onChange={onChange}
                 disabled={!taskEditable}
-                handlekeyPress={(e) => editChecklistHandler()}
+                handlekeyPress={(e) =>
+                  e.key === "Enter" && editChecklistHandler()
+                }
               />
             </IconInputField>
             {taskEditable && (

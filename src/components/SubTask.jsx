@@ -38,7 +38,7 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
             type="text"
             placeholder="Add Sub Task"
             control={control}
-            handlekeyPress={(e) => subTaskformData()}
+            handlekeyPress={(e) => e.key === "Enter" && subTaskformData()}
           />
         </IconInputField>
       </form>

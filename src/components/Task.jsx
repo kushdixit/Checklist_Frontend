@@ -140,7 +140,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
               disabled={!taskEditable}
               ref={register}
               color={taskEditable ? "transparent" : "1d2e88"}
-              handlekeyPress={(e) => formData()}
+              handlekeyPress={(e) => e.key === "Enter" && formData()}
             />
           </IconInputField>
           {taskEditable && (
