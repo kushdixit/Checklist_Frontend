@@ -46,6 +46,7 @@ export const HeadingText = styled.div`
   font-weight: 700;
   display: flex;
   align-items: center;
+  padding-right: 10px;
 `;
 
 export const LogoSearchSection = styled.div`
@@ -87,6 +88,10 @@ export const BurgerSection = styled.div`
 export const SearchSection = styled.div`
   @media (max-width: 767px) {
     width: 100%;
+    form {
+      width: 100%;
+      display: flex;
+    }
   }
 `;
 export const HeaderWrapper = styled.div`
@@ -168,7 +173,7 @@ export const Footer = styled.div`
   max-width: 156px;
   @media (max-width: 767px) {
     max-width: 118px;
-
+    margin-right: 10px;
     display: flex;
     justify-content: end;
   }
@@ -241,13 +246,19 @@ export const IconInputField = styled.div`
     }
   }
   @media (max-width: 767px) {
+    width: 100%;
+    max-width: 989px;
+    text-align: center;
+    align-items: center;
+
     input {
       width: 100%;
 
-      justify-content: center;
+      max-width: 573px;
     }
   }
 `;
+
 export const Morecontent = styled.div`
   display: flex;
   padding: 1rem;
@@ -284,7 +295,7 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+export const IconWrapperNew = styled.div``;
 export const InitialsWrapper = styled.div`
   width: 4rem;
   height: 4rem;

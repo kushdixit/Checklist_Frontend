@@ -21,6 +21,7 @@ import {
   InitialsWrapperNew,
   HeaderWrapper,
   SearchSection,
+  IconWrapperNew,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -193,6 +194,7 @@ const NavBar = ({ search, buttonType }) => {
           )}
         </SearchSection>
       </BurgerSection>
+
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
