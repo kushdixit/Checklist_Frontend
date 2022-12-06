@@ -137,6 +137,10 @@ export const SubSection = styled.div`
   height: auto;
   max-width: 313px;
   padding: 20px 0px;
+  @media (max-width: 723px) {
+    width: 100%;
+    max-width: 43.6vw;
+  }
 `;
 export const SubSectionNew = styled.div`
   margin: 0 auto;
@@ -149,14 +153,14 @@ export const SubSectionNew = styled.div`
 
   h2 {
     padding-left: 10px;
-    padding-right: 20px;
+
     @media (max-width: 1722px) {
       padding: 0 30px;
     }
   }
-  @media (max-width: 1012px) {
+  /* @media (max-width: 1012px) {
     width: unset;
-  }
+  } */
 `;
 export const Image = styled.div`
   align-items: center;
