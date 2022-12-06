@@ -13,7 +13,6 @@ export const getAllTemplate = () => async (dispatch) => {
 };
 
 export const getAllTemplateByEmail = (userEmail) => async (dispatch) => {
-  console.log("here---");
   try {
     const response = await axioPath.get(
       `v1/Template/AllTemplateAndCheckListByEmail/${userEmail}`,

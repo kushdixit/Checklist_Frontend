@@ -1,10 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
-import {
-  ShortBy,
-  SortWrapper,
-  ShortContainer,
-  SortTextDiv,
-} from "styles/pages/Task";
+import React from "react";
 import {
   SubSection,
   Image,
@@ -12,39 +6,17 @@ import {
   WrapSubSection,
   WrapSubSectionNew,
   WrapSection,
-  ColonImage,
 } from "styles/components/Card";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SET_IS_EDITABLE } from "redux/actions/action_types";
-import newchecklist from "assets/images/newchecklist.jpg";
-import checklisticon from "assets/images/checklisticon.jpg";
-import Colon from "assets/SVG/Colon";
-import Edit from "assets/SVG/Edit";
-import Delete from "assets/SVG/Delete";
 import DashboardIcon from "assets/SVG/DashboardIcon";
-const Card = ({ item, index, Checklist, showEditable }) => {
-  const [modal, setModal] = useState(false);
-  const [isOpenSort, setIsOpenSort] = useState(false);
+import CardColon from "./CardColon";
+import { SET_IS_EDITABLE } from "redux/actions/action_types";
+
+const Card = ({ item, index, Checklist, showEditable, cardType }) => {
   const dispatch = useDispatch();
-  const wrapperRef = useRef();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
-        setIsOpenSort(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [wrapperRef]);
-  function toggleab(data) {
-    setModal(data);
-  }
   return (
     <SubSection key={index}>
       <Wrap
@@ -56,13 +28,7 @@ const Card = ({ item, index, Checklist, showEditable }) => {
         }}
       >
         <Image>
-      <DashboardIcon/>
-          {/* <img
-            src={checklisticon}
-            alt="Rectangle"
-            width={"100%"}
-            height={"auto"}
-          />{" "} */}
+          <DashboardIcon />
         </Image>
         <WrapSection>
           <WrapSubSection>
@@ -78,38 +44,7 @@ const Card = ({ item, index, Checklist, showEditable }) => {
           </WrapSubSectionNew>
         </WrapSection>
       </Wrap>
-      {/* {isEditable && ( */}
-      {/* <ColonImage>
-        <ShortContainer onClick={() => setIsOpenSort(true)}>
-          <ShortBy>
-            <Colon onClick={() => toggleab(!modal)} />
-            {isOpenSort && (
-              <SortWrapper ref={wrapperRef}>
-                <SortTextDiv
-                  onClick={() => {
-                    dispatch({ type: SET_IS_EDITABLE, payload: false });
-                    navigate("/check-list", {
-                      state: { id: item.id, showEditable: true },
-                    });
-                  }}
-                >
-                  <Edit />
-                  View CheckList
-                </SortTextDiv>
-                <SortTextDiv
-                  onClick={
-                    () => console.log("sad")
-                    // dispatch(deleteChecklist(item.id))
-                  }
-                >
-                  <Delete /> Delete CheckList
-                </SortTextDiv>
-              </SortWrapper>
-            )}
-          </ShortBy>
-        </ShortContainer>
-      </ColonImage> */}
-      {/* )} */}
+      <CardColon item={item} cardType={cardType} />
     </SubSection>
   );
 };

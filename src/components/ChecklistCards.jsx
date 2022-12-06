@@ -128,6 +128,7 @@ const ChecklistCards = ({ item }) => {
                   item={subItem}
                   Checklist={Checklist}
                   showEditable={false}
+                  cardType="default"
                 />
               );
             })}

@@ -35,6 +35,7 @@ const YourSearch = ({ searchedData }) => {
                   item={subItem}
                   Checklist={Checklist}
                   showEditable={true}
+                  cardType="search"
                 />
               );
             })}

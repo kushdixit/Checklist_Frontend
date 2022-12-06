@@ -49,30 +49,6 @@ const Dashboard = () => {
     } else setSearchedData([]);
   }, [searchedValue]);
 
-  console.log("hahaha", searchedData);
-
-  // const data = [{
-  //   userDetails:{
-  //     name:'name';
-  //     profile?:profile
-  //   },
-  //   pastAppointment:[{
-  //     hospitalData:{},
-  //     Date:'',
-  //     appointmentStatus:'',
-  //     slot_Timming:'',
-  //   }],
-  //   hospitalData:[{
-  //     hospitalName:'',
-  //     speciality:'',
-  //     established:'',
-  //     review:'',
-  //     rating:'',
-  //     dailyPatient:'',
-  //     address:'',
-  //   }]
-  // }]
-
   return (
     <BodyContainer>
       <ResetPassword isOpen={modal} togglefunction={toggleab} />
