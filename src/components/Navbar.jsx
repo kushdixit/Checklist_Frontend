@@ -22,6 +22,7 @@ import {
   HeaderWrapper,
   SearchSection,
   IconWrapperNew,
+  IconInputFieldNew
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -124,7 +125,7 @@ const NavBar = ({ search, buttonType }) => {
 
   return (
     <NavSection>
-      <ToastContainer />
+   
       <BurgerSection>
         <HeaderWrapper>
           <ImageSubSection>
@@ -181,7 +182,7 @@ const NavBar = ({ search, buttonType }) => {
         <SearchSection>
           {search && (
             <form onSubmit={submitData(searchData)}>
-              <IconInputField>
+              <IconInputFieldNew>
                 <TextInput
                   control={formControl}
                   name="listSearch"
@@ -189,12 +190,12 @@ const NavBar = ({ search, buttonType }) => {
                   placeholder="Search"
                   handlekeyPress={(e) => searchData()}
                 />
-              </IconInputField>
+              </IconInputFieldNew>
             </form>
           )}
         </SearchSection>
       </BurgerSection>
-
+     
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>

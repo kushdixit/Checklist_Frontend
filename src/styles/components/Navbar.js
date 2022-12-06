@@ -7,7 +7,6 @@ export const NavSection = styled.div`
   width: 100%;
   max-width: 1735px;
   @media (max-width: 767px) {
-    display: unset;
   }
 `;
 export const FirstSection = styled.div`
@@ -86,11 +85,12 @@ export const BurgerSection = styled.div`
 `;
 
 export const SearchSection = styled.div`
+  display: none;
   @media (max-width: 767px) {
+    display: flex;
     width: 100%;
     form {
       width: 100%;
-      display: flex;
     }
   }
 `;
@@ -118,12 +118,13 @@ export const InitialsWrapperNew = styled.div`
 `;
 
 export const WrapperSize = styled.div`
+  display: flex;
   font-size: 1.1rem;
 `;
 export const BurgerSubSection = styled.div``;
 export const SecondSubSection = styled.div`
   display: flex;
-  margin-left: 10px;
+  margin-left: 20px;
   img {
     width: 42px;
     height: 42px;
@@ -172,13 +173,14 @@ export const Footer = styled.div`
   width: 100%;
   max-width: 156px;
   @media (max-width: 767px) {
-    max-width: 118px;
-    margin-right: 10px;
+    max-width: 68px;
+
     display: flex;
     justify-content: end;
   }
   .button {
     border-radius: 30px;
+    margin-right: 20px;
     height: 43px;
     @media (max-width: 767px) {
       height: 3rem;
@@ -247,18 +249,66 @@ export const IconInputField = styled.div`
   }
   @media (max-width: 767px) {
     width: 100%;
-    max-width: 989px;
-    text-align: center;
-    align-items: center;
-
+    max-width: 77vw;
+    padding: 0 5.333vw;
     input {
       width: 100%;
-
-      max-width: 573px;
+      max-width: 169.6vw;
     }
   }
 `;
 
+export const IconInputFieldNew = styled.div`
+  position: relative;
+  width: 100%;
+
+  input {
+    position: relative;
+    text-align: left;
+    font-size: 14px;
+    padding: 12px 41.5px;
+    border: 1px solid #c9c9c9;
+    background: unset;
+
+    max-width: 277px;
+    width: 100%;
+    border-radius: 20px;
+    ::placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+
+    :-ms-input-placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+
+    ::-ms-input-placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+    :focus-visible {
+      outline: unset;
+    }
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+
+    input {
+      width: 100%;
+      max-width: 75.6vw;
+    }
+  }
+  @media (max-width: 726px) {
+    width: 100%;
+
+    input {
+      width: 100%;
+      max-width: 31.6vw;
+    }
+  }
+`;
 export const Morecontent = styled.div`
   display: flex;
   padding: 1rem;
