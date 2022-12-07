@@ -41,7 +41,7 @@ export const SecondSection = styled.div`
 export const HeadingText = styled.div`
   font-size: 3vw;
   color: #1d2e88;
-  padding-left: 10px;
+
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -297,7 +297,7 @@ export const IconInputFieldNew = styled.div`
 
     input {
       width: 100%;
-      max-width: 75.6vw;
+      max-width: 79.6vw;
     }
   }
   @media (max-width: 726px) {
@@ -305,9 +305,18 @@ export const IconInputFieldNew = styled.div`
 
     input {
       width: 100%;
-      max-width: 31.6vw;
     }
   }
+  @media (max-width: 610px) {
+    input {
+      width: 72vw;
+    }
+  }
+  /* @media (max-width: 532px) {
+    input {
+      width: 70vw;
+    }
+  } */
 `;
 export const Morecontent = styled.div`
   display: flex;
