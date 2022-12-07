@@ -7,7 +7,7 @@ export const BodyWrapper = styled.div`
 export const TitleFormSection = styled.div`
   background: #fff;
   form {
-    padding: 0rem 4rem 0rem 3rem;
+    padding: 0rem 4rem 0rem 4rem;
     width: auto !important;
   }
 `;
@@ -19,6 +19,15 @@ export const Title = styled.div`
   max-width: 1760px;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
+  font-size: 45px;
+  color: #000;
+  input {
+    border-bottom: hidden;
+    font-weight: 600;
+    font-size: 45px;
+    color: #000;
+  }
 `;
 
 export const Section = styled.div`
@@ -159,7 +168,7 @@ export const SortWrapper = styled.div`
   z-index: 1;
   position: absolute;
   background: #fff;
-  box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.09);
+  box-shadow: 0px 7px 32px 11px rgb(207 207 207/ 50%);
   border-radius: 10px;
 
   width: 235px;

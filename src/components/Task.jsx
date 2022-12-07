@@ -175,7 +175,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
           checkListId={checkListId}
         />
       )}
-      <div style={{ padding: "0rem 4rem 0rem 2rem" }}>
+      <div style={{ }}>
         <SubListWrapper
           index={index}
           task={task}

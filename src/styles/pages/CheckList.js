@@ -51,6 +51,6 @@ export const TaskList = styled.div`
     height: 17px !important;
   }
   form {
-    padding: 0rem 3rem;
+    padding: 1rem 3rem;
   }
 `;
