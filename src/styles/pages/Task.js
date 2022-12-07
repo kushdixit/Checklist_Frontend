@@ -150,6 +150,11 @@ export const ShortBy = styled.div`
   gap: 10px;
   cursor: pointer;
 `;
+
+export const Complete = styled.div`
+  width: 50px;
+  height: 50px;
+`;
 export const SortWrapper = styled.div`
   z-index: 1;
   position: absolute;
@@ -157,11 +162,11 @@ export const SortWrapper = styled.div`
   box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.09);
   border-radius: 10px;
 
-  width: 211px;
+  width: 235px;
   text-align: left;
   right: 10px;
   top: 40px;
-  padding: 20px 10px 10px 26px;
+  padding: 20px 26px 10px 26px;
 `;
 export const SortText = styled.button`
   font-weight: 500;
@@ -174,7 +179,7 @@ export const SortTextDiv = styled.div`
   font-size: 16px;
   line-height: 26px;
   display: flex;
-  color: #1d2e88;
+  color: #000;
   gap: 10px;
 `;
 

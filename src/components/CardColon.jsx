@@ -4,11 +4,16 @@ import {
   SortWrapper,
   ShortContainer,
   SortTextDiv,
+  Complete
 } from "styles/pages/Task";
 import { ColonImage } from "styles/components/Card";
 import Colon from "assets/SVG/Colon";
+import Completed from "assets/SVG/Completed";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
+import Reset from "assets/SVG/Reset";
+import Copy from "assets/SVG/Copy";
+import ShareNew from "assets/SVG/ShareNew";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
@@ -55,10 +60,14 @@ const CardColon = ({ item, cardType }) => {
                 <Edit />
                 View CheckList
               </SortTextDiv>
-              <SortTextDiv>Mark as Completed</SortTextDiv>
-              <SortTextDiv>Reset</SortTextDiv>
-              <SortTextDiv>Copy</SortTextDiv>
-              <SortTextDiv>Share</SortTextDiv>
+              <SortTextDiv>
+               
+                  <Completed />
+                
+                  Mark as Completed</SortTextDiv>
+              <SortTextDiv><Reset/>Reset</SortTextDiv>
+              <SortTextDiv><Copy/>Copy</SortTextDiv>
+              <SortTextDiv><ShareNew/>Share</SortTextDiv>
               <SortTextDiv onClick={() => console.log("sad")}>
                 <Delete /> Delete CheckList
               </SortTextDiv>
