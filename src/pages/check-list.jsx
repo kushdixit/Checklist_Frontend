@@ -12,7 +12,7 @@ import {
   Title,
   Section,
   TaskSection,
-  MainTaskSection,
+  TaskCreationSection,
   IconInputField,
   EditChecklistButtonWrapper,
   TitleFormSection,
@@ -103,54 +103,51 @@ const CheckList = () => {
           showEditable={state?.showEditable}
         />
       </BodyWrapper>
-      <TitleFormSection>
-        <Title>
-          <form
-            style={{ width: "100%", display: "flex" }}
-            onSubmit={submitChecklist(editChecklistHandler)}
-          >
-            <IconInputField>
-              <TextInput
-                name="checklist"
-                type="text"
-                placeholder={checklistName}
-                control={checklistFormControl}
-                onChange={onChange}
-                disabled={!taskEditable}
-                handlekeyPress={(e) =>
-                  e.key === "Enter" && editChecklistHandler()
-                }
-              />
-            </IconInputField>
-            {taskEditable && (
-              <EditChecklistButtonWrapper className="submitBtn">
-                <Button>Save</Button>
-              </EditChecklistButtonWrapper>
-            )}
-          </form>
-        </Title>
-      </TitleFormSection>
-      {taskEditable && (
-        <TaskSection>
-          <MainTaskSection>
+      <div>
+        <TitleFormSection>
+          <Title>
             <form
               style={{ width: "100%", display: "flex" }}
-              onSubmit={submitData(formData)}
+              onSubmit={submitChecklist(editChecklistHandler)}
             >
               <IconInputField>
                 <TextInput
-                  name="title"
+                  name="checklist"
                   type="text"
-                  placeholder="Enter Task Name"
-                  control={formControl}
-                  handlekeyPress={(e) => formData()}
+                  placeholder={checklistName}
+                  control={checklistFormControl}
+                  onChange={onChange}
+                  disabled={!taskEditable}
+                  handlekeyPress={(e) =>
+                    e.key === "Enter" && editChecklistHandler()
+                  }
                 />
               </IconInputField>
             </form>
-          </MainTaskSection>
-        </TaskSection>
-      )}
-      <BodyContainer>{formFields()}</BodyContainer>
+          </Title>
+        </TitleFormSection>
+        {taskEditable && (
+          <TaskSection>
+            <TaskCreationSection>
+              <form
+                style={{ width: "100%", display: "flex" }}
+                onSubmit={submitData(formData)}
+              >
+                <IconInputField>
+                  <TextInput
+                    name="title"
+                    type="text"
+                    placeholder="Enter Task Name"
+                    control={formControl}
+                    handlekeyPress={(e) => formData()}
+                  />
+                </IconInputField>
+              </form>
+            </TaskCreationSection>
+          </TaskSection>
+        )}
+        <BodyContainer>{formFields()}</BodyContainer>
+      </div>
     </Section>
   );
 };

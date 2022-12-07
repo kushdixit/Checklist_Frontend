@@ -22,7 +22,7 @@ import {
   HeaderWrapper,
   SearchSection,
   IconWrapperNew,
-  IconInputFieldNew
+  IconInputFieldNew,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -74,6 +74,7 @@ const NavBar = ({ search, buttonType }) => {
     handleSubmit: submitData,
     control: formControl,
     watch,
+    reset,
   } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
@@ -123,9 +124,19 @@ const NavBar = ({ search, buttonType }) => {
     }
   };
 
+  const handleIconClick = () => {
+    console.log("is here");
+    if (updateSearch.length != 0) {
+      SetUpdateSearch("");
+      dispatch({ type: SET_SEARCH, payload: "" });
+      reset({
+        listSearch: "",
+      });
+    }
+  };
+
   return (
     <NavSection>
-   
       <BurgerSection>
         <HeaderWrapper>
           <ImageSubSection>
@@ -170,6 +181,7 @@ const NavBar = ({ search, buttonType }) => {
           {state?.showEditable && (
             <div>
               <Button
+                style={{ padding: "0.5rem 1rem" }}
                 handleClick={() =>
                   dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
                 }
@@ -195,14 +207,14 @@ const NavBar = ({ search, buttonType }) => {
           )}
         </SearchSection>
       </BurgerSection>
-     
+
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
         </FirstSection>
         <SecondSection>
           {search && (
-            <IconInputField>
+            <IconInputField style={{ display: "flex" }}>
               <form
                 style={{ width: "100%", display: "flex" }}
                 onSubmit={submitData(searchData)}
@@ -219,18 +231,19 @@ const NavBar = ({ search, buttonType }) => {
                     }}
                   />
                 </IconInputField>
-                <IconWrapper>
-                  <Button
-                    style={{
-                      background: "transparent",
-                      border: "none",
-                      boxShadow: "none",
-                    }}
-                  >
-                    <SearchNew />
-                  </Button>
-                </IconWrapper>
               </form>
+              <IconWrapper onClick={handleIconClick}>
+                <Button
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    boxShadow: "none",
+                    cursor: "text",
+                  }}
+                >
+                  {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
+                </Button>
+              </IconWrapper>
             </IconInputField>
           )}
           {search && (
@@ -246,6 +259,7 @@ const NavBar = ({ search, buttonType }) => {
           {state?.showEditable && (
             <div>
               <Button
+                style={{ padding: "0.5rem 1rem" }}
                 handleClick={() =>
                   dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
                 }
