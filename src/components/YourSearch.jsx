@@ -39,6 +39,11 @@ const YourSearch = ({ searchedData }) => {
                 />
               );
             })}
+          {searchedData.length == 0 && (
+            <div style={{ display: "flex", justifyContent: "center", flex: 1 }}>
+              <div>Checklist not found!</div>
+            </div>
+          )}
         </FirstSection>
       </CardMainSection>
     </>

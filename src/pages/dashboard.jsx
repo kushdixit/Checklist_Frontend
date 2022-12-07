@@ -18,6 +18,7 @@ const Dashboard = () => {
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const searchedValue = useSelector((state) => state.search?.search);
   const templateData = useSelector((state) => state.Template?.yourTemplate);
+  const allChecklist = useSelector((state) => state.task?.allChecklist);
 
   function toggleab(data) {
     setModal(data);
@@ -42,7 +43,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (searchedValue?.length != 0) {
-      const res = templateData[0]?.checklists?.filter((item) =>
+      const res = allChecklist?.filter((item) =>
         item.checklistName.toLowerCase().includes(searchedValue?.toLowerCase())
       );
       setSearchedData(res);
@@ -53,10 +54,11 @@ const Dashboard = () => {
     <BodyContainer>
       <ResetPassword isOpen={modal} togglefunction={toggleab} />
       <Navbar search={true} buttonType="Create List" />
-      {searchedData?.length >= 1 && <YourSearch searchedData={searchedData} />}
-      {searchedData?.length == 0 && templateData != null && <YourTemplate />}
-      {searchedData?.length == 0 &&
-        allTemplate?.map((item, id) => <ChecklistCards key={id} item={item} />)}
+      {searchedValue && <YourSearch searchedData={searchedData} />}
+      {templateData != null && <YourTemplate />}
+      {allTemplate?.map((item, id) => (
+        <ChecklistCards key={id} item={item} />
+      ))}
     </BodyContainer>
   );
 };
