@@ -29,8 +29,6 @@ export const AddBtn = styled.div`
 `;
 export const TaskList = styled.div`
   text-align: left;
-  padding-left: 20px;
-  padding-right: 20px;
   > div.checkbox-field {
     background-color: grey;
     padding-left: 20px;
@@ -51,5 +49,8 @@ export const TaskList = styled.div`
   .checkMark:after {
     width: 13px !important;
     height: 17px !important;
+  }
+  form {
+    padding: 0rem 3rem;
   }
 `;

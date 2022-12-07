@@ -6,6 +6,10 @@ export const BodyWrapper = styled.div`
 `;
 export const TitleFormSection = styled.div`
   background: #fff;
+  form {
+    padding: 0rem 4rem 0rem 3rem;
+    width: auto !important;
+  }
 `;
 
 export const Title = styled.div`
@@ -40,6 +44,29 @@ export const TaskSection = styled.div`
   background: #fff;
 `;
 
+export const TaskCreationSection = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1735px;
+  padding: 10px 0;
+  display: flex;
+  svg {
+    cursor: pointer;
+    padding-right: 10px;
+  }
+  img {
+    width: 27px;
+    padding: 17px 18px 17px 0;
+  }
+  .button {
+    font-size: 1rem;
+    padding: 9px 20px;
+  }
+  form {
+    padding: 1rem 5rem 0rem 3rem;
+    width: auto;
+  }
+`;
 export const MainTaskSection = styled.div`
   margin: 0 auto;
   width: 100%;
@@ -58,6 +85,9 @@ export const MainTaskSection = styled.div`
     font-size: 1rem;
     padding: 9px 20px;
   }
+  form {
+    width: auto;
+  }
 `;
 
 export const TaskIconImage = styled.div`
@@ -65,7 +95,6 @@ export const TaskIconImage = styled.div`
 `;
 export const IconInputField = styled.div`
   width: 100%;
-  padding: 0 12px;
   input {
     text-align: left;
     font-size: 24px;
@@ -114,7 +143,7 @@ export const ShortContainer = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
-  padding: 8px 6px 6px 13px;
+  /* dont apply padding here */
 `;
 export const ShortBy = styled.div`
   display: flex;

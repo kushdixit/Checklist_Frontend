@@ -8,7 +8,6 @@ import {
   editTaskStatus,
 } from "redux/actions/task";
 import { TaskList } from "styles/pages/CheckList";
-import Button from "components/Button";
 import TextInput from "components/FormElements/TextInput";
 import SubTask from "./SubTask";
 import SubListWrapper from "./SubList";
@@ -17,15 +16,12 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   MainTaskSection,
   IconInputField,
-  SubTaskSection,
   ShortBy,
   SortWrapper,
   ShortContainer,
   SortTextDiv,
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
-import SubTaskIcon from "assets/SVG/SubTaskIcon";
-import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
 import Arrow from "assets/SVG/Arrow";
 import CheckboxInput from "components/FormElements/CheckboxInput";
@@ -170,11 +166,6 @@ const Task = ({ task, index, checkListId, showEditable }) => {
           )}
         </form>
       </MainTaskSection>
-      {taskEditable && (
-        <SubTaskSection>
-          <SubTaskIcon onClick={() => setAddSubTask(!addSubTask)} />
-        </SubTaskSection>
-      )}
       {addSubTask && (
         <SubTask
           id={task.id}
@@ -184,7 +175,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
           checkListId={checkListId}
         />
       )}
-      <div style={{ "padding-left": "90px" }}>
+      <div style={{ padding: "0rem 4rem 0rem 2rem" }}>
         <SubListWrapper
           index={index}
           task={task}

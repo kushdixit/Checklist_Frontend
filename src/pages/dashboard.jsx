@@ -54,10 +54,9 @@ const Dashboard = () => {
       <ResetPassword isOpen={modal} togglefunction={toggleab} />
       <Navbar search={true} buttonType="Create List" />
       {searchedData?.length >= 1 && <YourSearch searchedData={searchedData} />}
-      {templateData != null && <YourTemplate />}
-      {allTemplate?.map((item, id) => (
-        <ChecklistCards key={id} item={item} />
-      ))}
+      {searchedData?.length == 0 && templateData != null && <YourTemplate />}
+      {searchedData?.length == 0 &&
+        allTemplate?.map((item, id) => <ChecklistCards key={id} item={item} />)}
     </BodyContainer>
   );
 };
