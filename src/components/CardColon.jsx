@@ -75,8 +75,19 @@ const CardColon = ({ item, cardType }) => {
           )}
           {isOpenSort && cardType === "default" && (
             <SortWrapper ref={wrapperRef}>
-              <SortTextDiv>Copy</SortTextDiv>
-              <SortTextDiv>Share</SortTextDiv>
+                <SortTextDiv
+                onClick={() => {
+                  dispatch({ type: SET_IS_EDITABLE, payload: false });
+                  navigate("/check-list", {
+                    state: { id: item.id, showEditable: true },
+                  });
+                }}
+              >
+                <Edit />
+                View CheckList
+              </SortTextDiv>
+              <SortTextDiv><Copy/>Copy</SortTextDiv>
+              <SortTextDiv><ShareNew/>Share</SortTextDiv>
             </SortWrapper>
           )}
         </ShortBy>

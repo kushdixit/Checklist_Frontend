@@ -155,11 +155,11 @@ export const SubSectionNew = styled.div`
     padding-left: 10px;
 
     @media (max-width: 1722px) {
-      padding: 0 30px;
+      padding: 20px 34px 0 30px;
       font-size: 2.2vw;
     }
     @media (max-width: 767px) {
-      padding: 0 30px;
+      padding: 20px 34px 0 30px;
       font-size: 3vw;
     }
   }
