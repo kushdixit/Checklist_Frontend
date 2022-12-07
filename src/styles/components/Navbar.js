@@ -22,6 +22,11 @@ export const FirstSection = styled.div`
   }
 `;
 
+export const EditSection = styled.div`
+  .button {
+    margin-right: 30px;
+  }
+`;
 export const SpaceSection = styled.div`
   width: 100%;
   max-width: 80px;

@@ -1,7 +1,13 @@
 import * as React from "react";
 
 const Cancel = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={36} height={36} {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={38}
+    height={31}
+    viewBox="0 0 33 35"
+    {...props}
+  >
     <path
       style={{
         stroke: "none",
