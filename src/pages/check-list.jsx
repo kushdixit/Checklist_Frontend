@@ -114,8 +114,14 @@ const CheckList = () => {
                 <TextInput
                   name="checklist"
                   type="text"
+                  autoComplete="off"
+                  defaultValue={
+                    checklistName?.includes("Your Checkslist")
+                      ? "Untitled"
+                      : checklistName
+                  }
                   placeholder={
-                    checklistName.includes("Your Checkslist")
+                    checklistName?.includes("Your Checkslist")
                       ? "Untitled"
                       : checklistName
                   }
@@ -141,6 +147,7 @@ const CheckList = () => {
                   <TextInput
                     name="title"
                     type="text"
+                    autoComplete="off"
                     placeholder="Enter Task Name"
                     control={formControl}
                     handlekeyPress={(e) => formData()}

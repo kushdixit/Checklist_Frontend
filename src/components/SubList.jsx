@@ -106,6 +106,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
           )}
           <IconInputField>
             <TextInput
+              defaultValue={task?.subTaskName}
               name="updateSubTask"
               type="text"
               placeholder={task?.subTaskName}
