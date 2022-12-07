@@ -110,6 +110,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                   className="checkBox"
                   {...field}
                   onChange={(e) => {
+                    console.log(e);
                     showEditable &&
                       reset({
                         rememberMe: e,
@@ -129,6 +130,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
           )}
           <IconInputField>
             <TextInput
+              defaultValue={task?.taskName}
               name="update"
               type="text"
               placeholder={task?.taskName}
@@ -175,7 +177,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
           checkListId={checkListId}
         />
       )}
-      <div style={{ }}>
+      <div style={{}}>
         <SubListWrapper
           index={index}
           task={task}

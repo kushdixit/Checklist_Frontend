@@ -260,7 +260,7 @@ const NavBar = ({ search, buttonType }) => {
           {state?.showEditable && (
             <EditSection>
               <Button
-               className="button"
+                className="button"
                 style={{ padding: "0.5rem 1rem" }}
                 handleClick={() =>
                   dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })

@@ -30,7 +30,7 @@ const TextInput = (props) => {
             rules={rules}
             name={props?.name}
             onKeyPress={(e) => props?.handlekeyPress(e)}
-            onKeyDown={(e) => props?.handleKeyDown(e)}
+            onKeyDown={(e) => props?.handleKeyDown && props?.handleKeyDown(e)}
           />
         )}
         name={props?.name}
