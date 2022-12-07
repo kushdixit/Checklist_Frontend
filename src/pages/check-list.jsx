@@ -114,7 +114,11 @@ const CheckList = () => {
                 <TextInput
                   name="checklist"
                   type="text"
-                  placeholder={checklistName}
+                  placeholder={
+                    checklistName.includes("Your Checkslist")
+                      ? "Untitled"
+                      : checklistName
+                  }
                   control={checklistFormControl}
                   onChange={onChange}
                   disabled={!taskEditable}
