@@ -139,16 +139,16 @@ export const SubSection = styled.div`
   padding: 20px 0px;
   @media (max-width: 723px) {
     width: 100%;
-    max-width: 43.6vw;
+    max-width: unset;
   }
 `;
 export const SubSectionNew = styled.div`
   margin: 0 auto;
-  font-size: 20px;
+
   font-weight: 700;
   width: 100%;
   max-width: 1735px;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 700;
 
   h2 {
@@ -156,11 +156,13 @@ export const SubSectionNew = styled.div`
 
     @media (max-width: 1722px) {
       padding: 0 30px;
+      font-size: 2.2vw;
+    }
+    @media (max-width: 767px) {
+      padding: 0 30px;
+      font-size: 3vw;
     }
   }
-  /* @media (max-width: 1012px) {
-    width: unset;
-  } */
 `;
 export const Image = styled.div`
   align-items: center;
