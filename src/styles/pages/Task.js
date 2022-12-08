@@ -7,7 +7,7 @@ export const BodyWrapper = styled.div`
 export const TitleFormSection = styled.div`
   background: #fff;
   form {
-    padding: 0rem 4rem 0rem 4rem;
+    padding: 0rem 4rem 0rem 3rem;
     width: auto !important;
   }
 `;
@@ -25,7 +25,7 @@ export const Title = styled.div`
   input {
     border-bottom: hidden;
     font-weight: 600;
-    font-size: 45px;
+    font-size: 36px !important;
     color: #000;
   }
 `;
@@ -213,4 +213,28 @@ export const EditChecklistButtonWrapper = styled.div`
     font-size: 1rem;
     padding: 9px 20px;
   }
+`;
+
+export const DescriptionContainer = styled.div`
+  margin: 0rem auto;
+  background: #fff;
+  width: 100%;
+  max-width: 1760px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 45px;
+  color: #000;
+  input {
+    border-bottom: hidden;
+    font-weight: 600;
+    font-size: 30px !important;
+    color: #000;
+  }
+  form {
+    padding: 0rem 4rem 0rem 3rem;
+  }
+`;
+export const DescriptionWrapper = styled.div`
+  background: #fff;
 `;
