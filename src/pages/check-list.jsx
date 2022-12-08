@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import TextInput from "components/FormElements/TextInput";
-import Button from "components/Button";
 import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
 import { editChecklistApi } from "redux/actions/checklist";
 import { BodyContainer, FormBody } from "styles/pages/CheckList";
@@ -14,7 +13,6 @@ import {
   TaskSection,
   TaskCreationSection,
   IconInputField,
-  EditChecklistButtonWrapper,
   TitleFormSection,
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
@@ -23,16 +21,26 @@ import { useLocation, useNavigate } from "react-router-dom";
 const CheckList = () => {
   const { state } = useLocation();
   const [editChecklist, setEditChecklist] = useState(false);
+  const [checklistName, setChecklistName] = useState();
+  const [checklistId, setChecklistId] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const checklistName = useSelector((state) => state.checklist?.checklistName);
+  const reduxChecklistName = useSelector(
+    (state) => state.checklist?.checklistName
+  );
   const taskEditable = useSelector((state) => state.editable?.isEditable);
-  const checklistId = useSelector((state) => state.checklist?.id);
+  const reduxchecklistId = useSelector((state) => state.checklist?.id);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) navigate("/sign-in");
+    dispatch(getChecklistBySubcategory(state?.id));
   }, []);
+
+  useEffect(() => {
+    setChecklistName(reduxChecklistName);
+    setChecklistId(reduxchecklistId);
+  }, [reduxChecklistName]);
 
   const {
     handleSubmit: submitData,
@@ -51,10 +59,6 @@ const CheckList = () => {
     mode: "onSubmit",
     reValidateMode: "onBlur",
   });
-
-  useEffect(() => {
-    dispatch(getChecklistBySubcategory(state?.id));
-  }, []);
 
   const formFields = () => (
     <FormBody>
@@ -114,7 +118,6 @@ const CheckList = () => {
                 <TextInput
                   name="checklist"
                   type="text"
-                  autoComplete="off"
                   defaultValue={
                     checklistName?.includes("Your Checkslist")
                       ? "Untitled"
@@ -147,7 +150,6 @@ const CheckList = () => {
                   <TextInput
                     name="title"
                     type="text"
-                    autoComplete="off"
                     placeholder="Enter Task Name"
                     control={formControl}
                     handlekeyPress={(e) => formData()}
