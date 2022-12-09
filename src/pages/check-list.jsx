@@ -14,6 +14,8 @@ import {
   TaskCreationSection,
   IconInputField,
   TitleFormSection,
+  DescriptionWrapper,
+  DescriptionContainer,
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -139,6 +141,7 @@ const CheckList = () => {
             </form>
           </Title>
         </TitleFormSection>
+        <Description taskEditable={taskEditable} />
         {taskEditable && (
           <TaskSection>
             <TaskCreationSection>
@@ -165,3 +168,41 @@ const CheckList = () => {
   );
 };
 export default CheckList;
+
+const Description = ({ taskEditable }) => {
+  const {
+    handleSubmit: submitChecklist,
+    control: checklistFormControl,
+    setValue,
+  } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onBlur",
+  });
+  const DescriptionHandler = (data) => console.log(data);
+  const onChange = (e) => {
+    console.log(e);
+  };
+  return (
+    <DescriptionWrapper>
+      <DescriptionContainer>
+        <form
+          style={{ width: "100%", display: "flex" }}
+          onSubmit={submitChecklist(DescriptionHandler)}
+        >
+          <IconInputField>
+            <TextInput
+              name="checklist"
+              type="text"
+              defaultValue="Description"
+              placeholder="Description"
+              control={checklistFormControl}
+              onChange={onChange}
+              disabled={!taskEditable}
+              handlekeyPress={(e) => e.key === "Enter" && DescriptionHandler()}
+            />
+          </IconInputField>
+        </form>
+      </DescriptionContainer>
+    </DescriptionWrapper>
+  );
+};

@@ -90,3 +90,25 @@ export const addTempChecklist = (checklistName, email) => async (dispatch) => {
     return { error: true, message: ex?.response?.data?.Message };
   }
 };
+
+export const ChecklistCompleted = (id, ischecked) => async (dispatch) => {
+  const payload = {
+    id,
+    ischecked,
+  };
+  console.log(payload);
+  try {
+    const response = await axioPath.put(
+      "v1/CheckList/checklistsStatusReset",
+      payload,
+      {
+        hideLoader: false,
+      }
+    );
+    console.log(response);
+    // response?.data && dispatch(getChecklistBySubcategory(response?.data));
+    return { error: false, message: response?.statusText, id: response?.data };
+  } catch (ex) {
+    return { error: true, message: ex?.response?.data?.Message };
+  }
+};

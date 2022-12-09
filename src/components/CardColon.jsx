@@ -4,7 +4,7 @@ import {
   SortWrapper,
   ShortContainer,
   SortTextDiv,
-  Complete
+  Complete,
 } from "styles/pages/Task";
 import { ColonImage } from "styles/components/Card";
 import Colon from "assets/SVG/Colon";
@@ -17,6 +17,7 @@ import ShareNew from "assets/SVG/ShareNew";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
+import { ChecklistCompleted } from "redux/actions/checklist/index";
 
 const CardColon = ({ item, cardType }) => {
   const [modal, setModal] = useState(false);
@@ -61,13 +62,29 @@ const CardColon = ({ item, cardType }) => {
                 View CheckList
               </SortTextDiv>
               <SortTextDiv>
-               
-                  <Completed />
-                
-                  Mark as Completed</SortTextDiv>
-              <SortTextDiv><Reset/>Reset</SortTextDiv>
-              <SortTextDiv><Copy/>Copy</SortTextDiv>
-              <SortTextDiv><ShareNew/>Share</SortTextDiv>
+                <Completed />
+                Mark as Completed
+              </SortTextDiv>
+              <SortTextDiv
+                onClick={() => {
+                  // dispatch({ type: SET_IS_EDITABLE, payload: false });
+                  // navigate("/check-list", {
+                  //   state: { id: item.id, showEditable: true },
+                  // });
+                  dispatch(ChecklistCompleted(item.id, true));
+                }}
+              >
+                <Reset />
+                Reset
+              </SortTextDiv>
+              <SortTextDiv>
+                <Copy />
+                Copy
+              </SortTextDiv>
+              <SortTextDiv>
+                <ShareNew />
+                Share
+              </SortTextDiv>
               <SortTextDiv onClick={() => console.log("sad")}>
                 <Delete /> Delete CheckList
               </SortTextDiv>
@@ -75,7 +92,7 @@ const CardColon = ({ item, cardType }) => {
           )}
           {isOpenSort && cardType === "default" && (
             <SortWrapper ref={wrapperRef}>
-                <SortTextDiv
+              <SortTextDiv
                 onClick={() => {
                   dispatch({ type: SET_IS_EDITABLE, payload: false });
                   navigate("/check-list", {
@@ -86,8 +103,14 @@ const CardColon = ({ item, cardType }) => {
                 <Edit />
                 View CheckList
               </SortTextDiv>
-              <SortTextDiv><Copy/>Copy</SortTextDiv>
-              <SortTextDiv><ShareNew/>Share</SortTextDiv>
+              <SortTextDiv>
+                <Copy />
+                Copy
+              </SortTextDiv>
+              <SortTextDiv>
+                <ShareNew />
+                Share
+              </SortTextDiv>
             </SortWrapper>
           )}
         </ShortBy>

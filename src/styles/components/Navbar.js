@@ -44,7 +44,7 @@ export const SecondSection = styled.div`
   }
 `;
 export const HeadingText = styled.div`
-  font-size: 3vw;
+  font-size: 2.7rem;
   color: #1d2e88;
 
   font-weight: 700;
@@ -150,7 +150,7 @@ export const SubNavSection = styled.div`
   display: flex;
   justify-content: space-between;
   @media (max-width: 1722px) {
-    padding: 0 30px;
+    padding: 0 3rem;
   }
 `;
 export const ImageSubSection = styled.div``;
