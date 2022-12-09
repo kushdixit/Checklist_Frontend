@@ -1,27 +1,15 @@
 import React, { useEffect, useState } from "react";
-// import FirstImage from "assets/images/firstimage.jpg";
 import FirstImage from "assets/images/checklist.svg";
 import SecondImage from "assets/images/secondimage.jpg";
 import ThirdImage from "assets/images/thirdimage.jpg";
-import DashboardIcon from "assets/SVG/DashboardIcon";
-
 import { useDispatch, useSelector } from "react-redux";
 import FourthImage from "assets/images/firstimage.jpg";
-import Checklist from "assets/images/checklist.svg";
-import Button from "components/Button";
-import TextInput from "components/FormElements/TextInput";
 import {
   FirstSection,
   NewSection,
   SubSectionNew,
   CardMainSection,
-  Footer,
-  Morecontent,
-  IconInputField,
-  SelectFieldSection,
-  ButtonSection,
 } from "styles/components/Card";
-import SelectField from "components/FormElements/SelectField";
 import { getChecklist, addNewChecklist } from "redux/actions/checklist";
 import Card from "./Card";
 import { useForm, Controller } from "react-hook-form";
@@ -49,24 +37,6 @@ const ChecklistCards = ({ item }) => {
   useEffect(() => {
     dispatch(getChecklist());
   }, []);
-
-  const dealAnalysisArr = [
-    {
-      label: "checklist 1",
-      value: "checklist 1",
-      id: "0",
-    },
-    {
-      label: "checklist 2",
-      value: "checklist 2",
-      id: "1",
-    },
-    {
-      label: "checklist 3",
-      value: "checklist 3",
-      id: "2",
-    },
-  ];
 
   const addChecklistHandler = async (data) => {
     const res = await dispatch(

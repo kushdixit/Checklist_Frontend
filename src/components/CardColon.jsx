@@ -4,7 +4,6 @@ import {
   SortWrapper,
   ShortContainer,
   SortTextDiv,
-  Complete,
 } from "styles/pages/Task";
 import { ColonImage } from "styles/components/Card";
 import Colon from "assets/SVG/Colon";
@@ -14,10 +13,17 @@ import Delete from "assets/SVG/Delete";
 import Reset from "assets/SVG/Reset";
 import Copy from "assets/SVG/Copy";
 import ShareNew from "assets/SVG/ShareNew";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
-import { ChecklistCompleted } from "redux/actions/checklist/index";
+import {
+  ChecklistCompleted,
+  CopyChecklist,
+} from "redux/actions/checklist/index";
+import { getAllTemplateByEmail } from "redux/actions/template";
+import { getChecklistBySubcategory } from "redux/actions/task/index";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CardColon = ({ item, cardType }) => {
   const [modal, setModal] = useState(false);
@@ -25,6 +31,7 @@ const CardColon = ({ item, cardType }) => {
   const wrapperRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -43,8 +50,19 @@ const CardColon = ({ item, cardType }) => {
     setModal(data);
   }
 
+  const statusHandler = async (id, status) => {
+    const res = await dispatch(ChecklistCompleted(id, "status"));
+    if (res.error == false) {
+      dispatch(getChecklistBySubcategory(id));
+      setIsOpenSort(false);
+    } else {
+      toast(res.data);
+    }
+  };
+
   return (
     <ColonImage>
+      <ToastContainer />
       <ShortContainer onClick={() => setIsOpenSort(true)}>
         <ShortBy>
           <Colon onClick={() => toggleab(!modal)} />
@@ -61,23 +79,21 @@ const CardColon = ({ item, cardType }) => {
                 <Edit />
                 View CheckList
               </SortTextDiv>
-              <SortTextDiv>
+              <SortTextDiv onClick={() => statusHandler(item.id, true)}>
                 <Completed />
                 Mark as Completed
               </SortTextDiv>
-              <SortTextDiv
-                onClick={() => {
-                  // dispatch({ type: SET_IS_EDITABLE, payload: false });
-                  // navigate("/check-list", {
-                  //   state: { id: item.id, showEditable: true },
-                  // });
-                  dispatch(ChecklistCompleted(item.id, true));
-                }}
-              >
+              <SortTextDiv onClick={() => statusHandler(item.id, false)}>
                 <Reset />
                 Reset
               </SortTextDiv>
-              <SortTextDiv>
+              <SortTextDiv
+                onClick={async () => {
+                  const res = await dispatch(CopyChecklist(item.id, userEmail));
+                  res.error === false &&
+                    dispatch(getAllTemplateByEmail(userEmail));
+                }}
+              >
                 <Copy />
                 Copy
               </SortTextDiv>
@@ -103,7 +119,13 @@ const CardColon = ({ item, cardType }) => {
                 <Edit />
                 View CheckList
               </SortTextDiv>
-              <SortTextDiv>
+              <SortTextDiv
+                onClick={async () => {
+                  const res = await dispatch(CopyChecklist(item.id, userEmail));
+                  res.error === false &&
+                    dispatch(getAllTemplateByEmail(userEmail));
+                }}
+              >
                 <Copy />
                 Copy
               </SortTextDiv>
