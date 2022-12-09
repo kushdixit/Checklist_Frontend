@@ -51,7 +51,7 @@ const CardColon = ({ item, cardType }) => {
   }
 
   const statusHandler = async (id, status) => {
-    const res = await dispatch(ChecklistCompleted(id, "status"));
+    const res = await dispatch(ChecklistCompleted(id, status));
     if (res.error == false) {
       dispatch(getChecklistBySubcategory(id));
       setIsOpenSort(false);

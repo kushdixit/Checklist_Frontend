@@ -153,7 +153,7 @@ const CheckList = () => {
                   <TextInput
                     name="title"
                     type="text"
-                    placeholder="Enter Task Name"
+                    placeholder="Enter New Task"
                     control={formControl}
                     handlekeyPress={(e) => formData()}
                   />
