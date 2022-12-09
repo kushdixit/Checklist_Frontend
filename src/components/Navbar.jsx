@@ -24,6 +24,7 @@ import {
   IconWrapperNew,
   IconInputFieldNew,
   EditSection,
+  ButtonEditSection
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -180,7 +181,7 @@ const NavBar = ({ search, buttonType }) => {
             </Footer>
           )}
           {state?.showEditable && (
-            <div>
+            <ButtonEditSection>
               <Button
                 style={{ padding: "0.5rem 1rem" }}
                 handleClick={() =>
@@ -189,7 +190,7 @@ const NavBar = ({ search, buttonType }) => {
               >
                 {`${taskEditable ? "Done" : "Edit"}`}
               </Button>
-            </div>
+            </ButtonEditSection>
           )}
         </HeaderWrapper>
         <SearchSection>

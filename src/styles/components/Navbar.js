@@ -57,9 +57,13 @@ export const LogoSearchSection = styled.div`
   display: none;
   @media (max-width: 767px) {
     display: block;
+    /* padding-right: 30px; */
   }
 `;
 
+export const ButtonEditSection = styled.div`
+  margin-right: 20px;
+`;
 export const LogoSection = styled.div`
   display: none;
   @media (max-width: 767px) {
