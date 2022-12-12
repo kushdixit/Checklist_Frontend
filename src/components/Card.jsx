@@ -6,13 +6,15 @@ import {
   WrapSubSection,
   WrapSubSectionNew,
   WrapSection,
+  Abc,
+  CompleteSection
 } from "styles/components/Card";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DashboardIcon from "assets/SVG/DashboardIcon";
 import CardColon from "./CardColon";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
-
+import Completed from "assets/SVG/Completed";
 const Card = ({ item, index, Checklist, showEditable, cardType }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,7 +46,12 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
           </WrapSubSectionNew>
         </WrapSection>
       </Wrap>
+    <Abc>
+      <CompleteSection>
+      <Completed />
+      </CompleteSection>
       <CardColon item={item} cardType={cardType} />
+      </Abc>
     </SubSection>
   );
 };

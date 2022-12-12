@@ -7,7 +7,7 @@ export const BodyWrapper = styled.div`
 export const TitleFormSection = styled.div`
   background: #fff;
   form {
-    padding: 0rem 4rem 0rem 3rem;
+    padding: 0rem 2rem 0rem 1.6rem;
     width: auto !important;
   }
 `;
@@ -16,7 +16,7 @@ export const Title = styled.div`
   background: #fff;
   margin: 0 auto;
   width: 100%;
-  max-width: 1760px;
+  max-width: 1778px;
   justify-content: center;
   align-items: center;
   font-weight: 600;
@@ -76,6 +76,7 @@ export const TaskCreationSection = styled.div`
     width: auto;
   }
 `;
+
 export const MainTaskSection = styled.div`
   margin: 0 auto;
   width: 100%;
@@ -94,8 +95,11 @@ export const MainTaskSection = styled.div`
     font-size: 1rem;
     padding: 9px 20px;
   }
-  form {
-    width: auto;
+
+  @media (max-width: 1722px) {
+    form {
+      padding: 0 30px !important;
+    }
   }
 `;
 
@@ -121,6 +125,59 @@ export const IconInputField = styled.div`
   }
 `;
 
+export const IconInputFieldNew = styled.div`
+  width: 100%;
+  input {
+    text-align: left;
+    font-size: 24px;
+
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-color: ${(props) => props.color};
+    width: 100%;
+    max-width: 1500px;
+    background: unset;
+  }
+  input:focus-visible {
+    outline: unset;
+  }
+  @media (max-width: 1722px) {
+    input {
+      width: 100%;
+      max-width: 1000px;
+      background: unset;
+    }
+  }
+  @media (max-width: 1102px) {
+    input {
+      width: 100%;
+      max-width: 400px;
+      background: unset;
+    }
+  }
+`;
+export const DescriptionIconInputField = styled.div`
+  width: 100%;
+  input {
+    text-align: left;
+    font-size: 24px;
+
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-color: ${(props) => props.color};
+    width: 100%;
+
+    background: unset;
+  }
+  input:focus-visible {
+    outline: unset;
+  }
+  @media (max-width: 1722px) {
+    padding-left: 1.7rem;
+  }
+`;
 export const SubTaskSection = styled.div`
   margin: 0 auto;
   width: 100%;
@@ -219,7 +276,7 @@ export const DescriptionContainer = styled.div`
   margin: 0rem auto;
   background: #fff;
   width: 100%;
-  max-width: 1760px;
+  max-width: 1720px;
   justify-content: center;
   align-items: center;
   font-weight: 600;
@@ -231,10 +288,10 @@ export const DescriptionContainer = styled.div`
     font-size: 30px !important;
     color: #000;
   }
-  form {
-    padding: 0rem 4rem 0rem 3rem;
-  }
 `;
 export const DescriptionWrapper = styled.div`
+  width: 100%;
   background: #fff;
+
+  margin: 0 auto;
 `;

@@ -50,7 +50,7 @@ export const HeadingText = styled.div`
   font-weight: 700;
   display: flex;
   align-items: center;
-  padding-right: 10px;
+  padding-left: 10px;
 `;
 
 export const LogoSearchSection = styled.div`
@@ -150,7 +150,7 @@ export const SubNavSection = styled.div`
   display: flex;
   justify-content: space-between;
   @media (max-width: 1722px) {
-    padding: 0 3rem;
+    padding: 0 1rem;
   }
 `;
 export const ImageSubSection = styled.div``;

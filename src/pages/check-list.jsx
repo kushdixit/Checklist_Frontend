@@ -16,6 +16,7 @@ import {
   TitleFormSection,
   DescriptionWrapper,
   DescriptionContainer,
+  DescriptionIconInputField,
 } from "styles/pages/Task";
 import Navbar from "../components/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -189,7 +190,7 @@ const Description = ({ taskEditable }) => {
           style={{ width: "100%", display: "flex" }}
           onSubmit={submitChecklist(DescriptionHandler)}
         >
-          <IconInputField>
+          <DescriptionIconInputField>
             <TextInput
               name="checklist"
               type="text"
@@ -200,7 +201,7 @@ const Description = ({ taskEditable }) => {
               disabled={!taskEditable}
               handlekeyPress={(e) => e.key === "Enter" && DescriptionHandler()}
             />
-          </IconInputField>
+          </DescriptionIconInputField>
         </form>
       </DescriptionContainer>
     </DescriptionWrapper>
