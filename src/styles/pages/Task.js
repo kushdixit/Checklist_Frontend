@@ -280,12 +280,12 @@ export const DescriptionContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  font-size: 45px;
   color: #000;
+  padding: 0.5rem 0rem;
   input {
     border-bottom: hidden;
     font-weight: 600;
-    font-size: 30px !important;
+    font-size: 24px !important;
     color: #000;
   }
 `;
