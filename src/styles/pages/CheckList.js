@@ -4,7 +4,7 @@ export const BodyContainer = styled.div`
   width: 100%;
   form {
     display: flex;
-    padding-left: 20px;
+    padding: 0 10px;
   }
 `;
 export const FormBody = styled.div`
@@ -16,6 +16,9 @@ export const FormBody = styled.div`
   > div {
     width: 100%;
   }
+  /* @media (max-width: 1722px) {
+    padding: 0 1rem;
+  } */
 `;
 export const AddTask = styled.div`
   form {
@@ -50,7 +53,7 @@ export const TaskList = styled.div`
     width: 13px !important;
     height: 17px !important;
   }
-  form {
+  /* form {
     padding: 0rem 3rem;
-  }
+  } */
 `;

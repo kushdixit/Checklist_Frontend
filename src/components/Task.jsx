@@ -142,12 +142,14 @@ const Task = ({ task, index, checkListId, showEditable }) => {
             />
           </IconInputField>
           {taskEditable && (
+          
             <ShortContainer
               onClick={() => {
                 setIsOpenSort(true);
               }}
             >
               <ShortBy>
+           
                 <Colon onClick={() => toggleab(!modal)} />
                 {isOpenSort && (
                   <SortWrapper ref={wrapperRef}>

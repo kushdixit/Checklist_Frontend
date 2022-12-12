@@ -11,12 +11,12 @@ import TextInput from "components/FormElements/TextInput";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
-  MainTaskSection,
-  IconInputField,
+  IconInputFieldNew,
   ShortBy,
   SortWrapper,
   ShortContainer,
   SortTextDiv,
+  MainTaskSection
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
 import Delete from "assets/SVG/Delete";
@@ -104,7 +104,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
               )}
             />
           )}
-          <IconInputField>
+          <IconInputFieldNew>
             <TextInput
               defaultValue={task?.subTaskName}
               name="updateSubTask"
@@ -116,7 +116,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
                 e.key === "Enter" && updateSubTaskHandler()
               }
             />
-          </IconInputField>
+          </IconInputFieldNew>
           {taskEditable && (
             <ShortContainer
               onClick={() => {

@@ -139,7 +139,7 @@ export const SubSection = styled.div`
   padding: 20px 0px;
   @media (max-width: 723px) {
     width: 100%;
-    max-width: unset;
+    max-width: 43.6vw;
   }
 `;
 export const SubSectionNew = styled.div`
@@ -155,12 +155,12 @@ export const SubSectionNew = styled.div`
     padding-left: 10px;
 
     @media (max-width: 1722px) {
-      padding: 20px 34px 0 30px;
+      padding: 0 30px;
       font-size: 2.2vw;
     }
-    @media (max-width: 767px) {
-      padding: 20px 34px 0 30px;
-      font-size: 3vw;
+    @media (max-width: 1722px) {
+      padding: 0 30px;
+      font-size: 2.2vw;
     }
   }
 `;
@@ -188,8 +188,16 @@ export const Wrap = styled.div`
   cursor: pointer;
   padding: 0 13px;
 `;
+
 export const ColonImage = styled.div`
-  padding: 0rem 1rem 0rem 0rem;
+  padding: 0rem 0 0rem 1.4rem;
+`;
+export const Abc = styled.div`
+  padding-right: 20px;
+`;
+
+export const CompleteSection = styled.div`
+  height: 39px;
 `;
 export const WrapSubSection = styled.div`
   vertical-align: middle;
