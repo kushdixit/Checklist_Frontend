@@ -37,6 +37,7 @@ const TaskWrapper = ({ checkListId, showEditable }) => {
         index={index}
         checkListId={checkListId}
         showEditable={showEditable}
+        key={index}
       />
     ));
 };
@@ -79,6 +80,10 @@ const Task = ({ task, index, checkListId, showEditable }) => {
       rememberMe: task?.ischecked,
     },
   });
+
+  useEffect(() => {
+    setValue("rememberMe", task?.ischecked);
+  }, [task?.ischecked]);
 
   const deleteHandler = (id) => {
     dispatch(deleteTask(id, checkListId));
@@ -142,14 +147,12 @@ const Task = ({ task, index, checkListId, showEditable }) => {
             />
           </IconInputField>
           {taskEditable && (
-          
             <ShortContainer
               onClick={() => {
                 setIsOpenSort(true);
               }}
             >
               <ShortBy>
-           
                 <Colon onClick={() => toggleab(!modal)} />
                 {isOpenSort && (
                   <SortWrapper ref={wrapperRef}>

@@ -190,7 +190,12 @@ export const Wrap = styled.div`
 `;
 
 export const ColonImage = styled.div`
-  padding: 0rem 0 0rem 1.4rem;
+  ${({ type }) =>
+    type == "checklist"
+      ? `
+padding: 0rem 4rem 0rem 0rem;
+`
+      : `  padding: 0rem 1rem 0rem 0rem;`}
 `;
 export const Abc = styled.div`
   padding-right: 20px;

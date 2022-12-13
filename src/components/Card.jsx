@@ -7,7 +7,7 @@ import {
   WrapSubSectionNew,
   WrapSection,
   Abc,
-  CompleteSection
+  CompleteSection,
 } from "styles/components/Card";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -24,8 +24,8 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
       <Wrap
         onClick={() => {
           dispatch({ type: SET_IS_EDITABLE, payload: false });
-          navigate("/check-list", {
-            state: { id: item.id, showEditable: showEditable },
+          navigate(`/check-list/${item.id}`, {
+            state: { showEditable: showEditable },
           });
         }}
       >
@@ -46,11 +46,11 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
           </WrapSubSectionNew>
         </WrapSection>
       </Wrap>
-    <Abc>
-      <CompleteSection>
-      <Completed />
-      </CompleteSection>
-      <CardColon item={item} cardType={cardType} />
+      <Abc>
+        <CompleteSection>
+          <Completed />
+        </CompleteSection>
+        <CardColon item={item} cardType={cardType} />
       </Abc>
     </SubSection>
   );

@@ -11,12 +11,12 @@ import TextInput from "components/FormElements/TextInput";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
-  IconInputFieldNew,
+  MainTaskSection,
+  IconInputField,
   ShortBy,
   SortWrapper,
   ShortContainer,
   SortTextDiv,
-  MainTaskSection
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
 import Delete from "assets/SVG/Delete";
@@ -54,6 +54,10 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
       rememberMe: task?.ischecked,
     },
   });
+
+  useEffect(() => {
+    setValue("rememberMe", task?.ischecked);
+  }, [task?.ischecked]);
 
   const taskdeleteHandler = (id) => {
     dispatch(deleteSubTask(id, checkListId));
@@ -104,7 +108,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
               )}
             />
           )}
-          <IconInputFieldNew>
+          <IconInputField>
             <TextInput
               defaultValue={task?.subTaskName}
               name="updateSubTask"
@@ -116,7 +120,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
                 e.key === "Enter" && updateSubTaskHandler()
               }
             />
-          </IconInputFieldNew>
+          </IconInputField>
           {taskEditable && (
             <ShortContainer
               onClick={() => {
@@ -156,6 +160,7 @@ const SubListWrapper = ({ index, task, checkListId, showEditable }) => {
         index={index}
         checkListId={checkListId}
         showEditable={showEditable}
+        key={subIndex}
       />
     ));
 };
