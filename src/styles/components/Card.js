@@ -193,9 +193,9 @@ export const ColonImage = styled.div`
   ${({ type }) =>
     type == "checklist"
       ? `
-padding: 0rem 4rem 0rem 0rem;
+padding: 0rem 3.2rem 0rem 0rem;
 `
-      : `  padding: 0rem 1rem 0rem 0rem;`}
+      : `  `}
 `;
 export const Abc = styled.div`
   padding-right: 20px;
