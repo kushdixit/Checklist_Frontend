@@ -24,7 +24,7 @@ import {
   IconWrapperNew,
   IconInputFieldNew,
   EditSection,
-  ButtonEditSection
+  ButtonEditSection,
 } from "styles/components/Navbar";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -110,7 +110,7 @@ const NavBar = ({ search, buttonType }) => {
     if (res.error) toast(res.message);
     else {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
-      navigate("/check-list", {
+      navigate(`/check-list/${res?.id}`, {
         state: { id: res?.id, showEditable: false },
       });
     }

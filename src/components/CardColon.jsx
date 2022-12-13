@@ -61,7 +61,7 @@ const CardColon = ({ item, cardType }) => {
   };
 
   return (
-    <ColonImage>
+    <ColonImage type={cardType}>
       <ToastContainer />
       <ShortContainer onClick={() => setIsOpenSort(true)}>
         <ShortBy>
@@ -71,8 +71,8 @@ const CardColon = ({ item, cardType }) => {
               <SortTextDiv
                 onClick={() => {
                   dispatch({ type: SET_IS_EDITABLE, payload: false });
-                  navigate("/check-list", {
-                    state: { id: item.id, showEditable: true },
+                  navigate(`/check-list/${item.id}`, {
+                    state: { showEditable: true },
                   });
                 }}
               >
@@ -111,8 +111,8 @@ const CardColon = ({ item, cardType }) => {
               <SortTextDiv
                 onClick={() => {
                   dispatch({ type: SET_IS_EDITABLE, payload: false });
-                  navigate("/check-list", {
-                    state: { id: item.id, showEditable: true },
+                  navigate(`/check-list/${item.id}`, {
+                    state: { showEditable: true },
                   });
                 }}
               >
@@ -124,6 +124,34 @@ const CardColon = ({ item, cardType }) => {
                   const res = await dispatch(CopyChecklist(item.id, userEmail));
                   res.error === false &&
                     dispatch(getAllTemplateByEmail(userEmail));
+                }}
+              >
+                <Copy />
+                Copy
+              </SortTextDiv>
+              <SortTextDiv>
+                <ShareNew />
+                Share
+              </SortTextDiv>
+            </SortWrapper>
+          )}
+          {isOpenSort && cardType === "checklist" && (
+            <SortWrapper ref={wrapperRef}>
+              <SortTextDiv onClick={() => statusHandler(item.id, true)}>
+                <Completed />
+                Mark as Completed
+              </SortTextDiv>
+              <SortTextDiv onClick={() => statusHandler(item.id, false)}>
+                <Reset />
+                Reset
+              </SortTextDiv>
+              <SortTextDiv
+                onClick={async () => {
+                  const res = await dispatch(CopyChecklist(item.id, userEmail));
+                  if (res.error === false) {
+                    dispatch(getAllTemplateByEmail(userEmail));
+                    navigate("/dashboard");
+                  }
                 }}
               >
                 <Copy />

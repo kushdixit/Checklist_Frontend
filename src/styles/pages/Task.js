@@ -9,6 +9,7 @@ export const TitleFormSection = styled.div`
   form {
     padding: 0rem 2rem 0rem 1.6rem;
     width: auto !important;
+    flex: 1;
   }
 `;
 

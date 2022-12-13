@@ -5,7 +5,7 @@ import TextInput from "components/FormElements/TextInput";
 import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
 import { editChecklistApi } from "redux/actions/checklist";
 import { BodyContainer, FormBody } from "styles/pages/CheckList";
-import TaskWrapper from "../components/Task";
+import TaskWrapper from "components/Task";
 import {
   BodyWrapper,
   Title,
@@ -16,34 +16,32 @@ import {
   TitleFormSection,
   DescriptionWrapper,
   DescriptionContainer,
-  DescriptionIconInputField,
 } from "styles/pages/Task";
-import Navbar from "../components/Navbar";
-import { useLocation, useNavigate } from "react-router-dom";
+import Navbar from "components/Navbar";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import CardColon from "components/CardColon";
 
 const CheckList = () => {
+  const { id: pathId } = useParams();
   const { state } = useLocation();
   const [editChecklist, setEditChecklist] = useState(false);
   const [checklistName, setChecklistName] = useState();
   const [checklistId, setChecklistId] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const reduxChecklistName = useSelector(
-    (state) => state.checklist?.checklistName
-  );
+  const ChecklistDetail = useSelector((state) => state.checklist);
   const taskEditable = useSelector((state) => state.editable?.isEditable);
-  const reduxchecklistId = useSelector((state) => state.checklist?.id);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) navigate("/sign-in");
-    dispatch(getChecklistBySubcategory(state?.id));
+    dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
   useEffect(() => {
-    setChecklistName(reduxChecklistName);
-    setChecklistId(reduxchecklistId);
-  }, [reduxChecklistName]);
+    setChecklistName(ChecklistDetail?.checklistName);
+    setChecklistId(ChecklistDetail?.id);
+  }, [ChecklistDetail?.checklistName]);
 
   const {
     handleSubmit: submitData,
@@ -66,15 +64,15 @@ const CheckList = () => {
   const formFields = () => (
     <FormBody>
       <div>
-        <TaskWrapper
-          checkListId={state?.id}
-          showEditable={state?.showEditable}
-        />
+        <TaskWrapper checkListId={pathId} showEditable={state?.showEditable} />
       </div>
     </FormBody>
   );
 
-  const formData = async (data) => addTaskAPI(data);
+  const formData = (data) => {
+    console.log(data);
+    addTaskAPI(data);
+  };
 
   const editChecklistHandler = async (data) => {
     const res = await dispatch(editChecklistApi(data?.checklist, checklistId));
@@ -84,23 +82,24 @@ const CheckList = () => {
   };
 
   const addTaskAPI = async (val) => {
+    console.log(val);
     let data = {
       taskName: val.title,
-      checklistMasterId: state?.id,
+      checklistMasterId: pathId,
     };
     const response = await dispatch(addNewTask(data));
 
     if (response?.error) {
     } else {
       checklistValue("title", "");
-      dispatch(getChecklistBySubcategory(state?.id));
+      dispatch(getChecklistBySubcategory(pathId));
     }
   };
 
   const onChange = (e) => {
+    console.log(e);
     setValue("checklist", e.target.value);
   };
-
   return (
     <Section>
       <BodyWrapper>
@@ -140,6 +139,7 @@ const CheckList = () => {
                 />
               </IconInputField>
             </form>
+            <CardColon item={ChecklistDetail} cardType="checklist" />
           </Title>
         </TitleFormSection>
         <Description taskEditable={taskEditable} />
@@ -156,7 +156,7 @@ const CheckList = () => {
                     type="text"
                     placeholder="Enter New Task"
                     control={formControl}
-                    handlekeyPress={(e) => formData()}
+                    handlekeyPress={(e) => e.key === "Enter" && formData()}
                   />
                 </IconInputField>
               </form>
@@ -190,7 +190,7 @@ const Description = ({ taskEditable }) => {
           style={{ width: "100%", display: "flex" }}
           onSubmit={submitChecklist(DescriptionHandler)}
         >
-          <DescriptionIconInputField>
+          <IconInputField>
             <TextInput
               name="checklist"
               type="text"
@@ -201,7 +201,7 @@ const Description = ({ taskEditable }) => {
               disabled={!taskEditable}
               handlekeyPress={(e) => e.key === "Enter" && DescriptionHandler()}
             />
-          </DescriptionIconInputField>
+          </IconInputField>
         </form>
       </DescriptionContainer>
     </DescriptionWrapper>

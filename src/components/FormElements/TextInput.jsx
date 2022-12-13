@@ -13,7 +13,7 @@ const TextInput = (props) => {
           <input
             className={props.disabled ? "disabled" : ""}
             onChange={(e) => {
-              props?.onChange(e);
+              if (props?.onChange) props?.onChange(e);
             }}
             onFocus={(e) => {
               if (props?.onFocus) props?.onFocus(e?.target?.value);
