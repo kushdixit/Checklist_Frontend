@@ -23,6 +23,7 @@ export const Title = styled.div`
   font-weight: 600;
   font-size: 45px;
   color: #000;
+  display: flex;
   input {
     border-bottom: hidden;
     font-weight: 600;
@@ -203,8 +204,7 @@ export const AddSubTask = styled.div`
 `;
 export const ShortContainer = styled.div`
   position: relative;
-  width: 100%;
-  max-width: 80px;
+  justify-content: center;
   /* background: #ffffff; */
   /* border: 1px solid #e9e9e9; */
   box-sizing: border-box;
@@ -277,7 +277,7 @@ export const DescriptionContainer = styled.div`
   margin: 0rem auto;
   background: #fff;
   width: 100%;
-  max-width: 1720px;
+  max-width: 1774px;
   justify-content: center;
   align-items: center;
   font-weight: 600;
@@ -288,6 +288,9 @@ export const DescriptionContainer = styled.div`
     font-weight: 600;
     font-size: 24px !important;
     color: #000;
+  }
+  form {
+    padding-left: 28px;
   }
 `;
 export const DescriptionWrapper = styled.div`
