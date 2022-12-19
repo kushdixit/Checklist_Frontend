@@ -8,8 +8,6 @@ import {
   editSubTaskStatus,
 } from "redux/actions/task";
 import TextInput from "components/FormElements/TextInput";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   MainTaskSection,
   IconInputField,
@@ -21,11 +19,13 @@ import {
 import Colon from "assets/SVG/Colon";
 import Delete from "assets/SVG/Delete";
 import CheckboxInput from "components/FormElements/CheckboxInput";
+import { notification } from "antd";
 
 const SubList = ({ subIndex, task, checkListId, showEditable }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
   const wrapperRef = useRef();
   const taskEditable = useSelector((state) => state.editable?.isEditable);
 
@@ -63,20 +63,28 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
     dispatch(deleteSubTask(id, checkListId));
   };
 
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
+
   const updateSubTaskHandler = async (data) => {
-    const response = await dispatch(editSubTask(data?.updateSubTask, task.id));
-    if (response.status === 204) {
-      dispatch(getChecklistBySubcategory(checkListId));
-      setValue("updateSubTask", "");
-      setSubTaskEdit(false);
-    } else {
-      toast(response.data.Message);
+    if (data?.updateSubTask) {
+      const response = await dispatch(
+        editSubTask(data?.updateSubTask, task.id)
+      );
+      if (response.status === 204) {
+        dispatch(getChecklistBySubcategory(checkListId));
+        setValue("updateSubTask", "");
+        setSubTaskEdit(false);
+      } else openNotification(response.data.Message);
     }
   };
 
   return (
     <div key={subIndex}>
-      <ToastContainer />
+      {contextHolder}
       <MainTaskSection>
         <form
           style={{ width: "100%" }}

@@ -22,8 +22,7 @@ import {
 } from "redux/actions/checklist/index";
 import { getAllTemplateByEmail } from "redux/actions/template";
 import { getChecklistBySubcategory } from "redux/actions/task/index";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { notification } from "antd";
 
 const CardColon = ({ item, cardType }) => {
   const [modal, setModal] = useState(false);
@@ -32,6 +31,7 @@ const CardColon = ({ item, cardType }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -46,6 +46,11 @@ const CardColon = ({ item, cardType }) => {
     };
   }, [wrapperRef]);
 
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
   function toggleab(data) {
     setModal(data);
   }
@@ -55,14 +60,13 @@ const CardColon = ({ item, cardType }) => {
     if (res.error == false) {
       dispatch(getChecklistBySubcategory(id));
       setIsOpenSort(false);
-    } else {
-      toast(res.data);
-    }
+      openNotification(status ? "Completed" : "Reset");
+    } else openNotification(res?.data);
   };
 
   return (
     <ColonImage type={cardType}>
-      <ToastContainer />
+      {contextHolder}
       <ShortContainer onClick={() => setIsOpenSort(true)}>
         <ShortBy>
           <Colon onClick={() => toggleab(!modal)} />

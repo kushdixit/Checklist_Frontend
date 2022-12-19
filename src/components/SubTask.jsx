@@ -6,8 +6,10 @@ import { addSubTaskApi, getChecklistBySubcategory } from "redux/actions/task";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IconInputField, AddSubTask } from "styles/pages/Task";
+import { notification } from "antd";
 
 const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
+  const [api, contextHolder] = notification.useNotification();
   const dispatch = useDispatch();
   const { setValue, handleSubmit, control } = useForm({
     mode: "onSubmit",
@@ -16,18 +18,25 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
   });
 
   const subTaskformData = async (data) => {
-    const response = await dispatch(addSubTaskApi(data?.subTask, id));
-    if (response.status === 201) {
-      dispatch(getChecklistBySubcategory(checkListId));
-      setValue("subTask", "");
-      setAddSubTask(!addSubTask);
-    } else {
-      toast(response.data.Message);
+    if (data?.subTask) {
+      const response = await dispatch(addSubTaskApi(data?.subTask, id));
+      if (response.status === 201) {
+        dispatch(getChecklistBySubcategory(checkListId));
+        setValue("subTask", "");
+        setAddSubTask(!addSubTask);
+      } else openNotification(response.data.Message);
     }
+  };
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
   };
 
   return (
     <AddSubTask>
+      {contextHolder}
       <form
         style={{ display: "flex" }}
         onSubmit={handleSubmit(subTaskformData)}
