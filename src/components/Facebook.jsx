@@ -3,12 +3,18 @@ import FacebookLogin from "react-facebook-login";
 import { authSignup } from "../redux/actions/auth";
 import { store } from "redux/index";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
+import { notification } from "antd";
 
 const Facebook = () => {
   const navigate = useNavigate();
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   const signupHandler = async (data) => {
     const userName = data.name.split(" ");
@@ -23,8 +29,8 @@ const Facebook = () => {
     console.log("res", res);
     if (res.error === false) navigate("/dashboard");
     else if (res.data.response.data.Message === "Already exist.")
-      toast("Email already exist.Please try Logging in");
-    else toast("Error");
+      openNotification("Email already exist.Please try Logging in");
+    else openNotification("Error");
   };
 
   const responseFacebook = async (data) => {
@@ -33,7 +39,7 @@ const Facebook = () => {
 
   return (
     <div>
-      <ToastContainer />
+      {contextHolder}
       <FacebookSection>
         <FacebookLogin
           appId="561436628788154"

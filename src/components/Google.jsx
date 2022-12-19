@@ -3,12 +3,18 @@ import { GoogleLogin } from "react-google-login";
 import { authSignup } from "../redux/actions/auth";
 import { store } from "redux/index";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
+import { notification } from "antd";
 
 const Google = () => {
   const navigate = useNavigate();
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   const signupHandler = async (data) => {
     const payload = {
@@ -21,8 +27,8 @@ const Google = () => {
     const res = await store.dispatch(authSignup(payload));
     if (res.error === false) navigate("/dashboard");
     else if (res.data.response.data.Message === "Already exist.")
-      toast("Email already exist.Please try Logging in");
-    else toast("Error");
+      openNotification("Email already exist.Please try Logging in");
+    else openNotification("Error");
   };
 
   const responseGoogle = (data) => {
@@ -31,7 +37,7 @@ const Google = () => {
 
   return (
     <div>
-      <ToastContainer />
+      {contextHolder}
       <GoogleSection>
         <GoogleLogin
           clientId="889277139020-75dbj8v51vs4af256tggoooibgpkqnao.apps.googleusercontent.com"

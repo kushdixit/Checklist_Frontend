@@ -33,12 +33,12 @@ import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
 import { addTempChecklist } from "redux/actions/checklist";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
 import Logout from "assets/SVG/Logout";
 import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
+import Select from "react-select";
+import { notification } from "antd";
 
 const NavBar = ({ search, buttonType }) => {
   const wrapperRef = useRef();
@@ -47,6 +47,8 @@ const NavBar = ({ search, buttonType }) => {
   const dispatch = useDispatch();
   const [logoutModal, setLogoutModal] = useState(false);
   const [iconHandle, setIconHandle] = useState();
+  const [searchedData, setSearchedData] = useState([]);
+  const [searchedValue, setSearchedValue] = useState("");
   const [updateSearch, SetUpdateSearch] = useState("");
   const [modal, setModal] = useState(false);
   const userEmail = useSelector((state) => state.auth?.userData?.email);
@@ -54,6 +56,7 @@ const NavBar = ({ search, buttonType }) => {
   const YourTemplates = useSelector((state) => state.task?.allChecklist);
   const firstName = useSelector((state) => state.auth?.userData?.firstName);
   const lastName = useSelector((state) => state.auth?.userData?.lastName);
+  const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -71,6 +74,12 @@ const NavBar = ({ search, buttonType }) => {
   function toggleab(data) {
     setModal(data);
   }
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   const {
     handleSubmit: submitData,
@@ -107,15 +116,14 @@ const NavBar = ({ search, buttonType }) => {
         userEmail
       )
     );
-    if (res.error) toast(res.message);
+    if (res.error) openNotification(res.message);
     else {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       navigate(`/check-list/${res?.id}`, {
-        state: { id: res?.id, showEditable: false },
+        state: { showEditable: false },
       });
     }
   };
-
   const searchData = (data) => {
     dispatch({ type: SET_SEARCH, payload: data?.listSearch });
   };
@@ -137,8 +145,25 @@ const NavBar = ({ search, buttonType }) => {
     }
   };
 
+  const handleDataUpdate = (e) => {
+    setSearchedValue(e);
+    if (e?.length != 0) {
+      const res = YourTemplates?.filter((item) =>
+        item.checklistName.toLowerCase().includes(e?.toLowerCase())
+      ).map((item) => {
+        return {
+          value: item.checklistName,
+          label: item.checklistName,
+          id: item.id,
+        };
+      });
+      setSearchedData(res);
+    } else setSearchedData([]);
+  };
+
   return (
     <NavSection>
+      {contextHolder}
       <BurgerSection>
         <HeaderWrapper>
           <ImageSubSection>
@@ -216,6 +241,29 @@ const NavBar = ({ search, buttonType }) => {
         </FirstSection>
         <SecondSection>
           {search && (
+            <div style={{ width: "200px" }}>
+              <Select
+                placeholder={<div> Search</div>}
+                onChange={(e) =>
+                  navigate(`/check-list/${e?.id}`, {
+                    state: { showEditable: true },
+                  })
+                }
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                }}
+                options={searchedData}
+                onInputChange={(e) => handleDataUpdate(e)}
+                noOptionsMessage={() =>
+                  searchedValue == "" ? "" : "Not Found!"
+                }
+              />
+            </div>
+          )}
+          {/* Old Search  */}
+          {/* {false && (
+            // search
             <IconInputField style={{ display: "flex" }}>
               <form
                 style={{ width: "100%", display: "flex" }}
@@ -247,7 +295,7 @@ const NavBar = ({ search, buttonType }) => {
                 </Button>
               </IconWrapper>
             </IconInputField>
-          )}
+          )} */}
           {search && (
             <Footer>
               <Button

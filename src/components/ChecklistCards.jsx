@@ -13,15 +13,20 @@ import {
 import { getChecklist, addNewChecklist } from "redux/actions/checklist";
 import Card from "./Card";
 import { useForm, Controller } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { notification } from "antd";
 
 const ChecklistCards = ({ item }) => {
   const dispatch = useDispatch();
   // const allChecklist = useSelector((state) => state.task?.allChecklist);
   const userEmail = useSelector((state) => state.auth?.userData?.email);
-
+  const [api, contextHolder] = notification.useNotification();
   const [isCheck, setIsCheck] = useState(false);
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   const Checklist = [
     { id: 1, time: "3:25 p.m", image: FirstImage },
@@ -42,14 +47,12 @@ const ChecklistCards = ({ item }) => {
     const res = await dispatch(
       addNewChecklist(data.addChecklist, item.id, userEmail)
     );
-    if (res.error) {
-      toast(res.message);
-    }
+    if (res.error) openNotification(res.message);
   };
 
   return (
     <>
-      <ToastContainer />
+      {contextHolder}
       <NewSection>
         <SubSectionNew>
           <h2> {item.templateName}</h2>

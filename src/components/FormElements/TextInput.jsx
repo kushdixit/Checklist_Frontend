@@ -13,7 +13,7 @@ const TextInput = (props) => {
           <input
             className={props.disabled ? "disabled" : ""}
             onChange={(e) => {
-              if (props?.onChange) props?.onChange(e);
+              onChange(e);
             }}
             onFocus={(e) => {
               if (props?.onFocus) props?.onFocus(e?.target?.value);
@@ -29,7 +29,9 @@ const TextInput = (props) => {
             value={props?.value || value}
             rules={rules}
             name={props?.name}
-            onKeyPress={(e) => props?.handlekeyPress(e)}
+            onKeyPress={(e) => {
+              if (props?.handlekeyPress) props?.handlekeyPress(e);
+            }}
             onKeyDown={(e) => props?.handleKeyDown && props?.handleKeyDown(e)}
             autoComplete="off"
           />

@@ -208,12 +208,20 @@ export const WrapSubSection = styled.div`
   vertical-align: middle;
   align-items: center;
   justify-content: center;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 
   h2 {
     margin: 0;
     padding: 0;
     font-weight: 600;
     font-size: 17px;
+    text-overflow: ellipsis;
+    width: 100%;
+    max-width: 131px;
+    overflow: hidden;
   }
   h3 {
     color: #505050;

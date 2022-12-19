@@ -11,8 +11,6 @@ import { TaskList } from "styles/pages/CheckList";
 import TextInput from "components/FormElements/TextInput";
 import SubTask from "./SubTask";
 import SubListWrapper from "./SubList";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   MainTaskSection,
   IconInputField,
@@ -25,6 +23,7 @@ import Colon from "assets/SVG/Colon";
 import Delete from "assets/SVG/Delete";
 import Arrow from "assets/SVG/Arrow";
 import CheckboxInput from "components/FormElements/CheckboxInput";
+import { notification } from "antd";
 
 const TaskWrapper = ({ checkListId, showEditable }) => {
   const taskData = useSelector((state) => state.checklist);
@@ -50,6 +49,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
   const [isOpenSort, setIsOpenSort] = useState(false);
   const wrapperRef = useRef();
   const taskEditable = useSelector((state) => state.editable?.isEditable);
+  const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -66,6 +66,12 @@ const Task = ({ task, index, checkListId, showEditable }) => {
   function toggleab(data) {
     setModal(data);
   }
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   const {
     handleSubmit: submitData,
@@ -91,19 +97,19 @@ const Task = ({ task, index, checkListId, showEditable }) => {
   };
 
   const formData = async (data) => {
-    const response = await dispatch(editTask(data?.update, task.id));
-    dispatch(getChecklistBySubcategory(checkListId));
-    if (response.status === 204) {
-      setValue("update", "");
-      setTaskEdit(false);
-    } else {
-      toast(response.data.Message);
+    if (data?.update) {
+      const response = await dispatch(editTask(data?.update, task.id));
+      dispatch(getChecklistBySubcategory(checkListId));
+      if (response.status === 204) {
+        setValue("update", "");
+        setTaskEdit(false);
+      } else openNotification(response.data.Message);
     }
   };
 
   return (
     <TaskList key={index}>
-      <ToastContainer />
+      {contextHolder}
       <MainTaskSection>
         <form style={{ width: "100%" }} onSubmit={submitData(formData)}>
           {!taskEdit && (
