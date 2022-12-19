@@ -86,7 +86,7 @@ const SignIn = () => {
       issocial: 0,
     };
     const res = await store.dispatch(authLogin(payload));
-    if (res.error === false) navigate("/dashboard");
+    if (res.accessToken) navigate("/dashboard");
     else setLoginError(true);
   };
   const formFields = () => {
