@@ -98,6 +98,7 @@ export const SearchSection = styled.div`
   @media (max-width: 767px) {
     display: flex;
     width: 100%;
+    justify-content: center;
     form {
       width: 100%;
     }
