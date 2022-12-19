@@ -240,6 +240,7 @@ const NavBar = ({ search, buttonType }) => {
                     padding: "2px 12px",
                   }),
                 }}
+                menuIsOpen={searchedData.length}
                 onInputChange={(e) => handleDataUpdate(e)}
                 noOptionsMessage={() =>
                   searchedValue === "" ? "" : "Not Found!"
@@ -276,6 +277,7 @@ const NavBar = ({ search, buttonType }) => {
                     padding: "2px 12px",
                   }),
                 }}
+                menuIsOpen={searchedData.length}
                 onInputChange={(e) => handleDataUpdate(e)}
                 noOptionsMessage={() =>
                   searchedValue == "" ? "" : "Not Found!"
