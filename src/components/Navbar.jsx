@@ -220,28 +220,7 @@ const NavBar = ({ search, buttonType }) => {
         </HeaderWrapper>
         <SearchSection>
           {search && (
-            <form onSubmit={submitData(searchData)}>
-              <IconInputFieldNew>
-                <TextInput
-                  control={formControl}
-                  name="listSearch"
-                  type="text"
-                  placeholder="Search"
-                  handlekeyPress={(e) => searchData()}
-                />
-              </IconInputFieldNew>
-            </form>
-          )}
-        </SearchSection>
-      </BurgerSection>
-
-      <SubNavSection>
-        <FirstSection>
-          <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
-        </FirstSection>
-        <SecondSection>
-          {search && (
-            <div style={{ width: "200px" }}>
+            <div style={{ width: "90%" }}>
               <Select
                 placeholder={<div> Search</div>}
                 onChange={(e) =>
@@ -254,6 +233,49 @@ const NavBar = ({ search, buttonType }) => {
                   IndicatorSeparator: () => null,
                 }}
                 options={searchedData}
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderRadius: "18px",
+                    padding: "2px 12px",
+                  }),
+                }}
+                onInputChange={(e) => handleDataUpdate(e)}
+                noOptionsMessage={() =>
+                  searchedValue === "" ? "" : "Not Found!"
+                }
+              />
+            </div>
+          )}
+        </SearchSection>
+      </BurgerSection>
+
+      <SubNavSection>
+        <FirstSection>
+          <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
+        </FirstSection>
+        <SecondSection>
+          {search && (
+            <div style={{ width: "100%", maxWidth: "350px" }}>
+              <Select
+                placeholder={<div> Search</div>}
+                onChange={(e) =>
+                  navigate(`/check-list/${e?.id}`, {
+                    state: { showEditable: true },
+                  })
+                }
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                }}
+                options={searchedData}
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderRadius: "18px",
+                    padding: "2px 12px",
+                  }),
+                }}
                 onInputChange={(e) => handleDataUpdate(e)}
                 noOptionsMessage={() =>
                   searchedValue == "" ? "" : "Not Found!"
