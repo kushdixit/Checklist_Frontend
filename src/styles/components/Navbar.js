@@ -350,8 +350,8 @@ export const Morecontent = styled.div`
   }
   cursor: pointer;
   @media (max-width: 767px) {
-    top: 80px;
-    left: 18px;
+    top: 15px;
+    left: 85px;
   }
 `;
 

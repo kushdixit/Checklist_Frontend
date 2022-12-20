@@ -86,7 +86,7 @@ const SignIn = () => {
       issocial: 0,
     };
     const res = await store.dispatch(authLogin(payload));
-    if (res.accessToken) navigate("/dashboard");
+    if (res?.data?.accessToken) navigate("/dashboard");
     else {
       setLoginError(true);
       setResetError(false);
