@@ -39,6 +39,12 @@ export const SecondSection = styled.div`
   width: 100%;
   max-width: 1446px;
   justify-content: right;
+  @media (max-width: 1000px) {
+    gap: 35px;
+  }
+  @media (max-width: 875px) {
+    gap: 15px;
+  }
   @media (max-width: 767px) {
     display: none;
   }
@@ -143,6 +149,9 @@ export const SecondSubSection = styled.div`
   .button {
     background: unset;
     border: unset;
+  }
+  @media (max-width: 874px) {
+    margin-left: 0px;
   }
 `;
 
