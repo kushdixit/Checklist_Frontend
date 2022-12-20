@@ -99,7 +99,7 @@ const NavBar = ({ search, buttonType }) => {
   }, [watch]);
 
   useEffect(() => {
-    if (updateSearch == "") {
+    if (updateSearch === "") {
       dispatch({ type: SET_SEARCH, payload: "" });
     } else dispatch({ type: SET_SEARCH, payload: updateSearch });
   }, [updateSearch]);
@@ -136,7 +136,7 @@ const NavBar = ({ search, buttonType }) => {
 
   const handleIconClick = () => {
     console.log("is here");
-    if (updateSearch.length != 0) {
+    if (updateSearch.length !== 0) {
       SetUpdateSearch("");
       dispatch({ type: SET_SEARCH, payload: "" });
       reset({
@@ -147,7 +147,7 @@ const NavBar = ({ search, buttonType }) => {
 
   const handleDataUpdate = (e) => {
     setSearchedValue(e);
-    if (e?.length != 0) {
+    if (e?.length !== 0) {
       const res = YourTemplates?.filter((item) =>
         item.checklistName.toLowerCase().includes(e?.toLowerCase())
       ).map((item) => {
@@ -280,7 +280,7 @@ const NavBar = ({ search, buttonType }) => {
                 menuIsOpen={searchedData.length}
                 onInputChange={(e) => handleDataUpdate(e)}
                 noOptionsMessage={() =>
-                  searchedValue == "" ? "" : "Not Found!"
+                  searchedValue === "" ? "" : "Not Found!"
                 }
               />
             </div>

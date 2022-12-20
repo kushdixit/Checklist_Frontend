@@ -33,7 +33,7 @@ const TextInput = (props) => {
               if (props?.handlekeyPress) props?.handlekeyPress(e);
             }}
             onKeyDown={(e) => props?.handleKeyDown && props?.handleKeyDown(e)}
-            autoComplete="off"
+            autoComplete={props?.autoComplete ? props?.autoComplete : "off"}
           />
         )}
         name={props?.name}
