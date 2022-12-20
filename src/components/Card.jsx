@@ -47,9 +47,11 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
         </WrapSection>
       </Wrap>
       <Abc>
-        <CompleteSection>
-          <Completed />
-        </CompleteSection>
+        {item?.ischecked && (
+          <CompleteSection>
+            <Completed />
+          </CompleteSection>
+        )}
         <CardColon item={item} cardType={cardType} />
       </Abc>
     </SubSection>

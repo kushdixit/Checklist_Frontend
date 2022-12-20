@@ -57,12 +57,16 @@ const CardColon = ({ item, cardType }) => {
 
   const statusHandler = async (id, status) => {
     const res = await dispatch(ChecklistCompleted(id, status));
+    refetchtemplate(res);
     if (res.error == false) {
       dispatch(getChecklistBySubcategory(id));
       setIsOpenSort(false);
       openNotification(status ? "Completed" : "Reset");
     } else openNotification(res?.data);
   };
+
+  const refetchtemplate = (res) =>
+    res?.error === false && dispatch(getAllTemplateByEmail(userEmail));
 
   return (
     <ColonImage type={cardType}>
@@ -83,19 +87,22 @@ const CardColon = ({ item, cardType }) => {
                 <Edit />
                 View CheckList
               </SortTextDiv>
-              <SortTextDiv onClick={() => statusHandler(item.id, true)}>
-                <Completed />
-                Mark as Completed
-              </SortTextDiv>
-              <SortTextDiv onClick={() => statusHandler(item.id, false)}>
-                <Reset />
-                Reset
-              </SortTextDiv>
+              {!item?.ischecked && (
+                <SortTextDiv onClick={() => statusHandler(item.id, true)}>
+                  <Completed />
+                  Mark as Completed
+                </SortTextDiv>
+              )}
+              {item?.ischecked && (
+                <SortTextDiv onClick={() => statusHandler(item.id, false)}>
+                  <Reset />
+                  Reset
+                </SortTextDiv>
+              )}
               <SortTextDiv
                 onClick={async () => {
                   const res = await dispatch(CopyChecklist(item.id, userEmail));
-                  res.error === false &&
-                    dispatch(getAllTemplateByEmail(userEmail));
+                  refetchtemplate(res);
                 }}
               >
                 <Copy />
@@ -126,8 +133,7 @@ const CardColon = ({ item, cardType }) => {
               <SortTextDiv
                 onClick={async () => {
                   const res = await dispatch(CopyChecklist(item.id, userEmail));
-                  res.error === false &&
-                    dispatch(getAllTemplateByEmail(userEmail));
+                  refetchtemplate(res);
                 }}
               >
                 <Copy />
@@ -141,21 +147,23 @@ const CardColon = ({ item, cardType }) => {
           )}
           {isOpenSort && cardType === "checklist" && (
             <SortWrapper ref={wrapperRef}>
-              <SortTextDiv onClick={() => statusHandler(item.id, true)}>
-                <Completed />
-                Mark as Completed
-              </SortTextDiv>
-              <SortTextDiv onClick={() => statusHandler(item.id, false)}>
-                <Reset />
-                Reset
-              </SortTextDiv>
+              {!item?.ischecked && (
+                <SortTextDiv onClick={() => statusHandler(item.id, true)}>
+                  <Completed />
+                  Mark as Completed
+                </SortTextDiv>
+              )}
+              {item?.ischecked && (
+                <SortTextDiv onClick={() => statusHandler(item.id, false)}>
+                  <Reset />
+                  Reset
+                </SortTextDiv>
+              )}
               <SortTextDiv
                 onClick={async () => {
                   const res = await dispatch(CopyChecklist(item.id, userEmail));
-                  if (res.error === false) {
-                    dispatch(getAllTemplateByEmail(userEmail));
-                    navigate("/dashboard");
-                  }
+                  refetchtemplate(res);
+                  res?.error && navigate("/dashboard");
                 }}
               >
                 <Copy />

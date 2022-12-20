@@ -19,6 +19,7 @@ const Dashboard = () => {
   const searchedValue = useSelector((state) => state.search?.search);
   const templateData = useSelector((state) => state.Template?.yourTemplate);
   const allChecklist = useSelector((state) => state.task?.allChecklist);
+  const allTemplate = useSelector((state) => state.Template?.allTemplate);
 
   function toggleab(data) {
     setModal(data);
@@ -36,7 +37,6 @@ const Dashboard = () => {
     dispatch({ type: SET_SEARCH, payload: "" });
   }, []);
 
-  const allTemplate = useSelector((state) => state.Template?.allTemplate);
   useEffect(() => {
     if (passwordReset) toggleab(true);
   }, [passwordReset]);

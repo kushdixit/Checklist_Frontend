@@ -4,7 +4,8 @@ import { SIGN_IN } from "redux/actions/action_types";
 export const authLogin = (payload) => async (dispatch) => {
   try {
     const response = await axioPath.post("v1/Account/userslogin", payload);
-    localStorage.setItem("access_token", response.data.accessToken);
+    response.data.accessToken &&
+      localStorage.setItem("access_token", response.data.accessToken);
     dispatch({ type: SIGN_IN, payload: response.data });
     return { error: false, data: response.data };
   } catch (ex) {

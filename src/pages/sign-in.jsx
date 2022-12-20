@@ -87,7 +87,10 @@ const SignIn = () => {
     };
     const res = await store.dispatch(authLogin(payload));
     if (res.accessToken) navigate("/dashboard");
-    else setLoginError(true);
+    else {
+      setLoginError(true);
+      setResetError(false);
+    }
   };
   const formFields = () => {
     return (
@@ -126,6 +129,7 @@ const SignIn = () => {
                       type="text"
                       placeholder="Email Address"
                       control={control}
+                      showAutoComplete={true}
                     />
                     <Error>{errors.email && errors.email.message}</Error>
                     <EmailIcon className="emailIcon" />
