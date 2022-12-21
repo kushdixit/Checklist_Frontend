@@ -43,6 +43,7 @@ const Facebook = () => {
       <FacebookSection>
         <FacebookLogin
           appId="561436628788154"
+      
           autoLoad={false}
           fields="name,email,picture"
           callback={responseFacebook}
@@ -50,6 +51,18 @@ const Facebook = () => {
           icon="fa-facebook"
         />
       </FacebookSection>
+    
+      <FacebookSectionMobile>
+        <FacebookLogin
+          appId="561436628788154"
+         
+          autoLoad={false}
+          fields="name,email,picture"
+          callback={responseFacebook}
+          cssClass="my-facebook-button-class"
+          icon="fa-facebook"
+        />
+      </FacebookSectionMobile>
     </div>
   );
 };
@@ -63,10 +76,50 @@ export const FacebookSection = styled.div`
     background: unset;
     border: unset;
     font-size: 14px;
+    /* @media (max-width: 465px) {
+      font-size: 13px;
+  } */
   }
   .fa-facebook {
     color: #1d2e88;
     padding: 4px 7px;
     font-size: 24px;
+    /* @media (max-width: 465px) {
+      font-size: 13px;
+  } */
+  }
+  @media (max-width: 1920px) {
+    display:block ;
+  }
+  @media (max-width: 465px) {
+    display:none ;
+  }
+`;
+
+export const FacebookSectionMobile = styled.div`
+  background: unset;
+  border: unset;
+  font-size: 16px;
+  .my-facebook-button-class {
+    background: unset;
+    border: unset;
+    font-size: 14px;
+    /* @media (max-width: 465px) {
+      font-size: 13px;
+  } */
+  }
+  .fa-facebook {
+    color: #1d2e88;
+    padding: 4px 7px;
+    font-size: 24px;
+    /* @media (max-width: 465px) {
+      font-size: 13px;
+  } */
+  }
+  @media (max-width: 1920px) {
+    display:none ;
+  }
+  @media (max-width: 465px) {
+    display:block ;
   }
 `;

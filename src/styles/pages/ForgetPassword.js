@@ -46,10 +46,13 @@ export const EmailWrapper = styled.div`
   margin-bottom: 30px;
 `;
 export const ButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-bottom: 30px;
+  border-radius: 5px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  padding: 0px 0px 10px;
 `;
 export const DataInput = styled.div`
   input {
@@ -62,6 +65,9 @@ export const DataInput = styled.div`
       font-size: 14px !important;
       color: #4f5270 !important;
       padding-left: 10px;
+    }
+    @media (max-width: 873px) {
+      width: unset !important;
     }
   }
 `;
@@ -102,4 +108,6 @@ export const ModalButton = styled.div`
   color: white;
   text-align: center;
   cursor: pointer;
+  width: 16vw;
+  margin: 10px 0;
 `;
