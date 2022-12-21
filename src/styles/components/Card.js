@@ -143,24 +143,21 @@ export const SubSection = styled.div`
 `;
 export const SubSectionNew = styled.div`
   margin: 0 auto;
-
   font-weight: 700;
   width: 100%;
   max-width: 1735px;
   font-size: 2.7rem;
   font-weight: 700;
-
   h2 {
     padding-left: 10px;
-    font-size: 2.7rem;
     @media (max-width: 1722px) {
       padding: 0 30px;
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
-    @media (max-width: 767px) {
-      padding: 0 30px;
-      font-size: 1.5rem;
-    }
+  }
+  @media (max-width: 767px) {
+    display: flex;
+    justify-content: center;
   }
 `;
 export const Image = styled.div`
@@ -190,7 +187,7 @@ export const Wrap = styled.div`
 
 export const ColonImage = styled.div`
   ${({ type }) =>
-    type == "checklist"
+    type === "checklist"
       ? `
 padding: 0rem 3.2rem 0rem 0rem;
 `

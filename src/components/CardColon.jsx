@@ -58,10 +58,14 @@ const CardColon = ({ item, cardType }) => {
   const statusHandler = async (id, status) => {
     const res = await dispatch(ChecklistCompleted(id, status));
     refetchtemplate(res);
-    if (res.error == false) {
+    if (res.error === false) {
       dispatch(getChecklistBySubcategory(id));
       setIsOpenSort(false);
-      openNotification(status ? "Completed" : "Reset");
+      openNotification(
+        status
+          ? "Your Checklist has been Completed"
+          : "Your Checklist has been Reset"
+      );
     } else openNotification(res?.data);
   };
 
