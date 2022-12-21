@@ -52,7 +52,9 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
             <Completed />
           </CompleteSection>
         )}
-        <CardColon item={item} cardType={cardType} />
+     <div style={{ paddingRight: item?.ischecked ? "0px" : "7px" }}>
+          <CardColon item={item} cardType={cardType} />
+        </div>
       </Abc>
     </SubSection>
   );

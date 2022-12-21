@@ -105,6 +105,23 @@ export const MainTaskSection = styled.div`
   }
 `;
 
+export const MainTaskSectionForm = styled.div`
+  width: 100%;
+  max-width: 1400px;
+
+  @media (max-width: 1378px) {
+    form {
+      width: 100%;
+      max-width: 800px;
+    }
+  }
+  @media (max-width: 862px) {
+    form {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+`;
 export const TaskIconImage = styled.div`
   width: 30px;
 `;

@@ -49,6 +49,17 @@ const Google = () => {
           icon="fa-google"
         />
       </GoogleSection>
+      <GoogleSectionMobile>
+      <GoogleLogin
+          clientId="889277139020-75dbj8v51vs4af256tggoooibgpkqnao.apps.googleusercontent.com"
+          buttonText=""
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+          className="my-google-button-class"
+          icon="fa-google"
+        />
+      </GoogleSectionMobile>
     </div>
   );
 };
@@ -75,5 +86,40 @@ export const GoogleSection = styled.div`
     color: #1d2e88;
     padding: 4px 7px;
     font-size: 24px;
+  }
+  @media (max-width: 1920px) {
+    display:block ;
+  }
+  @media (max-width: 465px) {
+    display:none ;
+  }
+`;
+
+export const GoogleSectionMobile = styled.div`
+   background: unset;
+  border: unset;
+  font-size: 14px;
+  box-shadow: unset;
+
+  .my-google-button-class {
+    background: unset;
+    border: unset;
+    font-size: 14px !important;
+    box-shadow: unset !important;
+    color: #000 !important;
+  }
+  div {
+    margin-right: 0 !important;
+  }
+  .fa-google {
+    color: #1d2e88;
+    padding: 4px 7px;
+    font-size: 24px;
+  }
+  @media (max-width: 1920px) {
+    display:none ;
+  }
+  @media (max-width: 465px) {
+    display:block ;
   }
 `;

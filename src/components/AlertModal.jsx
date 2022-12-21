@@ -15,7 +15,7 @@ const customStyles = {
     borderRadius: "19px",
     transform: "translate(-50%, -50%)",
     padding: "15px 35px",
-    width: "18vw",
+  
     height: "auto",
     overflowY: "hidden",
   },

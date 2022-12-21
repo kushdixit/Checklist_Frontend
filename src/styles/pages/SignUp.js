@@ -36,6 +36,11 @@ export const FormBody = styled.div`
   max-width: 450px;
   width: 100%;
   margin: 0 auto;
+  @media (max-width: 465px) {
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+  }
 `;
 export const RememberSection = styled.div`
   display: flex;
@@ -133,6 +138,10 @@ export const IconInputField = styled.div`
     }
     :focus-visible {
       outline: unset;
+    }
+    @media (max-width: 465px) {
+      max-width: 210px;
+      width: 100%;
     }
   }
 
@@ -250,18 +259,11 @@ export const Error = styled.div`
 `;
 export const SignIn = styled.div`
   cursor: pointer;
-<<<<<<< HEAD
   font-size: 17px;
   color: #1d2e88;
   text-align: center;
   padding: 10px;
   font-weight: 400;
-=======
-  font-size: 16px;
-  color: #1d2e88;
-  margin: 1rem;
-  text-align: center;
->>>>>>> 7e730f63af56b1b8723ce61f7680e9bb708cf42f
 `;
 
 export const ChecklistHeader = styled.div`
@@ -274,5 +276,8 @@ export const ChecklistHeader = styled.div`
   margin: 4rem 0 0rem;
   @media (max-width: 1024px) {
     font-size: 2.5rem;
+  }
+  @media (max-width: 465px) {
+    margin: 2rem 0 0rem;
   }
 `;

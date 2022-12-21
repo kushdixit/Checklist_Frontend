@@ -5,6 +5,9 @@ export const FormContainer = styled.div`
   max-width: 450px;
   width: 100%;
   margin: 0 auto;
+  @media (max-width: 465px) {
+    max-width: 263px;
+  }
 `;
 export const Heading = styled.h4`
   color: #1d2e88;
@@ -42,6 +45,12 @@ export const ChecklistHeader = styled.div`
   margin: 4rem 0 0rem;
   @media (max-width: 1024px) {
     font-size: 2.5rem;
+  }
+  @media (max-width: 465px) {
+    width: 100%;
+    max-width: 277px;
+    margin: 0 auto;
+    padding: 20px 0;
   }
 `;
 
@@ -141,6 +150,9 @@ export const IconInputField = styled.div`
     :focus-visible {
       outline: unset;
     }
+    @media (max-width: 465px) {
+      max-width: 184px;
+    }
   }
 
   Button {
@@ -195,6 +207,8 @@ export const IconSection = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 2.5rem 0rem 2rem;
+  @media (max-width: 465px) {
+  }
 `;
 export const LeftIconSection = styled.div`
   border: 1px solid #c9c9c9;
@@ -206,6 +220,11 @@ export const LeftIconSection = styled.div`
   max-width: 188px;
   border-radius: 8px;
   padding: 11px 12px;
+  @media (max-width: 465px) {
+    width: unset;
+    max-width: unset;
+    padding: 0;
+  }
 `;
 export const RightIconSection = styled.div`
   border: 1px solid #c9c9c9;
@@ -217,6 +236,11 @@ export const RightIconSection = styled.div`
   max-width: 188px;
   border-radius: 8px;
   padding: 11px 12px;
+  @media (max-width: 465px) {
+    width: unset;
+    max-width: unset;
+    padding: 0;
+  }
 `;
 
 export const IconText = styled.div`
@@ -225,6 +249,8 @@ export const IconText = styled.div`
   vertical-align: middle;
   display: flex;
   justify-content: center;
+  @media (max-width: 465px) {
+  }
 `;
 export const Error = styled.div`
   color: #d65e5e;

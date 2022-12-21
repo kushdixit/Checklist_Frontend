@@ -15,6 +15,7 @@ import {
   SortWrapper,
   ShortContainer,
   SortTextDiv,
+  MainTaskSectionForm
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
 import Delete from "assets/SVG/Delete";
@@ -86,8 +87,9 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
     <div key={subIndex}>
       {contextHolder}
       <MainTaskSection>
+      <MainTaskSectionForm>
         <form
-          style={{ width: "100%" }}
+        
           onSubmit={handleSubmit(updateSubTaskHandler)}
         >
           {!subTaskEdit && (
@@ -152,6 +154,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
             </ShortContainer>
           )}
         </form>
+        </MainTaskSectionForm>
       </MainTaskSection>
     </div>
   );
