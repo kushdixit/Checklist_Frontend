@@ -33,6 +33,7 @@ export const DataWrapper = styled.form`
   flex-direction: column;
   text-align: center;
   gap: 30px;
+  align-items: center;
 `;
 export const Heading = styled.div`
   font-size: 16px;

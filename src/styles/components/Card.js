@@ -146,7 +146,7 @@ export const SubSectionNew = styled.div`
   font-weight: 700;
   width: 100%;
   max-width: 1735px;
-  font-size: 2.7rem;
+  font-size: 1.3rem;
   font-weight: 700;
   h2 {
     padding-left: 10px;

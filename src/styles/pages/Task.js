@@ -121,6 +121,12 @@ export const MainTaskSectionForm = styled.div`
       max-width: 400px;
     }
   }
+  @media (max-width: 462px) {
+    form {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
 `;
 export const TaskIconImage = styled.div`
   width: 30px;
@@ -138,6 +144,9 @@ export const IconInputField = styled.div`
     width: 100%;
 
     background: unset;
+    @media (max-width: 462px) {
+      font-size: 18px;
+    }
   }
   input:focus-visible {
     outline: unset;

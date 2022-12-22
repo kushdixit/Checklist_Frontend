@@ -118,3 +118,14 @@ export const CopyChecklist = (id, email) => async (dispatch) => {
     return { error: true, message: ex?.response?.data?.Message };
   }
 };
+
+export const DescriptionChecklist = (id) => async () => {
+  const payload = {
+    id,
+    checklistdescription: "pooja",
+  };
+  const res = await axioPath.put("v1/Checklist/checklistdescription", payload, {
+    hideLoader: false,
+  });
+  console.log(res);
+};
