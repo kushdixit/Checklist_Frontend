@@ -1,4 +1,6 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
+import { DescriptionChecklist } from "redux/actions/checklist";
 import {
   SubSection,
   Image,
@@ -8,6 +10,7 @@ import {
   WrapSection,
   Abc,
   CompleteSection,
+  DescriptionCopy
 } from "styles/components/Card";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -15,10 +18,14 @@ import DashboardIcon from "assets/SVG/DashboardIcon";
 import CardColon from "./CardColon";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import Completed from "assets/SVG/Completed";
+
 const Card = ({ item, index, Checklist, showEditable, cardType }) => {
   const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    DescriptionChecklist();
+  }, []);
   return (
     <SubSection key={index}>
       <Wrap
@@ -44,6 +51,9 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
                 : item.dateCreated?.split("T")[0]}
             </h3>
           </WrapSubSectionNew>
+          <DescriptionCopy>  {products.map((checklistdescription) => (
+        <p>{checklistdescription.item}</p>
+      ))}</DescriptionCopy>
         </WrapSection>
       </Wrap>
       <Abc>
