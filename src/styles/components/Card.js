@@ -24,13 +24,6 @@ export const WrapSubSectionNew = styled.div`
   }
 `;
 
-export const DescriptionCopy = styled.div`
-  margin: 0;
-  padding: 0;
-  color: #8d8e9b;
-  font-size: 14px;
-  font-weight: 400;
-`;
 export const WrapSection = styled.div``;
 
 export const CardMainSection = styled.div`

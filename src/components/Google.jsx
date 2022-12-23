@@ -49,7 +49,7 @@ const Google = () => {
           icon="fa-google"
         />
       </GoogleSection>
-      <GoogleSectionMobile>
+      {/* <GoogleSectionMobile>
       <GoogleLogin
           clientId="889277139020-75dbj8v51vs4af256tggoooibgpkqnao.apps.googleusercontent.com"
           buttonText=""
@@ -59,7 +59,7 @@ const Google = () => {
           className="my-google-button-class"
           icon="fa-google"
         />
-      </GoogleSectionMobile>
+      </GoogleSectionMobile> */}
     </div>
   );
 };
@@ -88,15 +88,15 @@ export const GoogleSection = styled.div`
     font-size: 24px;
   }
   @media (max-width: 1920px) {
-    display:block ;
+    display: block;
   }
-  @media (max-width: 465px) {
+  /* @media (max-width: 465px) {
     display:none ;
-  }
+  } */
 `;
 
 export const GoogleSectionMobile = styled.div`
-   background: unset;
+  background: unset;
   border: unset;
   font-size: 14px;
   box-shadow: unset;
@@ -117,9 +117,9 @@ export const GoogleSectionMobile = styled.div`
     font-size: 24px;
   }
   @media (max-width: 1920px) {
-    display:none ;
+    display: none;
   }
   @media (max-width: 465px) {
-    display:block ;
+    display: block;
   }
 `;
