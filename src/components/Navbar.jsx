@@ -170,6 +170,7 @@ const NavBar = ({ search, buttonType }) => {
             <SecondSubSection>
               <button
                 className="button"
+                ref={wrapperRef}
                 onClick={() => setLogoutModal(!logoutModal)}
               >
                 <InitialsWrapperNew>
@@ -181,7 +182,11 @@ const NavBar = ({ search, buttonType }) => {
               </button>
             </SecondSubSection>
             {logoutModal ? (
-              <Morecontent onClick={() => toggleab(true)}>
+              <Morecontent
+                onClick={() => {
+                  toggleab(true);
+                }}
+              >
                 <Logout
                   style={{
                     width: "15px",
@@ -193,7 +198,7 @@ const NavBar = ({ search, buttonType }) => {
             ) : null}
           </ImageSubSection>
           <LogoSearchSection>
-            <LogoSection>Checklist</LogoSection>
+            <LogoSection onClick={() => navigate("/")}>Checklist</LogoSection>
           </LogoSearchSection>
           {search && (
             <Footer>
@@ -285,41 +290,6 @@ const NavBar = ({ search, buttonType }) => {
               />
             </div>
           )}
-          {/* Old Search  */}
-          {/* {false && (
-            // search
-            <IconInputField style={{ display: "flex" }}>
-              <form
-                style={{ width: "100%", display: "flex" }}
-                onSubmit={submitData(searchData)}
-              >
-                <IconInputField>
-                  <TextInput
-                    name="listSearch"
-                    type="text"
-                    placeholder="Search"
-                    control={formControl}
-                    handleKeyDown={handleKeyDown}
-                    handlekeyPress={(e) => {
-                      SetUpdateSearch((prev) => prev + e.key);
-                    }}
-                  />
-                </IconInputField>
-              </form>
-              <IconWrapper onClick={handleIconClick}>
-                <Button
-                  style={{
-                    background: "transparent",
-                    border: "none",
-                    boxShadow: "none",
-                    cursor: "text",
-                  }}
-                >
-                  {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
-                </Button>
-              </IconWrapper>
-            </IconInputField>
-          )} */}
           {search && (
             <Footer>
               <Button

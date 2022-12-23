@@ -39,8 +39,6 @@ const CheckList = () => {
     dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
-  console.log(ChecklistDetail);
-
   useEffect(() => {
     setChecklistName(ChecklistDetail?.checklistName);
     setChecklistId(ChecklistDetail?.id);
@@ -79,7 +77,7 @@ const CheckList = () => {
 
   const editChecklistHandler = async (data) => {
     const res = await dispatch(editChecklistApi(data?.checklist, checklistId));
-    setValue("checklist", "");
+    // setValue("checklist", "");
     if (res.error) console.log("error");
     else setEditChecklist(!editChecklist);
   };
