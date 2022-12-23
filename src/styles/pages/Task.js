@@ -21,7 +21,7 @@ export const Title = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  font-size: 45px;
+
   color: #000;
   display: flex;
   input {
@@ -29,6 +29,16 @@ export const Title = styled.div`
     font-weight: 600;
     font-size: 36px !important;
     color: #000;
+
+    @media (max-width: 1378px) {
+      font-size: 30px !important;
+    }
+    @media (max-width: 862px) {
+      font-size: 26px !important;
+    }
+    @media (max-width: 462px) {
+      font-size: 24px !important;
+    }
   }
 `;
 
@@ -124,7 +134,7 @@ export const MainTaskSectionForm = styled.div`
   @media (max-width: 462px) {
     form {
       width: 100%;
-      max-width: 300px;
+      max-width: 250px;
     }
   }
 `;

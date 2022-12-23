@@ -111,4 +111,14 @@ export const ModalButton = styled.div`
   cursor: pointer;
   width: 16vw;
   margin: 10px 0;
+
+  @media (max-width: 1378px) {
+    width: 20vw;
+  }
+  @media (max-width: 862px) {
+    width: 20vw;
+  }
+  @media (max-width: 320px) {
+    width: 20vw;
+  }
 `;
