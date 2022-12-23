@@ -265,11 +265,15 @@ export const SortWrapper = styled.div`
   box-shadow: 0px 7px 32px 11px rgb(207 207 207/ 50%);
   border-radius: 10px;
 
-  width: 235px;
+  width: 224px;
   text-align: left;
-  right: 10px;
+  right: 0;
   top: 40px;
   padding: 20px 26px 10px 26px;
+  @media (max-width: 372px) {
+    right: 0;
+    width: 195px;
+  }
 `;
 export const SortText = styled.button`
   font-weight: 500;
