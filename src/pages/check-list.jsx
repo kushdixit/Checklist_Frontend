@@ -194,7 +194,7 @@ const Description = ({ taskEditable, checklistId }) => {
           style={{ width: "100%", display: "flex" }}
           onSubmit={submitChecklist(DescriptionHandler)}
         >
-          <IconInputField>
+          <IconInputField style={{ paddingRight: "4.5rem" }}>
             <TextInput
               name="checklist"
               type="text"

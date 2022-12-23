@@ -170,7 +170,10 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                       <Delete /> Delete Task
                     </SortTextDiv>
                     <SortTextDiv onClick={() => setAddSubTask(!addSubTask)}>
-                      <Arrow /> Add Sub Task
+                      <Arrow />{" "}
+                      <div>
+                        {addSubTask ? "Remove sub task" : "Add sub task"}
+                      </div>
                     </SortTextDiv>
                   </SortWrapper>
                 )}
