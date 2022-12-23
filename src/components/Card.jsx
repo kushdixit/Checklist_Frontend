@@ -15,6 +15,7 @@ import DashboardIcon from "assets/SVG/DashboardIcon";
 import CardColon from "./CardColon";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import Completed from "assets/SVG/Completed";
+import { getChecklistBySubcategory } from "redux/actions/task";
 
 const Card = ({ item, index, Checklist, showEditable, cardType }) => {
   const dispatch = useDispatch();
@@ -23,11 +24,13 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
   return (
     <SubSection key={index}>
       <Wrap
-        onClick={() => {
+        onClick={async () => {
           dispatch({ type: SET_IS_EDITABLE, payload: false });
-          navigate(`/check-list/${item.id}`, {
-            state: { showEditable: showEditable },
-          });
+          const re = await dispatch(getChecklistBySubcategory(item.id));
+          re.error == false &&
+            navigate(`/check-list/${item.id}`, {
+              state: { showEditable: showEditable },
+            });
         }}
       >
         <Image>

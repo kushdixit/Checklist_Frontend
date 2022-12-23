@@ -21,6 +21,7 @@ import {
 import Navbar from "components/Navbar";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CardColon from "components/CardColon";
+import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 
 const CheckList = () => {
   const { id: pathId } = useParams();
@@ -70,20 +71,16 @@ const CheckList = () => {
     </FormBody>
   );
 
-  const formData = (data) => {
-    console.log(data);
-    addTaskAPI(data);
-  };
+  const formData = (data) => addTaskAPI(data);
 
   const editChecklistHandler = async (data) => {
-    const res = await dispatch(editChecklistApi(data?.checklist, checklistId));
-    // setValue("checklist", "");
-    if (res.error) console.log("error");
-    else setEditChecklist(!editChecklist);
+    const res =
+      (await data?.checklist) &&
+      dispatch(editChecklistApi(data?.checklist, checklistId));
+    if (!res.error) setEditChecklist(!editChecklist);
   };
 
   const addTaskAPI = async (val) => {
-    console.log(val);
     let data = {
       taskName: val.title,
       checklistMasterId: pathId,
@@ -98,7 +95,6 @@ const CheckList = () => {
   };
 
   const onChange = (e) => {
-    console.log(e);
     setValue("checklist", e.target.value);
   };
   return (
@@ -121,8 +117,8 @@ const CheckList = () => {
                 <TextInput
                   name="checklist"
                   type="text"
-                  defaultValue={checklistName}
-                  placeholder={checklistName}
+                  defaultValue={ChecklistDetail?.checklistName}
+                  placeholder={ChecklistDetail?.checklistName}
                   control={checklistFormControl}
                   onChange={onChange}
                   disabled={!taskEditable}
@@ -168,14 +164,11 @@ const Description = ({ taskEditable, checklistId }) => {
   const ChecklistDetail = useSelector((state) => state.checklist);
   const dispatch = useDispatch();
 
-  const {
-    handleSubmit: submitChecklist,
-    control: checklistFormControl,
-    setValue,
-  } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-  });
+  const { handleSubmit: submitChecklist, control: checklistFormControl } =
+    useForm({
+      mode: "onSubmit",
+      reValidateMode: "onBlur",
+    });
 
   const DescriptionHandler = async (data) => {
     const res =
@@ -191,11 +184,18 @@ const Description = ({ taskEditable, checklistId }) => {
     <DescriptionWrapper>
       <DescriptionContainer>
         <form
-          style={{ width: "100%", display: "flex" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            padding: "0px 60px !important",
+          }}
           onSubmit={submitChecklist(DescriptionHandler)}
         >
           <IconInputField style={{ paddingRight: "4.5rem" }}>
             <TextInput
+              style={{
+                color: taskEditable ? "black" : "grey",
+              }}
               name="checklist"
               type="text"
               defaultValue={

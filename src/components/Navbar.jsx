@@ -4,7 +4,6 @@ import {
   FirstSection,
   SecondSection,
   SecondSubSection,
-  IconInputField,
   Footer,
   Profile,
   Morecontent,
@@ -12,7 +11,6 @@ import {
   ImageSubSection,
   SubNavSection,
   HeadingText,
-  IconWrapper,
   InitialsWrapper,
   BurgerSection,
   LogoSection,
@@ -21,16 +19,11 @@ import {
   InitialsWrapperNew,
   HeaderWrapper,
   SearchSection,
-  IconWrapperNew,
-  IconInputFieldNew,
   EditSection,
   ButtonEditSection,
 } from "styles/components/Navbar";
-import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
-import SearchNew from "assets/SVG/SearchNew";
-import Cancel from "assets/SVG/cancel";
 import { addTempChecklist } from "redux/actions/checklist";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
@@ -39,6 +32,7 @@ import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import { notification } from "antd";
+import { getChecklistBySubcategory } from "redux/actions/task";
 
 const NavBar = ({ search, buttonType }) => {
   const wrapperRef = useRef();
@@ -119,29 +113,11 @@ const NavBar = ({ search, buttonType }) => {
     if (res.error) openNotification(res.message);
     else {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
-      navigate(`/check-list/${res?.id}`, {
-        state: { showEditable: false },
-      });
-    }
-  };
-  const searchData = (data) => {
-    dispatch({ type: SET_SEARCH, payload: data?.listSearch });
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Backspace") {
-      SetUpdateSearch((prev) => prev.slice(0, -1));
-    }
-  };
-
-  const handleIconClick = () => {
-    console.log("is here");
-    if (updateSearch.length !== 0) {
-      SetUpdateSearch("");
-      dispatch({ type: SET_SEARCH, payload: "" });
-      reset({
-        listSearch: "",
-      });
+      const re = await dispatch(getChecklistBySubcategory(res?.id));
+      re.error == false &&
+        navigate(`/check-list/${res?.id}`, {
+          state: { showEditable: false },
+        });
     }
   };
 
@@ -198,7 +174,9 @@ const NavBar = ({ search, buttonType }) => {
             ) : null}
           </ImageSubSection>
           <LogoSearchSection>
-            <LogoSection onClick={() => navigate("/")}>Checklist</LogoSection>
+            <LogoSection onClick={() => navigate("/dashboard")}>
+              Checklist
+            </LogoSection>
           </LogoSearchSection>
           {search && (
             <Footer>
@@ -228,11 +206,13 @@ const NavBar = ({ search, buttonType }) => {
             <div style={{ width: "90%" }}>
               <Select
                 placeholder={<div> Search</div>}
-                onChange={(e) =>
-                  navigate(`/check-list/${e?.id}`, {
-                    state: { showEditable: true },
-                  })
-                }
+                onChange={async (e) => {
+                  const re = await dispatch(getChecklistBySubcategory(e?.id));
+                  re.error == false &&
+                    navigate(`/check-list/${e?.id}`, {
+                      state: { showEditable: true },
+                    });
+                }}
                 components={{
                   DropdownIndicator: () => null,
                   IndicatorSeparator: () => null,
@@ -258,18 +238,22 @@ const NavBar = ({ search, buttonType }) => {
 
       <SubNavSection>
         <FirstSection>
-          <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
+          <HeadingText onClick={() => navigate("/dashboard")}>
+            Checklist
+          </HeadingText>
         </FirstSection>
         <SecondSection>
           {search && (
             <div style={{ width: "100%", maxWidth: "350px" }}>
               <Select
                 placeholder={<div> Search</div>}
-                onChange={(e) =>
-                  navigate(`/check-list/${e?.id}`, {
-                    state: { showEditable: true },
-                  })
-                }
+                onChange={async (e) => {
+                  const re = await dispatch(getChecklistBySubcategory(e?.id));
+                  re.error == false &&
+                    navigate(`/check-list/${e?.id}`, {
+                      state: { showEditable: true },
+                    });
+                }}
                 components={{
                   DropdownIndicator: () => null,
                   IndicatorSeparator: () => null,
@@ -327,9 +311,8 @@ const NavBar = ({ search, buttonType }) => {
                 ref={wrapperRef}
               >
                 <InitialsWrapper>
-                  <div>
-                    {firstName[0].toUpperCase()} {lastName[0].toUpperCase()}
-                  </div>
+                  <div>{firstName[0].toUpperCase()}</div>
+                  <div> {lastName[0].toUpperCase()}</div>
                 </InitialsWrapper>
                 {logoutModal ? (
                   <Morecontent onClick={() => toggleab(true)}>

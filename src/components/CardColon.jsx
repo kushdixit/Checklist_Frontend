@@ -163,7 +163,7 @@ const CardColon = ({ item, cardType }) => {
                 onClick={async () => {
                   const res = await dispatch(CopyChecklist(item.id, userEmail));
                   refetchtemplate(res);
-                  res?.error && navigate("/dashboard");
+                  !res?.error && navigate("/dashboard");
                 }}
               >
                 <Copy />
