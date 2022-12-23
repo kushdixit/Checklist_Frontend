@@ -117,25 +117,13 @@ export const MainTaskSection = styled.div`
 
 export const MainTaskSectionForm = styled.div`
   width: 100%;
-  max-width: 1400px;
+  padding: 0 90px 0 30px;
 
-  @media (max-width: 1378px) {
-    form {
-      width: 100%;
-      max-width: 800px;
-    }
-  }
-  @media (max-width: 862px) {
-    form {
-      width: 100%;
-      max-width: 400px;
-    }
+  @media (max-width: 750px) {
+    padding: 0 60px 0 30px;
   }
   @media (max-width: 462px) {
-    form {
-      width: 100%;
-      max-width: 250px;
-    }
+    padding: 0 30px 0 30px;
   }
 `;
 export const TaskIconImage = styled.div`
@@ -331,6 +319,11 @@ export const DescriptionContainer = styled.div`
   }
   form {
     padding-left: 28px;
+  }
+  @media (max-width: 462px) {
+    input {
+      font-size: 20px !important;
+    }
   }
 `;
 export const DescriptionWrapper = styled.div`

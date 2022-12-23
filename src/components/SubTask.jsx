@@ -38,7 +38,7 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
     <AddSubTask>
       {contextHolder}
       <form
-        style={{ display: "flex" }}
+        style={{ display: "flex", padding: "10px 40px" }}
         onSubmit={handleSubmit(subTaskformData)}
       >
         <IconInputField>

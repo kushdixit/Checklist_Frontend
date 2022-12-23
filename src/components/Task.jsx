@@ -101,7 +101,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
       const response = await dispatch(editTask(data?.update, task.id));
       dispatch(getChecklistBySubcategory(checkListId));
       if (response.status === 204) {
-        setValue("update", "");
+        // setValue("update", "");
         setTaskEdit(false);
       } else openNotification(response.data.Message);
     }
@@ -170,7 +170,10 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                       <Delete /> Delete Task
                     </SortTextDiv>
                     <SortTextDiv onClick={() => setAddSubTask(!addSubTask)}>
-                      <Arrow /> Add Sub Task
+                      <Arrow />{" "}
+                      <div>
+                        {addSubTask ? "Remove sub task" : "Add sub task"}
+                      </div>
                     </SortTextDiv>
                   </SortWrapper>
                 )}

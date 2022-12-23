@@ -208,6 +208,8 @@ export const IconSection = styled.div`
   justify-content: space-between;
   margin: 2.5rem 0rem 2rem;
   @media (max-width: 465px) {
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 export const LeftIconSection = styled.div`

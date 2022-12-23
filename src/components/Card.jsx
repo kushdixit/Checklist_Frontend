@@ -1,6 +1,4 @@
-
-import React, { useEffect, useState } from "react";
-import { DescriptionChecklist } from "redux/actions/checklist";
+import React from "react";
 import {
   SubSection,
   Image,
@@ -10,7 +8,6 @@ import {
   WrapSection,
   Abc,
   CompleteSection,
-  DescriptionCopy
 } from "styles/components/Card";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -18,22 +15,22 @@ import DashboardIcon from "assets/SVG/DashboardIcon";
 import CardColon from "./CardColon";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import Completed from "assets/SVG/Completed";
+import { getChecklistBySubcategory } from "redux/actions/task";
 
 const Card = ({ item, index, Checklist, showEditable, cardType }) => {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => {
-    DescriptionChecklist();
-  }, []);
+
   return (
     <SubSection key={index}>
       <Wrap
-        onClick={() => {
+        onClick={async () => {
           dispatch({ type: SET_IS_EDITABLE, payload: false });
-          navigate(`/check-list/${item.id}`, {
-            state: { showEditable: showEditable },
-          });
+          const re = await dispatch(getChecklistBySubcategory(item.id));
+          re.error == false &&
+            navigate(`/check-list/${item.id}`, {
+              state: { showEditable: showEditable },
+            });
         }}
       >
         <Image>
@@ -51,9 +48,6 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
                 : item.dateCreated?.split("T")[0]}
             </h3>
           </WrapSubSectionNew>
-          <DescriptionCopy>  {products.map((product) => (
-        <p>{product.checklistdescription}</p>
-      ))}</DescriptionCopy>
         </WrapSection>
       </Wrap>
       <Abc>
@@ -62,7 +56,7 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
             <Completed />
           </CompleteSection>
         )}
-     <div style={{ paddingRight: item?.ischecked ? "0px" : "7px" }}>
+        <div style={{ paddingRight: item?.ischecked ? "0px" : "7px" }}>
           <CardColon item={item} cardType={cardType} />
         </div>
       </Abc>

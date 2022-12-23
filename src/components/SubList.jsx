@@ -15,7 +15,7 @@ import {
   SortWrapper,
   ShortContainer,
   SortTextDiv,
-  MainTaskSectionForm
+  MainTaskSectionForm,
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
 import Delete from "assets/SVG/Delete";
@@ -77,7 +77,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
       );
       if (response.status === 204) {
         dispatch(getChecklistBySubcategory(checkListId));
-        setValue("updateSubTask", "");
+        // setValue("updateSubTask", "");
         setSubTaskEdit(false);
       } else openNotification(response.data.Message);
     }
@@ -87,73 +87,70 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
     <div key={subIndex}>
       {contextHolder}
       <MainTaskSection>
-      <MainTaskSectionForm>
-        <form
-        
-          onSubmit={handleSubmit(updateSubTaskHandler)}
-        >
-          {!subTaskEdit && (
-            <Controller
-              name="rememberMe"
-              control={control}
-              render={({ field }) => (
-                <CheckboxInput
-                  className="checkBox"
-                  {...field}
-                  onChange={(e) => {
-                    showEditable &&
-                      reset({
-                        rememberMe: e,
-                      });
-                    showEditable &&
-                      dispatch(
-                        editSubTaskStatus(
-                          task?.id,
-                          checkListId,
-                          e === true ? true : false
-                        )
-                      );
-                  }}
-                />
-              )}
-            />
-          )}
-          <IconInputField>
-            <TextInput
-              defaultValue={task?.subTaskName}
-              name="updateSubTask"
-              type="text"
-              placeholder={task?.subTaskName}
-              control={control}
-              disabled={!taskEditable}
-              handlekeyPress={(e) =>
-                e.key === "Enter" && updateSubTaskHandler()
-              }
-            />
-          </IconInputField>
-          {taskEditable && (
-            <ShortContainer
-              onClick={() => {
-                setIsOpenSort(true);
-              }}
-            >
-              <ShortBy>
-                <Colon onClick={() => toggleab(!modal)} />
-                {isOpenSort && (
-                  <SortWrapper ref={wrapperRef}>
-                    <SortTextDiv
-                      onClick={() => {
-                        taskdeleteHandler(task.id);
-                      }}
-                    >
-                      <Delete /> Delete Sub Task
-                    </SortTextDiv>
-                  </SortWrapper>
+        <MainTaskSectionForm>
+          <form onSubmit={handleSubmit(updateSubTaskHandler)}>
+            {!subTaskEdit && (
+              <Controller
+                name="rememberMe"
+                control={control}
+                render={({ field }) => (
+                  <CheckboxInput
+                    className="checkBox"
+                    {...field}
+                    onChange={(e) => {
+                      showEditable &&
+                        reset({
+                          rememberMe: e,
+                        });
+                      showEditable &&
+                        dispatch(
+                          editSubTaskStatus(
+                            task?.id,
+                            checkListId,
+                            e === true ? true : false
+                          )
+                        );
+                    }}
+                  />
                 )}
-              </ShortBy>
-            </ShortContainer>
-          )}
-        </form>
+              />
+            )}
+            <IconInputField>
+              <TextInput
+                defaultValue={task?.subTaskName}
+                name="updateSubTask"
+                type="text"
+                placeholder={task?.subTaskName}
+                control={control}
+                disabled={!taskEditable}
+                handlekeyPress={(e) =>
+                  e.key === "Enter" && updateSubTaskHandler()
+                }
+              />
+            </IconInputField>
+            {taskEditable && (
+              <ShortContainer
+                onClick={() => {
+                  setIsOpenSort(true);
+                }}
+              >
+                <ShortBy>
+                  <Colon onClick={() => toggleab(!modal)} />
+                  {isOpenSort && (
+                    <SortWrapper ref={wrapperRef}>
+                      <SortTextDiv
+                        onClick={() => {
+                          taskdeleteHandler(task.id);
+                        }}
+                      >
+                        <Delete /> Delete Sub Task
+                      </SortTextDiv>
+                    </SortWrapper>
+                  )}
+                </ShortBy>
+              </ShortContainer>
+            )}
+          </form>
         </MainTaskSectionForm>
       </MainTaskSection>
     </div>

@@ -43,7 +43,6 @@ const Facebook = () => {
       <FacebookSection>
         <FacebookLogin
           appId="561436628788154"
-      
           autoLoad={false}
           fields="name,email,picture"
           callback={responseFacebook}
@@ -51,11 +50,10 @@ const Facebook = () => {
           icon="fa-facebook"
         />
       </FacebookSection>
-    
+
       <FacebookSectionMobile>
         <FacebookLogin
           appId="561436628788154"
-         
           autoLoad={false}
           fields="name,email,picture"
           callback={responseFacebook}
@@ -89,10 +87,10 @@ export const FacebookSection = styled.div`
   } */
   }
   @media (max-width: 1920px) {
-    display:block ;
+    display: block;
   }
   @media (max-width: 465px) {
-    display:none ;
+    display: none;
   }
 `;
 
@@ -112,14 +110,14 @@ export const FacebookSectionMobile = styled.div`
     color: #1d2e88;
     padding: 4px 7px;
     font-size: 24px;
-    /* @media (max-width: 465px) {
-      font-size: 13px;
-  } */
+    @media (max-width: 465px) {
+      padding: 10px !important;
+    }
   }
   @media (max-width: 1920px) {
-    display:none ;
+    display: none;
   }
   @media (max-width: 465px) {
-    display:block ;
+    display: block;
   }
 `;

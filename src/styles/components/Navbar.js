@@ -173,7 +173,7 @@ export const Profile = styled.div`
     padding: 0;
     color: #1d2e88;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 20px;
   }
   h5 {
     margin: 0;
@@ -186,6 +186,11 @@ export const Profile = styled.div`
     width: 35px;
     height: 35px;
     border-radius: 25px;
+  }
+  @media (max-width: 1125px) {
+    h4 {
+      font-size: 18px;
+    }
   }
 `;
 export const Footer = styled.div`
@@ -200,7 +205,7 @@ export const Footer = styled.div`
   .button {
     border-radius: 30px;
     margin-right: 20px;
-    height: 43px;
+    height: 47px;
     @media (max-width: 767px) {
       height: 3rem;
       width: 3rem;
@@ -384,7 +389,7 @@ export const InitialsWrapper = styled.div`
   background: #1d2e88;
   border-radius: 50%;
   div {
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
 `;
 export const DataWrapper = styled.form`
