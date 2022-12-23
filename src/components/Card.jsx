@@ -51,8 +51,8 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
                 : item.dateCreated?.split("T")[0]}
             </h3>
           </WrapSubSectionNew>
-          <DescriptionCopy>  {products.map((checklistdescription) => (
-        <p>{checklistdescription.item}</p>
+          <DescriptionCopy>  {products.map((product) => (
+        <p>{product.checklistdescription}</p>
       ))}</DescriptionCopy>
         </WrapSection>
       </Wrap>
