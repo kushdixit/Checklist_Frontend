@@ -137,7 +137,7 @@ export const SubSection = styled.div`
   border-radius: 10px;
   height: auto;
   max-width: 313px;
-  padding: 20px 0px;
+  min-height: 100px;
   @media (max-width: 723px) {
     width: 100%;
   }
@@ -184,6 +184,8 @@ export const Wrap = styled.div`
   align-items: center;
   cursor: pointer;
   padding: 0 13px;
+  height: 100%;
+  flex: 1;
 `;
 
 export const ColonImage = styled.div`
