@@ -29,7 +29,7 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
           const re = await dispatch(getChecklistBySubcategory(item.id));
           re.error == false &&
             navigate(`/check-list/${item.id}`, {
-              state: { showEditable: showEditable },
+              state: { showEditable: showEditable, cardType },
             });
         }}
       >
@@ -57,7 +57,7 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
           </CompleteSection>
         )}
         <div style={{ paddingRight: item?.ischecked ? "0px" : "7px" }}>
-          <CardColon item={item} cardType={cardType} />
+          <CardColon item={item} cardType={cardType} type="dashboard" />
         </div>
       </Abc>
     </SubSection>

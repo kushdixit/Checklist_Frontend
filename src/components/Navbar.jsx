@@ -19,6 +19,10 @@ import {
   InitialsWrapperNew,
   HeaderWrapper,
   SearchSection,
+  IconInputField,
+  IconWrapper,
+  IconWrapperNew,
+  IconInputFieldNew,
   EditSection,
   ButtonEditSection,
 } from "styles/components/Navbar";
@@ -33,8 +37,11 @@ import { useForm } from "react-hook-form";
 import Select from "react-select";
 import { notification } from "antd";
 import { getChecklistBySubcategory } from "redux/actions/task";
+import TextInput from "components/FormElements/TextInput";
+import SearchNew from "assets/SVG/SearchNew";
+import Cancel from "assets/SVG/cancel";
 
-const NavBar = ({ search, buttonType }) => {
+const NavBar = ({ search, buttonType, addButton }) => {
   const wrapperRef = useRef();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -91,7 +98,6 @@ const NavBar = ({ search, buttonType }) => {
     );
     return () => subscription.unsubscribe();
   }, [watch]);
-
   useEffect(() => {
     if (updateSearch === "") {
       dispatch({ type: SET_SEARCH, payload: "" });
@@ -116,7 +122,7 @@ const NavBar = ({ search, buttonType }) => {
       const re = await dispatch(getChecklistBySubcategory(res?.id));
       re.error == false &&
         navigate(`/check-list/${res?.id}`, {
-          state: { showEditable: false },
+          state: { showEditable: false, cardType: "user" },
         });
     }
   };
@@ -135,6 +141,30 @@ const NavBar = ({ search, buttonType }) => {
       });
       setSearchedData(res);
     } else setSearchedData([]);
+  };
+
+  const searchData = (data) => {
+    dispatch({ type: SET_SEARCH, payload: data?.listSearch });
+    navigate("/search", {
+      state: { searchedterm: data?.listSearch },
+    });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Backspace") {
+      SetUpdateSearch((prev) => prev.slice(0, -1));
+    }
+  };
+
+  const handleIconClick = () => {
+    console.log("is here");
+    if (updateSearch.length !== 0) {
+      SetUpdateSearch("");
+      dispatch({ type: SET_SEARCH, payload: "" });
+      reset({
+        listSearch: "",
+      });
+    }
   };
 
   return (
@@ -178,7 +208,7 @@ const NavBar = ({ search, buttonType }) => {
               Checklist
             </LogoSection>
           </LogoSearchSection>
-          {search && (
+          {addButton && (
             <Footer>
               <Button
                 className="button"
@@ -203,35 +233,16 @@ const NavBar = ({ search, buttonType }) => {
         </HeaderWrapper>
         <SearchSection>
           {search && (
-            <div style={{ width: "90%" }}>
-              <Select
-                placeholder={<div> Search</div>}
-                onChange={async (e) => {
-                  const re = await dispatch(getChecklistBySubcategory(e?.id));
-                  re.error == false &&
-                    navigate(`/check-list/${e?.id}`, {
-                      state: { showEditable: true },
-                    });
-                }}
-                components={{
-                  DropdownIndicator: () => null,
-                  IndicatorSeparator: () => null,
-                }}
-                options={searchedData}
-                styles={{
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderRadius: "18px",
-                    padding: "2px 12px",
-                  }),
-                }}
-                menuIsOpen={searchedData.length}
-                onInputChange={(e) => handleDataUpdate(e)}
-                noOptionsMessage={() =>
-                  searchedValue === "" ? "" : "Not Found!"
-                }
-              />
-            </div>
+            <form onSubmit={submitData(searchData)}>
+              <IconInputFieldNew>
+                <TextInput
+                  control={formControl}
+                  name="listSearch"
+                  type="text"
+                  placeholder="Search"
+                />
+              </IconInputFieldNew>
+            </form>
           )}
         </SearchSection>
       </BurgerSection>
@@ -244,37 +255,39 @@ const NavBar = ({ search, buttonType }) => {
         </FirstSection>
         <SecondSection>
           {search && (
-            <div style={{ width: "100%", maxWidth: "350px" }}>
-              <Select
-                placeholder={<div> Search</div>}
-                onChange={async (e) => {
-                  const re = await dispatch(getChecklistBySubcategory(e?.id));
-                  re.error == false &&
-                    navigate(`/check-list/${e?.id}`, {
-                      state: { showEditable: true },
-                    });
-                }}
-                components={{
-                  DropdownIndicator: () => null,
-                  IndicatorSeparator: () => null,
-                }}
-                options={searchedData}
-                styles={{
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderRadius: "18px",
-                    padding: "2px 12px",
-                  }),
-                }}
-                menuIsOpen={searchedData.length}
-                onInputChange={(e) => handleDataUpdate(e)}
-                noOptionsMessage={() =>
-                  searchedValue === "" ? "" : "Not Found!"
-                }
-              />
-            </div>
+            <IconInputField style={{ display: "flex" }}>
+              <form
+                style={{ width: "100%", display: "flex" }}
+                onSubmit={submitData(searchData)}
+              >
+                <IconInputField>
+                  <TextInput
+                    name="listSearch"
+                    type="text"
+                    placeholder="Search"
+                    control={formControl}
+                    handleKeyDown={handleKeyDown}
+                    handlekeyPress={(e) => {
+                      SetUpdateSearch((prev) => prev + e.key);
+                    }}
+                  />
+                </IconInputField>
+              </form>
+              <IconWrapper onClick={handleIconClick}>
+                <Button
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    boxShadow: "none",
+                    cursor: "text",
+                  }}
+                >
+                  {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
+                </Button>
+              </IconWrapper>
+            </IconInputField>
           )}
-          {search && (
+          {addButton && (
             <Footer>
               <Button
                 className="button"

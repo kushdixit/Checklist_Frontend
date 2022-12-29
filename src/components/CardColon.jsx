@@ -24,7 +24,7 @@ import { getAllTemplateByEmail } from "redux/actions/template";
 import { getChecklistBySubcategory } from "redux/actions/task/index";
 import { notification } from "antd";
 
-const CardColon = ({ item, cardType }) => {
+const CardColon = ({ item, cardType, type }) => {
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const wrapperRef = useRef();
@@ -69,111 +69,97 @@ const CardColon = ({ item, cardType }) => {
     res?.error === false && dispatch(getAllTemplateByEmail(userEmail));
 
   return (
-    <ColonImage type={cardType}>
+    <ColonImage type={type}>
       {contextHolder}
       <ShortContainer onClick={() => setIsOpenSort(true)}>
         <ShortBy>
           <Colon onClick={() => toggleab(!modal)} />
-          {isOpenSort && cardType === "user" && (
-            <SortWrapper ref={wrapperRef}>
-              <SortTextDiv
-                onClick={() => {
-                  dispatch({ type: SET_IS_EDITABLE, payload: false });
-                  navigate(`/check-list/${item.id}`, {
-                    state: { showEditable: true },
-                  });
-                }}
-              >
-                <Edit />
-                View CheckList
-              </SortTextDiv>
-              {!item?.ischecked && (
-                <SortTextDiv onClick={() => statusHandler(item.id, true)}>
-                  <Completed />
-                  Mark as Completed
-                </SortTextDiv>
+          {type == "dashboard" && (
+            <>
+              {isOpenSort && (
+                <SortWrapper ref={wrapperRef}>
+                  <SortTextDiv
+                    onClick={() => {
+                      dispatch({ type: SET_IS_EDITABLE, payload: false });
+                      navigate(`/check-list/${item.id}`, {
+                        state: { showEditable: true, cardType },
+                      });
+                    }}
+                  >
+                    <Edit />
+                    View CheckList
+                  </SortTextDiv>
+                  {cardType === "user" && !item?.ischecked && (
+                    <SortTextDiv onClick={() => statusHandler(item.id, true)}>
+                      <Completed />
+                      Mark as Completed
+                    </SortTextDiv>
+                  )}
+                  {cardType === "user" && item?.ischecked && (
+                    <SortTextDiv onClick={() => statusHandler(item.id, false)}>
+                      <Reset />
+                      Reset
+                    </SortTextDiv>
+                  )}
+                  <SortTextDiv
+                    onClick={async () => {
+                      const res = await dispatch(
+                        CopyChecklist(item.id, userEmail)
+                      );
+                      refetchtemplate(res);
+                    }}
+                  >
+                    <Copy />
+                    Copy
+                  </SortTextDiv>
+                  <SortTextDiv>
+                    <ShareNew />
+                    Share
+                  </SortTextDiv>
+                  {cardType === "user" && (
+                    <SortTextDiv onClick={() => console.log("sad")}>
+                      <Delete /> Delete CheckList
+                    </SortTextDiv>
+                  )}
+                </SortWrapper>
               )}
-              {item?.ischecked && (
-                <SortTextDiv onClick={() => statusHandler(item.id, false)}>
-                  <Reset />
-                  Reset
-                </SortTextDiv>
-              )}
-              <SortTextDiv
-                onClick={async () => {
-                  const res = await dispatch(CopyChecklist(item.id, userEmail));
-                  refetchtemplate(res);
-                }}
-              >
-                <Copy />
-                Copy
-              </SortTextDiv>
-              <SortTextDiv>
-                <ShareNew />
-                Share
-              </SortTextDiv>
-              <SortTextDiv onClick={() => console.log("sad")}>
-                <Delete /> Delete CheckList
-              </SortTextDiv>
-            </SortWrapper>
+            </>
           )}
-          {isOpenSort && cardType === "default" && (
-            <SortWrapper ref={wrapperRef}>
-              <SortTextDiv
-                onClick={() => {
-                  dispatch({ type: SET_IS_EDITABLE, payload: false });
-                  navigate(`/check-list/${item.id}`, {
-                    state: { showEditable: true },
-                  });
-                }}
-              >
-                <Edit />
-                View CheckList
-              </SortTextDiv>
-              <SortTextDiv
-                onClick={async () => {
-                  const res = await dispatch(CopyChecklist(item.id, userEmail));
-                  refetchtemplate(res);
-                }}
-              >
-                <Copy />
-                Copy
-              </SortTextDiv>
-              <SortTextDiv>
-                <ShareNew />
-                Share
-              </SortTextDiv>
-            </SortWrapper>
-          )}
-          {isOpenSort && cardType === "checklist" && (
-            <SortWrapper ref={wrapperRef}>
-              {!item?.ischecked && (
-                <SortTextDiv onClick={() => statusHandler(item.id, true)}>
-                  <Completed />
-                  Mark as Completed
-                </SortTextDiv>
+          {type == "checklist" && (
+            <>
+              {isOpenSort && (
+                <SortWrapper ref={wrapperRef}>
+                  {cardType === "user" && !item?.ischecked && (
+                    <SortTextDiv onClick={() => statusHandler(item.id, true)}>
+                      <Completed />
+                      Mark as Completed
+                    </SortTextDiv>
+                  )}
+                  {cardType === "user" && item?.ischecked && (
+                    <SortTextDiv onClick={() => statusHandler(item.id, false)}>
+                      <Reset />
+                      Reset
+                    </SortTextDiv>
+                  )}
+                  <SortTextDiv
+                    onClick={async () => {
+                      const res = await dispatch(
+                        CopyChecklist(item.id, userEmail)
+                      );
+                      refetchtemplate(res);
+                      !res?.error && navigate("/dashboard");
+                    }}
+                  >
+                    <Copy />
+                    Copy
+                  </SortTextDiv>
+                  <SortTextDiv>
+                    <ShareNew />
+                    Share
+                  </SortTextDiv>
+                </SortWrapper>
               )}
-              {item?.ischecked && (
-                <SortTextDiv onClick={() => statusHandler(item.id, false)}>
-                  <Reset />
-                  Reset
-                </SortTextDiv>
-              )}
-              <SortTextDiv
-                onClick={async () => {
-                  const res = await dispatch(CopyChecklist(item.id, userEmail));
-                  refetchtemplate(res);
-                  !res?.error && navigate("/dashboard");
-                }}
-              >
-                <Copy />
-                Copy
-              </SortTextDiv>
-              <SortTextDiv>
-                <ShareNew />
-                Share
-              </SortTextDiv>
-            </SortWrapper>
+            </>
           )}
         </ShortBy>
       </ShortContainer>

@@ -21,7 +21,6 @@ import {
 import Navbar from "components/Navbar";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CardColon from "components/CardColon";
-import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 
 const CheckList = () => {
   const { id: pathId } = useParams();
@@ -104,6 +103,7 @@ const CheckList = () => {
           search={false}
           buttonType="Add"
           showEditable={state?.showEditable}
+          addButton={false}
         />
       </BodyWrapper>
       <div>
@@ -128,7 +128,11 @@ const CheckList = () => {
                 />
               </IconInputField>
             </form>
-            <CardColon item={ChecklistDetail} cardType="checklist" />
+            <CardColon
+              item={ChecklistDetail}
+              cardType={state?.cardType}
+              type="checklist"
+            />
           </Title>
         </TitleFormSection>
         <Description taskEditable={taskEditable} checklistId={checklistId} />
