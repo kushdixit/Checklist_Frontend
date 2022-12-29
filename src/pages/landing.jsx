@@ -33,6 +33,7 @@ const Landing = () => {
           </SecondHeading>
           <h4>Organize your mind or scale your bussiness the right way,every time.</h4>
           <LandingCard/>
+          
             </LandingContainer>
     );
   };

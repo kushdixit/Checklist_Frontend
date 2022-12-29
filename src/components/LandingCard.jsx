@@ -1,17 +1,36 @@
 import React from "react";
 import {
-    Section,
+    SubSection,
+    Image,
+    Wrap,
+    Heading,
+    SubHeading,
+ 
 } from "styles/components/LandingCard";
 
+import DashboardIcon from "assets/SVG/DashboardIcon";
 
-const LandingCard = () => {
- 
+
+const LandingCard = ({ }) => {
+   
 
   return (
-    <Section>
-     {/* fefwrewr */}
-    </Section>
-  );
+    <SubSection >
+    <Wrap>
+      <Image>
+        <DashboardIcon />
+      </Image>
+     <Heading>
+        1. Create or copy a process
+     </Heading>
+     <SubHeading>
+     Create or copy a process template. Add step-by-step tasks and task descriptions to make sure work gets done the right way, every time.
+     </SubHeading>
+    </Wrap>
+  
+  </SubSection>
+);
 };
+
 
 export default LandingCard;

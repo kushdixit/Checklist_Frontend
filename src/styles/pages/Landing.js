@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const LandingContainer = styled.div`
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-width: 1385px;
   h3 {
     display: flex;
     width: 100%;
