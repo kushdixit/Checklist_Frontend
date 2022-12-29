@@ -36,7 +36,14 @@ import TextInput from "components/FormElements/TextInput";
 import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
 
-const NavBar = ({ search, buttonType, addButton, createList, getPayload }) => {
+const NavBar = ({
+  search,
+  buttonType,
+  addButton,
+  createList,
+  getPayload,
+  showProfile,
+}) => {
   const wrapperRef = useRef();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -272,37 +279,39 @@ const NavBar = ({ search, buttonType, addButton, createList, getPayload }) => {
               </Button>
             </EditSection>
           )}
-          <ImageSubSection>
-            <SecondSubSection>
-              <Profile>
-                <h4>
-                  {firstName[0].toUpperCase() + firstName.slice(1)}{" "}
-                  {lastName[0].toUpperCase() + lastName.slice(1)}
-                </h4>
-              </Profile>
-              <button
-                className="button"
-                onClick={() => setLogoutModal(!logoutModal)}
-                ref={wrapperRef}
-              >
-                <InitialsWrapper>
-                  <div>{firstName[0].toUpperCase()}</div>
-                  <div> {lastName[0].toUpperCase()}</div>
-                </InitialsWrapper>
-                {logoutModal ? (
-                  <Morecontent onClick={() => toggleab(true)}>
-                    <Logout
-                      style={{
-                        width: "15px",
-                        marginRight: "0.25rem",
-                      }}
-                    />
-                    <ContentItem>Logout</ContentItem>
-                  </Morecontent>
-                ) : null}
-              </button>
-            </SecondSubSection>
-          </ImageSubSection>
+          {!showProfile && (
+            <ImageSubSection>
+              <SecondSubSection>
+                <Profile>
+                  <h4>
+                    {firstName[0].toUpperCase() + firstName.slice(1)}{" "}
+                    {lastName[0].toUpperCase() + lastName.slice(1)}
+                  </h4>
+                </Profile>
+                <button
+                  className="button"
+                  onClick={() => setLogoutModal(!logoutModal)}
+                  ref={wrapperRef}
+                >
+                  <InitialsWrapper>
+                    <div>{firstName[0].toUpperCase()}</div>
+                    <div> {lastName[0].toUpperCase()}</div>
+                  </InitialsWrapper>
+                  {logoutModal ? (
+                    <Morecontent onClick={() => toggleab(true)}>
+                      <Logout
+                        style={{
+                          width: "15px",
+                          marginRight: "0.25rem",
+                        }}
+                      />
+                      <ContentItem>Logout</ContentItem>
+                    </Morecontent>
+                  ) : null}
+                </button>
+              </SecondSubSection>
+            </ImageSubSection>
+          )}
         </SecondSection>
         <AlertModal
           modalType="logout"
