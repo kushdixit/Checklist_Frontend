@@ -4,6 +4,7 @@ import SignIn from "pages/sign-in";
 import SignUp from "pages/sign-up";
 import Dashboard from "pages/dashboard";
 import CheckList from "pages/check-list";
+import Landing from "pages/landing";
 import Search from "pages/search";
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="check-list" exact element={<CheckList />} />
         <Route path="check-list/:id" element={<CheckList />} />
+        <Route path="landing" element={<Landing />} />
       </Routes>
     </BrowserRouter>
   );
