@@ -73,25 +73,31 @@ export const editChecklistApi = (checklistName, id) => async (dispatch) => {
   }
 };
 
-export const addTempChecklist = (checklistName, email) => async (dispatch) => {
-  const payload = {
-    checklistName,
-    email,
-    checklistDescription: "",
-  };
-  try {
-    const response = await axioPath.post("v1/CheckList/checklists", payload, {
-      hideLoader: false,
-    });
-    response?.data && dispatch(getChecklistBySubcategory(response?.data));
-    return { error: false, message: response?.statusText, id: response?.data };
-  } catch (ex) {
-    return {
-      error: true,
-      message: ex?.response?.data?.errors?.ChecklistDescription[0],
+export const addTempChecklist =
+  (checklistName, checklistDescription, email) => async (dispatch) => {
+    const payload = {
+      checklistName,
+      checklistDescription,
+      templateId: -99,
+      email,
     };
-  }
-};
+    try {
+      const response = await axioPath.post("v1/CheckList/checklists", payload, {
+        hideLoader: false,
+      });
+      response?.data && dispatch(getChecklistBySubcategory(response?.data));
+      return {
+        error: false,
+        message: response?.statusText,
+        id: response?.data,
+      };
+    } catch (ex) {
+      return {
+        error: true,
+        message: ex?.response?.data?.errors?.ChecklistDescription[0],
+      };
+    }
+  };
 
 export const ChecklistCompleted = (id, ischecked) => async (dispatch) => {
   const payload = {

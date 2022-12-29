@@ -21,43 +21,33 @@ import {
   SearchSection,
   IconInputField,
   IconWrapper,
-  IconWrapperNew,
   IconInputFieldNew,
   EditSection,
   ButtonEditSection,
 } from "styles/components/Navbar";
 import Button from "components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
-import { addTempChecklist } from "redux/actions/checklist";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
 import Logout from "assets/SVG/Logout";
 import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
-import Select from "react-select";
-import { notification } from "antd";
-import { getChecklistBySubcategory } from "redux/actions/task";
 import TextInput from "components/FormElements/TextInput";
 import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
 
-const NavBar = ({ search, buttonType, addButton }) => {
+const NavBar = ({ search, buttonType, addButton, createList, getPayload }) => {
   const wrapperRef = useRef();
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch();
   const [logoutModal, setLogoutModal] = useState(false);
   const [iconHandle, setIconHandle] = useState();
-  const [searchedData, setSearchedData] = useState([]);
-  const [searchedValue, setSearchedValue] = useState("");
   const [updateSearch, SetUpdateSearch] = useState("");
   const [modal, setModal] = useState(false);
-  const userEmail = useSelector((state) => state.auth?.userData?.email);
   const taskEditable = useSelector((state) => state.editable?.isEditable);
-  const YourTemplates = useSelector((state) => state.task?.allChecklist);
   const firstName = useSelector((state) => state.auth?.userData?.firstName);
   const lastName = useSelector((state) => state.auth?.userData?.lastName);
-  const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -75,12 +65,6 @@ const NavBar = ({ search, buttonType, addButton }) => {
   function toggleab(data) {
     setModal(data);
   }
-
-  const openNotification = (message) => {
-    api.info({
-      message,
-    });
-  };
 
   const {
     handleSubmit: submitData,
@@ -110,37 +94,7 @@ const NavBar = ({ search, buttonType, addButton }) => {
   };
 
   const newTemplateHandler = async () => {
-    const res = await dispatch(
-      addTempChecklist(
-        `Your Checkslist ${YourTemplates[YourTemplates.length - 1]?.id + 1}`,
-        userEmail
-      )
-    );
-    if (res.error) openNotification(res.message);
-    else {
-      dispatch({ type: SET_IS_EDITABLE, payload: true });
-      const re = await dispatch(getChecklistBySubcategory(res?.id));
-      re.error == false &&
-        navigate(`/check-list/${res?.id}`, {
-          state: { showEditable: false, cardType: "user" },
-        });
-    }
-  };
-
-  const handleDataUpdate = (e) => {
-    setSearchedValue(e);
-    if (e?.length !== 0) {
-      const res = YourTemplates?.filter((item) =>
-        item.checklistName.toLowerCase().includes(e?.toLowerCase())
-      ).map((item) => {
-        return {
-          value: item.checklistName,
-          label: item.checklistName,
-          id: item.id,
-        };
-      });
-      setSearchedData(res);
-    } else setSearchedData([]);
+    navigate("/createChecklist");
   };
 
   const searchData = (data) => {
@@ -169,7 +123,6 @@ const NavBar = ({ search, buttonType, addButton }) => {
 
   return (
     <NavSection>
-      {contextHolder}
       <BurgerSection>
         <HeaderWrapper>
           <ImageSubSection>
@@ -296,6 +249,15 @@ const NavBar = ({ search, buttonType, addButton }) => {
                 {`+ ${buttonType}`}
               </Button>
             </Footer>
+          )}
+          {createList && (
+            <Button
+              className="button"
+              style={{ padding: "0.5rem 1rem" }}
+              handleClick={() => getPayload()}
+            >
+              Save
+            </Button>
           )}
           {state?.showEditable && (
             <EditSection>
