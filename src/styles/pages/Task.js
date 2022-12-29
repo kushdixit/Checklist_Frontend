@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const BodyWrapper = styled.div`
-  padding: 30px 0;
+  padding-top: 1rem;
+  padding-bottom: 21.249px;
   background: #fff;
 `;
 export const TitleFormSection = styled.div`
