@@ -9,7 +9,8 @@ const Search = () => {
   const [searchedData, setSearchedData] = useState([]);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const allChecklist = useSelector((state) => state.task?.allChecklist);
+  const allTemplate = useSelector((state) => state.Template?.allTemplate);
+  const yourTemplate = useSelector((state) => state.Template?.yourTemplate);
   const searchedterm = state?.searchedterm;
 
   useEffect(() => {
@@ -19,17 +20,46 @@ const Search = () => {
 
   useEffect(() => {
     if (searchedterm?.length != 0) {
-      const res = allChecklist?.filter((item) =>
-        item.checklistName.toLowerCase().includes(searchedterm?.toLowerCase())
-      );
-      setSearchedData(res);
+      const userCreated = yourTemplate[0].checklists
+        ?.filter((item) => {
+          return item.checklistName
+            .toLowerCase()
+            .includes(searchedterm?.toLowerCase());
+        })
+        .map((item) => {
+          return { ...item, cardType: "user" };
+        });
+
+      const default1 = allTemplate[0].checklists
+        ?.filter((item) => {
+          return item.checklistName
+            .toLowerCase()
+            .includes(searchedterm?.toLowerCase());
+        })
+        .map((item) => {
+          return { ...item, cardType: "default" };
+        });
+
+      const default2 = allTemplate[1].checklists
+        ?.filter((item) => {
+          return item.checklistName
+            .toLowerCase()
+            .includes(searchedterm?.toLowerCase());
+        })
+        .map((item) => {
+          return { ...item, cardType: "default" };
+        });
+
+      setSearchedData([...default1, ...default2, ...userCreated]);
     } else setSearchedData([]);
   }, []);
 
   return (
     <BodyContainer>
       <Navbar search={false} buttonType="Create List" addButton={true} />
-      {searchedData && <YourSearch searchedData={searchedData} />}
+      {searchedData && (
+        <YourSearch searchedData={searchedData} searchedterm={searchedterm} />
+      )}
     </BodyContainer>
   );
 };

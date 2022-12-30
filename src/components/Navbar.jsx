@@ -106,7 +106,7 @@ const NavBar = ({
 
   const searchData = (data) => {
     dispatch({ type: SET_SEARCH, payload: data?.listSearch });
-    navigate("/search", {
+    navigate(`/search/${data?.listSearch}`, {
       state: { searchedterm: data?.listSearch },
     });
   };

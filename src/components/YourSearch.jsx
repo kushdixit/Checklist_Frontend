@@ -8,7 +8,7 @@ import {
 import Card from "./Card";
 import FirstImage from "assets/images/checklist.svg";
 
-const YourSearch = ({ searchedData }) => {
+const YourSearch = ({ searchedData, searchedterm }) => {
   const Checklist = [
     { id: 1, time: "3:25 p.m", image: FirstImage },
     { id: 2, time: "3:25 p.m", image: FirstImage },
@@ -19,10 +19,9 @@ const YourSearch = ({ searchedData }) => {
     <>
       <NewSection>
         <SubSectionNew>
-          <h2>Searched List</h2>
+          <h2>You Searched for "{searchedterm}"</h2>
         </SubSectionNew>
       </NewSection>
-
       <CardMainSection>
         <FirstSection>
           {searchedData
@@ -35,13 +34,13 @@ const YourSearch = ({ searchedData }) => {
                   item={subItem}
                   Checklist={Checklist}
                   showEditable={true}
-                  cardType="search"
+                  cardType={subItem.cardType}
                 />
               );
             })}
-          {searchedData.length == 0 && (
+          {searchedData.length === 0 && (
             <div style={{ display: "flex", justifyContent: "center", flex: 1 }}>
-              <div>Checklist not found!</div>
+              <div>{searchedterm} not found!</div>
             </div>
           )}
         </FirstSection>
