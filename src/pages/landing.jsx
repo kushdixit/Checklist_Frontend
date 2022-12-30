@@ -13,8 +13,14 @@ import {
   SecondHeading,
 } from "styles/pages/Landing";
 import LandingCard from "../components/LandingCard";
+
 const Landing = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) navigate("/dashboard");
+    else navigate("/landing");
+  }, []);
 
   return (
     <LandingContainer>
