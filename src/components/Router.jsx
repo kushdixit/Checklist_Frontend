@@ -15,7 +15,7 @@ const Router = () => {
         <Route path="/" element={<Landing />} />
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="search" element={<Search />} />
+        <Route path="search/:id" exact element={<Search />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="createChecklist" exact element={<CreateList />} />
         <Route path="check-list" exact element={<CheckList />} />
