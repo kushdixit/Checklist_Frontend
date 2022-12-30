@@ -77,6 +77,17 @@ export const NavSection = styled.div`
   padding-bottom: 29px;
 `;
 
+export const LandingCardSection = styled.div`
+  display: flex;
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  /* max-width: 1800px; */
+  justify-content: center;
+  align-items: center;
+  margin: 30px 10px;
+  flex-wrap: wrap;
+`;
 export const ChecklistButton = styled.div`
   display: flex;
   width: 100%;
