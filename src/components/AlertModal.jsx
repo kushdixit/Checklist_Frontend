@@ -22,6 +22,7 @@ const customStyles = {
 };
 
 const AlertModal = ({
+  
   isOpen,
   togglefunction,
   hideButton,

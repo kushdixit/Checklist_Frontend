@@ -11,6 +11,7 @@ import {
   SubHeading,
   ChecklistButton,
   SecondHeading,
+  LandingCardSection
 } from "styles/pages/Landing";
 import LandingCard from "../components/LandingCard";
 const Landing = () => {
@@ -38,7 +39,9 @@ const Landing = () => {
       <h4>
         Organize your mind or scale your bussiness the right way,every time.
       </h4>
+      <LandingCardSection>
       <LandingCard />
+      </LandingCardSection>
     </LandingContainer>
   );
 };

@@ -10,6 +10,7 @@ import Colon from "assets/SVG/Colon";
 import Completed from "assets/SVG/Completed";
 import Edit from "assets/SVG/Edit";
 import Delete from "assets/SVG/Delete";
+import Move from "assets/SVG/move";
 import Reset from "assets/SVG/Reset";
 import Copy from "assets/SVG/Copy";
 import ShareNew from "assets/SVG/ShareNew";
@@ -23,9 +24,10 @@ import {
 import { getAllTemplateByEmail } from "redux/actions/template";
 import { getChecklistBySubcategory } from "redux/actions/task/index";
 import { notification } from "antd";
-
+import AlertModal from "components/AlertModal";
 const CardColon = ({ item, cardType, type }) => {
   const [modal, setModal] = useState(false);
+  const [newmodal, setNewModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const wrapperRef = useRef();
   const dispatch = useDispatch();
@@ -33,6 +35,9 @@ const CardColon = ({ item, cardType, type }) => {
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const [api, contextHolder] = notification.useNotification();
 
+  function toggleabc(data) {
+    setNewModal(data);
+  }
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
@@ -70,6 +75,7 @@ const CardColon = ({ item, cardType, type }) => {
 
   return (
     <ColonImage type={type}>
+     
       {contextHolder}
       <ShortContainer onClick={() => setIsOpenSort(true)}>
         <ShortBy>
@@ -121,6 +127,11 @@ const CardColon = ({ item, cardType, type }) => {
                       <Delete /> Delete CheckList
                     </SortTextDiv>
                   )}
+                   <SortTextDiv>
+                   <AlertModal isOpen={newmodal} togglefunction={toggleabc} />
+                    <Move onClick={() => toggleabc(!newmodal)}/>
+                    move
+                  </SortTextDiv>
                 </SortWrapper>
               )}
             </>
