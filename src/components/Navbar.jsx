@@ -132,37 +132,39 @@ const NavBar = ({
     <NavSection>
       <BurgerSection>
         <HeaderWrapper>
-          <ImageSubSection>
-            <SecondSubSection>
-              <button
-                className="button"
-                ref={wrapperRef}
-                onClick={() => setLogoutModal(!logoutModal)}
-              >
-                <InitialsWrapperNew>
-                  <WrapperSize>
-                    <h4>{firstName[0].toUpperCase()}</h4>
-                    <h4> {lastName[0].toUpperCase()}</h4>
-                  </WrapperSize>
-                </InitialsWrapperNew>
-              </button>
-            </SecondSubSection>
-            {logoutModal ? (
-              <Morecontent
-                onClick={() => {
-                  toggleab(true);
-                }}
-              >
-                <Logout
-                  style={{
-                    width: "15px",
-                    marginRight: "0.25rem",
+          {!showProfile && (
+            <ImageSubSection>
+              <SecondSubSection>
+                <button
+                  className="button"
+                  ref={wrapperRef}
+                  onClick={() => setLogoutModal(!logoutModal)}
+                >
+                  <InitialsWrapperNew>
+                    <WrapperSize>
+                      <h4>{firstName[0].toUpperCase()}</h4>
+                      <h4> {lastName[0].toUpperCase()}</h4>
+                    </WrapperSize>
+                  </InitialsWrapperNew>
+                </button>
+              </SecondSubSection>
+              {logoutModal ? (
+                <Morecontent
+                  onClick={() => {
+                    toggleab(true);
                   }}
-                />
-                <ContentItem>Logout</ContentItem>
-              </Morecontent>
-            ) : null}
-          </ImageSubSection>
+                >
+                  <Logout
+                    style={{
+                      width: "15px",
+                      marginRight: "0.25rem",
+                    }}
+                  />
+                  <ContentItem>Logout</ContentItem>
+                </Morecontent>
+              ) : null}
+            </ImageSubSection>
+          )}
           <LogoSearchSection>
             <LogoSection onClick={() => navigate("/dashboard")}>
               Checklist

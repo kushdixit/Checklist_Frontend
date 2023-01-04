@@ -22,7 +22,7 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
   const navigate = useNavigate();
 
   return (
-    <SubSection key={index}>
+    <SubSection key={index} progress={item?.ischecked} cardType={cardType}>
       <Wrap
         onClick={async () => {
           dispatch({ type: SET_IS_EDITABLE, payload: false });
