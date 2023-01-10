@@ -21,6 +21,7 @@ import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import {
   ChecklistCompleted,
   CopyChecklist,
+  deleteChecklist,
 } from "redux/actions/checklist/index";
 import { getAllTemplateByEmail } from "redux/actions/template";
 import { getChecklistBySubcategory } from "redux/actions/task/index";
@@ -123,14 +124,18 @@ const CardColon = ({ item, cardType, type }) => {
                     Share
                   </SortTextDiv>
                   {cardType === "user" && (
-                    <SortTextDiv onClick={() => console.log("sad")}>
+                    <SortTextDiv
+                      onClick={async () => {
+                        await dispatch(deleteChecklist(item.id));
+                      }}
+                    >
                       <Delete /> Delete CheckList
                     </SortTextDiv>
                   )}
                   <SortTextDiv>
                     <AlertModal isOpen={newmodal} togglefunction={toggleabc} />
                     <Move onClick={() => toggleabc(!newmodal)} />
-                    move
+                    Move
                   </SortTextDiv>
                   <SortTextDiv>
                   

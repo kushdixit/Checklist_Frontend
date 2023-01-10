@@ -24,6 +24,8 @@ import {
   IconInputFieldNew,
   EditSection,
   ButtonEditSection,
+  Logintext,
+  FreeTemplatetext,
 } from "styles/components/Navbar";
 import Button from "components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -42,7 +44,7 @@ const NavBar = ({
   addButton,
   createList,
   getPayload,
-  showProfile,
+  navType,
 }) => {
   const wrapperRef = useRef();
   const navigate = useNavigate();
@@ -132,7 +134,12 @@ const NavBar = ({
     <NavSection>
       <BurgerSection>
         <HeaderWrapper>
-          {!showProfile && (
+          {navType == "home" && (
+            <FreeTemplatetext onClick={() => navigate("/sign-in")}>
+              Free Template
+            </FreeTemplatetext>
+          )}
+          {localStorage.getItem("access_token") ? (
             <ImageSubSection>
               <SecondSubSection>
                 <button
@@ -164,6 +171,8 @@ const NavBar = ({
                 </Morecontent>
               ) : null}
             </ImageSubSection>
+          ) : (
+            <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
           )}
           <LogoSearchSection>
             <LogoSection onClick={() => navigate("/dashboard")}>
@@ -281,7 +290,12 @@ const NavBar = ({
               </Button>
             </EditSection>
           )}
-          {!showProfile && (
+          {navType == "home" && (
+            <FreeTemplatetext onClick={() => navigate("/sign-in")}>
+              Free Template
+            </FreeTemplatetext>
+          )}
+          {localStorage.getItem("access_token") ? (
             <ImageSubSection>
               <SecondSubSection>
                 <Profile>
@@ -313,6 +327,8 @@ const NavBar = ({
                 </button>
               </SecondSubSection>
             </ImageSubSection>
+          ) : (
+            <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
           )}
         </SecondSection>
         <AlertModal

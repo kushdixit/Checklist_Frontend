@@ -18,21 +18,18 @@ export const deleteChecklist = (id) => async (dispatch) => {
     id,
   };
   try {
-    const response = await fetch(
-      "http://112.196.2.202:8080/api/v1/CheckList/checklists",
-      {
-        method: "DELETE",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify(payload),
-      }
-    );
+    await fetch("http://112.196.2.202:8080/api/v1/CheckList/checklists", {
+      method: "DELETE",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(payload),
+    });
     dispatch(getChecklist());
   } catch (ex) {}
 };
@@ -94,7 +91,7 @@ export const addTempChecklist =
     } catch (ex) {
       return {
         error: true,
-        message: ex?.response?.data?.errors?.ChecklistDescription[0],
+        message: ex?.response?.data?.Errors[0] || "Error",
       };
     }
   };
