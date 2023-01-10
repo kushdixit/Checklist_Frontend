@@ -14,6 +14,7 @@ import Move from "assets/SVG/move";
 import Reset from "assets/SVG/Reset";
 import Copy from "assets/SVG/Copy";
 import ShareNew from "assets/SVG/ShareNew";
+import Favourite from "assets/SVG/Favourite";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
@@ -135,6 +136,11 @@ const CardColon = ({ item, cardType, type }) => {
                     <AlertModal isOpen={newmodal} togglefunction={toggleabc} />
                     <Move onClick={() => toggleabc(!newmodal)} />
                     Move
+                  </SortTextDiv>
+                  <SortTextDiv>
+                  
+                    <Favourite/>
+                   favourite
                   </SortTextDiv>
                 </SortWrapper>
               )}

@@ -9,6 +9,7 @@ export const SubSection = styled.div`
   height: auto;
   max-width: 313px;
   padding: 20px 0px;
+  margin-right: 20px;
   @media (max-width: 723px) {
     width: 100%;
   }
