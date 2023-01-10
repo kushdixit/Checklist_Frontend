@@ -76,7 +76,6 @@ const CardColon = ({ item, cardType, type }) => {
 
   return (
     <ColonImage type={type}>
-     
       {contextHolder}
       <ShortContainer onClick={() => setIsOpenSort(true)}>
         <ShortBy>
@@ -117,7 +116,7 @@ const CardColon = ({ item, cardType, type }) => {
                     }}
                   >
                     <Copy />
-                    Copy
+                    Use / Import
                   </SortTextDiv>
                   <SortTextDiv>
                     <ShareNew />
@@ -128,9 +127,9 @@ const CardColon = ({ item, cardType, type }) => {
                       <Delete /> Delete CheckList
                     </SortTextDiv>
                   )}
-                   <SortTextDiv>
-                   <AlertModal isOpen={newmodal} togglefunction={toggleabc} />
-                    <Move onClick={() => toggleabc(!newmodal)}/>
+                  <SortTextDiv>
+                    <AlertModal isOpen={newmodal} togglefunction={toggleabc} />
+                    <Move onClick={() => toggleabc(!newmodal)} />
                     move
                   </SortTextDiv>
                   <SortTextDiv>
@@ -168,7 +167,7 @@ const CardColon = ({ item, cardType, type }) => {
                     }}
                   >
                     <Copy />
-                    Copy
+                    Use / Import
                   </SortTextDiv>
                   <SortTextDiv>
                     <ShareNew />
