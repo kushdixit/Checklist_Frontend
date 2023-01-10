@@ -266,6 +266,7 @@ export const IconInputField = styled.div`
   @media (max-width: 1120px) {
     width: 100%;
     max-width: 212px;
+    padding-right: 30px;
     input {
       width: unset;
       max-width: unset;
