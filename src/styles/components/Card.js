@@ -6,6 +6,7 @@ export const FirstSection = styled.div`
 
   margin: 0 10px;
   flex-wrap: wrap;
+  justify-content: center;
   @media (max-width: 1012px) {
     justify-content: center;
   }
