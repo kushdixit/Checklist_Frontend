@@ -32,7 +32,7 @@ const Landing = () => {
   return (
     <LandingContainer>
       <NavSection>
-        <Navbar search={true} showProfile={true} />
+        <Navbar search={true} navType="home" />
       </NavSection>
       <Heading>
         Make your checklists,

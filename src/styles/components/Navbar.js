@@ -27,6 +27,22 @@ export const EditSection = styled.div`
     margin-right: 30px;
   }
 `;
+export const Logintext = styled.div`
+  margin: 0px;
+  padding: 0px;
+  color: rgb(29, 46, 136);
+  font-weight: 400;
+  font-size: 18px;
+  cursor: pointer;
+`;
+export const FreeTemplatetext = styled.div`
+  margin: 0px;
+  padding: 0px;
+  color: rgb(29, 46, 136);
+  font-weight: 400;
+  font-size: 18px;
+  cursor: pointer;
+`;
 export const SpaceSection = styled.div`
   width: 100%;
   max-width: 80px;

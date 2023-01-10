@@ -333,3 +333,50 @@ export const DescriptionWrapper = styled.div`
 
   margin: 0 auto;
 `;
+
+export const ChecklistInputWrapper = styled.div`
+  background: #fff;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1778px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #000;
+  display: flex;
+`;
+
+export const ChecklistTitleWrapper = styled.div`
+  input {
+    border-bottom: revert !important;
+    font-weight: 600;
+    font-size: 36px !important;
+    color: #000;
+    @media (max-width: 1378px) {
+      font-size: 30px !important;
+    }
+    @media (max-width: 862px) {
+      font-size: 26px !important;
+    }
+    @media (max-width: 462px) {
+      font-size: 24px !important;
+    }
+  }
+`;
+export const ChecklistDescriptionWrapper = styled.div`
+  input {
+    border-bottom: revert !important;
+    /* font-weight: 600;
+    font-size: 36px !important;
+    color: #000;
+    @media (max-width: 1378px) {
+      font-size: 30px !important;
+    }
+    @media (max-width: 862px) {
+      font-size: 26px !important;
+    }   
+    @media (max-width: 462px) {
+      font-size: 24px !important;
+    } */
+  }
+`;

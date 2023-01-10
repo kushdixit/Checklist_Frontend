@@ -8,10 +8,13 @@ import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import {
   BodyWrapper,
-  Title,
+  ChecklistInputWrapper,
+  ChecklistTitleWrapper,
   Section,
   IconInputField,
   TitleFormSection,
+  DescriptionContainer,
+  ChecklistDescriptionWrapper,
 } from "styles/pages/Task";
 import Navbar from "components/Navbar";
 import TextInput from "components/FormElements/TextInput";
@@ -31,8 +34,8 @@ const CreateList = () => {
     mode: "onSubmit",
     reValidateMode: "onBlur",
     defaultValues: {
-      checklist: "Checklist Title",
-      description: "Description",
+      checklist: "",
+      description: "",
     },
   });
 
@@ -70,7 +73,7 @@ const CreateList = () => {
         />
       </BodyWrapper>
       <TitleFormSection>
-        <Title>
+        <ChecklistInputWrapper>
           <form
             style={{
               width: "100%",
@@ -79,28 +82,38 @@ const CreateList = () => {
               gap: "20px",
             }}
           >
-            <IconInputField>
-              <TextInput
-                name="checklist"
-                type="text"
-                defaultValue="Checklist Title"
-                placeholder="Checklist Title"
-                control={checklistFormControl}
-                handlekeyPress={(e) => e.key === "Enter" && e.preventDefault()}
-              />
+            <IconInputField style={{ borderBottom: "revert" }}>
+              <ChecklistTitleWrapper>
+                <TextInput
+                  name="checklist"
+                  type="text"
+                  defaultValue="Checklist Title"
+                  placeholder="Title"
+                  control={checklistFormControl}
+                  handlekeyPress={(e) =>
+                    e.key === "Enter" && e.preventDefault()
+                  }
+                />
+              </ChecklistTitleWrapper>
             </IconInputField>
-            <IconInputField style={{ paddingRight: "4.5rem" }}>
-              <TextInput
-                name="description"
-                type="text"
-                defaultValue={"Description"}
-                placeholder={"Description"}
-                control={checklistFormControl}
-                handlekeyPress={(e) => e.key === "Enter" && e.preventDefault()}
-              />
-            </IconInputField>
+            <DescriptionContainer>
+              <ChecklistDescriptionWrapper>
+                <IconInputField style={{ fontSize: "24px !important" }}>
+                  <TextInput
+                    name="description"
+                    type="text"
+                    defaultValue={"Description"}
+                    placeholder={"Description"}
+                    control={checklistFormControl}
+                    handlekeyPress={(e) =>
+                      e.key === "Enter" && e.preventDefault()
+                    }
+                  />
+                </IconInputField>
+              </ChecklistDescriptionWrapper>
+            </DescriptionContainer>
           </form>
-        </Title>
+        </ChecklistInputWrapper>
       </TitleFormSection>
     </Section>
   );
