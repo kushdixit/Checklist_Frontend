@@ -17,7 +17,6 @@ export const LandingContainer = styled.div`
     font-weight: 500;
     flex-direction: column;
     max-width: 708px;
-    line-height: 18px;
   }
   h4 {
     display: flex;
@@ -25,7 +24,7 @@ export const LandingContainer = styled.div`
     justify-content: center;
     align-items: center;
     font-weight: 400;
-    font-size: 45px;
+
     font-size: 16px;
 
     margin-left: auto;
@@ -43,9 +42,8 @@ export const Heading = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  font-size: 45px;
-  font-size: 45px;
-  line-height: 57px;
+  font-size: 2.8rem;
+
   margin-left: auto;
   margin-right: auto;
 
@@ -53,6 +51,9 @@ export const Heading = styled.div`
   max-width: 708px;
   margin-top: 90px;
   text-align: center;
+  @media (max-width: 538px) {
+    font-size: 1.8rem;
+  }
 `;
 
 export const SecondHeading = styled.div`
@@ -61,9 +62,9 @@ export const SecondHeading = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 400;
-  font-size: 45px;
+
   font-size: 34px;
-  line-height: 57px;
+
   margin-left: auto;
   margin-right: auto;
 
