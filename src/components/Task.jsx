@@ -10,6 +10,7 @@ import {
 import { TaskList } from "styles/pages/CheckList";
 import TextInput from "components/FormElements/TextInput";
 import SubTask from "./SubTask";
+import AddDescription from "./AddDescription";
 import SubListWrapper from "./SubList";
 import {
   MainTaskSection,
@@ -22,6 +23,7 @@ import {
 import Colon from "assets/SVG/Colon";
 import Delete from "assets/SVG/Delete";
 import Arrow from "assets/SVG/Arrow";
+import Description from "assets/SVG/Description";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import { notification } from "antd";
 
@@ -45,6 +47,8 @@ const Task = ({ task, index, checkListId, showEditable }) => {
   const dispatch = useDispatch();
   const [taskEdit, setTaskEdit] = useState(false);
   const [addSubTask, setAddSubTask] = useState(false);
+  const [  addDescription, setAddDescription] = useState(false);
+
   const [modal, setModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const wrapperRef = useRef();
@@ -175,6 +179,12 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                         {addSubTask ? "Remove sub task" : "Add sub task"}
                       </div>
                     </SortTextDiv>
+                    <SortTextDiv onClick={() => setAddDescription(!addDescription)}>
+                   <Description/> Description
+                   <div>
+                        {addDescription }
+                      </div>
+                    </SortTextDiv>
                   </SortWrapper>
                 )}
               </ShortBy>
@@ -188,6 +198,15 @@ const Task = ({ task, index, checkListId, showEditable }) => {
           task={task}
           setAddSubTask={setAddSubTask}
           addSubTask={addSubTask}
+          checkListId={checkListId}
+        />
+      )}
+        {addDescription && (
+        <AddDescription
+          id={task.id}
+          task={task}
+          setAddDescription={setAddDescription}
+          addDescription={addDescription}
           checkListId={checkListId}
         />
       )}
