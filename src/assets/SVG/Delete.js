@@ -2,12 +2,11 @@ import * as React from "react";
 
 const SvgComponent = (props) => (
   <svg
-    width={23}
-    height={48}
+    width="23"
+    height="23"
     fill="none"
-    viewBox="0 0 28 55"
+    viewBox="0 0 28 30"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
   >
     <path
       fillRule="evenodd"

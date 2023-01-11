@@ -11,7 +11,6 @@ export const FirstSection = styled.div`
     justify-content: center;
   }
   @media (max-width: 1722px) {
-    padding: 0 22px;
   }
 `;
 

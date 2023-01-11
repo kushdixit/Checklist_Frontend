@@ -8,7 +8,7 @@ export const BodyWrapper = styled.div`
 export const TitleFormSection = styled.div`
   background: #fff;
   form {
-    padding: 0rem 2rem 0rem 1.6rem;
+    padding: 0rem 0rem 0rem 1.6rem;
     width: auto !important;
     flex: 1;
   }
@@ -28,7 +28,7 @@ export const Title = styled.div`
   input {
     border-bottom: hidden;
     font-weight: 600;
-    font-size: 36px !important;
+    font-size: 33px !important;
     color: #000;
 
     @media (max-width: 1378px) {
@@ -135,13 +135,16 @@ export const IconInputField = styled.div`
   input {
     text-align: left;
     font-size: 24px;
-
-    border-top-style: hidden;
+    /* border-top-style: hidden;
     border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-color: ${(props) => props.color};
+    border-left-style: hidden; */
+    /* border-bottom-color: ${(props) => props.color}; */
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 10%), 0 2px 2px 0 rgb(0 0 0 / 7%),
+      0 1px 5px 0 rgb(0 0 0 / 6%);
+    border-radius: 4px;
+    padding: 7px 10px 5px 5px;
     width: 100%;
-
+    border: unset;
     background: unset;
     @media (max-width: 462px) {
       font-size: 18px;
@@ -235,6 +238,7 @@ export const ShortContainer = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
+  padding-top: 10px;
   /* dont apply padding here */
 `;
 export const ShortBy = styled.div`
@@ -258,7 +262,7 @@ export const SortWrapper = styled.div`
   text-align: left;
   right: 0;
   top: 40px;
-  padding: 20px 26px 10px 26px;
+  padding: 15px 26px 15px 26px;
   @media (max-width: 372px) {
     right: 0;
     width: 195px;
@@ -273,9 +277,10 @@ export const SortText = styled.button`
 export const SortTextDiv = styled.div`
   font-weight: 500;
   font-size: 16px;
-  line-height: 26px;
+
   display: flex;
   color: #000;
+  padding: 8px 0;
   gap: 10px;
 `;
 
@@ -309,17 +314,17 @@ export const DescriptionContainer = styled.div`
   max-width: 1774px;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
+  font-weight: 500;
   color: #000;
   padding: 0.5rem 0rem;
   input {
     border-bottom: hidden;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 24px !important;
     color: #000;
   }
   form {
-    padding-left: 28px;
+    padding-left: 25px;
   }
   @media (max-width: 462px) {
     input {
@@ -349,7 +354,7 @@ export const ChecklistInputWrapper = styled.div`
 export const ChecklistTitleWrapper = styled.div`
   input {
     border-bottom: revert !important;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 36px !important;
     color: #000;
     @media (max-width: 1378px) {
