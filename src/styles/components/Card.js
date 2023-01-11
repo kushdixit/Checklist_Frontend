@@ -141,19 +141,6 @@ export const SubSection = styled.div`
   @media (max-width: 723px) {
     width: 100%;
   }
-  ${({ cardType }) =>
-    cardType == "user" &&
-    `
-      border-bottom: solid 4px transparent;
-      background-image: linear-gradient(white, white), 
-      linear-gradient(to right, #4cd964 0 40%, white 40% 90%);
-      background-origin: border-box;
-      background-clip: content-box, border-box;`}
-  ${({ progress, cardType }) =>
-    cardType == "user" &&
-    progress &&
-    `
-      border-bottom:4px solid #4cd964; `}
 `;
 export const SubSectionNew = styled.div`
   margin: 0 auto;

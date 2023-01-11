@@ -103,7 +103,7 @@ const NavBar = ({
   };
 
   const newTemplateHandler = async () => {
-    navigate("/createChecklist");
+    navigate("/check-list");
   };
 
   const searchData = (data) => {
@@ -135,49 +135,53 @@ const NavBar = ({
       <BurgerSection>
         <HeaderWrapper>
           {navType == "home" && (
-            <FreeTemplatetext onClick={() => navigate("/sign-in")}>
+            <FreeTemplatetext onClick={() => navigate("/freeTemplate")}>
               Free Template
             </FreeTemplatetext>
           )}
-          {localStorage.getItem("access_token") ? (
-            <ImageSubSection>
-              <SecondSubSection>
-                <button
-                  className="button"
-                  ref={wrapperRef}
-                  onClick={() => setLogoutModal(!logoutModal)}
-                >
-                  <InitialsWrapperNew>
-                    <WrapperSize>
-                      <h4>{firstName[0].toUpperCase()}</h4>
-                      <h4> {lastName[0].toUpperCase()}</h4>
-                    </WrapperSize>
-                  </InitialsWrapperNew>
-                </button>
-              </SecondSubSection>
-              {logoutModal ? (
-                <Morecontent
-                  onClick={() => {
-                    toggleab(true);
-                  }}
-                >
-                  <Logout
-                    style={{
-                      width: "15px",
-                      marginRight: "0.25rem",
-                    }}
-                  />
-                  <ContentItem>Logout</ContentItem>
-                </Morecontent>
-              ) : null}
-            </ImageSubSection>
-          ) : (
-            <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
+          {navType != "freeTemplate" && (
+            <>
+              {localStorage.getItem("access_token") ? (
+                <ImageSubSection>
+                  <SecondSubSection>
+                    <button
+                      className="button"
+                      ref={wrapperRef}
+                      onClick={() => setLogoutModal(!logoutModal)}
+                    >
+                      <InitialsWrapperNew>
+                        <WrapperSize>
+                          <h4>{firstName[0].toUpperCase()}</h4>
+                          <h4> {lastName[0].toUpperCase()}</h4>
+                        </WrapperSize>
+                      </InitialsWrapperNew>
+                    </button>
+                  </SecondSubSection>
+                  {logoutModal ? (
+                    <Morecontent
+                      onClick={() => {
+                        toggleab(true);
+                      }}
+                    >
+                      <Logout
+                        style={{
+                          width: "15px",
+                          marginRight: "0.25rem",
+                        }}
+                      />
+                      <ContentItem>Logout</ContentItem>
+                    </Morecontent>
+                  ) : null}
+                </ImageSubSection>
+              ) : (
+                <Logintext onClick={() => navigate("/sign-in")}>
+                  Login
+                </Logintext>
+              )}
+            </>
           )}
           <LogoSearchSection>
-            <LogoSection onClick={() => navigate("/dashboard")}>
-              Checklist
-            </LogoSection>
+            <LogoSection onClick={() => navigate("/")}>Checklist</LogoSection>
           </LogoSearchSection>
           {addButton && (
             <Footer>
@@ -220,9 +224,7 @@ const NavBar = ({
 
       <SubNavSection>
         <FirstSection>
-          <HeadingText onClick={() => navigate("/dashboard")}>
-            Checklist
-          </HeadingText>
+          <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
         </FirstSection>
         <SecondSection>
           {search && (
@@ -291,44 +293,50 @@ const NavBar = ({
             </EditSection>
           )}
           {navType == "home" && (
-            <FreeTemplatetext onClick={() => navigate("/sign-in")}>
+            <FreeTemplatetext onClick={() => navigate("/freeTemplate")}>
               Free Template
             </FreeTemplatetext>
           )}
-          {localStorage.getItem("access_token") ? (
-            <ImageSubSection>
-              <SecondSubSection>
-                <Profile>
-                  <h4>
-                    {firstName[0].toUpperCase() + firstName.slice(1)}{" "}
-                    {lastName[0].toUpperCase() + lastName.slice(1)}
-                  </h4>
-                </Profile>
-                <button
-                  className="button"
-                  onClick={() => setLogoutModal(!logoutModal)}
-                  ref={wrapperRef}
-                >
-                  <InitialsWrapper>
-                    <div>{firstName[0].toUpperCase()}</div>
-                    <div> {lastName[0].toUpperCase()}</div>
-                  </InitialsWrapper>
-                  {logoutModal ? (
-                    <Morecontent onClick={() => toggleab(true)}>
-                      <Logout
-                        style={{
-                          width: "15px",
-                          marginRight: "0.25rem",
-                        }}
-                      />
-                      <ContentItem>Logout</ContentItem>
-                    </Morecontent>
-                  ) : null}
-                </button>
-              </SecondSubSection>
-            </ImageSubSection>
-          ) : (
-            <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
+          {navType != "freeTemplate" && (
+            <>
+              {localStorage.getItem("access_token") ? (
+                <ImageSubSection>
+                  <SecondSubSection>
+                    <Profile>
+                      <h4>
+                        {firstName[0].toUpperCase() + firstName.slice(1)}{" "}
+                        {lastName[0].toUpperCase() + lastName.slice(1)}
+                      </h4>
+                    </Profile>
+                    <button
+                      className="button"
+                      onClick={() => setLogoutModal(!logoutModal)}
+                      ref={wrapperRef}
+                    >
+                      <InitialsWrapper>
+                        <div>{firstName[0].toUpperCase()}</div>
+                        <div> {lastName[0].toUpperCase()}</div>
+                      </InitialsWrapper>
+                      {logoutModal ? (
+                        <Morecontent onClick={() => toggleab(true)}>
+                          <Logout
+                            style={{
+                              width: "15px",
+                              marginRight: "0.25rem",
+                            }}
+                          />
+                          <ContentItem>Logout</ContentItem>
+                        </Morecontent>
+                      ) : null}
+                    </button>
+                  </SecondSubSection>
+                </ImageSubSection>
+              ) : (
+                <Logintext onClick={() => navigate("/sign-in")}>
+                  Login
+                </Logintext>
+              )}
+            </>
           )}
         </SecondSection>
         <AlertModal

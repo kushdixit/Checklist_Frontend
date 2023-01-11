@@ -117,7 +117,7 @@ const CardColon = ({ item, cardType, type }) => {
                     }}
                   >
                     <Copy />
-                    Use / Import
+                    {cardType === "user" ? "Copy" : "Use / Import"}
                   </SortTextDiv>
                   <SortTextDiv>
                     <ShareNew />
@@ -138,9 +138,8 @@ const CardColon = ({ item, cardType, type }) => {
                     Move
                   </SortTextDiv>
                   <SortTextDiv>
-                  
-                    <Favourite/>
-                   favourite
+                    <Favourite />
+                    favourite
                   </SortTextDiv>
                 </SortWrapper>
               )}
@@ -172,7 +171,7 @@ const CardColon = ({ item, cardType, type }) => {
                     }}
                   >
                     <Copy />
-                    Use / Import
+                    {cardType === "user" ? "Copy" : "Use / Import"}
                   </SortTextDiv>
                   <SortTextDiv>
                     <ShareNew />
