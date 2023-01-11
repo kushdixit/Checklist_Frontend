@@ -47,7 +47,7 @@ const Landing = () => {
           className="button"
           handleClick={() =>
             localStorage.getItem("access_token")
-              ? navigate("/createChecklist")
+              ? navigate("/check-list")
               : navigate("/sign-in")
           }
         >

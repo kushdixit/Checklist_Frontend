@@ -7,6 +7,7 @@ import CheckList from "pages/check-list";
 import Landing from "pages/landing";
 import Search from "pages/search";
 import CreateList from "pages/CreateList";
+import FreeTemplate from "pages/FreeTemplate";
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
         <Route path="check-list" exact element={<CheckList />} />
         <Route path="check-list/:id" element={<CheckList />} />
         <Route path="landing" element={<Landing />} />
+        <Route path="freeTemplate" element={<FreeTemplate />} />
       </Routes>
     </BrowserRouter>
   );
