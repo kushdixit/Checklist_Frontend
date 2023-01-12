@@ -36,7 +36,7 @@ const Landing = () => {
       </NavSection>
       <Heading>
         Make your checklists,
-        <br />
+      
         and browse through them.
       </Heading>
       <h3>
