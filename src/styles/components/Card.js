@@ -4,13 +4,14 @@ export const FirstSection = styled.div`
   grid-gap: 37px;
   width: 100%;
 
-  margin: 0 10px;
+  margin: 0 0 0 10px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   @media (max-width: 1012px) {
     justify-content: center;
   }
   @media (max-width: 1722px) {
+    justify-content: center;
   }
 `;
 
@@ -162,11 +163,20 @@ export const SubSectionNew = styled.div`
   }
 `;
 export const Image = styled.div`
-  align-items: center;
+  -webkit-align-items: center;
+  -webkit-box-align: start;
+  -ms-flex-align: center;
+  align-items: start;
   vertical-align: middle;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-
-  justify-content: center;
+  /* -webkit-box-pack: center; */
+  /* -webkit-justify-content: center; */
+  -ms-flex-pack: center;
+  /* justify-content: center; */
+  padding-top: 7px;
 
   svg {
     width: 60px;
@@ -180,11 +190,19 @@ export const Image = styled.div`
   }
 `;
 export const Wrap = styled.div`
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  /* -webkit-align-items: center; */
+  /* -webkit-box-align: center; */
+  -ms-flex-align: center;
+  /* align-items: center; */
   cursor: pointer;
-  padding: 0 13px;
+  padding: 30px 7px 0 0;
   height: 100%;
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
 `;
 
@@ -204,23 +222,22 @@ export const CompleteSection = styled.div`
   height: 39px;
 `;
 export const WrapSubSection = styled.div`
-  vertical-align: middle;
+  /* vertical-align: middle;
   align-items: center;
   justify-content: center;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis;
   width: 100%;
   overflow: hidden;
-  white-space: nowrap;
-
+  white-space: nowrap; */
   h2 {
     margin: 0;
     padding: 0;
     font-weight: 600;
     font-size: 17px;
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis;
     width: 100%;
     max-width: 131px;
-    overflow: hidden;
+    overflow: hidden; */
   }
   h3 {
     color: #505050;

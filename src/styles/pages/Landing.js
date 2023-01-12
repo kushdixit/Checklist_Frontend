@@ -5,7 +5,7 @@ export const LandingContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  max-width: 1385px;
+  max-width: 1735px;
   h3 {
     display: flex;
     width: 100%;
@@ -15,6 +15,7 @@ export const LandingContainer = styled.div`
     margin-left: auto;
     margin-right: auto;
     font-weight: 500;
+
     flex-direction: column;
     max-width: 708px;
   }
@@ -23,9 +24,9 @@ export const LandingContainer = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
-    font-weight: 400;
+    font-weight: 500;
 
-    font-size: 16px;
+    font-size: 19px;
 
     margin-left: auto;
     margin-right: auto;
@@ -33,6 +34,10 @@ export const LandingContainer = styled.div`
     flex-direction: column;
 
     text-align: center;
+  }
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 600;
   }
 `;
 
@@ -48,7 +53,7 @@ export const Heading = styled.div`
   margin-right: auto;
 
   flex-direction: column;
-  max-width: 708px;
+
   margin-top: 90px;
   text-align: center;
   @media (max-width: 538px) {
@@ -80,13 +85,15 @@ export const NavSection = styled.div`
 
 export const LandingCardSection = styled.div`
   display: flex;
-  display: flex;
-  gap: 50px;
+
+  gap: 100px;
   width: 100%;
-  /* max-width: 1800px; */
+
   justify-content: center;
+
   align-items: center;
   margin: 30px 10px;
+
   flex-wrap: wrap;
 `;
 export const ChecklistButton = styled.div`

@@ -7,9 +7,9 @@ export const SubSection = styled.div`
   box-shadow: rgb(163 183 223) 0px 0px 3px;
   border-radius: 10px;
   height: auto;
-  max-width: 313px;
+  max-width: 418px;
   padding: 20px 0px;
-  margin-right: 20px;
+  margin-right: 9px;
   @media (max-width: 723px) {
     width: 100%;
   }
