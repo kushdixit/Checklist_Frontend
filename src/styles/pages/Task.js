@@ -7,6 +7,7 @@ export const BodyWrapper = styled.div`
 `;
 export const TitleFormSection = styled.div`
   background: #fff;
+  display: flex;
   form {
     padding: 0rem 0rem 0rem 1.6rem;
     width: auto !important;
@@ -233,13 +234,10 @@ export const AddSubTask = styled.div`
 export const ShortContainer = styled.div`
   position: relative;
   justify-content: center;
-  /* background: #ffffff; */
-  /* border: 1px solid #e9e9e9; */
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
   padding-top: 10px;
-  /* dont apply padding here */
 `;
 export const ShortBy = styled.div`
   display: flex;
@@ -383,5 +381,27 @@ export const ChecklistDescriptionWrapper = styled.div`
     @media (max-width: 462px) {
       font-size: 24px !important;
     } */
+  }
+`;
+
+export const TaskDescriptionField = styled.div`
+  width: 95%;
+  input {
+    text-align: left;
+    font-size: 24px;
+    margin: 0px 35px 0px 30px;
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 10%), 0 2px 2px 0 rgb(0 0 0 / 7%),
+      0 1px 5px 0 rgb(0 0 0 / 6%);
+    border-radius: 4px;
+    padding: 7px 10px 5px 5px;
+    width: 100%;
+    border: unset;
+    background: unset;
+    @media (max-width: 462px) {
+      font-size: 18px;
+    }
+  }
+  input:focus-visible {
+    outline: unset;
   }
 `;

@@ -21,6 +21,7 @@ const SubTask = ({ id, setAddSubTask, addSubTask, checkListId }) => {
     if (data?.subTask) {
       const response = await dispatch(addSubTaskApi(data?.subTask, id));
       if (response.status === 201) {
+        openNotification("Added");
         dispatch(getChecklistBySubcategory(checkListId));
         setValue("subTask", "");
         setAddSubTask(!addSubTask);

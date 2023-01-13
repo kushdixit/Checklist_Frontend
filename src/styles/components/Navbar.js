@@ -185,10 +185,11 @@ export const Profile = styled.div`
   align-items: center;
   margin-right: 0.5rem;
   h4 {
+    text-align: center;
     margin: 0;
     padding: 0;
     color: #1d2e88;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
   }
   h5 {

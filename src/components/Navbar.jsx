@@ -139,46 +139,40 @@ const NavBar = ({
               Free Template
             </FreeTemplatetext>
           )}
-          {navType != "freeTemplate" && (
-            <>
-              {localStorage.getItem("access_token") ? (
-                <ImageSubSection>
-                  <SecondSubSection>
-                    <button
-                      className="button"
-                      ref={wrapperRef}
-                      onClick={() => setLogoutModal(!logoutModal)}
-                    >
-                      <InitialsWrapperNew>
-                        <WrapperSize>
-                          <h4>{firstName[0].toUpperCase()}</h4>
-                          <h4> {lastName[0].toUpperCase()}</h4>
-                        </WrapperSize>
-                      </InitialsWrapperNew>
-                    </button>
-                  </SecondSubSection>
-                  {logoutModal ? (
-                    <Morecontent
-                      onClick={() => {
-                        toggleab(true);
-                      }}
-                    >
-                      <Logout
-                        style={{
-                          width: "15px",
-                          marginRight: "0.25rem",
-                        }}
-                      />
-                      <ContentItem>Logout</ContentItem>
-                    </Morecontent>
-                  ) : null}
-                </ImageSubSection>
-              ) : (
-                <Logintext onClick={() => navigate("/sign-in")}>
-                  Login
-                </Logintext>
-              )}
-            </>
+          {localStorage.getItem("access_token") ? (
+            <ImageSubSection>
+              <SecondSubSection>
+                <button
+                  className="button"
+                  ref={wrapperRef}
+                  onClick={() => setLogoutModal(!logoutModal)}
+                >
+                  <InitialsWrapperNew>
+                    <WrapperSize>
+                      <h4>{firstName[0].toUpperCase()}</h4>
+                      <h4> {lastName[0].toUpperCase()}</h4>
+                    </WrapperSize>
+                  </InitialsWrapperNew>
+                </button>
+              </SecondSubSection>
+              {logoutModal ? (
+                <Morecontent
+                  onClick={() => {
+                    toggleab(true);
+                  }}
+                >
+                  <Logout
+                    style={{
+                      width: "15px",
+                      marginRight: "0.25rem",
+                    }}
+                  />
+                  <ContentItem>Logout</ContentItem>
+                </Morecontent>
+              ) : null}
+            </ImageSubSection>
+          ) : (
+            <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
           )}
           <LogoSearchSection>
             <LogoSection onClick={() => navigate("/")}>Checklist</LogoSection>
@@ -221,7 +215,6 @@ const NavBar = ({
           )}
         </SearchSection>
       </BurgerSection>
-
       <SubNavSection>
         <FirstSection>
           <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
@@ -260,84 +253,80 @@ const NavBar = ({
               </IconWrapper>
             </IconInputField>
           )}
-          {addButton && (
-            <Footer>
-              <Button
-                className="button"
-                handleClick={() => newTemplateHandler()}
-              >
-                {`+ ${buttonType}`}
-              </Button>
-            </Footer>
-          )}
-          {createList && (
-            <Button
-              className="button"
-              style={{ padding: "0.5rem 1rem" }}
-              handleClick={() => getPayload()}
-            >
-              Save
-            </Button>
-          )}
-          {state?.showEditable && (
-            <EditSection>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            {addButton && (
+              <Footer>
+                <Button
+                  className="button"
+                  handleClick={() => newTemplateHandler()}
+                >
+                  {`+ ${buttonType}`}
+                </Button>
+              </Footer>
+            )}
+            {createList && (
               <Button
                 className="button"
                 style={{ padding: "0.5rem 1rem" }}
-                handleClick={() =>
-                  dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
-                }
+                handleClick={() => getPayload()}
               >
-                {`${taskEditable ? "Done" : "Edit"}`}
+                Save
               </Button>
-            </EditSection>
-          )}
-          {navType == "home" && (
-            <FreeTemplatetext onClick={() => navigate("/freeTemplate")}>
-              Free Template
-            </FreeTemplatetext>
-          )}
-          {navType != "freeTemplate" && (
-            <>
-              {localStorage.getItem("access_token") ? (
-                <ImageSubSection>
-                  <SecondSubSection>
-                    <Profile>
-                      <h4>
-                        {firstName[0].toUpperCase() + firstName.slice(1)}{" "}
-                        {lastName[0].toUpperCase() + lastName.slice(1)}
-                      </h4>
-                    </Profile>
-                    <button
-                      className="button"
-                      onClick={() => setLogoutModal(!logoutModal)}
-                      ref={wrapperRef}
-                    >
-                      <InitialsWrapper>
-                        <div>{firstName[0].toUpperCase()}</div>
-                        <div> {lastName[0].toUpperCase()}</div>
-                      </InitialsWrapper>
-                      {logoutModal ? (
-                        <Morecontent onClick={() => toggleab(true)}>
-                          <Logout
-                            style={{
-                              width: "15px",
-                              marginRight: "0.25rem",
-                            }}
-                          />
-                          <ContentItem>Logout</ContentItem>
-                        </Morecontent>
-                      ) : null}
-                    </button>
-                  </SecondSubSection>
-                </ImageSubSection>
-              ) : (
-                <Logintext onClick={() => navigate("/sign-in")}>
-                  Login
-                </Logintext>
-              )}
-            </>
-          )}
+            )}
+            {state?.showEditable && (
+              <EditSection>
+                <Button
+                  className="button"
+                  style={{ padding: "0.5rem 1rem" }}
+                  handleClick={() =>
+                    dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
+                  }
+                >
+                  {`${taskEditable ? "Done" : "Edit"}`}
+                </Button>
+              </EditSection>
+            )}
+            {navType == "home" && (
+              <FreeTemplatetext onClick={() => navigate("/freeTemplate")}>
+                Free Template
+              </FreeTemplatetext>
+            )}
+            {localStorage.getItem("access_token") ? (
+              <ImageSubSection>
+                <SecondSubSection>
+                  <Profile>
+                    <h4>
+                      {firstName[0].toUpperCase() + firstName.slice(1)}{" "}
+                      {lastName[0].toUpperCase() + lastName.slice(1)}
+                    </h4>
+                  </Profile>
+                  <button
+                    className="button"
+                    onClick={() => setLogoutModal(!logoutModal)}
+                    ref={wrapperRef}
+                  >
+                    <InitialsWrapper>
+                      <div>{firstName[0].toUpperCase()}</div>
+                      <div> {lastName[0].toUpperCase()}</div>
+                    </InitialsWrapper>
+                    {logoutModal ? (
+                      <Morecontent onClick={() => toggleab(true)}>
+                        <Logout
+                          style={{
+                            width: "15px",
+                            marginRight: "0.25rem",
+                          }}
+                        />
+                        <ContentItem>Logout</ContentItem>
+                      </Morecontent>
+                    ) : null}
+                  </button>
+                </SecondSubSection>
+              </ImageSubSection>
+            ) : (
+              <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
+            )}
+          </div>
         </SecondSection>
         <AlertModal
           modalType="logout"

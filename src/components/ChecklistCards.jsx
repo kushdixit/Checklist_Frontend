@@ -102,6 +102,7 @@ const ChecklistCards = ({ item }) => {
                   Checklist={Checklist}
                   showEditable={false}
                   cardType="default"
+                  templateName={item?.templateName}
                 />
               );
             })}

@@ -17,7 +17,14 @@ import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import Completed from "assets/SVG/Completed";
 import { getChecklistBySubcategory } from "redux/actions/task";
 
-const Card = ({ item, index, Checklist, showEditable, cardType }) => {
+const Card = ({
+  item,
+  index,
+  Checklist,
+  showEditable,
+  cardType,
+  templateName,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -57,7 +64,12 @@ const Card = ({ item, index, Checklist, showEditable, cardType }) => {
           </CompleteSection>
         )}
         <div style={{ paddingRight: item?.ischecked ? "0px" : "7px" }}>
-          <CardColon item={item} cardType={cardType} type="dashboard" />
+          <CardColon
+            item={item}
+            cardType={cardType}
+            type="dashboard"
+            templateName={templateName}
+          />
         </div>
       </Abc>
     </SubSection>

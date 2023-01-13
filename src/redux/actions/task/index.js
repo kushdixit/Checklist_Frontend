@@ -81,6 +81,21 @@ export const editTask = (taskName, id) => async (dispatch) => {
   }
 };
 
+export const TaskDescription = (id, taskDescription) => async () => {
+  const payload = {
+    id,
+    taskDescription,
+  };
+  try {
+    const response = await axioPath.put("v1/Task/taskdescription", payload, {
+      hideLoader: false,
+    });
+    return response;
+  } catch (ex) {
+    return ex.response;
+  }
+};
+
 //SubTask APi's
 export const addSubTaskApi = (subTaskName, taskId) => async (dispatch) => {
   const payload = {
@@ -169,3 +184,22 @@ export const editSubTaskStatus =
       return ex.response;
     }
   };
+
+export const SubTaskDescription = (id, subTaskDescription) => async () => {
+  const payload = {
+    id,
+    subTaskDescription,
+  };
+  try {
+    const response = await axioPath.put(
+      "v1/SubTask/subtaskdescription",
+      payload,
+      {
+        hideLoader: false,
+      }
+    );
+    return response;
+  } catch (ex) {
+    return ex.response;
+  }
+};

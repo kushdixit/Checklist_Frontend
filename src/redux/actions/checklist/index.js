@@ -18,19 +18,23 @@ export const deleteChecklist = (id) => async (dispatch) => {
     id,
   };
   try {
-    await fetch("http://112.196.2.202:8080/api/v1/CheckList/checklists", {
-      method: "DELETE",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify(payload),
-    });
+    const res = await fetch(
+      "http://112.196.2.202:8080/api/v1/CheckList/checklists",
+      {
+        method: "DELETE",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(payload),
+      }
+    );
     dispatch(getChecklist());
+    return res;
   } catch (ex) {}
 };
 
@@ -61,8 +65,6 @@ export const editChecklistApi = (checklistName, id) => async (dispatch) => {
     const response = await axioPath.put("v1/CheckList/checklists", payload, {
       hideLoader: false,
     });
-    dispatch(getChecklistBySubcategory(id));
-
     return { error: false, message: response?.status };
     // dispatch({ type: SET_CHECKLIST, payload: response.data });
   } catch (ex) {
@@ -75,14 +77,13 @@ export const addTempChecklist =
     const payload = {
       checklistName,
       checklistDescription,
-      templateId: -99,
       email,
+      taskName: "",
     };
     try {
       const response = await axioPath.post("v1/CheckList/checklists", payload, {
         hideLoader: false,
       });
-      response?.data && dispatch(getChecklistBySubcategory(response?.data));
       return {
         error: false,
         message: response?.statusText,
@@ -91,11 +92,10 @@ export const addTempChecklist =
     } catch (ex) {
       return {
         error: true,
-        message: ex?.response?.data?.Errors[0] || "Error",
+        message: ex?.response?.data?.errors?.TaskName[0] || "Error",
       };
     }
   };
-
 export const ChecklistCompleted = (id, ischecked) => async (dispatch) => {
   const payload = {
     id,
@@ -107,7 +107,7 @@ export const ChecklistCompleted = (id, ischecked) => async (dispatch) => {
     });
     return { error: false };
   } catch (ex) {
-    return { error: true, message: ex?.response?.data?.Message };
+    return { error: true, message: ex?.response?.data?.Errors[0] };
   }
 };
 
@@ -131,7 +131,7 @@ export const DescriptionChecklist =
     console.log(id, checklistdescription);
     const payload = {
       id,
-      checklistdescription,
+      checklistdescription: checklistdescription || "",
     };
     try {
       const response = await axioPath.put(
@@ -141,9 +141,23 @@ export const DescriptionChecklist =
           hideLoader: false,
         }
       );
-      dispatch(getChecklistBySubcategory(id));
       return { error: false, message: response?.status };
     } catch (ex) {
       return { error: true, message: ex?.response?.data?.Message };
     }
   };
+
+export const MoveChecklist = (id, templateId) => async (dispatch) => {
+  const payload = {
+    id,
+    templateId,
+  };
+  try {
+    const res = await axioPath.put("v1/CheckList/checklistmove", payload, {
+      hideLoader: false,
+    });
+    return { error: false };
+  } catch (ex) {
+    return { error: true, message: ex?.response?.data?.Errors[0] };
+  }
+};

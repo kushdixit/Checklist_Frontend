@@ -4,6 +4,8 @@ export const BodyContainer = styled.div`
   width: 100%;
   form {
     display: flex;
+    flex-direction: column;
+    gap: 5px;
     padding: 0 10px;
   }
 `;

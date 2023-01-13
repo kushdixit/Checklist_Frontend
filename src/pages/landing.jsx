@@ -34,11 +34,7 @@ const Landing = () => {
       <NavSection>
         <Navbar search={true} navType="home" />
       </NavSection>
-      <Heading>
-        Make your checklists,
-      
-        and browse through them.
-      </Heading>
+      <Heading>Make your checklists, and browse through them.</Heading>
       <h3>
         Organize your mind or scale your bussiness the right way,every time.
       </h3>
@@ -48,7 +44,9 @@ const Landing = () => {
           handleClick={() =>
             localStorage.getItem("access_token")
               ? navigate("/check-list")
-              : navigate("/sign-in")
+              : navigate("/sign-in", {
+                  state: { redirect: "/check-list" },
+                })
           }
         >
           Make your checklist
@@ -58,7 +56,9 @@ const Landing = () => {
         onClick={() =>
           localStorage.getItem("access_token")
             ? navigate("/dashboard")
-            : navigate("/sign-in")
+            : navigate("/sign-in", {
+                state: { redirect: "/dashboard" },
+              })
         }
       >
         Browse Your Checklist

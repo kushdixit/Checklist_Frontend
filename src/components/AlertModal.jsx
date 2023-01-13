@@ -2,6 +2,7 @@ import React from "react";
 import ForgotPassword from "./forgetPassword";
 import LogoutModal from "./LogoutModal";
 import BurgerModal from "./burgerModal";
+import MoveModal from "./MoveModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/AlertModal";
 
@@ -15,19 +16,20 @@ const customStyles = {
     borderRadius: "19px",
     transform: "translate(-50%, -50%)",
     padding: "15px 35px",
-  
+
     height: "auto",
     overflowY: "hidden",
   },
 };
 
 const AlertModal = ({
-  
   isOpen,
   togglefunction,
   hideButton,
   notify,
   modalType,
+  checklistId,
+  templateName,
 }) => {
   return (
     <ReactModal
@@ -49,6 +51,14 @@ const AlertModal = ({
       )}
       {modalType === "burger" && (
         <BurgerModal notify={notify} togglefunction={togglefunction} />
+      )}
+      {modalType === "move" && (
+        <MoveModal
+          notify={notify}
+          togglefunction={togglefunction}
+          checklistId={checklistId}
+          templateName={templateName}
+        />
       )}
       {/* {modalType === "forgot" && (
         <EditTask
