@@ -5,7 +5,7 @@ import TextInput from "components/FormElements/TextInput";
 import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
 import { DescriptionChecklist } from "redux/actions/checklist/index";
 import { editChecklistApi, addTempChecklist } from "redux/actions/checklist";
-import { SET_IS_EDITABLE } from "redux/actions/action_types";
+import { SET_IS_EDITABLE, UPDATE_DATA } from "redux/actions/action_types";
 import { BodyContainer, FormBody } from "styles/pages/CheckList";
 import { notification } from "antd";
 import TaskWrapper from "components/Task";
@@ -53,6 +53,10 @@ const CheckList = () => {
       message,
     });
   };
+
+  useEffect(() => {
+    if (pathId === undefined) dispatch({ type: UPDATE_DATA, payload: "" });
+  }, [pathId]);
 
   useEffect(() => {
     setChecklistName(ChecklistDetail?.checklistName);

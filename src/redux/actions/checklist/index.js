@@ -33,8 +33,8 @@ export const deleteChecklist = (id) => async (dispatch) => {
         body: JSON.stringify(payload),
       }
     );
-    console.log("res", res);
     dispatch(getChecklist());
+    return res;
   } catch (ex) {}
 };
 
@@ -77,7 +77,6 @@ export const addTempChecklist =
     const payload = {
       checklistName,
       checklistDescription,
-      templateId: -99,
       email,
       taskName: "",
     };

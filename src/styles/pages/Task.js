@@ -234,13 +234,10 @@ export const AddSubTask = styled.div`
 export const ShortContainer = styled.div`
   position: relative;
   justify-content: center;
-  /* background: #ffffff; */
-  /* border: 1px solid #e9e9e9; */
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
   padding-top: 10px;
-  /* dont apply padding here */
 `;
 export const ShortBy = styled.div`
   display: flex;

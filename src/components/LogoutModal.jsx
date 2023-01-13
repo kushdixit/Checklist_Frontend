@@ -17,9 +17,7 @@ const LogoutModal = ({ notify, togglefunction }) => {
         <ModalButton
           onClick={() => {
             notify();
-            navigate("/sign-in", {
-              state: { redirect: "/" },
-            });
+            navigate("/");
             togglefunction(false);
           }}
         >

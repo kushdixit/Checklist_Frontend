@@ -78,6 +78,16 @@ const CardColon = ({ item, cardType, type, templateName }) => {
     } else openNotification(res?.message || "Error");
   };
 
+  const deleteHanlder = async (id) => {
+    const res = await dispatch(deleteChecklist(id));
+    console.log(res);
+    if (res.status === 204) {
+      dispatch(getAllTemplateByEmail(userEmail));
+      dataRefetch(id);
+      openNotification("Deleted");
+    } else openNotification(res?.message || "Error");
+  };
+
   const refetchtemplate = (res) =>
     res?.error === false && dispatch(getAllTemplateByEmail(userEmail));
 
@@ -135,11 +145,7 @@ const CardColon = ({ item, cardType, type, templateName }) => {
                     Share
                   </SortTextDiv>
                   {cardType === "user" && (
-                    <SortTextDiv
-                      onClick={async () => {
-                        await dispatch(deleteChecklist(item.id));
-                      }}
-                    >
+                    <SortTextDiv onClick={() => deleteHanlder(item.id)}>
                       <Delete /> Delete CheckList
                     </SortTextDiv>
                   )}

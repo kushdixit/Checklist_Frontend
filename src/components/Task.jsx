@@ -81,6 +81,8 @@ const Task = ({ task, index, checkListId, showEditable }) => {
     });
   };
 
+  console.log(task.subTasks);
+
   const {
     handleSubmit: submitData,
     control: formControl,
