@@ -2,12 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import { useDispatch } from "react-redux";
-import { TaskDescription, getChecklistBySubcategory } from "redux/actions/task";
+import {
+  SubTaskDescription,
+  getChecklistBySubcategory,
+} from "redux/actions/task";
 import "react-toastify/dist/ReactToastify.css";
 import { IconInputField, AddSubTask } from "styles/pages/Task";
 import { notification } from "antd";
 
-const AddDescription = ({
+const SubDescription = ({
   id,
   setAddSubTask,
   addSubTask,
@@ -25,9 +28,10 @@ const AddDescription = ({
   const taskDescriptionHandler = async (data) => {
     if (data?.taskDescription) {
       const response = await dispatch(
-        TaskDescription(id, data?.taskDescription)
+        SubTaskDescription(id, data?.taskDescription)
       );
       if (response.status === 204) {
+        openNotification("Added");
         dispatch(getChecklistBySubcategory(checkListId));
         setAddDescription(false);
         setAddSubTask(!addSubTask);
@@ -52,7 +56,7 @@ const AddDescription = ({
           <TextInput
             name="taskDescription"
             type="text"
-            placeholder="Add Description"
+            placeholder="Add Sub Description"
             control={control}
             handlekeyPress={(e) =>
               e.key === "Enter" && taskDescriptionHandler()
@@ -64,4 +68,4 @@ const AddDescription = ({
   );
 };
 
-export default AddDescription;
+export default SubDescription;

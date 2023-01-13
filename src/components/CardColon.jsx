@@ -22,12 +22,14 @@ import {
   ChecklistCompleted,
   CopyChecklist,
   deleteChecklist,
+  MoveChecklist,
 } from "redux/actions/checklist/index";
 import { getAllTemplateByEmail } from "redux/actions/template";
 import { getChecklistBySubcategory } from "redux/actions/task/index";
 import { notification } from "antd";
 import AlertModal from "components/AlertModal";
-const CardColon = ({ item, cardType, type }) => {
+
+const CardColon = ({ item, cardType, type, templateName }) => {
   const [modal, setModal] = useState(false);
   const [newmodal, setNewModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
@@ -62,14 +64,18 @@ const CardColon = ({ item, cardType, type }) => {
     setModal(data);
   }
 
+  const dataRefetch = (id) => {
+    dispatch(getChecklistBySubcategory(id));
+    setIsOpenSort(false);
+  };
+
   const statusHandler = async (id, status) => {
     const res = await dispatch(ChecklistCompleted(id, status));
     refetchtemplate(res);
-    if (res.error == false) {
-      dispatch(getChecklistBySubcategory(id));
-      setIsOpenSort(false);
+    if (res?.error == false) {
+      dataRefetch(id);
       openNotification(status ? "Completed" : "Reset");
-    } else openNotification(res?.data);
+    } else openNotification(res?.message || "Error");
   };
 
   const refetchtemplate = (res) =>
@@ -78,13 +84,16 @@ const CardColon = ({ item, cardType, type }) => {
   return (
     <ColonImage type={type}>
       {contextHolder}
-      <ShortContainer onClick={() => setIsOpenSort(true)}>
+      <ShortContainer
+        onClick={() => setIsOpenSort(!isOpenSort)}
+        ref={wrapperRef}
+      >
         <ShortBy>
           <Colon onClick={() => toggleab(!modal)} />
           {type == "dashboard" && (
             <>
               {isOpenSort && (
-                <SortWrapper ref={wrapperRef}>
+                <SortWrapper>
                   <SortTextDiv
                     onClick={() => {
                       dispatch({ type: SET_IS_EDITABLE, payload: false });
@@ -108,17 +117,19 @@ const CardColon = ({ item, cardType, type }) => {
                       Reset
                     </SortTextDiv>
                   )}
-                  <SortTextDiv
-                    onClick={async () => {
-                      const res = await dispatch(
-                        CopyChecklist(item.id, userEmail)
-                      );
-                      refetchtemplate(res);
-                    }}
-                  >
-                    <Copy />
-                    {cardType === "user" ? "Copy" : "Use / Import"}
-                  </SortTextDiv>
+                  {item?.createdBy !== userEmail && (
+                    <SortTextDiv
+                      onClick={async () => {
+                        const res = await dispatch(
+                          CopyChecklist(item.id, userEmail)
+                        );
+                        refetchtemplate(res);
+                      }}
+                    >
+                      <Copy />
+                      {cardType === "user" ? "Copy" : "Use / Import"}
+                    </SortTextDiv>
+                  )}
                   <SortTextDiv>
                     <ShareNew />
                     Share
@@ -132,11 +143,12 @@ const CardColon = ({ item, cardType, type }) => {
                       <Delete /> Delete CheckList
                     </SortTextDiv>
                   )}
-                  <SortTextDiv>
-                    <AlertModal isOpen={newmodal} togglefunction={toggleabc} />
-                    <Move onClick={() => toggleabc(!newmodal)} />
-                    Move
-                  </SortTextDiv>
+                  {item?.createdBy === userEmail && (
+                    <SortTextDiv onClick={() => toggleabc(true)}>
+                      <Move />
+                      Move
+                    </SortTextDiv>
+                  )}
                   <SortTextDiv>
                     <Favourite />
                     favourite
@@ -148,7 +160,7 @@ const CardColon = ({ item, cardType, type }) => {
           {type == "checklist" && (
             <>
               {isOpenSort && (
-                <SortWrapper ref={wrapperRef}>
+                <SortWrapper>
                   {cardType === "user" && !item?.ischecked && (
                     <SortTextDiv onClick={() => statusHandler(item.id, true)}>
                       <Completed />
@@ -183,6 +195,14 @@ const CardColon = ({ item, cardType, type }) => {
           )}
         </ShortBy>
       </ShortContainer>
+      <AlertModal
+        modalType="move"
+        isOpen={newmodal}
+        togglefunction={toggleabc}
+        notify={() => console.log("heyy")}
+        checklistId={item?.id}
+        templateName={templateName}
+      />
     </ColonImage>
   );
 };

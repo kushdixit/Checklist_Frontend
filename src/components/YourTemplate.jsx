@@ -45,6 +45,7 @@ const YourTemplate = () => {
                   Checklist={Checklist}
                   showEditable={true}
                   cardType="user"
+                  templateName={templateData[0]?.templateName}
                 />
               );
             })}

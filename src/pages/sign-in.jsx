@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import ErrorComponent from "components/Error";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
@@ -47,6 +47,7 @@ const SignIn = () => {
     password: yup.string().required("Password is required"),
   });
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const [showError, setShowError] = useState(true);
   const [loginError, setLoginError] = useState(false);
@@ -64,7 +65,10 @@ const SignIn = () => {
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) navigate("/dashboard");
-    else navigate("/sign-in");
+    else
+      navigate("/sign-in", {
+        state,
+      });
   }, []);
 
   const {
@@ -86,7 +90,7 @@ const SignIn = () => {
       issocial: 0,
     };
     const res = await store.dispatch(authLogin(payload));
-    if (res?.data?.accessToken) navigate("/dashboard");
+    if (res?.data?.accessToken) navigate(state?.redirect || "/dashboard");
     else {
       setLoginError(true);
       setResetError(false);

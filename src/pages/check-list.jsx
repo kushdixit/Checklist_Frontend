@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import TextInput from "components/FormElements/TextInput";
 import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
 import { DescriptionChecklist } from "redux/actions/checklist/index";
-import { editChecklistApi } from "redux/actions/checklist";
+import { editChecklistApi, addTempChecklist } from "redux/actions/checklist";
+import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import { BodyContainer, FormBody } from "styles/pages/CheckList";
+import { notification } from "antd";
 import TaskWrapper from "components/Task";
 import {
   BodyWrapper,
@@ -29,15 +31,28 @@ const CheckList = () => {
   const [checklistName, setChecklistName] = useState();
   const [checklistId, setChecklistId] = useState();
   const dispatch = useDispatch();
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
   const navigate = useNavigate();
+  const [api, contextHolder] = notification.useNotification();
   const taskEditable = useSelector((state) => state.editable?.isEditable);
-  const ChecklistDetail = useSelector((state) => state.checklist);
+  const ChecklistDetail = useSelector((state) =>
+    pathId ? state.checklist : null
+  );
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    if (!token) navigate("/sign-in");
-    dispatch(getChecklistBySubcategory(pathId));
+    if (!token)
+      navigate("/sign-in", {
+        state: { redirect: `/check-list/${pathId}` },
+      });
+    pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   useEffect(() => {
     setChecklistName(ChecklistDetail?.checklistName);
@@ -72,11 +87,27 @@ const CheckList = () => {
 
   const formData = (data) => addTaskAPI(data);
 
+  const addChecklistHandler = async (data) => {
+    const res =
+      data?.checklist &&
+      (await dispatch(addTempChecklist(data?.checklist, "", userEmail)));
+    if (res?.error) openNotification(res?.message);
+    else {
+      dispatch({ type: SET_IS_EDITABLE, payload: true });
+      res?.error === false &&
+        navigate(`/check-list/${res?.id}`, {
+          state: { showEditable: false, cardType: "user" },
+        });
+    }
+  };
   const editChecklistHandler = async (data) => {
     const res =
       (await data?.checklist) &&
       dispatch(editChecklistApi(data?.checklist, checklistId));
-    if (!res.error) setEditChecklist(!editChecklist);
+    if (res?.error === false) {
+      dispatch(getChecklistBySubcategory(pathId));
+      setEditChecklist(!editChecklist);
+    }
   };
 
   const addTaskAPI = async (val) => {
@@ -98,6 +129,7 @@ const CheckList = () => {
   };
   return (
     <Section>
+      {contextHolder}
       <BodyWrapper>
         <Navbar
           search={false}
@@ -109,33 +141,67 @@ const CheckList = () => {
       <div>
         <TitleFormSection>
           <Title>
-            <form
-              style={{ width: "100%", display: "flex" }}
-              onSubmit={submitChecklist(editChecklistHandler)}
-            >
-              <IconInputField>
-                <TextInput
-                  name="checklist"
-                  type="text"
-                  defaultValue={ChecklistDetail?.checklistName || ""}
-                  placeholder={ChecklistDetail?.checklistName || ""}
-                  control={checklistFormControl}
-                  onChange={onChange}
-                  disabled={!taskEditable}
-                  handlekeyPress={(e) =>
-                    e.key === "Enter" && editChecklistHandler()
-                  }
-                />
-              </IconInputField>
-            </form>
+            {pathId ? (
+              <form
+                style={{ width: "100%", display: "flex" }}
+                onSubmit={submitChecklist(editChecklistHandler)}
+              >
+                <IconInputField>
+                  <TextInput
+                    name="checklist"
+                    type="text"
+                    defaultValue={ChecklistDetail?.checklistName || ""}
+                    placeholder={ChecklistDetail?.checklistName || "Title"}
+                    control={checklistFormControl}
+                    onChange={onChange}
+                    disabled={!taskEditable}
+                    handlekeyPress={(e) =>
+                      e.key === "Enter" && editChecklistHandler()
+                    }
+                  />
+                </IconInputField>
+              </form>
+            ) : (
+              <form
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+                onSubmit={submitChecklist(addChecklistHandler)}
+              >
+                <IconInputField>
+                  <TextInput
+                    name="checklist"
+                    type="text"
+                    defaultValue={ChecklistDetail?.checklistName || ""}
+                    placeholder={ChecklistDetail?.checklistName || "Title"}
+                    control={checklistFormControl}
+                    onChange={onChange}
+                    handlekeyPress={(e) =>
+                      e.key === "Enter" && addChecklistHandler()
+                    }
+                  />
+                </IconInputField>
+              </form>
+            )}
+          </Title>
+          {pathId && (
             <CardColon
               item={ChecklistDetail}
               cardType={state?.cardType}
               type="checklist"
             />
-          </Title>
+          )}
         </TitleFormSection>
-        <Description taskEditable={taskEditable} checklistId={checklistId} />
+        {/* {pathId && ( */}
+        <Description
+          taskEditable={taskEditable}
+          checklistId={checklistId}
+          pathId={pathId}
+        />
+        {/* )} */}
         {taskEditable && (
           <TaskSection>
             <TaskCreationSection>
@@ -163,9 +229,11 @@ const CheckList = () => {
 };
 export default CheckList;
 
-const Description = ({ taskEditable, checklistId }) => {
+const Description = ({ taskEditable, checklistId, pathId }) => {
   const [editChecklist, setEditChecklist] = useState(false);
-  const ChecklistDetail = useSelector((state) => state.checklist);
+  const ChecklistDetail = useSelector((state) =>
+    pathId ? state.checklist : null
+  );
   const dispatch = useDispatch();
 
   const { handleSubmit: submitChecklist, control: checklistFormControl } =
@@ -175,11 +243,14 @@ const Description = ({ taskEditable, checklistId }) => {
     });
 
   const DescriptionHandler = async (data) => {
+    console.log(data);
     const res =
-      (await data?.checklist) &&
-      dispatch(DescriptionChecklist(data?.checklist, checklistId));
-    if (res.error) console.log("error");
-    else setEditChecklist(!editChecklist);
+      data?.checklist !== undefined &&
+      (await dispatch(DescriptionChecklist(data?.checklist, checklistId)));
+    if (res.error === false) {
+      dispatch(getChecklistBySubcategory(pathId));
+      setEditChecklist(!editChecklist);
+    }
   };
   const onChange = (e) => {
     console.log(e);
@@ -202,9 +273,7 @@ const Description = ({ taskEditable, checklistId }) => {
               }}
               name="checklist"
               type="text"
-              defaultValue={
-                ChecklistDetail?.checklistDescription || "Description"
-              }
+              defaultValue={ChecklistDetail?.checklistDescription || ""}
               placeholder={
                 ChecklistDetail?.checklistDescription || "Description"
               }
