@@ -21,11 +21,13 @@ import {
   MainTaskSectionForm,
 } from "styles/pages/Task";
 import Colon from "assets/SVG/Colon";
+import Cross from "assets/SVG/Cross";
 import Delete from "assets/SVG/Delete";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import { notification } from "antd";
 import Description from "assets/SVG/Description";
 import SubDescription from "./SubDescription";
+// import { CrossIcon } from "react-select/dist/declarations/src/components/indicators";
 
 const SubList = ({ subIndex, task, checkListId, showEditable }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
@@ -213,7 +215,7 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
                   }
                 />
                 <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
-                  X
+                 <Cross/>
                 </DescriptionCrossWrapper>
               </TaskDescriptionField>
             )}
