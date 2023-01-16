@@ -117,10 +117,10 @@ export const CopyChecklist = (id, email) => async (dispatch) => {
     email,
   };
   try {
-    await axioPath.post("v1/CheckList/checklistscopy", payload, {
+    const res = await axioPath.post("v1/CheckList/checklistscopy", payload, {
       hideLoader: false,
     });
-    return { error: false };
+    return { error: false, data: res };
   } catch (ex) {
     return { error: true, message: ex?.response?.data?.Message };
   }

@@ -295,10 +295,8 @@ const NavBar = ({
               <ImageSubSection>
                 <SecondSubSection>
                   <Profile>
-                    <h4>
-                      {firstName[0].toUpperCase() + firstName.slice(1)}{" "}
-                      {lastName[0].toUpperCase() + lastName.slice(1)}
-                    </h4>
+                    <h4>{firstName[0].toUpperCase() + firstName.slice(1)} </h4>
+                    <h4>{lastName[0].toUpperCase() + lastName.slice(1)}</h4>
                   </Profile>
                   <button
                     className="button"

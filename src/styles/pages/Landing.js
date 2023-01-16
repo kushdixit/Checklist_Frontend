@@ -24,15 +24,11 @@ export const LandingContainer = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
-    font-weight: 500;
-
+    font-weight: 400;
     font-size: 19px;
-
     margin-left: auto;
     margin-right: auto;
-
     flex-direction: column;
-
     text-align: center;
   }
   h1 {

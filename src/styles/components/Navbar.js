@@ -182,6 +182,7 @@ export const SubNavSection = styled.div`
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-right: 0.5rem;
   h4 {
