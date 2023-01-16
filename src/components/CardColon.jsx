@@ -29,7 +29,7 @@ import { getChecklistBySubcategory } from "redux/actions/task/index";
 import { notification } from "antd";
 import AlertModal from "components/AlertModal";
 
-const CardColon = ({ item, cardType, type, templateName }) => {
+const CardColon = ({ item, cardType, type, templateName, itemId }) => {
   const [modal, setModal] = useState(false);
   const [newmodal, setNewModal] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
@@ -107,7 +107,7 @@ const CardColon = ({ item, cardType, type, templateName }) => {
                   <SortTextDiv
                     onClick={() => {
                       dispatch({ type: SET_IS_EDITABLE, payload: false });
-                      navigate(`/check-list/${item.id}`, {
+                      navigate(`/check-list/${itemId}`, {
                         state: { showEditable: true, cardType },
                       });
                     }}
@@ -116,36 +116,34 @@ const CardColon = ({ item, cardType, type, templateName }) => {
                     View CheckList
                   </SortTextDiv>
                   {cardType === "user" && !item?.ischecked && (
-                    <SortTextDiv onClick={() => statusHandler(item.id, true)}>
+                    <SortTextDiv onClick={() => statusHandler(itemId, true)}>
                       <Completed />
                       Mark as Completed
                     </SortTextDiv>
                   )}
                   {cardType === "user" && item?.ischecked && (
-                    <SortTextDiv onClick={() => statusHandler(item.id, false)}>
+                    <SortTextDiv onClick={() => statusHandler(itemId, false)}>
                       <Reset />
                       Reset
                     </SortTextDiv>
                   )}
-                  {item?.createdBy !== userEmail && (
-                    <SortTextDiv
-                      onClick={async () => {
-                        const res = await dispatch(
-                          CopyChecklist(item.id, userEmail)
-                        );
-                        refetchtemplate(res);
-                      }}
-                    >
-                      <Copy />
-                      {cardType === "user" ? "Copy" : "Use / Import"}
-                    </SortTextDiv>
-                  )}
+                  <SortTextDiv
+                    onClick={async () => {
+                      const res = await dispatch(
+                        CopyChecklist(itemId, userEmail)
+                      );
+                      refetchtemplate(res);
+                    }}
+                  >
+                    <Copy />
+                    {cardType === "user" ? "Copy" : "Use / Import"}
+                  </SortTextDiv>
                   <SortTextDiv>
                     <ShareNew />
                     Share
                   </SortTextDiv>
                   {cardType === "user" && (
-                    <SortTextDiv onClick={() => deleteHanlder(item.id)}>
+                    <SortTextDiv onClick={() => deleteHanlder(itemId)}>
                       <Delete /> Delete CheckList
                     </SortTextDiv>
                   )}
@@ -168,13 +166,13 @@ const CardColon = ({ item, cardType, type, templateName }) => {
               {isOpenSort && (
                 <SortWrapper>
                   {cardType === "user" && !item?.ischecked && (
-                    <SortTextDiv onClick={() => statusHandler(item.id, true)}>
+                    <SortTextDiv onClick={() => statusHandler(itemId, true)}>
                       <Completed />
                       Mark as Completed
                     </SortTextDiv>
                   )}
                   {cardType === "user" && item?.ischecked && (
-                    <SortTextDiv onClick={() => statusHandler(item.id, false)}>
+                    <SortTextDiv onClick={() => statusHandler(itemId, false)}>
                       <Reset />
                       Reset
                     </SortTextDiv>
@@ -182,10 +180,13 @@ const CardColon = ({ item, cardType, type, templateName }) => {
                   <SortTextDiv
                     onClick={async () => {
                       const res = await dispatch(
-                        CopyChecklist(item.id, userEmail)
+                        CopyChecklist(itemId, userEmail)
                       );
                       refetchtemplate(res);
-                      !res?.error && navigate("/dashboard");
+                      !res?.error &&
+                        navigate(`/check-list/${res?.data?.data}`, {
+                          state: { showEditable: true, cardType },
+                        });
                     }}
                   >
                     <Copy />
@@ -206,7 +207,7 @@ const CardColon = ({ item, cardType, type, templateName }) => {
         isOpen={newmodal}
         togglefunction={toggleabc}
         notify={() => console.log("heyy")}
-        checklistId={item?.id}
+        checklistId={itemId}
         templateName={templateName}
       />
     </ColonImage>

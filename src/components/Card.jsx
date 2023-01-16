@@ -69,6 +69,7 @@ const Card = ({
             cardType={cardType}
             type="dashboard"
             templateName={templateName}
+            itemId={item?.id}
           />
         </div>
       </Abc>

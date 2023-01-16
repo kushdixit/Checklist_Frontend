@@ -206,6 +206,7 @@ const CheckList = () => {
               item={ChecklistDetail}
               cardType={state?.cardType}
               type="checklist"
+              itemId={pathId}
             />
           )}
         </TitleFormSection>
