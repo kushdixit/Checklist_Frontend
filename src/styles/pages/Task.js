@@ -387,7 +387,7 @@ export const ChecklistDescriptionWrapper = styled.div`
 export const TaskDescriptionField = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+
   input {
     text-align: left;
     font-size: 24px;
@@ -414,8 +414,6 @@ export const DescriptionCrossWrapper = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid;
-  border-radius: 50%;
-  padding: 0px 15px;
+  padding-left: 10px;
   cursor: pointer;
 `;

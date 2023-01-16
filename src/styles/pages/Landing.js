@@ -36,8 +36,14 @@ export const LandingContainer = styled.div`
     text-align: center;
   }
   h1 {
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     font-weight: 600;
+    @media (max-width: 538px) {
+      font-size: 1.8rem;
+    }
+    @media (max-width: 970px) {
+      font-size: 1.8rem;
+    }
   }
 `;
 
@@ -47,7 +53,7 @@ export const Heading = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  font-size: 2.8rem;
+  font-size: 2.6rem;
 
   margin-left: auto;
   margin-right: auto;
@@ -57,6 +63,9 @@ export const Heading = styled.div`
   margin-top: 90px;
   text-align: center;
   @media (max-width: 538px) {
+    font-size: 1.8rem;
+  }
+  @media (max-width: 970px) {
     font-size: 1.8rem;
   }
 `;
