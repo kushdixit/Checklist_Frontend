@@ -42,6 +42,11 @@ export const FreeTemplatetext = styled.div`
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  @media (max-width: 767px) {
+    margin-right: 6px;
+  }
 `;
 export const SpaceSection = styled.div`
   width: 100%;
@@ -185,6 +190,9 @@ export const Profile = styled.div`
   flex-direction: column;
   align-items: center;
   margin-right: 0.5rem;
+  @media (max-width: 850px) {
+    display: none;
+  }
   h4 {
     text-align: center;
     margin: 0;
@@ -275,7 +283,7 @@ export const IconInputField = styled.div`
   }
   @media (max-width: 1012px) {
     width: 100%;
-    max-width: 212px;
+    max-width: 190px;
     input {
       width: unset;
       max-width: unset;
@@ -283,7 +291,7 @@ export const IconInputField = styled.div`
   }
   @media (max-width: 1120px) {
     width: 100%;
-    max-width: 212px;
+    max-width: 190px;
     padding-right: 30px;
     input {
       width: unset;

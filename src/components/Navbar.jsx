@@ -134,11 +134,6 @@ const NavBar = ({
     <NavSection>
       <BurgerSection>
         <HeaderWrapper>
-          {navType == "home" && (
-            <FreeTemplatetext onClick={() => navigate("/freeTemplate")}>
-              Free Template
-            </FreeTemplatetext>
-          )}
           {localStorage.getItem("access_token") ? (
             <ImageSubSection>
               <SecondSubSection>
@@ -186,6 +181,11 @@ const NavBar = ({
                 +
               </Button>
             </Footer>
+          )}
+          {navType === "home" && (
+            <FreeTemplatetext onClick={() => navigate("/freeTemplate")}>
+              Free Template
+            </FreeTemplatetext>
           )}
           {state?.showEditable && (
             <ButtonEditSection>

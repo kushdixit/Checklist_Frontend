@@ -248,7 +248,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                 }
               />
               <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
-              <Cross/>
+                <Cross />
               </DescriptionCrossWrapper>
             </TaskDescriptionField>
           )}
