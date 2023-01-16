@@ -136,9 +136,9 @@ export const SubSection = styled.div`
   width: 100%;
   box-shadow: rgb(163 183 223) 0px 0px 3px;
   border-radius: 10px;
-  height: auto;
+  height: 100%;
   max-width: 313px;
-  min-height: 100px;
+
   @media (max-width: 723px) {
     width: 100%;
   }
@@ -153,9 +153,13 @@ export const SubSectionNew = styled.div`
   text-align: center;
   h2 {
     padding-left: 10px;
+    justify-content: left;
+    display: flex;
     @media (max-width: 1722px) {
       padding: 0 30px;
       font-size: 1.6rem;
+      display: flex;
+      justify-content: center;
     }
   }
   @media (max-width: 767px) {
@@ -200,7 +204,7 @@ export const Wrap = styled.div`
   -ms-flex-align: center;
   /* align-items: center; */
   cursor: pointer;
-  padding: 30px 7px 0 0;
+  padding: 22px 7px 22px 0;
   height: 100%;
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -220,7 +224,7 @@ export const Abc = styled.div`
 `;
 
 export const CompleteSection = styled.div`
-  height: 39px;
+  height: 25px;
 `;
 export const WrapSubSection = styled.div`
   /* vertical-align: middle;

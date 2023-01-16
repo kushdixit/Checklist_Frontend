@@ -15,6 +15,7 @@ import CheckboxInput from "components/FormElements/CheckboxInput";
 import TextInput from "components/FormElements/TextInput";
 import SubTask from "./SubTask";
 import AddDescription from "./AddDescription";
+import Cross from "assets/SVG/Cross";
 import SubListWrapper from "./SubList";
 import {
   MainTaskSection,
@@ -247,7 +248,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                 }
               />
               <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
-                X
+              <Cross/>
               </DescriptionCrossWrapper>
             </TaskDescriptionField>
           )}
