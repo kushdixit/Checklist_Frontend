@@ -179,8 +179,18 @@ const CheckList = () => {
                   <TextInput
                     name="checklist"
                     type="text"
-                    defaultValue={ChecklistDetail?.checklistName || ""}
-                    placeholder={ChecklistDetail?.checklistName || "Title"}
+                    defaultValue={
+                      ChecklistDetail?.checklistName.replace(
+                        /^./,
+                        ChecklistDetail?.checklistName[0].toUpperCase()
+                      ) || ""
+                    }
+                    placeholder={
+                      ChecklistDetail?.checklistName.replace(
+                        /^./,
+                        ChecklistDetail?.checklistName[0].toUpperCase()
+                      ) || "Title"
+                    }
                     control={checklistFormControl}
                     onChange={onChange}
                     handlekeyPress={(e) =>
@@ -277,7 +287,12 @@ const Description = ({ taskEditable, checklistId, pathId }) => {
               }}
               name="checklist"
               type="text"
-              defaultValue={ChecklistDetail?.checklistDescription || ""}
+              defaultValue={
+                ChecklistDetail?.checklistDescription.replace(
+                  /^./,
+                  ChecklistDetail?.checklistDescription.toUpperCase()
+                ) || ""
+              }
               placeholder={
                 ChecklistDetail?.checklistDescription || "Description"
               }

@@ -13,6 +13,7 @@ import {
   MainTaskSection,
   IconInputField,
   TaskDescriptionField,
+  DescriptionCrossWrapper,
   ShortBy,
   SortWrapper,
   ShortContainer,
@@ -96,6 +97,15 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
       openNotification("Updated");
     } else openNotification(response?.data?.errors?.TaskDescription[0]);
   };
+
+  const removeDescriptionHandler = async () => {
+    const response = await dispatch(SubTaskDescription(task?.id, ""));
+    if (response.status === 204) {
+      dispatch(getChecklistBySubcategory(checkListId));
+      openNotification("Deleted");
+    } else openNotification(response?.data?.errors?.TaskDescription[0]);
+  };
+
   return (
     <div key={subIndex}>
       {contextHolder}
@@ -134,7 +144,10 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
               )}
               <IconInputField>
                 <TextInput
-                  defaultValue={task?.subTaskName}
+                  defaultValue={task?.subTaskName.replace(
+                    /^./,
+                    task?.subTaskName[0].toUpperCase()
+                  )}
                   name="updateSubTask"
                   type="text"
                   placeholder={task?.subTaskName}
@@ -185,7 +198,10 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
             {task?.subTaskDescription && (
               <TaskDescriptionField>
                 <TextInput
-                  defaultValue={task?.subTaskDescription}
+                  defaultValue={task?.subTaskDescription.replace(
+                    /^./,
+                    task?.subTaskDescription[0].toUpperCase()
+                  )}
                   name="updateDescription"
                   type="text"
                   placeholder="Sub task Description"
@@ -196,6 +212,9 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
                     e.key === "Enter" && subTaskDescriptionHandler()
                   }
                 />
+                <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
+                  X
+                </DescriptionCrossWrapper>
               </TaskDescriptionField>
             )}
           </form>

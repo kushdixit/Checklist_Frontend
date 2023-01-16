@@ -385,15 +385,16 @@ export const ChecklistDescriptionWrapper = styled.div`
 `;
 
 export const TaskDescriptionField = styled.div`
-  width: 95%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   input {
     text-align: left;
     font-size: 24px;
-    margin: 0px 35px 0px 30px;
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 10%), 0 2px 2px 0 rgb(0 0 0 / 7%),
       0 1px 5px 0 rgb(0 0 0 / 6%);
     border-radius: 4px;
-    padding: 7px 10px 5px 5px;
+    padding: 7px 0px 5px 5px;
     width: 100%;
     border: unset;
     background: unset;
@@ -401,7 +402,20 @@ export const TaskDescriptionField = styled.div`
       font-size: 18px;
     }
   }
+  .app-input-text {
+    min-width: 90%;
+    margin: 0px 0px 0px 30px;
+  }
   input:focus-visible {
     outline: unset;
   }
+`;
+export const DescriptionCrossWrapper = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 50%;
+  padding: 0px 15px;
+  cursor: pointer;
 `;

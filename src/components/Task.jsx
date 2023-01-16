@@ -9,7 +9,9 @@ import {
   editTaskStatus,
   TaskDescription,
 } from "redux/actions/task";
+import { notification } from "antd";
 import { TaskList } from "styles/pages/CheckList";
+import CheckboxInput from "components/FormElements/CheckboxInput";
 import TextInput from "components/FormElements/TextInput";
 import SubTask from "./SubTask";
 import AddDescription from "./AddDescription";
@@ -18,6 +20,7 @@ import {
   MainTaskSection,
   IconInputField,
   TaskDescriptionField,
+  DescriptionCrossWrapper,
   ShortBy,
   SortWrapper,
   ShortContainer,
@@ -27,8 +30,6 @@ import Colon from "assets/SVG/Colon";
 import Delete from "assets/SVG/Delete";
 import Arrow from "assets/SVG/Arrow";
 import Description from "assets/SVG/Description";
-import CheckboxInput from "components/FormElements/CheckboxInput";
-import { notification } from "antd";
 
 const TaskWrapper = ({ checkListId, showEditable }) => {
   const { id: pathId } = useParams();
@@ -126,6 +127,14 @@ const Task = ({ task, index, checkListId, showEditable }) => {
     } else openNotification(response?.data?.errors?.TaskDescription[0]);
   };
 
+  const removeDescriptionHandler = async () => {
+    const response = await dispatch(TaskDescription(task?.id, ""));
+    if (response.status === 204) {
+      dispatch(getChecklistBySubcategory(checkListId));
+      openNotification("Deleted");
+    } else openNotification(response?.data?.errors?.TaskDescription[0]);
+  };
+
   return (
     <TaskList key={index}>
       {contextHolder}
@@ -161,7 +170,10 @@ const Task = ({ task, index, checkListId, showEditable }) => {
             )}
             <IconInputField>
               <TextInput
-                defaultValue={task?.taskName}
+                defaultValue={task?.taskName.replace(
+                  /^./,
+                  task?.taskName[0].toUpperCase()
+                )}
                 name="update"
                 type="text"
                 placeholder={task?.taskName}
@@ -219,7 +231,10 @@ const Task = ({ task, index, checkListId, showEditable }) => {
           {task?.taskDescription && (
             <TaskDescriptionField>
               <TextInput
-                defaultValue={task?.taskDescription}
+                defaultValue={task?.taskDescription.replace(
+                  /^./,
+                  task?.taskDescription[0].toUpperCase()
+                )}
                 name="updateDescription"
                 type="text"
                 placeholder="Task Description"
@@ -231,6 +246,9 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                   e.key === "Enter" && taskDescriptionHandler()
                 }
               />
+              <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
+                X
+              </DescriptionCrossWrapper>
             </TaskDescriptionField>
           )}
         </form>
