@@ -1,6 +1,6 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import TextInput from "components/FormElements/TextInput";
+import { useForm, useWatch } from "react-hook-form";
+import TextArea from "components/FormElements/TextArea";
 import { useDispatch } from "react-redux";
 import { TaskDescription, getChecklistBySubcategory } from "redux/actions/task";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,16 +16,19 @@ const AddDescription = ({
 }) => {
   const [api, contextHolder] = notification.useNotification();
   const dispatch = useDispatch();
-  const { setValue, handleSubmit, control } = useForm({
+  const { handleSubmit, control } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
   });
 
-  const taskDescriptionHandler = async (data) => {
-    if (data?.taskDescription) {
+  const watchData = useWatch({ control });
+
+  const taskDescriptionHandler = async () => {
+    console.log(watchData);
+    if (watchData?.taskDescription) {
       const response = await dispatch(
-        TaskDescription(id, data?.taskDescription)
+        TaskDescription(id, watchData?.taskDescription)
       );
       if (response.status === 204) {
         dispatch(getChecklistBySubcategory(checkListId));
@@ -49,11 +52,13 @@ const AddDescription = ({
         onSubmit={handleSubmit(taskDescriptionHandler)}
       >
         <IconInputField>
-          <TextInput
+          <TextArea
             name="taskDescription"
             type="text"
             placeholder="Add Description"
             control={control}
+            className="checklistDescription"
+            autoComplete="off"
             handlekeyPress={(e) =>
               e.key === "Enter" && taskDescriptionHandler()
             }

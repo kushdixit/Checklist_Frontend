@@ -1,6 +1,6 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import TextInput from "components/FormElements/TextInput";
+import { useForm, useWatch } from "react-hook-form";
+import TextArea from "components/FormElements/TextArea";
 import { useDispatch } from "react-redux";
 import {
   SubTaskDescription,
@@ -24,11 +24,12 @@ const SubDescription = ({
     reValidateMode: "onBlur",
     shouldFocusError: true,
   });
+  const watchData = useWatch({ control });
 
-  const taskDescriptionHandler = async (data) => {
-    if (data?.taskDescription) {
+  const taskDescriptionHandler = async () => {
+    if (watchData?.taskDescription) {
       const response = await dispatch(
-        SubTaskDescription(id, data?.taskDescription)
+        SubTaskDescription(id, watchData?.taskDescription)
       );
       if (response.status === 204) {
         openNotification("Added");
@@ -53,11 +54,13 @@ const SubDescription = ({
         onSubmit={handleSubmit(taskDescriptionHandler)}
       >
         <IconInputField>
-          <TextInput
+          <TextArea
             name="taskDescription"
             type="text"
             placeholder="Add Sub Description"
             control={control}
+            className="checklistDescription"
+            autoComplete="off"
             handlekeyPress={(e) =>
               e.key === "Enter" && taskDescriptionHandler()
             }
