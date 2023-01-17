@@ -140,7 +140,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
       {contextHolder}
       <MainTaskSection>
         <form style={{ width: "100%" }} onSubmit={submitData(formData)}>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex"}}>
             {!taskEdit && (
               <Controller
                 name="rememberMe"
