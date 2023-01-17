@@ -215,7 +215,7 @@ export const ColonImage = styled.div`
   ${({ type }) =>
     type === "checklist"
       ? `
-padding: 0rem 3.2rem 0rem 0rem;
+     
 `
       : `  `}
 `;
