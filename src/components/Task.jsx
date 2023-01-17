@@ -13,6 +13,7 @@ import { notification } from "antd";
 import { TaskList } from "styles/pages/CheckList";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import TextInput from "components/FormElements/TextInput";
+import TextArea from "components/FormElements/TextArea";
 import SubTask from "./SubTask";
 import AddDescription from "./AddDescription";
 import Cross from "assets/SVG/Cross";
@@ -82,8 +83,6 @@ const Task = ({ task, index, checkListId, showEditable }) => {
       message,
     });
   };
-
-  console.log(task.subTasks);
 
   const {
     handleSubmit: submitData,
@@ -231,18 +230,19 @@ const Task = ({ task, index, checkListId, showEditable }) => {
           </div>
           {task?.taskDescription && (
             <TaskDescriptionField>
-              <TextInput
+              <TextArea
+                name="updateDescription"
+                type="text"
                 defaultValue={task?.taskDescription.replace(
                   /^./,
                   task?.taskDescription[0].toUpperCase()
                 )}
-                name="updateDescription"
-                type="text"
                 placeholder="Task Description"
                 control={formControl}
+                className="checklistDescription"
                 disabled={!taskEditable}
                 ref={register}
-                color={taskEditable ? "transparent" : "1d2e88"}
+                autoComplete="off"
                 handlekeyPress={(e) =>
                   e.key === "Enter" && taskDescriptionHandler()
                 }

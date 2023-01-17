@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import TextInput from "components/FormElements/TextInput";
+import TextArea from "components/FormElements/TextArea";
 import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
 import { DescriptionChecklist } from "redux/actions/checklist/index";
 import { editChecklistApi, addTempChecklist } from "redux/actions/checklist";
@@ -16,13 +17,16 @@ import {
   TaskSection,
   TaskCreationSection,
   IconInputField,
+  Wrapper,
   TitleFormSection,
   DescriptionWrapper,
   DescriptionContainer,
+  DescriptionCrossWrapper,
 } from "styles/pages/Task";
 import Navbar from "components/Navbar";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CardColon from "components/CardColon";
+import Cross from "assets/SVG/Cross";
 
 const CheckList = () => {
   const { id: pathId } = useParams();
@@ -251,17 +255,25 @@ const Description = ({ taskEditable, checklistId, pathId }) => {
   );
   const dispatch = useDispatch();
 
-  const { handleSubmit: submitChecklist, control: checklistFormControl } =
-    useForm({
-      mode: "onSubmit",
-      reValidateMode: "onBlur",
-    });
+  const { handleSubmit, control } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onBlur",
+  });
 
-  const DescriptionHandler = async (data) => {
-    console.log(data);
+  const watchData = useWatch({ control });
+
+  const removeDescriptionHandler = async () => {
+    const response = await dispatch(DescriptionChecklist("", checklistId));
+    if (response.error === false) {
+      dispatch(getChecklistBySubcategory(pathId));
+      setEditChecklist(!editChecklist);
+    }
+  };
+
+  const DescriptionHandler = async () => {
     const res =
-      data?.checklist !== undefined &&
-      (await dispatch(DescriptionChecklist(data?.checklist, checklistId)));
+      watchData?.checklist !== undefined &&
+      (await dispatch(DescriptionChecklist(watchData?.checklist, checklistId)));
     if (res.error === false) {
       dispatch(getChecklistBySubcategory(pathId));
       setEditChecklist(!editChecklist);
@@ -275,33 +287,47 @@ const Description = ({ taskEditable, checklistId, pathId }) => {
       <DescriptionContainer>
         <form
           style={{
-            width: "100%",
             display: "flex",
             padding: "0px 60px !important",
           }}
-          onSubmit={submitChecklist(DescriptionHandler)}
+          onSubmit={handleSubmit(DescriptionHandler)}
         >
-          <IconInputField style={{ paddingRight: "4.5rem" }}>
-            <TextInput
-              style={{
-                color: taskEditable ? "black" : "grey",
-              }}
-              name="checklist"
-              type="text"
-              defaultValue={
-                ChecklistDetail?.checklistDescription.replace(
-                  /^./,
-                  ChecklistDetail?.checklistDescription.toUpperCase()
-                ) || ""
-              }
-              placeholder={
-                ChecklistDetail?.checklistDescription || "Description"
-              }
-              control={checklistFormControl}
-              onChange={onChange}
-              disabled={!taskEditable}
-              handlekeyPress={(e) => e.key === "Enter" && DescriptionHandler()}
-            />
+          <IconInputField>
+            <Wrapper>
+              <TextArea
+                style={{
+                  color: taskEditable ? "black" : "grey",
+                }}
+                name="checklist"
+                placeholder={
+                  ChecklistDetail?.checklistDescription ||
+                  "Checklist Description"
+                }
+                defaultValue={
+                  ChecklistDetail?.checklistDescription
+                    ? ChecklistDetail?.checklistDescription?.replace(
+                        /^./,
+                        ChecklistDetail?.checklistDescription[0].toUpperCase()
+                      )
+                    : ""
+                }
+                className="checklistDescription"
+                onChange={onChange}
+                control={control}
+                autoComplete="off"
+                disabled={!taskEditable}
+                handlekeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    DescriptionHandler();
+                  }
+                }}
+              />
+              {ChecklistDetail?.checklistDescription && (
+                <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
+                  <Cross />
+                </DescriptionCrossWrapper>
+              )}
+            </Wrapper>
           </IconInputField>
         </form>
       </DescriptionContainer>

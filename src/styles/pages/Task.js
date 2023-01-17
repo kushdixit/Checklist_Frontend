@@ -143,7 +143,7 @@ export const IconInputField = styled.div`
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 10%), 0 2px 2px 0 rgb(0 0 0 / 7%),
       0 1px 5px 0 rgb(0 0 0 / 6%);
     border-radius: 4px;
-    padding: 7px 10px 5px 5px;
+    padding: 7px 0px 5px 0px;
     width: 100%;
     border: unset;
     background: unset;
@@ -151,8 +151,16 @@ export const IconInputField = styled.div`
       font-size: 18px;
     }
   }
+
   input:focus-visible {
     outline: unset;
+  }
+  .checklistDescription {
+    width: 100%;
+    margin-right: 4.5rem;
+    font-weight: 500;
+    font-size: 24px !important;
+    color: #000;
   }
 `;
 
@@ -387,7 +395,7 @@ export const ChecklistDescriptionWrapper = styled.div`
 export const TaskDescriptionField = styled.div`
   width: 100%;
   display: flex;
-
+  justify-content: space-between;
   input {
     text-align: left;
     font-size: 24px;
@@ -402,7 +410,15 @@ export const TaskDescriptionField = styled.div`
       font-size: 18px;
     }
   }
+  .checklistDescription {
+    width: 100%;
+    margin-right: 4.5rem;
+    font-weight: 500;
+    font-size: 24px !important;
+    color: #000;
+  }
   .app-input-text {
+    flex: 1;
     min-width: 90%;
     margin: 0px 0px 0px 30px;
   }
@@ -416,4 +432,12 @@ export const DescriptionCrossWrapper = styled.span`
   align-items: center;
   padding-left: 10px;
   cursor: pointer;
+`;
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-right: 3.2rem;
+  .app-input-text {
+    flex: 1;
+  }
 `;

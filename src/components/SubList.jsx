@@ -8,6 +8,7 @@ import {
   editSubTaskStatus,
   SubTaskDescription,
 } from "redux/actions/task";
+import TextArea from "components/FormElements/TextArea";
 import TextInput from "components/FormElements/TextInput";
 import {
   MainTaskSection,
@@ -199,23 +200,24 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
             </div>
             {task?.subTaskDescription && (
               <TaskDescriptionField>
-                <TextInput
+                <TextArea
+                  name="updateDescription"
+                  type="text"
+                  placeholder="Sub task Description"
                   defaultValue={task?.subTaskDescription.replace(
                     /^./,
                     task?.subTaskDescription[0].toUpperCase()
                   )}
-                  name="updateDescription"
-                  type="text"
-                  placeholder="Sub task Description"
                   control={control}
                   disabled={!taskEditable}
-                  color={taskEditable ? "transparent" : "1d2e88"}
+                  className="checklistDescription"
+                  autoComplete="off"
                   handlekeyPress={(e) =>
                     e.key === "Enter" && subTaskDescriptionHandler()
                   }
                 />
                 <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
-                 <Cross/>
+                  <Cross />
                 </DescriptionCrossWrapper>
               </TaskDescriptionField>
             )}
