@@ -160,6 +160,8 @@ export const IconInputField = styled.div`
     margin-right: 4.5rem;
     font-weight: 500;
     font-size: 24px !important;
+    background: rgba(239, 239, 239, 0.3);
+    border-color: rgba(118, 118, 118, 0.3);
     color: #000;
   }
 `;
@@ -246,6 +248,7 @@ export const ShortContainer = styled.div`
   border-radius: 10px;
   display: flex;
   padding-top: 10px;
+  margin-left: 5px;
 `;
 export const ShortBy = styled.div`
   display: flex;
@@ -416,6 +419,8 @@ export const TaskDescriptionField = styled.div`
     font-weight: 500;
     font-size: 24px !important;
     color: #000;
+    background: rgba(239, 239, 239, 0.3);
+    border-color: rgba(118, 118, 118, 0.3);
   }
   .app-input-text {
     flex: 1;
