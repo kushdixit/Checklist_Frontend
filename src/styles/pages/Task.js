@@ -8,8 +8,8 @@ export const BodyWrapper = styled.div`
 export const TitleFormSection = styled.div`
   background: #fff;
   display: flex;
+  padding: 0px 40px 0px 30px;
   form {
-    padding: 0rem 0rem 0rem 1.6rem;
     width: auto !important;
     flex: 1;
   }
@@ -45,7 +45,7 @@ export const Title = styled.div`
 `;
 
 export const Section = styled.div`
-  background: #f5f5f5;
+  /* background: #f5f5f5; */
 `;
 
 export const TitleSection = styled.div`
@@ -157,7 +157,7 @@ export const IconInputField = styled.div`
   }
   .checklistDescription {
     width: 100%;
-    margin-right: 2.5rem;
+    margin-right: 4.5rem;
     font-weight: 500;
     font-size: 24px !important;
     color: #000;
@@ -245,7 +245,7 @@ export const ShortContainer = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
-  margin-left: 30px;
+  padding-top: 10px;
 `;
 export const ShortBy = styled.div`
   display: flex;
@@ -330,7 +330,7 @@ export const DescriptionContainer = styled.div`
     color: #000;
   }
   form {
-    padding-left: 25px;
+    padding-left: 30px;
   }
   @media (max-width: 462px) {
     input {
@@ -412,8 +412,8 @@ export const TaskDescriptionField = styled.div`
   }
   .checklistDescription {
     width: 100%;
-    margin-right: 2.5rem;
-    font-weight: 500;s
+    margin-right: 4.5rem;
+    font-weight: 500;
     font-size: 24px !important;
     color: #000;
   }

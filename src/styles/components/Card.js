@@ -212,6 +212,7 @@ export const Wrap = styled.div`
 `;
 
 export const ColonImage = styled.div`
+  margin-left: 5px;
   ${({ type }) =>
     type === "checklist"
       ? `

@@ -204,7 +204,8 @@ const CheckList = () => {
                 </IconInputField>
               </form>
             )}
-              {pathId && (
+          </Title>
+          {pathId && (
             <CardColon
               item={ChecklistDetail}
               cardType={state?.cardType}
@@ -212,8 +213,6 @@ const CheckList = () => {
               itemId={pathId}
             />
           )}
-          </Title>
-        
         </TitleFormSection>
         {/* {pathId && ( */}
         <Description
