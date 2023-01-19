@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import autosize from "autosize";
 import { Controller } from "react-hook-form";
 
 const TextArea = (props) => {
+  useEffect(() => {
+    autosize(document.querySelectorAll("textarea"));
+  }, []);
+
   return (
     <div className="app-input-text">
       <Controller
