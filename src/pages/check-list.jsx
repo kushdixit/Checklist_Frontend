@@ -323,7 +323,9 @@ const Description = ({ taskEditable, checklistId, pathId }) => {
                 }}
               />
               {ChecklistDetail?.checklistDescription && (
-                <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
+                <DescriptionCrossWrapper
+                  onClick={taskEditable && removeDescriptionHandler}
+                >
                   <Cross />
                 </DescriptionCrossWrapper>
               )}

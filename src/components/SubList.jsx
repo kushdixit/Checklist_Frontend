@@ -216,7 +216,9 @@ const SubList = ({ subIndex, task, checkListId, showEditable }) => {
                     e.key === "Enter" && subTaskDescriptionHandler()
                   }
                 />
-                <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
+                <DescriptionCrossWrapper
+                  onClick={taskEditable && removeDescriptionHandler}
+                >
                   <Cross />
                 </DescriptionCrossWrapper>
               </TaskDescriptionField>

@@ -53,6 +53,7 @@ const Landing = () => {
         </Button>
       </ChecklistButton>
       <h1
+        style={{ cursor: "pointer" }}
         onClick={() =>
           localStorage.getItem("access_token")
             ? navigate("/dashboard")

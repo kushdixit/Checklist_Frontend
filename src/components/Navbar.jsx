@@ -299,6 +299,7 @@ const NavBar = ({
                     <h4>{lastName[0].toUpperCase() + lastName.slice(1)}</h4>
                   </Profile>
                   <button
+                    style={{ cursor: "pointer" }}
                     className="button"
                     onClick={() => setLogoutModal(!logoutModal)}
                     ref={wrapperRef}
