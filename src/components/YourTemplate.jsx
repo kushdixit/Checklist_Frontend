@@ -36,6 +36,7 @@ const YourTemplate = () => {
         <FirstSection>
           {templateData[0]?.checklists
             ?.filter((subItem) => subItem.isActive)
+            .reverse()
             .map((subItem, index) => {
               return (
                 <Card

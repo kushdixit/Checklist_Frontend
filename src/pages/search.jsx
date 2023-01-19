@@ -124,6 +124,7 @@ const Searched = ({ item, searchedterm }) => {
             <FirstSection>
               {searchedData
                 ?.filter((subItem) => subItem.isActive)
+                .reverse()
                 .map((subItem, index) => {
                   return (
                     <Card

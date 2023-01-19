@@ -45,6 +45,7 @@ export const ButtonWrapper = styled.div`
   cursor: pointer;
   button {
     width: 100%;
+    cursor: pointer;
     justify-content: right;
     display: flex;
     border-radius: 10px;

@@ -93,6 +93,7 @@ const ChecklistCards = ({ item }) => {
         <FirstSection>
           {item.checklists
             ?.filter((subItem) => subItem.isActive)
+            .reverse()
             .map((subItem, index) => {
               return (
                 <Card

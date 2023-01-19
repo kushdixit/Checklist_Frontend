@@ -73,7 +73,7 @@ export const SecondSection = styled.div`
 export const HeadingText = styled.div`
   font-size: 2.7rem;
   color: #1d2e88;
-
+  cursor: pointer;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -93,6 +93,7 @@ export const ButtonEditSection = styled.div`
 `;
 export const LogoSection = styled.div`
   display: none;
+  cursor: pointer;
   @media (max-width: 767px) {
     display: flex;
     width: 100%;
@@ -187,7 +188,7 @@ export const SubNavSection = styled.div`
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
   display: flex;
-  flex-direction: column;
+  gap: 5px;
   align-items: center;
   margin-right: 0.5rem;
   @media (max-width: 850px) {

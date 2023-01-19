@@ -140,7 +140,7 @@ const Task = ({ task, index, checkListId, showEditable }) => {
       {contextHolder}
       <MainTaskSection>
         <form style={{ width: "100%" }} onSubmit={submitData(formData)}>
-          <div style={{ display: "flex"}}>
+          <div style={{ display: "flex" }}>
             {!taskEdit && (
               <Controller
                 name="rememberMe"
@@ -247,7 +247,9 @@ const Task = ({ task, index, checkListId, showEditable }) => {
                   e.key === "Enter" && taskDescriptionHandler()
                 }
               />
-              <DescriptionCrossWrapper onClick={removeDescriptionHandler}>
+              <DescriptionCrossWrapper
+                onClick={taskEditable && removeDescriptionHandler}
+              >
                 <Cross />
               </DescriptionCrossWrapper>
             </TaskDescriptionField>
