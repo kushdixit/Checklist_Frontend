@@ -61,6 +61,12 @@ export const ChecklistTitleWrapper = styled.div`
     width: 100%;
   }
 `;
+export const ChecklistDescriptionWrapper = styled.div`
+  .app-input-text {
+    width: 100%;
+  }
+`;
+
 export const ChecklistTaskWrapper = styled.div`
   .app-input-text {
     width: 100%;
@@ -68,4 +74,12 @@ export const ChecklistTaskWrapper = styled.div`
   :hover {
     background-color: #f8f8f8;
   }
+`;
+export const TaskFormSubWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
 `;
