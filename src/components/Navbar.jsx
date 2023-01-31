@@ -264,7 +264,8 @@ const NavBar = ({
                 </Button>
               </Footer>
             )}
-            {createList && (
+            {/* Remove below commented code in future */}
+            {/* {createList && (
               <Button
                 className="button"
                 style={{ padding: "0.5rem 1rem" }}
@@ -272,7 +273,7 @@ const NavBar = ({
               >
                 Save
               </Button>
-            )}
+            )} */}
             {state?.showEditable && (
               <EditSection>
                 <Button

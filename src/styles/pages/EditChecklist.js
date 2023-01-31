@@ -22,7 +22,7 @@ export const ChecklistSubWrapper = styled.div`
   margin-left: auto;
   display: flex;
   gap: 30px;
-
+  justify-content: center;
   @media (min-width: 1300px) {
     width: 1250px;
   }
@@ -40,12 +40,23 @@ export const LeftSection = styled.div`
   border: 1px solid #eee;
   background: #ffffff;
   padding: 50px;
-  min-width: 620px;
+  max-width: 900px;
+  width: 100%;
+  @media (max-width: 1300px) {
+    max-width: 835px;
+  }
+  @media (max-width: 1200px) {
+    max-width: 605px;
+  }
+  @media (max-width: 990px) {
+    max-width: 400px;
+  }
 `;
 export const RightSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  max-width: 320px;
 `;
 export const LeftContentWrapper = styled.div``;
 export const RightCardWrapper = styled.div`
@@ -61,6 +72,12 @@ export const ChecklistTitleWrapper = styled.div`
     width: 100%;
   }
 `;
+export const ChecklistDescriptionWrapper = styled.div`
+  .app-input-text {
+    width: 100%;
+  }
+`;
+
 export const ChecklistTaskWrapper = styled.div`
   .app-input-text {
     width: 100%;
@@ -68,4 +85,52 @@ export const ChecklistTaskWrapper = styled.div`
   :hover {
     background-color: #f8f8f8;
   }
+`;
+export const TaskFormSubWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+`;
+
+export const ShareTextWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+export const ShareSection = styled.div``;
+export const ShareText = styled.div`
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 600;
+  opacity: 0.7;
+`;
+export const Preview = styled.a`
+  text-decoration: none;
+  font-size: 14px;
+  display: inline;
+  float: right;
+`;
+export const LinkSection = styled.div`
+  width: 95%;
+  height: 60px;
+  border: 0;
+  background-color: #f5f5f5;
+  padding: 9px;
+  border-radius: 5px;
+  resize: none;
+  margin-top: 10px;
+  display: inline-block;
+  word-break: break-word;
+  overflow-y: scroll;
+  text-align: left;
+`;
+export const LinkContent = styled.a`
+  display: inline-block;
+  word-break: break-word;
+  color: black;
+  opacity: 0.7;
+  text-decoration: none;
 `;
