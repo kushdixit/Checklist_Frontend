@@ -15,7 +15,11 @@ const SubModal = ({ title, linkName, link, subTitle, text }) => {
       <ShareSection>
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>
-          <Preview href="#">{linkName}</Preview>
+          {text ? (
+            <Preview onClick={() => console.log()}>{linkName}</Preview>
+          ) : (
+            <Preview href="#">{linkName}</Preview>
+          )}
         </ShareTextWrapper>
       </ShareSection>
       {!text && (
@@ -34,7 +38,11 @@ const SubModal = ({ title, linkName, link, subTitle, text }) => {
       >
         {subTitle}
       </h4>
-      {text && <button>{text}</button>}
+      {text && (
+        <button>
+          <div>{text}</div>
+        </button>
+      )}
     </RightContentWrapper>
   );
 };
