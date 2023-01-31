@@ -13,7 +13,6 @@ import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import {
-  BodyWrapper,
   ChecklistMainWrapper,
   ChecklistSubWrapper,
   Section,
@@ -90,8 +89,8 @@ const CreateList = () => {
           <RightSection>
             <RightSectionCard />
             <ShareSectionCard />
-
             <Style />
+            <EmbedCode />
           </RightSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
@@ -104,9 +103,18 @@ const Style = () => (
     <SubModal
       title="Styles"
       text="Circles with numbers"
-      linkName="Fonts/Colors"
+      buttonName="Fonts/Colors"
     />
   </RightCardWrapper>
 );
 
+const EmbedCode = () => (
+  <RightCardWrapper>
+    <SubModal
+      title="Embed Code"
+      embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
+      linkName="Learn more"
+    />
+  </RightCardWrapper>
+);
 export default CreateList;

@@ -56,7 +56,7 @@ export const RightSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  max-width: 320px;
+  max-width: 300px;
 `;
 export const LeftContentWrapper = styled.div``;
 export const RightCardWrapper = styled.div`
@@ -117,13 +117,13 @@ export const Preview = styled.a`
 `;
 export const LinkSection = styled.div`
   width: 95%;
-  height: 60px;
+  height: 54px;
   border: 0;
   background-color: #f5f5f5;
   padding: 9px;
   border-radius: 5px;
   resize: none;
-  margin-top: 10px;
+  margin-top: 7px;
   display: inline-block;
   word-break: break-word;
   overflow-y: scroll;
@@ -135,4 +135,24 @@ export const LinkContent = styled.a`
   color: black;
   opacity: 0.7;
   text-decoration: none;
+`;
+export const StyleButtonWrapper = styled.div`
+  color: #000;
+  background: #f5f5f5;
+  .ant-select-arrow {
+    display: none;
+  }
+  .ant-select-selector {
+    background: #f5f5f5 !important;
+    color: #000;
+    border-color: #adadad;
+    font-family: "Roboto", sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 17px;
+    line-height: 1.2 !important;
+    padding: 10px 25px !important;
+    cursor: pointer !important;
+    transition: background-color 0.5s !important;
+    height: auto !important;
+  }
 `;
