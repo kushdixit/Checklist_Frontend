@@ -112,6 +112,8 @@ export const Preview = styled.a`
   font-size: 14px;
   display: inline;
   float: right;
+  cursor: pointer;
+  color: rgb(0, 0, 238);
 `;
 export const LinkSection = styled.div`
   width: 95%;
