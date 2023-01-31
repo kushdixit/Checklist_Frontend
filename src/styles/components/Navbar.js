@@ -71,7 +71,7 @@ export const SecondSection = styled.div`
   }
 `;
 export const HeadingText = styled.div`
-  font-size: 2.7rem;
+  font-size: 2rem;
   color: #1d2e88;
   cursor: pointer;
   font-weight: 700;
@@ -181,9 +181,7 @@ export const SubNavSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  @media (max-width: 1722px) {
-    padding: 0 1rem;
-  }
+  padding: 15px 1rem;
 `;
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
@@ -200,7 +198,7 @@ export const Profile = styled.div`
     padding: 0;
     color: #1d2e88;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 16px;
   }
   h5 {
     margin: 0;
@@ -408,8 +406,8 @@ export const IconWrapper = styled.div`
 `;
 export const IconWrapperNew = styled.div``;
 export const InitialsWrapper = styled.div`
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -417,7 +415,7 @@ export const InitialsWrapper = styled.div`
   background: #1d2e88;
   border-radius: 50%;
   div {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 `;
 export const DataWrapper = styled.form`

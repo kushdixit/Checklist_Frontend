@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
+import SubModal from "components/SubModal";
 import RightSectionCard from "components/RightSectionCard";
+import ShareSectionCard from "components/Share";
 import TaskTitle from "components/TaskTitle";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -18,6 +20,7 @@ import {
   LeftSection,
   RightSection,
   LeftContentWrapper,
+  RightCardWrapper,
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
 
@@ -68,14 +71,12 @@ const CreateList = () => {
   return (
     <Section>
       {contextHolder}
-      <BodyWrapper>
-        <Navbar
-          search={false}
-          addButton={false}
-          getPayload={getPayload}
-          createList={true}
-        />
-      </BodyWrapper>
+      <Navbar
+        search={false}
+        addButton={false}
+        getPayload={getPayload}
+        createList={true}
+      />
       <ChecklistMainWrapper>
         <ChecklistSubWrapper>
           <LeftSection>
@@ -88,11 +89,24 @@ const CreateList = () => {
           </LeftSection>
           <RightSection>
             <RightSectionCard />
-            <RightSectionCard />
+            <ShareSectionCard />
+
+            <Style />
           </RightSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
     </Section>
   );
 };
+
+const Style = () => (
+  <RightCardWrapper>
+    <SubModal
+      title="Styles"
+      text="Circles with numbers"
+      linkName="Fonts/Colors"
+    />
+  </RightCardWrapper>
+);
+
 export default CreateList;

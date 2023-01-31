@@ -1,7 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import AddTask from "components/AddTask";
 import { useForm } from "react-hook-form";
 import {
   ChecklistTaskWrapper,
@@ -17,13 +14,12 @@ import {
 import Plus from "assets/SVG/Plus";
 import Delete from "assets/SVG/Delete";
 
-const ChecklistTask = ({ data }) => {
+const AddTask = () => {
   const [isOpenSort, setIsOpenSort] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [modal, setModal] = useState(false);
-  // const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const wrapperRef = useRef();
-
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
@@ -48,8 +44,8 @@ const ChecklistTask = ({ data }) => {
   };
   return (
     <ChecklistTaskWrapper
-    // onMouseOver={() => setIsHovering(true)}
-    // onMouseOut={() => setIsHovering(false)}
+      onMouseOver={() => setIsHovering(true)}
+      onMouseOut={() => setIsHovering(false)}
     >
       <form
         style={{
@@ -92,24 +88,17 @@ const ChecklistTask = ({ data }) => {
                   background: "inherit",
                 }}
                 name="checklist"
-                placeholder={``}
-                defaultValue={data?.taskName}
+                placeholder={""}
+                defaultValue={""}
                 control={control}
                 onFocus={() => setShowButtons(!showButtons)}
                 onBlur={() => setShowButtons(!showButtons)}
-                handleKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.target.blur();
-                    DescriptionHandler();
-                  }
-                }}
               />
               {showButtons && (
                 <div
                   style={{ display: "flex", gap: "10px", marginBottom: "10px" }}
                 >
                   <button
-                    onClick={handleSubmit(DescriptionHandler)}
                     style={{
                       backgroundColor: "#007ccb",
                       color: "white",
@@ -141,25 +130,8 @@ const ChecklistTask = ({ data }) => {
           </div>
         </div>
       </form>
-      {/* {isHovering && <AddTask />} */}
     </ChecklistTaskWrapper>
   );
 };
 
-const TaskTitle = () => {
-  const { id: pathId } = useParams();
-  const dispatch = useDispatch();
-  const ChecklistDetail = useSelector((state) =>
-    pathId ? state.checklist : null
-  );
-
-  return (
-    <>
-      {ChecklistDetail?.tasks.map((item) => (
-        <ChecklistTask data={item} />
-      ))}
-    </>
-  );
-};
-
-export default TaskTitle;
+export default AddTask;

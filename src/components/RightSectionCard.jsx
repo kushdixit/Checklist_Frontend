@@ -32,10 +32,11 @@ const RightSectionCard = () => {
               color: "white",
               fontSize: "14px",
               borderRadius: "5px",
-              background: "#ec4e20",
+              background: "#1d2e88",
               minWidth: "160px",
               padding: "15px 25px",
               border: 0,
+              opacity: "0.9",
             }}
           >
             Save
