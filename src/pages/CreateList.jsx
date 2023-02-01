@@ -20,6 +20,7 @@ import {
   RightSection,
   LeftContentWrapper,
   RightCardWrapper,
+  EditImage,
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
 
@@ -28,6 +29,9 @@ const CreateList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const ChecklistDetail = useSelector((state) =>
+    pathId ? state.checklist : null
+  );
   const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
@@ -82,6 +86,9 @@ const CreateList = () => {
             <LeftContentWrapper>
               <ChecklistTitle />
               <DescriptionTitle />
+              <ImageWrapper
+                title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+              />
               <TaskTitle />
               <TaskTitle />
             </LeftContentWrapper>
@@ -91,6 +98,7 @@ const CreateList = () => {
             <ShareSectionCard />
             <Style />
             <EmbedCode />
+            <ImageHandler />
           </RightSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
@@ -117,4 +125,33 @@ const EmbedCode = () => (
     />
   </RightCardWrapper>
 );
+
+const ImageHandler = () => (
+  <RightCardWrapper>
+    <img
+      src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+      alt="pic"
+      style={{ width: "240px", height: "135px" }}
+    />
+    <br />
+    <EditImage>edit image</EditImage>
+  </RightCardWrapper>
+);
+
+const ImageWrapper = ({ title }) => {
+  console.log("title", title);
+  return (
+    <>
+      <img
+        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+        alt="pic"
+        style={{ width: "655px", height: "380px" }}
+      />
+      <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
+        {title}
+      </div>
+    </>
+  );
+};
+
 export default CreateList;

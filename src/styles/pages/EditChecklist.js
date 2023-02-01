@@ -63,6 +63,8 @@ export const RightCardWrapper = styled.div`
   border: 1px solid #eee;
   background: #ffffff;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
 `;
 export const RightContentWrapper = styled.div`
   text-align: center;
@@ -155,4 +157,13 @@ export const StyleButtonWrapper = styled.div`
     transition: background-color 0.5s !important;
     height: auto !important;
   }
+`;
+
+export const EditImage = styled.div`
+  text-decoration: none;
+  font-size: 14px;
+  display: inline;
+  text-align: center;
+  cursor: pointer;
+  color: rgb(0, 0, 238);
 `;
