@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
+
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
@@ -24,6 +25,28 @@ import {
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
 
+const EmbedCode = () => (
+  <RightCardWrapper>
+    <SubModal
+      title="Embed Code"
+      embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
+      linkName="Learn more"
+    />
+  </RightCardWrapper>
+);
+
+const ImageHandler = () => (
+  <RightCardWrapper>
+    <img
+      src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+      alt="pic"
+      style={{ width: "240px", height: "135px" }}
+    />
+    <br />
+    <EditImage>edit image</EditImage>
+  </RightCardWrapper>
+);
+
 const CreateList = () => {
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
@@ -33,7 +56,7 @@ const CreateList = () => {
     pathId ? state.checklist : null
   );
   const [api, contextHolder] = notification.useNotification();
-
+  
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) navigate("/sign-in");
@@ -48,7 +71,7 @@ const CreateList = () => {
       description: "",
     },
   });
-
+ 
   const openNotification = (message) => {
     api.info({
       message,
@@ -73,6 +96,7 @@ const CreateList = () => {
 
   return (
     <Section>
+      
       {contextHolder}
       <Navbar
         search={false}
@@ -102,41 +126,30 @@ const CreateList = () => {
           </RightSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
+    
     </Section>
   );
 };
 
-const Style = () => (
+const Style = () =>{
+
+
+
+  return (
+
   <RightCardWrapper>
-    <SubModal
+     
+    
+            
+    <SubModal 
       title="Styles"
       text="Circles with numbers"
       buttonName="Fonts/Colors"
     />
   </RightCardWrapper>
-);
+);}
 
-const EmbedCode = () => (
-  <RightCardWrapper>
-    <SubModal
-      title="Embed Code"
-      embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
-      linkName="Learn more"
-    />
-  </RightCardWrapper>
-);
 
-const ImageHandler = () => (
-  <RightCardWrapper>
-    <img
-      src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
-      alt="pic"
-      style={{ width: "240px", height: "135px" }}
-    />
-    <br />
-    <EditImage>edit image</EditImage>
-  </RightCardWrapper>
-);
 
 const ImageWrapper = ({ title }) => {
   console.log("title", title);

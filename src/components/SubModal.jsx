@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import {
   RightContentWrapper,
   ShareSection,
@@ -9,6 +9,7 @@ import {
   LinkContent,
   StyleButtonWrapper,
 } from "styles/pages/EditChecklist";
+import SliderModal from "components/SliderModal";
 import { Select } from "antd";
 
 const { Option } = Select;
@@ -24,27 +25,41 @@ const options = [
   "Number_Circle",
 ];
 
-const SubModal = ({
-  title,
+const SubModal = ({  title,
   linkName,
   link,
   subTitle,
   text,
   buttonName,
-  embed,
-}) => {
+  embed, }) => {
+  const [modal, setModal] = useState(false);
+  
+  
+  function toggleab(data) {
+setModal(data);
+}
+
+
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
   return (
     <RightContentWrapper>
+        <SliderModal
+              modalType="fontcolors"
+              isOpen={modal}
+              togglefunction={toggleab}
+         
+            />
       <ShareSection>
+    
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>
-          {buttonName && (
-            <Preview onClick={() => console.log()}>{buttonName}</Preview>
-          )}{" "}
-          {linkName && <Preview href="#">{linkName}</Preview>}
+          {text ? (
+            <Preview onClick={() => toggleab(true)}>{linkName}</Preview>
+          ) : (
+            <Preview href="#">{linkName}</Preview>
+          )}
         </ShareTextWrapper>
       </ShareSection>
       {link && (

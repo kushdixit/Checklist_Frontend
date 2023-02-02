@@ -3,8 +3,10 @@ import ForgotPassword from "./forgetPassword";
 import LogoutModal from "./LogoutModal";
 import BurgerModal from "./burgerModal";
 import MoveModal from "./MoveModal";
+import FontColorsModal from "./FontColorsModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/AlertModal";
+
 
 const customStyles = {
   content: {
@@ -31,6 +33,7 @@ const AlertModal = ({
   checklistId,
   templateName,
 }) => {
+  console.log('here');
   return (
     <ReactModal
       isOpen={isOpen}
@@ -59,6 +62,9 @@ const AlertModal = ({
           checklistId={checklistId}
           templateName={templateName}
         />
+      )}
+        {modalType === "fontcolors" && (
+        <FontColorsModal notify={notify} togglefunction={togglefunction} />
       )}
       {/* {modalType === "forgot" && (
         <EditTask
