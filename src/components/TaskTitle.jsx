@@ -57,7 +57,8 @@ const ChecklistTask = ({ data }) => {
         onMouseOut={() => setIsHovering(false)}
         onSubmit={handleSubmit(DescriptionHandler)}
       >
-        {isHovering && (
+        {true && (
+          // isHovering
           <ModalContainer
             ref={wrapperRef}
             onClick={() => {
