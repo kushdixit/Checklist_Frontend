@@ -7,15 +7,42 @@ import {
   Preview,
   LinkSection,
   LinkContent,
+  StyleButtonWrapper,
 } from "styles/pages/EditChecklist";
 import SliderModal from "components/SliderModal";
-const SubModal = ({ title, linkName, link, subTitle, text }) => {
+import { Select } from "antd";
+
+const { Option } = Select;
+
+const options = [
+  "Squared",
+  "Checkboxes",
+  "Yes_No",
+  "-------------",
+  "Checkmark_Square",
+  "Number_Square",
+  "Checkmark_Circle",
+  "Number_Circle",
+];
+
+const SubModal = ({  title,
+  linkName,
+  link,
+  subTitle,
+  text,
+  buttonName,
+  embed, }) => {
   const [modal, setModal] = useState(false);
   
   
   function toggleab(data) {
 setModal(data);
 }
+
+
+  function handleChange(value) {
+    console.log(`selected ${value}`);
+  }
   return (
     <RightContentWrapper>
         <SliderModal
@@ -35,9 +62,14 @@ setModal(data);
           )}
         </ShareTextWrapper>
       </ShareSection>
-      {!text && (
+      {link && (
         <LinkSection>
           <LinkContent href="#">{link}</LinkContent>
+        </LinkSection>
+      )}
+      {embed && (
+        <LinkSection>
+          <LinkContent>{embed}</LinkContent>
         </LinkSection>
       )}
       <h4
@@ -52,9 +84,24 @@ setModal(data);
         {subTitle}
       </h4>
       {text && (
-        <button>
-          <div>{text}</div>
-        </button>
+        <StyleButtonWrapper>
+          <div>
+            <Select
+              defaultValue="Checkboxes"
+              style={{
+                width: "100%",
+                color: "#000",
+                backgroundColor: "#e6e6e6",
+                borderColor: "#adadad",
+              }}
+              onChange={handleChange}
+            >
+              {options.map((item) => (
+                <Option value={item}>{item}</Option>
+              ))}
+            </Select>
+          </div>
+        </StyleButtonWrapper>
       )}
     </RightContentWrapper>
   );

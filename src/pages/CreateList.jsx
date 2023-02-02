@@ -14,7 +14,6 @@ import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 
 import {
-  BodyWrapper,
   ChecklistMainWrapper,
   ChecklistSubWrapper,
   Section,
@@ -22,14 +21,40 @@ import {
   RightSection,
   LeftContentWrapper,
   RightCardWrapper,
+  EditImage,
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
+
+const EmbedCode = () => (
+  <RightCardWrapper>
+    <SubModal
+      title="Embed Code"
+      embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
+      linkName="Learn more"
+    />
+  </RightCardWrapper>
+);
+
+const ImageHandler = () => (
+  <RightCardWrapper>
+    <img
+      src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+      alt="pic"
+      style={{ width: "240px", height: "135px" }}
+    />
+    <br />
+    <EditImage>edit image</EditImage>
+  </RightCardWrapper>
+);
 
 const CreateList = () => {
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const ChecklistDetail = useSelector((state) =>
+    pathId ? state.checklist : null
+  );
   const [api, contextHolder] = notification.useNotification();
   
   useEffect(() => {
@@ -85,6 +110,9 @@ const CreateList = () => {
             <LeftContentWrapper>
               <ChecklistTitle />
               <DescriptionTitle />
+              <ImageWrapper
+                title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+              />
               <TaskTitle />
               <TaskTitle />
             </LeftContentWrapper>
@@ -92,8 +120,9 @@ const CreateList = () => {
           <RightSection>
             <RightSectionCard />
             <ShareSectionCard />
-
             <Style />
+            <EmbedCode />
+            <ImageHandler />
           </RightSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
@@ -115,10 +144,27 @@ const Style = () =>{
     <SubModal 
       title="Styles"
       text="Circles with numbers"
-      linkName="Fonts/Colors"
+      buttonName="Fonts/Colors"
     />
-    
   </RightCardWrapper>
-)};
+);}
+
+
+
+const ImageWrapper = ({ title }) => {
+  console.log("title", title);
+  return (
+    <>
+      <img
+        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+        alt="pic"
+        style={{ width: "655px", height: "380px" }}
+      />
+      <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
+        {title}
+      </div>
+    </>
+  );
+};
 
 export default CreateList;
