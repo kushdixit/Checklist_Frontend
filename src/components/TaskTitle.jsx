@@ -57,7 +57,7 @@ const ChecklistTask = ({ data }) => {
         onMouseOut={() => setIsHovering(false)}
         onSubmit={handleSubmit(DescriptionHandler)}
       >
-        {true && (
+        {isHovering && (
           // isHovering
           <ModalContainer
             ref={wrapperRef}
@@ -79,7 +79,7 @@ const ChecklistTask = ({ data }) => {
         )}
         <TaskContainer>
           <TaskSubContainer isHovering={isHovering}>
-            <div style={{ paddingTop: "10px" }}>
+            <div style={{ paddingTop: "10px", paddingLeft: "5px" }}>
               <Controller
                 name="rememberMe"
                 style={{ paddingTop: "10px" }}
@@ -87,7 +87,12 @@ const ChecklistTask = ({ data }) => {
                 render={({ field }) => (
                   <CheckboxInput
                     className="checkBox"
-                    style={{ paddingTop: "10px" }}
+                    style={{
+                      paddingTop: "10px",
+                      width: "23px",
+                      height: "23px",
+                      margin: "0px",
+                    }}
                     {...field}
                     onChange={(e) => {
                       console.log(e);
@@ -107,13 +112,24 @@ const ChecklistTask = ({ data }) => {
               />
             </div>
             <TaskFormSubWrapper>
+              {!showButtons && (
+                <p
+                  style={{ margin: "0px" }}
+                  href="#"
+                  placeholder="Enter task..."
+                  onClick={() => setShowButtons(true)}
+                >
+                  {data?.taskName}
+                </p>
+              )}
+              {/* {showButtons && ( */}
               <TextArea
                 type="task"
                 style={{
                   fontWeight: "400",
                   fontSize: "16px",
                   lineHeight: "27px",
-                  margin: "5px 0px 0px 0px",
+                  margin: "6px 0px 0px 0px",
                   width: "90%",
                   border: "none",
                   fontFamily: "inherit",
@@ -124,8 +140,8 @@ const ChecklistTask = ({ data }) => {
                 placeholder={``}
                 defaultValue={data?.taskName}
                 control={control}
-                onFocus={() => setShowButtons(!showButtons)}
-                onBlur={() => setShowButtons(!showButtons)}
+                // onFocus={() => setShowButtons(!showButtons)}
+                onBlur={() => setShowButtons(false)}
                 handleKeyDown={(e) => {
                   if (e.key === "Enter") {
                     e.target.blur();
@@ -133,6 +149,7 @@ const ChecklistTask = ({ data }) => {
                   }
                 }}
               />
+              {/* )} */}
               {showButtons && (
                 <div
                   style={{ display: "flex", gap: "10px", marginBottom: "10px" }}
