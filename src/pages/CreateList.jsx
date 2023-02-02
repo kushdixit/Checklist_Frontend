@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
+
 import {
   BodyWrapper,
   ChecklistMainWrapper,
@@ -30,7 +31,7 @@ const CreateList = () => {
   const navigate = useNavigate();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const [api, contextHolder] = notification.useNotification();
-
+  
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) navigate("/sign-in");
@@ -45,7 +46,7 @@ const CreateList = () => {
       description: "",
     },
   });
-
+ 
   const openNotification = (message) => {
     api.info({
       message,
@@ -70,6 +71,7 @@ const CreateList = () => {
 
   return (
     <Section>
+      
       {contextHolder}
       <Navbar
         search={false}
@@ -95,18 +97,28 @@ const CreateList = () => {
           </RightSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
+    
     </Section>
   );
 };
 
-const Style = () => (
+const Style = () =>{
+
+
+
+  return (
+
   <RightCardWrapper>
-    <SubModal
+     
+    
+            
+    <SubModal 
       title="Styles"
       text="Circles with numbers"
       linkName="Fonts/Colors"
     />
+    
   </RightCardWrapper>
-);
+)};
 
 export default CreateList;

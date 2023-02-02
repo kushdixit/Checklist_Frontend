@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import {
   RightContentWrapper,
   ShareSection,
@@ -8,15 +8,28 @@ import {
   LinkSection,
   LinkContent,
 } from "styles/pages/EditChecklist";
-
+import SliderModal from "components/SliderModal";
 const SubModal = ({ title, linkName, link, subTitle, text }) => {
+  const [modal, setModal] = useState(false);
+  
+  
+  function toggleab(data) {
+setModal(data);
+}
   return (
     <RightContentWrapper>
+        <SliderModal
+              modalType="fontcolors"
+              isOpen={modal}
+              togglefunction={toggleab}
+         
+            />
       <ShareSection>
+    
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>
           {text ? (
-            <Preview onClick={() => console.log()}>{linkName}</Preview>
+            <Preview onClick={() => toggleab(true)}>{linkName}</Preview>
           ) : (
             <Preview href="#">{linkName}</Preview>
           )}
