@@ -23,7 +23,9 @@ export const SortWrapper = styled.div`
   }
 `;
 export const ModalContainer = styled.div`
-  position: relative;
+  position: absolute;
+  left: -31px;
+
   justify-content: center;
   box-sizing: border-box;
   border-radius: 10px;
