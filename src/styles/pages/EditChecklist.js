@@ -81,13 +81,27 @@ export const ChecklistDescriptionWrapper = styled.div`
 `;
 
 export const ChecklistTaskWrapper = styled.div`
+  padding-bottom: 4px;
   .app-input-text {
     width: 100%;
   }
-  :hover {
-    background-color: #f8f8f8;
+  .task-form {
+    display: flex;
+    position: relative;
+    width: 90%;
   }
 `;
+export const TaskContainer = styled.div`
+  padding: 0px 40px 4px 15px;
+  flex: 1;
+`;
+export const TaskSubContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  background-color: ${({ isHovering }) => (isHovering ? "#f8f8f8" : "inherit")};
+`;
+
 export const TaskFormSubWrapper = styled.div`
   display: flex;
   width: 100%;

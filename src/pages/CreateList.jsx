@@ -152,9 +152,8 @@ const Style = () =>{
 
 
 const ImageWrapper = ({ title }) => {
-  console.log("title", title);
   return (
-    <>
+    <div style={{ marginBottom: "30px" }}>
       <img
         src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
         alt="pic"
@@ -163,7 +162,7 @@ const ImageWrapper = ({ title }) => {
       <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
         {title}
       </div>
-    </>
+    </div>
   );
 };
 

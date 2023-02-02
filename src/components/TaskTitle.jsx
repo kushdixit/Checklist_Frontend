@@ -2,11 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import AddTask from "components/AddTask";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import {
   ChecklistTaskWrapper,
   TaskFormSubWrapper,
+  TaskContainer,
+  TaskSubContainer,
 } from "styles/pages/EditChecklist";
+import CheckboxInput from "components/FormElements/CheckboxInput";
 import TextArea from "components/FormElements/TextArea";
 import {
   ShortBy,
@@ -21,7 +24,7 @@ const ChecklistTask = ({ data }) => {
   const [isOpenSort, setIsOpenSort] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [modal, setModal] = useState(false);
-  // const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const wrapperRef = useRef();
 
   useEffect(() => {
@@ -47,36 +50,61 @@ const ChecklistTask = ({ data }) => {
     console.log("data", data);
   };
   return (
-    <ChecklistTaskWrapper
-    // onMouseOver={() => setIsHovering(true)}
-    // onMouseOut={() => setIsHovering(false)}
-    >
+    <ChecklistTaskWrapper>
       <form
-        style={{
-          display: "flex",
-          padding: "0px 60px !important",
-        }}
+        className="task-form"
+        onMouseOver={() => setIsHovering(true)}
+        onMouseOut={() => setIsHovering(false)}
         onSubmit={handleSubmit(DescriptionHandler)}
       >
-        <div style={{ width: "100%" }}>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <ModalContainer
-              ref={wrapperRef}
-              onClick={() => {
-                setIsOpenSort(!isOpenSort);
-              }}
-            >
-              <ShortBy>
-                <Plus onClick={() => toggleab(!modal)} />
-                {isOpenSort && (
-                  <SortWrapper>
-                    <SortTextDiv>
-                      <Delete /> Delete
-                    </SortTextDiv>
-                  </SortWrapper>
+        {isHovering && (
+          <ModalContainer
+            ref={wrapperRef}
+            onClick={() => {
+              setIsOpenSort(!isOpenSort);
+            }}
+          >
+            <ShortBy>
+              <Plus onClick={() => toggleab(!modal)} />
+              {isOpenSort && (
+                <SortWrapper>
+                  <SortTextDiv>
+                    <Delete /> Delete
+                  </SortTextDiv>
+                </SortWrapper>
+              )}
+            </ShortBy>
+          </ModalContainer>
+        )}
+        <TaskContainer>
+          <TaskSubContainer isHovering={isHovering}>
+            <div style={{ paddingTop: "10px" }}>
+              <Controller
+                name="rememberMe"
+                style={{ paddingTop: "10px" }}
+                control={control}
+                render={({ field }) => (
+                  <CheckboxInput
+                    className="checkBox"
+                    style={{ paddingTop: "10px" }}
+                    {...field}
+                    onChange={(e) => {
+                      console.log(e);
+                      // reset({
+                      //   rememberMe: e,
+                      // });
+                      // dispatch(
+                      //   editTaskStatus(
+                      //     task?.id,
+                      //     checkListId,
+                      //     e == true ? true : false
+                      //   )
+                      // );
+                    }}
+                  />
                 )}
-              </ShortBy>
-            </ModalContainer>
+              />
+            </div>
             <TaskFormSubWrapper>
               <TextArea
                 type="task"
@@ -138,8 +166,8 @@ const ChecklistTask = ({ data }) => {
                 </div>
               )}
             </TaskFormSubWrapper>
-          </div>
-        </div>
+          </TaskSubContainer>
+        </TaskContainer>
       </form>
       {/* {isHovering && <AddTask />} */}
     </ChecklistTaskWrapper>
