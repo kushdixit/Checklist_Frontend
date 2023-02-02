@@ -2,6 +2,7 @@ import React, { useEffect,useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
+import Footer from "components/Footer";
 import RightSectionCard from "components/RightSectionCard";
 import ShareSectionCard from "components/Share";
 import TaskTitle from "components/TaskTitle";
@@ -125,9 +126,11 @@ const CreateList = () => {
             <ImageHandler />
           </RightSection>
         </ChecklistSubWrapper>
+      
       </ChecklistMainWrapper>
-    
+<Footer/>
     </Section>
+      
   );
 };
 
@@ -146,6 +149,7 @@ const Style = () =>{
       text="Circles with numbers"
       buttonName="Fonts/Colors"
     />
+
   </RightCardWrapper>
 );}
 
