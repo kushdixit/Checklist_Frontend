@@ -4,7 +4,6 @@ import FontColorsModal from "./FontColorsModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/SliderModal";
 
-
 const customStyles = {
   content: {
     // top: "17%",
@@ -22,20 +21,19 @@ const customStyles = {
     display: "block",
     position: "fixed",
     top: "0px",
-    right:"0px",
- left: "auto",
- bottom: "auto",
+    right: "0px",
+    left: "auto",
+    bottom: "auto",
     border: "1px solid rgb(204, 204, 204)",
-    background:"rgb(255, 255, 255)",
-    //  overflow: "auto hidden", 
+    background: "rgb(255, 255, 255)",
+    //  overflow: "auto hidden",
     /* outline: none; */
-    padding: "15px 35px 89px 35px",
+    padding: "15px 35px 24px 35px",
     /* margin-right: -50%; */
     /* transform: translate(-53%, -50%); */
     width: "50%",
 
     height: "auto",
-
   },
 };
 
@@ -48,7 +46,6 @@ const SliderModal = ({
   checklistId,
   templateName,
 }) => {
-  console.log('here');
   return (
     <ReactModal
       isOpen={isOpen}
@@ -57,17 +54,14 @@ const SliderModal = ({
       contentLabel="Example Modal"
     >
       <ButtonWrapper>
-    
         <button className="button" onClick={() => togglefunction(false)}>
           x
         </button>
-       
       </ButtonWrapper>
-     
+
       {modalType === "fontcolors" && (
         <FontColorsModal notify={notify} togglefunction={togglefunction} />
       )}
-      
     </ReactModal>
   );
 };

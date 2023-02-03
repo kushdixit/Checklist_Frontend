@@ -39,7 +39,7 @@ export const ChecklistSubWrapper = styled.div`
 export const LeftSection = styled.div`
   border: 1px solid #eee;
   background: #ffffff;
-  padding: 50px;
+  padding: 90px;
   max-width: 900px;
   width: 100%;
   @media (max-width: 1300px) {
@@ -91,11 +91,10 @@ export const ChecklistTaskWrapper = styled.div`
   .task-form {
     display: flex;
     position: relative;
-    width: 90%;
   }
 `;
 export const TaskContainer = styled.div`
-  padding: 0px 40px 4px 15px;
+  padding: 0px 40px 4px 0px;
   flex: 1;
 `;
 export const TaskSubContainer = styled.div`

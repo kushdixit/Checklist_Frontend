@@ -11,7 +11,7 @@ export const MainWrapper = styled.div`
     font-size: 12px;
     line-height: 1.57;
     color: #666;
-    margin: 30px 0 3px 0;
+    margin: 24px 0 3px 0;
   }
 `;
 
@@ -62,7 +62,6 @@ export const MainWrapperNew = styled.div`
   padding: 0 0;
 `;
 export const Container = styled.div`
-  height: 100%;
   width: 100%;
   display: flex;
 `;
@@ -79,7 +78,7 @@ export const MainTaskSectionForm = styled.div`
 `;
 export const DataWrapper = styled.form`
   img {
-    width: 135px;
+    width: 86px;
     height: auto;
   }
 `;
