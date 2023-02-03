@@ -103,6 +103,7 @@ export const LogoSection = styled.div`
     font-size: 2rem;
     font-weight: 700;
     max-width: 625px;
+    padding-right: 8px;
   }
 `;
 export const BurgerSection = styled.div`
@@ -113,6 +114,7 @@ export const BurgerSection = styled.div`
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    padding-top: 20px;
     gap: 1rem;
     form {
       justify-content: center;
@@ -182,6 +184,9 @@ export const SubNavSection = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 15px 1rem;
+  @media (max-width: 767px) {
+    padding: 3px 1rem;
+  }
 `;
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`

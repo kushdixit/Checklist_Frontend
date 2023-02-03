@@ -248,7 +248,6 @@ export const ShortContainer = styled.div`
   border-radius: 10px;
   display: flex;
   padding-top: 10px;
-  margin-left: 5px;
 `;
 export const ShortBy = styled.div`
   display: flex;

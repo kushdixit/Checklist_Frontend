@@ -57,6 +57,9 @@ export const RightSection = styled.div`
   flex-direction: column;
   gap: 30px;
   max-width: 300px;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 export const LeftContentWrapper = styled.div``;
 export const RightCardWrapper = styled.div`
