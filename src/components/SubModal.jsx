@@ -10,6 +10,7 @@ import {
   StyleButtonWrapper,
 } from "styles/pages/EditChecklist";
 import SliderModal from "components/SliderModal";
+import ImageModal from "components/ImageModal";
 import { Select } from "antd";
 
 const { Option } = Select;
@@ -50,6 +51,7 @@ const SubModal = ({
         isOpen={modal}
         togglefunction={toggleab}
       />
+    
       <ShareSection>
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>

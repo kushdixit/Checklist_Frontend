@@ -60,12 +60,12 @@ export const SecondSection = styled.div`
   width: 100%;
   max-width: 1446px;
   justify-content: right;
-  @media (max-width: 1000px) {
+  /* @media (max-width: 1000px) {
     gap: 35px;
   }
   @media (max-width: 875px) {
     gap: 15px;
-  }
+  } */
   @media (max-width: 767px) {
     display: none;
   }
@@ -77,7 +77,7 @@ export const HeadingText = styled.div`
   font-weight: 700;
   display: flex;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 6px;
 `;
 
 export const LogoSearchSection = styled.div`
@@ -183,7 +183,7 @@ export const SubNavSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 15px 1rem;
+  padding: 15px 0;
   @media (max-width: 767px) {
     padding: 3px 1rem;
   }
@@ -295,7 +295,7 @@ export const IconInputField = styled.div`
   }
   @media (max-width: 1120px) {
     width: 100%;
-    max-width: 190px;
+    max-width: 205px;
     padding-right: 30px;
     input {
       width: unset;

@@ -2,6 +2,7 @@ import React, { useEffect,useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
+import ImageModal from "components/ImageModal";
 import Footer from "components/Footer";
 import RightSectionCard from "components/RightSectionCard";
 import ShareSectionCard from "components/Share";
@@ -36,18 +37,30 @@ const EmbedCode = () => (
   </RightCardWrapper>
 );
 
-const ImageHandler = () => (
+const ImageHandler = () =>{
+  const [modal, setModal] = useState(false);
+
+  function toggleab(data) {
+    setModal(data);
+  };
+  return (
   <RightCardWrapper>
+       
+       <ImageModal
+        modalType="editimage"
+        isOpen={modal}
+        togglefunction={toggleab}
+      />
     <img
       src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
       alt="pic"
       style={{ width: "240px", height: "135px" }}
     />
     <br />
-    <EditImage>edit image</EditImage>
+    <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
   </RightCardWrapper>
-);
-
+)
+         };
 const CreateList = () => {
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
