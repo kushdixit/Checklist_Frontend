@@ -3,9 +3,50 @@ import styled from "styled-components";
 export const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
+
   align-items: center;
   justify-content: center;
+  h5 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.57;
+    color: #666;
+    margin: 24px 0 3px 0;
+  }
+`;
+
+export const IconInputField = styled.div`
+  width: 100%;
+  input {
+    text-align: left;
+    font-size: 24px;
+    /* border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden; */
+    /* border-bottom-color: ${(props) => props.color}; */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 7px 0px 5px 0px;
+    width: 100%;
+
+    background: unset;
+    @media (max-width: 462px) {
+      font-size: 18px;
+    }
+  }
+
+  input:focus-visible {
+    outline: unset;
+  }
+  .checklistDescription {
+    width: 100%;
+    margin-right: 4.5rem;
+    font-weight: 500;
+    font-size: 24px !important;
+    background: rgba(239, 239, 239, 0.3);
+    border-color: rgba(118, 118, 118, 0.3);
+    color: #000;
+  }
 `;
 
 export const MainWrapperNew = styled.div`
@@ -21,24 +62,38 @@ export const MainWrapperNew = styled.div`
   padding: 0 0;
 `;
 export const Container = styled.div`
-  height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
+`;
+export const MainTaskSectionForm = styled.div`
+  .checkBox {
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 26px;
+    height: 26px;
+    background-color: #999;
+    margin: 7px 7px 0 0;
+  }
 `;
 export const DataWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 30px;
-  align-items: center;
+  img {
+    width: 86px;
+    height: auto;
+  }
 `;
 export const Heading = styled.div`
-  font-size: 20px;
-  font-weight: 500;
-  color: #1d2e8b;
+  display: flex;
+
+  h3 {
+    color: #555;
+    display: initial;
+    padding-left: 10px;
+
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: 400;
+  }
 `;
 export const EmailWrapper = styled.div`
   display: flex;
@@ -56,6 +111,14 @@ export const ButtonWrapper = styled.div`
   padding: 0px 0px 10px;
 `;
 export const DataInput = styled.div`
+  font-size: 15px;
+  color: #db221a;
+  background: #fff3f3;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
   input {
     max-width: 360px;
     padding: 12px 19px;
@@ -85,19 +148,27 @@ export const DataInputNew = styled.div`
   }
 `;
 export const ResetWrapper = styled.button`
-  border: 1px solid #008cba;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: #1d2e88;
-  color: #fff;
-  padding: 10px 0px;
+  color: #000;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+
+  padding: 15px 25px;
 `;
 export const ResetText = styled.div`
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 400;
+  padding: 0 25px;
+`;
+
+export const BlankText = styled.div`
+  font-size: 17px;
+  font-weight: 400;
+  padding: 0 65px;
 `;
 export const ErrorMessage = styled.div`
   color: red;
@@ -110,7 +181,7 @@ export const ModalButton = styled.div`
   text-align: center;
   cursor: pointer;
   width: 16vw;
-  margin: 10px 0px;
+  margin: 10px 0;
 
   @media (max-width: 1378px) {
     width: 20vw;
@@ -121,69 +192,4 @@ export const ModalButton = styled.div`
   @media (max-width: 320px) {
     width: 20vw;
   }
-`;
-export const IconInputField = styled.div`
-  position: relative;
-
-  input {
-    position: relative;
-    text-align: left;
-    font-size: 14px;
-    padding: 12px 41.5px;
-    border: 1px solid #c9c9c9;
-    background: unset;
-
-    border-radius: 20px;
-    width: 100%;
-    max-width: 213px;
-
-    ::placeholder {
-      font-size: 16px;
-      color: #9d9d9d;
-    }
-
-    :-ms-input-placeholder {
-      font-size: 16px;
-      color: #9d9d9d;
-    }
-
-    ::-ms-input-placeholder {
-      font-size: 16px;
-      color: #9d9d9d;
-    }
-    :focus-visible {
-      outline: unset;
-    }
-  }
-  @media (max-width: 1012px) {
-    width: 100%;
-    max-width: 190px;
-    input {
-      width: unset;
-      max-width: unset;
-    }
-  }
-  @media (max-width: 1120px) {
-    width: 100%;
-    max-width: 190px;
-    padding-right: 30px;
-    input {
-      width: unset;
-      max-width: unset;
-    }
-  }
-  @media (max-width: 767px) {
-    width: 100%;
-    max-width: 77vw;
-    padding: 0 5.333vw;
-    input {
-      width: 100%;
-      max-width: 169.6vw;
-    }
-  }
-`;
-export const IconWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

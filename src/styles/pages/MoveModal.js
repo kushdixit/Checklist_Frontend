@@ -109,18 +109,9 @@ export const ModalButton = styled.div`
   color: white;
   text-align: center;
   cursor: pointer;
-  width: 16vw;
+  width: 8vw;
   margin: 10px 0px;
-
-  @media (max-width: 1378px) {
-    width: 20vw;
-  }
-  @media (max-width: 862px) {
-    width: 20vw;
-  }
-  @media (max-width: 320px) {
-    width: 20vw;
-  }
+  font-size: 24px;
 `;
 export const IconInputField = styled.div`
   position: relative;
