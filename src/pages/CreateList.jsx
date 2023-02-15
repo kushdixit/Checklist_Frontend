@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
@@ -57,7 +57,7 @@ const CreateList = () => {
     pathId ? state.checklist : null
   );
   const [api, contextHolder] = notification.useNotification();
-  
+
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) navigate("/sign-in");
@@ -72,7 +72,7 @@ const CreateList = () => {
       description: "",
     },
   });
- 
+
   const openNotification = (message) => {
     api.info({
       message,
@@ -97,7 +97,6 @@ const CreateList = () => {
 
   return (
     <Section>
-      
       {contextHolder}
       <Navbar
         search={false}
@@ -115,45 +114,33 @@ const CreateList = () => {
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
               <TaskTitle />
-              <TaskTitle />
             </LeftContentWrapper>
           </LeftSection>
           <RightSection>
-            <RightSectionCard />
+            <RightSectionCard pathId={pathId} />
             <ShareSectionCard />
             <Style />
             <EmbedCode />
             <ImageHandler />
           </RightSection>
         </ChecklistSubWrapper>
-      
       </ChecklistMainWrapper>
-<Footer/>
+      <Footer />
     </Section>
-      
   );
 };
 
-const Style = () =>{
-
-
-
+const Style = () => {
   return (
-
-  <RightCardWrapper>
-     
-    
-            
-    <SubModal 
-      title="Styles"
-      text="Circles with numbers"
-      buttonName="Fonts/Colors"
-    />
-
-  </RightCardWrapper>
-);}
-
-
+    <RightCardWrapper>
+      <SubModal
+        title="Styles"
+        text="Circles with numbers"
+        buttonName="Fonts/Colors"
+      />
+    </RightCardWrapper>
+  );
+};
 
 const ImageWrapper = ({ title }) => {
   return (

@@ -3,8 +3,23 @@ import {
   RightCardWrapper,
   RightContentWrapper,
 } from "styles/pages/EditChecklist";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { CopyChecklist } from "redux/actions/checklist/index";
 
-const RightSectionCard = () => {
+const RightSectionCard = ({ pathId }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const inCompleteTaskCount = useSelector(
+    (state) => state.checklist?.inCompleteTaskCount
+  );
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
+
+  const CopyHandler = async () => {
+    const res = await dispatch(CopyChecklist(pathId, userEmail));
+    !res?.error && navigate(`/createChecklist/${res?.data?.data}`);
+  };
+
   return (
     <RightCardWrapper>
       <RightContentWrapper>
@@ -16,7 +31,7 @@ const RightSectionCard = () => {
             marginBottom: "10px",
           }}
         >
-          <strong>40</strong> Task Left
+          <strong>{inCompleteTaskCount}</strong> Task Left
         </div>
         <button
           style={{
@@ -63,7 +78,9 @@ const RightSectionCard = () => {
                 textDecoration: "none",
                 fontSize: "13px",
                 color: "#333",
+                cursor: "pointer",
               }}
+              onClick={CopyHandler}
             >
               duplicate
             </div>

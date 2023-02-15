@@ -180,3 +180,10 @@ export const EditImage = styled.div`
   cursor: pointer;
   color: rgb(0, 0, 238);
 `;
+
+export const Paragraph = styled.p`
+  ${({ isTask }) =>
+    !isTask
+      ? "font-size:14px;font-weight:400"
+      : "font-size:16px;font-weight:600;margin:8px 0px 2px 6px !important"};
+`;

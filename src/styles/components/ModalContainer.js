@@ -23,15 +23,15 @@ export const SortWrapper = styled.div`
   }
 `;
 export const ModalContainer = styled.div`
-  position: absolute;
-  left: -31px;
-
+  /* position: absolute; */
+  /* left: -31px; */
+  /* left:0px */
   justify-content: center;
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
-  padding-top: 10px;
   margin-left: 5px;
+  align-items: center;
 `;
 export const SortTextDiv = styled.div`
   font-weight: 500;
