@@ -157,7 +157,7 @@ export const IconInputField = styled.div`
   }
   .checklistDescription {
     width: 100%;
-    margin-right: 4.5rem;
+
     font-weight: 500;
     font-size: 24px !important;
     background: rgba(239, 239, 239, 0.3);
@@ -248,7 +248,6 @@ export const ShortContainer = styled.div`
   border-radius: 10px;
   display: flex;
   padding-top: 10px;
-  margin-left: 5px;
 `;
 export const ShortBy = styled.div`
   display: flex;
