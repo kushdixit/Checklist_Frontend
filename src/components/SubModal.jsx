@@ -10,6 +10,8 @@ import {
   StyleButtonWrapper,
 } from "styles/pages/EditChecklist";
 import SliderModal from "components/SliderModal";
+
+import DescriptionSliderModal from "components/DescriptionSliderModal";
 import ImageModal from "components/ImageModal";
 import { Select } from "antd";
 
@@ -33,14 +35,17 @@ const SubModal = ({
   subTitle,
   text,
   buttonName,
+  buttonNew,
   embed,
 }) => {
   const [modal, setModal] = useState(false);
-
+  const [newmodal, setNewModal] = useState(false);
   function toggleab(data) {
     setModal(data);
   }
-
+  function toggleabc(data) {
+    setNewModal(data);
+  }
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
@@ -51,13 +56,15 @@ const SubModal = ({
         isOpen={modal}
         togglefunction={toggleab}
       />
-    
+        
       <ShareSection>
+
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>
           {buttonName && (
             <Preview onClick={() => toggleab(true)}>{buttonName}</Preview>
           )}{" "}
+            
           {linkName && <Preview href="#">{linkName}</Preview>}
         </ShareTextWrapper>
       </ShareSection>
@@ -82,6 +89,8 @@ const SubModal = ({
       >
         {subTitle}
       </h4>
+     
+            
       {text && (
         <StyleButtonWrapper>
           <div>
@@ -100,8 +109,10 @@ const SubModal = ({
               ))}
             </Select>
           </div>
+          
         </StyleButtonWrapper>
       )}
+          {/* <button onClick={() => toggleabc(true)}>description</button> */}
     </RightContentWrapper>
   );
 };

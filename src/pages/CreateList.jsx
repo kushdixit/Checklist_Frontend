@@ -3,6 +3,7 @@ import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
 import ImageModal from "components/ImageModal";
+import DescriptionSliderModal from "components/DescriptionSliderModal";
 import Footer from "components/Footer";
 import RightSectionCard from "components/RightSectionCard";
 import ShareSectionCard from "components/Share";
@@ -23,6 +24,7 @@ import {
   RightSection,
   LeftContentWrapper,
   RightCardWrapper,
+  LeftCardWrapper,
   EditImage,
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
@@ -62,6 +64,11 @@ const ImageHandler = () =>{
 )
          };
 const CreateList = () => {
+  const [newmodal, setNewModal] = useState(false);
+  function toggleabc(data) {
+    setNewModal(data);
+  }
+
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -110,7 +117,11 @@ const CreateList = () => {
 
   return (
     <Section>
-      
+       <DescriptionSliderModal
+        modalType="description"
+        isOpen={newmodal}
+        togglefunction={toggleabc}
+      />
       {contextHolder}
       <Navbar
         search={false}
@@ -127,8 +138,10 @@ const CreateList = () => {
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
+             <button onClick={() => toggleabc(true)}>description</button>
               <TaskTitle />
               <TaskTitle />
+            
             </LeftContentWrapper>
           </LeftSection>
           <RightSection>
@@ -168,9 +181,12 @@ const Style = () =>{
 
 
 
+
+
 const ImageWrapper = ({ title }) => {
   return (
     <div style={{ marginBottom: "30px" }}>
+      
       <img
         src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
         alt="pic"
@@ -179,6 +195,10 @@ const ImageWrapper = ({ title }) => {
       <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
         {title}
       </div>
+      <SubModal 
+     
+     buttonNew="Description"
+   />
     </div>
   );
 };
