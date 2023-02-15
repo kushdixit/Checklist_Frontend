@@ -55,6 +55,7 @@ export const ButtonWrapper = styled.div`
     border: unset;
     font-size: 36px;
     font-weight: 500;
+    padding-right: 25px;
   }
   button:hover {
     opacity: 0.4;
