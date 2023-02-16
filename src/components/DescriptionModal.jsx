@@ -11,12 +11,15 @@ import {
   ResetText,
   ResetWrapper,
   IconInputField,
+  IconInputFieldTextArea,
   MainTaskSectionForm,
   BlankText,
+  EditorSection,
+  ButtonSection
 } from "styles/pages/Description";
 import { notification } from "antd";
 import { forgotPassword } from "../redux/actions/auth";
-
+import TextArea from "components/FormElements/TextArea";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getChecklistBySubcategory,
@@ -37,6 +40,11 @@ const DescriptionModal = ({
   task,
   checkListId,
   showEditable,
+  id,
+  setAddSubTask,
+  addSubTask,
+ 
+
 }) => {
   const forgotPass = async (data) => {
     const res = await store.dispatch(forgotPassword(data));
@@ -85,11 +93,7 @@ const DescriptionModal = ({
     dispatch(deleteSubTask(id, checkListId));
   };
 
-  const openNotification = (message) => {
-    api.info({
-      message,
-    });
-  };
+  
 
   const updateSubTaskHandler = async (data) => {
     if (data?.updateSubTask) {
@@ -112,6 +116,19 @@ const DescriptionModal = ({
     } else openNotification(response?.data?.errors?.TaskDescription[0]);
   };
 
+ 
+  
+
+  
+
+
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
+
   return (
     <MainWrapper>
       <Container>
@@ -125,6 +142,30 @@ const DescriptionModal = ({
       <DataInput>MANAGER TRAINING</DataInput>
     
       <MainTaskSectionForm>
+        <EditorSection>
+          <h4>How to do this task</h4>
+         
+        </EditorSection>
+        <ButtonSection><button className="button">H1</button><button className="button">H2</button><button className="button">H3</button>
+        <button className="button">H4</button><button className="button">H5</button><button className="button">H6</button>
+        <button className="button">P</button><button className="button">pre</button><button className="button">"</button>
+        <button className="button">B</button><button className="button">I</button><button className="button">U</button></ButtonSection>
+        <form
+        style={{ paddingTop: "30px"}}
+        
+      >
+        <IconInputFieldTextArea>
+          <TextArea
+            name="taskDescription"
+            type="text"
+            placeholder="Add Description"
+            control={control}
+            className="checklistDescription"
+            autoComplete="off"
+          
+          />
+        </IconInputFieldTextArea>
+      </form>
       <h4>Add Subtasks</h4>
         <form
           onSubmit={handleSubmit(updateSubTaskHandler)}

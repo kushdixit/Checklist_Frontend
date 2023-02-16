@@ -15,6 +15,15 @@ export const MainWrapper = styled.div`
   }
 `;
 
+export const ButtonSection = styled.div`
+  display: flex;
+
+  .button {
+    width: 37px;
+    height: 30px;
+  }
+`;
+export const EditorSection = styled.div``;
 export const IconInputField = styled.div`
   width: 100%;
   margin-left: 20px;
@@ -42,6 +51,39 @@ export const IconInputField = styled.div`
     background: rgba(239, 239, 239, 0.3);
     border-color: rgba(118, 118, 118, 0.3);
     color: #000;
+  }
+  
+`;
+export const IconInputFieldTextArea = styled.div`
+  width: 100%;
+
+  input {
+    text-align: left;
+    font-size: 24px;
+    border: none;
+    border-bottom: 2px solid #007ccb;
+    /* border-radius: 4px; */
+    /* padding: 7px 0px 5px 0px; */
+    /* padding-left: 26px; */
+    width: 100%;
+    background: unset;
+    margin: 0;
+  }
+
+  input:focus-visible {
+    outline: unset;
+  }
+  .checklistDescription {
+    width: 100%;
+
+    font-weight: 500;
+    font-size: 24px !important;
+    background: rgba(239, 239, 239, 0.3);
+    border-color: rgba(118, 118, 118, 0.3);
+    color: #000;
+  }
+  textarea[input] {
+    margin: 0;
   }
 `;
 
