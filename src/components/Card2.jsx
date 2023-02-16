@@ -2,7 +2,6 @@ import { useDrag, useDrop } from "react-dnd";
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
-  deleteTask,
   getChecklistBySubcategory,
   editTask,
   editTaskStatus,
@@ -17,14 +16,9 @@ import {
 } from "styles/pages/EditChecklist";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import TextArea from "components/FormElements/TextArea";
-import {
-  ShortBy,
-  SortWrapper,
-  ModalContainer,
-  SortTextDiv,
-} from "styles/components/ModalContainer";
+import { ShortBy, ModalContainer } from "styles/components/ModalContainer";
 import Plus from "assets/SVG/Plus";
-import Delete from "assets/SVG/Delete";
+import TaskColon from "components/TaskColon";
 
 const ItemTypes = {
   CARD: "card",
@@ -131,56 +125,6 @@ export const Card = ({
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
-  const DeleteHandler = async () => {
-    setIsHovering(false);
-    const TaskOrder = taskOrder.split(",");
-    console.log(data?.id);
-    const reducedData = TaskOrder?.filter((item) => item != data?.id).reduce(
-      (total, item, index) => (index === 0 ? item : total + "," + item),
-      ""
-    );
-    if (reducedData) {
-      const response = await dispatch(deleteTask(data?.id, reducedData));
-      if (response === 204) dispatch(getChecklistBySubcategory(pathId));
-    }
-  };
-
-  const SubHeadingHandler = async () => {
-    setIsHovering(false);
-    await dispatch(
-      editTask(
-        data?.taskName,
-        data?.id,
-        !data?.isHeading,
-        data?.isPriority,
-        data?.isSubtask,
-        "",
-        "",
-        "",
-        ""
-      )
-    );
-    dispatch(getChecklistBySubcategory(pathId));
-  };
-
-  const SubTaskHandler = async () => {
-    setIsHovering(false);
-    await dispatch(
-      editTask(
-        data?.taskName,
-        data?.id,
-        data?.isHeading,
-        data?.isPriority,
-        !data?.isSubtask,
-        "",
-        "",
-        "",
-        ""
-      )
-    );
-    dispatch(getChecklistBySubcategory(pathId));
-  };
-
   const TaskUpdateHandler = async () => {
     if (watchData?.checklist) {
       await dispatch(
@@ -199,23 +143,7 @@ export const Card = ({
       dispatch(getChecklistBySubcategory(pathId));
     }
   };
-  const PriorityHandler = async () => {
-    setIsHovering(false);
-    await dispatch(
-      editTask(
-        data?.taskName,
-        data?.id,
-        data?.isHeading,
-        !data?.isPriority,
-        data?.isSubtask,
-        "",
-        "",
-        "",
-        ""
-      )
-    );
-    dispatch(getChecklistBySubcategory(pathId));
-  };
+
   return (
     <div ref={ref} style={{ opacity }} data-handler-id={handlerId}>
       <ChecklistTaskWrapper isHeading={data?.isHeading}>
@@ -239,23 +167,12 @@ export const Card = ({
                   }}
                 />
                 {isOpenSort && (
-                  <SortWrapper>
-                    <SortTextDiv onClick={SubHeadingHandler}>
-                      <Delete />
-                      {!data?.isHeading ? "Sub-Heading" : "Make a Task"}
-                    </SortTextDiv>
-                    <SortTextDiv onClick={PriorityHandler}>
-                      <Delete />
-                      Priority
-                    </SortTextDiv>
-                    <SortTextDiv onClick={SubTaskHandler}>
-                      <Delete />
-                      {data?.isSubtask ? "Make a Task" : "Sub-Task"}
-                    </SortTextDiv>
-                    <SortTextDiv onClick={DeleteHandler}>
-                      <Delete /> Delete
-                    </SortTextDiv>
-                  </SortWrapper>
+                  <TaskColon
+                    setIsHovering={setIsHovering}
+                    pathId={pathId}
+                    taskOrder={taskOrder}
+                    data={data}
+                  />
                 )}
               </ShortBy>
             </ModalContainer>
