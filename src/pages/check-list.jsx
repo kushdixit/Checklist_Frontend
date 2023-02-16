@@ -103,7 +103,7 @@ const CheckList = () => {
     else {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       res?.error === false &&
-        navigate(`/check-list/${res?.id}`, {
+        navigate(`/createChecklist/${res?.id}`, {
           state: { showEditable: false, cardType: "user" },
         });
     }

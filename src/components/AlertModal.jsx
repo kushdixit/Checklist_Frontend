@@ -7,7 +7,6 @@ import FontColorsModal from "./FontColorsModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/AlertModal";
 
-
 const customStyles = {
   content: {
     top: "50%",
@@ -33,7 +32,6 @@ const AlertModal = ({
   checklistId,
   templateName,
 }) => {
-  console.log('here');
   return (
     <ReactModal
       isOpen={isOpen}
@@ -63,7 +61,7 @@ const AlertModal = ({
           templateName={templateName}
         />
       )}
-        {modalType === "fontcolors" && (
+      {modalType === "fontcolors" && (
         <FontColorsModal notify={notify} togglefunction={togglefunction} />
       )}
       {/* {modalType === "forgot" && (

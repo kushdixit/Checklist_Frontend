@@ -47,6 +47,8 @@ const YourTemplate = () => {
                   showEditable={true}
                   cardType="user"
                   templateName={templateData[0]?.templateName}
+                  completed={subItem?.completedTaskCount}
+                  unCompleted={subItem?.inCompleteTaskCount}
                 />
               );
             })}

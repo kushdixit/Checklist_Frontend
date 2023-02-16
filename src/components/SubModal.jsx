@@ -56,15 +56,13 @@ const SubModal = ({
         isOpen={modal}
         togglefunction={toggleab}
       />
-        
-      <ShareSection>
 
+      <ShareSection>
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>
           {buttonName && (
             <Preview onClick={() => toggleab(true)}>{buttonName}</Preview>
           )}{" "}
-            
           {linkName && <Preview href="#">{linkName}</Preview>}
         </ShareTextWrapper>
       </ShareSection>
@@ -89,8 +87,7 @@ const SubModal = ({
       >
         {subTitle}
       </h4>
-     
-            
+
       {text && (
         <StyleButtonWrapper>
           <div>
@@ -109,10 +106,9 @@ const SubModal = ({
               ))}
             </Select>
           </div>
-          
         </StyleButtonWrapper>
       )}
-          {/* <button onClick={() => toggleabc(true)}>description</button> */}
+      {/* <button onClick={() => toggleabc(true)}>description</button> */}
     </RightContentWrapper>
   );
 };

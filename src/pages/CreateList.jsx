@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
@@ -39,30 +39,29 @@ const EmbedCode = () => (
   </RightCardWrapper>
 );
 
-const ImageHandler = () =>{
+const ImageHandler = () => {
   const [modal, setModal] = useState(false);
 
   function toggleab(data) {
     setModal(data);
-  };
+  }
   return (
-  <RightCardWrapper>
-       
-       <ImageModal
+    <RightCardWrapper>
+      <ImageModal
         modalType="editimage"
         isOpen={modal}
         togglefunction={toggleab}
       />
-    <img
-      src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
-      alt="pic"
-      style={{ width: "240px", height: "135px" }}
-    />
-    <br />
-    <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
-  </RightCardWrapper>
-)
-         };
+      <img
+        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+        alt="pic"
+        style={{ width: "240px", height: "135px" }}
+      />
+      <br />
+      <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
+    </RightCardWrapper>
+  );
+};
 const CreateList = () => {
   const [newmodal, setNewModal] = useState(false);
   function toggleabc(data) {
@@ -77,7 +76,7 @@ const CreateList = () => {
     pathId ? state.checklist : null
   );
   const [api, contextHolder] = notification.useNotification();
-  
+
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) navigate("/sign-in");
@@ -92,7 +91,7 @@ const CreateList = () => {
       description: "",
     },
   });
- 
+
   const openNotification = (message) => {
     api.info({
       message,
@@ -109,7 +108,7 @@ const CreateList = () => {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       const re = await dispatch(getChecklistBySubcategory(res?.id));
       re.error === false &&
-        navigate(`/check-list/${res?.id}`, {
+        navigate(`/createChecklist/${res?.id}`, {
           state: { showEditable: false, cardType: "user" },
         });
     }
@@ -117,7 +116,7 @@ const CreateList = () => {
 
   return (
     <Section>
-       <DescriptionSliderModal
+      <DescriptionSliderModal
         modalType="description"
         isOpen={newmodal}
         togglefunction={toggleabc}
@@ -138,67 +137,48 @@ const CreateList = () => {
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
-             <button onClick={() => toggleabc(true)}>description</button>
-              <TaskTitle />
-              <TaskTitle />
-            
+              {/* <button onClick={() => toggleabc(true)}>description</button> */}
+              <TaskTitle toggleabc={toggleabc} />
             </LeftContentWrapper>
           </LeftSection>
           <RightSection>
-            <RightSectionCard />
+            <RightSectionCard pathId={pathId} />
             <ShareSectionCard />
             <Style />
             <EmbedCode />
             <ImageHandler />
           </RightSection>
         </ChecklistSubWrapper>
-      
       </ChecklistMainWrapper>
-<Footer/>
+      <Footer />
     </Section>
-      
   );
 };
 
-const Style = () =>{
-
-
-
+const Style = () => {
   return (
-
-  <RightCardWrapper>
-     
-    
-            
-    <SubModal 
-      title="Styles"
-      text="Circles with numbers"
-      buttonName="Fonts/Colors"
-    />
-
-  </RightCardWrapper>
-);}
-
-
-
-
+    <RightCardWrapper>
+      <SubModal
+        title="Styles"
+        text="Circles with numbers"
+        buttonName="Fonts/Colors"
+      />
+    </RightCardWrapper>
+  );
+};
 
 const ImageWrapper = ({ title }) => {
   return (
     <div style={{ marginBottom: "30px" }}>
-      
       <img
         src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
         alt="pic"
-        style={{ width: "100%", maxWidth:"739px", height: "380px" }}
+        style={{ width: "100%", maxWidth: "739px", height: "380px" }}
       />
       <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
         {title}
       </div>
-      <SubModal 
-     
-     buttonNew="Description"
-   />
+      <SubModal buttonNew="Description" />
     </div>
   );
 };

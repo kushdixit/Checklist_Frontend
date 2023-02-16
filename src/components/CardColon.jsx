@@ -107,7 +107,7 @@ const CardColon = ({ item, cardType, type, templateName, itemId }) => {
                   <SortTextDiv
                     onClick={() => {
                       dispatch({ type: SET_IS_EDITABLE, payload: false });
-                      navigate(`/check-list/${itemId}`, {
+                      navigate(`/createChecklist/${itemId}`, {
                         state: { showEditable: true, cardType },
                       });
                     }}
@@ -184,7 +184,7 @@ const CardColon = ({ item, cardType, type, templateName, itemId }) => {
                       );
                       refetchtemplate(res);
                       !res?.error &&
-                        navigate(`/check-list/${res?.data?.data}`, {
+                        navigate(`/createChecklist/${res?.data?.data}`, {
                           state: { showEditable: true, cardType },
                         });
                     }}
