@@ -24,18 +24,22 @@ const Card = ({
   showEditable,
   cardType,
   templateName,
+  completed,
+  unCompleted,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const Progress =
+    completed === 0 ? 0 : (completed * 100) / (completed + unCompleted);
 
   return (
-    <SubSection key={index}>
+    <SubSection key={index} Progress={Progress}>
       <Wrap
         onClick={async () => {
           dispatch({ type: SET_IS_EDITABLE, payload: false });
           const re = await dispatch(getChecklistBySubcategory(item.id));
-          re.error == false &&
-            navigate(`/check-list/${item.id}`, {
+          re.error === false &&
+            navigate(`/createChecklist/${item.id}`, {
               state: { showEditable: showEditable, cardType },
             });
         }}

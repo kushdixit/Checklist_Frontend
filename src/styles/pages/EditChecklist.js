@@ -85,6 +85,7 @@ export const ChecklistDescriptionWrapper = styled.div`
 
 export const ChecklistTaskWrapper = styled.div`
   padding-bottom: 4px;
+  margin-top: ${({ isHovering }) => (isHovering ? "12px" : "0px")};
   .app-input-text {
     width: 100%;
   }
@@ -101,7 +102,10 @@ export const TaskSubContainer = styled.div`
   display: flex;
   gap: 10px;
   border-bottom: 1px solid rgb(224, 224, 224);
-  background-color: ${({ isHovering }) => (isHovering ? "#f8f8f8" : "inherit")};
+  border: ${({ isPriority }) => isPriority && "0px solid #fcd5d5 !important"};
+  background-color: ${({ isPriority, isHovering }) =>
+    isPriority ? "#fff3f3" : isHovering ? "#f8f8f8" : "inherit"};
+  margin-left: ${({ isSubtask }) => (isSubtask ? "35px" : "0px")};
 `;
 
 export const TaskFormSubWrapper = styled.div`
@@ -111,6 +115,7 @@ export const TaskFormSubWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 5px;
+  cursor: all-scroll;
 `;
 
 export const ShareTextWrapper = styled.div`
@@ -185,8 +190,8 @@ export const EditImage = styled.div`
 `;
 
 export const Paragraph = styled.p`
-  ${({ isTask }) =>
-    !isTask
+  ${({ isHeading }) =>
+    !isHeading
       ? "font-size:14px;font-weight:400"
       : "font-size:16px;font-weight:600;margin:8px 0px 2px 6px !important"};
 `;

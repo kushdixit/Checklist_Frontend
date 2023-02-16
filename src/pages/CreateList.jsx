@@ -37,30 +37,29 @@ const EmbedCode = () => (
   </RightCardWrapper>
 );
 
-const ImageHandler = () =>{
+const ImageHandler = () => {
   const [modal, setModal] = useState(false);
 
   function toggleab(data) {
     setModal(data);
-  };
+  }
   return (
-  <RightCardWrapper>
-       
-       <ImageModal
+    <RightCardWrapper>
+      <ImageModal
         modalType="editimage"
         isOpen={modal}
         togglefunction={toggleab}
       />
-    <img
-      src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
-      alt="pic"
-      style={{ width: "240px", height: "135px" }}
-    />
-    <br />
-    <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
-  </RightCardWrapper>
-)
-         };
+      <img
+        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+        alt="pic"
+        style={{ width: "240px", height: "135px" }}
+      />
+      <br />
+      <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
+    </RightCardWrapper>
+  );
+};
 const CreateList = () => {
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
@@ -102,7 +101,7 @@ const CreateList = () => {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       const re = await dispatch(getChecklistBySubcategory(res?.id));
       re.error === false &&
-        navigate(`/check-list/${res?.id}`, {
+        navigate(`/createChecklist/${res?.id}`, {
           state: { showEditable: false, cardType: "user" },
         });
     }
@@ -161,7 +160,7 @@ const ImageWrapper = ({ title }) => {
       <img
         src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
         alt="pic"
-        style={{ width: "100%", maxWidth:"739px", height: "380px" }}
+        style={{ width: "100%", maxWidth: "739px", height: "380px" }}
       />
       <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
         {title}

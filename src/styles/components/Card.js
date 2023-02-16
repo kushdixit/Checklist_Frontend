@@ -135,10 +135,14 @@ export const SubSection = styled.div`
   align-items: center;
   width: 100%;
   box-shadow: rgb(163 183 223) 0px 0px 3px;
-  border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
   height: 100%;
   max-width: 313px;
-
+  border-bottom: 2px solid transparent;
+  border-image: ${({ Progress }) =>
+    `linear-gradient(90deg, #28a744 ${Progress}%, #fff ${Progress}%)`};
+  border-image-slice: 1;
+  width: 100%;
   @media (max-width: 723px) {
     width: 100%;
   }

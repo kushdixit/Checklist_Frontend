@@ -71,7 +71,7 @@ export const editTask =
   (
     taskName,
     id,
-    isTask,
+    isHeading,
     ispriority,
     isSubTask,
     taskTag,
@@ -83,7 +83,7 @@ export const editTask =
     const payload = {
       id,
       taskName,
-      isTask,
+      isHeading,
       ispriority,
       isSubTask,
       taskTag,

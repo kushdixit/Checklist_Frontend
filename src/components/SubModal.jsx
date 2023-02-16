@@ -51,7 +51,7 @@ const SubModal = ({
         isOpen={modal}
         togglefunction={toggleab}
       />
-    
+
       <ShareSection>
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>

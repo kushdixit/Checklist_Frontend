@@ -151,9 +151,27 @@ export const Card = ({
       editTask(
         data?.taskName,
         data?.id,
-        !data?.isTask,
-        data?.ispriority,
-        data?.isSubTask,
+        !data?.isHeading,
+        data?.isPriority,
+        data?.isSubtask,
+        "",
+        "",
+        "",
+        ""
+      )
+    );
+    dispatch(getChecklistBySubcategory(pathId));
+  };
+
+  const SubTaskHandler = async () => {
+    setIsHovering(false);
+    await dispatch(
+      editTask(
+        data?.taskName,
+        data?.id,
+        data?.isHeading,
+        data?.isPriority,
+        !data?.isSubtask,
         "",
         "",
         "",
@@ -169,9 +187,9 @@ export const Card = ({
         editTask(
           watchData?.checklist,
           data?.id,
-          data?.isTask,
-          data?.ispriority,
-          data?.isSubTask,
+          data?.isHeading,
+          data?.isPriority,
+          data?.isSubtask,
           "",
           "",
           "",
@@ -181,10 +199,26 @@ export const Card = ({
       dispatch(getChecklistBySubcategory(pathId));
     }
   };
-
+  const PriorityHandler = async () => {
+    setIsHovering(false);
+    await dispatch(
+      editTask(
+        data?.taskName,
+        data?.id,
+        data?.isHeading,
+        !data?.isPriority,
+        data?.isSubtask,
+        "",
+        "",
+        "",
+        ""
+      )
+    );
+    dispatch(getChecklistBySubcategory(pathId));
+  };
   return (
     <div ref={ref} style={{ opacity }} data-handler-id={handlerId}>
-      <ChecklistTaskWrapper>
+      <ChecklistTaskWrapper isHeading={data?.isHeading}>
         <form
           className="task-form"
           onMouseOver={() => setIsHovering(true)}
@@ -208,7 +242,15 @@ export const Card = ({
                   <SortWrapper>
                     <SortTextDiv onClick={SubHeadingHandler}>
                       <Delete />
-                      {!data?.isTask ? "Sub-Heading" : "Make a Task"}
+                      {!data?.isHeading ? "Sub-Heading" : "Make a Task"}
+                    </SortTextDiv>
+                    <SortTextDiv onClick={PriorityHandler}>
+                      <Delete />
+                      Priority
+                    </SortTextDiv>
+                    <SortTextDiv onClick={SubTaskHandler}>
+                      <Delete />
+                      {data?.isSubtask ? "Make a Task" : "Sub-Task"}
                     </SortTextDiv>
                     <SortTextDiv onClick={DeleteHandler}>
                       <Delete /> Delete
@@ -219,8 +261,12 @@ export const Card = ({
             </ModalContainer>
           )}
           <TaskContainer>
-            <TaskSubContainer isHovering={isHovering}>
-              {!data?.isTask && (
+            <TaskSubContainer
+              isPriority={data?.isPriority}
+              isHovering={isHovering}
+              isSubtask={data?.isSubtask}
+            >
+              {!data?.isHeading && (
                 <div style={{ paddingTop: "10px", paddingLeft: "5px" }}>
                   <Controller
                     name="rememberMe"
@@ -256,7 +302,7 @@ export const Card = ({
               <TaskFormSubWrapper>
                 {!showButtons && (
                   <Paragraph
-                    isTask={data?.isTask}
+                    isHeading={data?.isHeading}
                     style={{ margin: "0px" }}
                     href="#"
                     placeholder="Enter task..."
