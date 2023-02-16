@@ -9,6 +9,7 @@ import Delete from "assets/SVG/Delete";
 import SubTask from "assets/SVG/SubTask";
 import Heading from "assets/SVG/Heading";
 import Priority from "assets/SVG/Priority";
+import Description from "assets/SVG/Description";
 
 const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
   const dispatch = useDispatch();
@@ -88,6 +89,10 @@ const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
       <SortTextDiv onClick={PriorityHandler}>
         <Priority />
         Priority
+      </SortTextDiv>
+      <SortTextDiv onClick={PriorityHandler}>
+        <Description />
+        Describe the task
       </SortTextDiv>
       <SortTextDiv onClick={SubTaskHandler}>
         <SubTask />

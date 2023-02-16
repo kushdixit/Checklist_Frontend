@@ -10,6 +10,8 @@ import {
   StyleButtonWrapper,
 } from "styles/pages/EditChecklist";
 import SliderModal from "components/SliderModal";
+
+import DescriptionSliderModal from "components/DescriptionSliderModal";
 import ImageModal from "components/ImageModal";
 import { Select } from "antd";
 
@@ -33,14 +35,17 @@ const SubModal = ({
   subTitle,
   text,
   buttonName,
+  buttonNew,
   embed,
 }) => {
   const [modal, setModal] = useState(false);
-
+  const [newmodal, setNewModal] = useState(false);
   function toggleab(data) {
     setModal(data);
   }
-
+  function toggleabc(data) {
+    setNewModal(data);
+  }
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
@@ -82,6 +87,7 @@ const SubModal = ({
       >
         {subTitle}
       </h4>
+
       {text && (
         <StyleButtonWrapper>
           <div>
@@ -102,6 +108,7 @@ const SubModal = ({
           </div>
         </StyleButtonWrapper>
       )}
+      {/* <button onClick={() => toggleabc(true)}>description</button> */}
     </RightContentWrapper>
   );
 };

@@ -141,7 +141,7 @@ const EditImageModal = ({
                     </IconInputField>
           </EmailWrapper>
           <EmailWrapper>
-            <SectionOne>Alt Tag</SectionOne>
+            <SectionOne>Caption</SectionOne>
             <IconInputField>
             <TextInput
                 name="email"

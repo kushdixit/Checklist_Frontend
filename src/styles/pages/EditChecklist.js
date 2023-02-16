@@ -61,7 +61,7 @@ export const RightSection = styled.div`
     display: none;
   }
 `;
-export const LeftContentWrapper = styled.div``;
+
 export const RightCardWrapper = styled.div`
   border: 1px solid #eee;
   background: #ffffff;
@@ -69,6 +69,7 @@ export const RightCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+export const LeftCardWrapper = styled.div``;
 export const RightContentWrapper = styled.div`
   text-align: center;
 `;
@@ -123,6 +124,8 @@ export const ShareTextWrapper = styled.div`
   justify-content: space-between;
 `;
 export const ShareSection = styled.div``;
+
+export const LeftContentWrapper = styled.div``;
 export const ShareText = styled.div`
   display: inline-block;
   max-width: 100%;
