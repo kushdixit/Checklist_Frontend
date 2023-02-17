@@ -8,3 +8,4 @@ export const YOUR_TEMPLATE = "YOUR_TEMPLATE";
 export const SET_TEMPLATE = "SET_TEMPLATE";
 export const SET_IS_EDITABLE = "SET_IS_EDITABLE";
 export const SET_SEARCH = "SET_SEARCH";
+export const SET_TASK = "SET_TASK";

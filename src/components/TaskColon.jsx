@@ -1,18 +1,24 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SortWrapper, SortTextDiv } from "styles/components/ModalContainer";
 import {
   deleteTask,
   getChecklistBySubcategory,
   editTask,
+  addNewTask,
+  MoveTask,
 } from "redux/actions/task";
 import Delete from "assets/SVG/Delete";
 import SubTask from "assets/SVG/SubTask";
 import Heading from "assets/SVG/Heading";
 import Priority from "assets/SVG/Priority";
 import Description from "assets/SVG/Description";
+import { SET_TASK } from "redux/actions/action_types";
 
 const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
   const dispatch = useDispatch();
+  const ChecklistDetail = useSelector((state) =>
+    pathId ? state.checklist : null
+  );
 
   const SubHeadingHandler = async () => {
     setIsHovering(false);
@@ -70,7 +76,6 @@ const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
   const DeleteHandler = async () => {
     setIsHovering(false);
     const TaskOrder = taskOrder.split(",");
-    console.log(data?.id);
     const reducedData = TaskOrder?.filter((item) => item !== data?.id).reduce(
       (total, item, index) => (index === 0 ? item : total + "," + item),
       ""
@@ -80,8 +85,37 @@ const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
       if (response === 204) dispatch(getChecklistBySubcategory(pathId));
     }
   };
+
+  const AddTaskHandler = async (id) => {
+    dispatch({ type: SET_TASK, payload: id });
+    let data = {
+      taskName: "",
+      checklistMasterId: pathId,
+    };
+    const response = await dispatch(addNewTask(data, pathId));
+    if (response) {
+      const getOrder = ChecklistDetail?.tasks?.reduce(
+        (total, item, index) =>
+          index === 0
+            ? item?.id === id
+              ? item?.id + "," + response
+              : item?.id
+            : item?.id === id
+            ? total + "," + item?.id + "," + response
+            : total + "," + item?.id,
+        ""
+      );
+      const res = await dispatch(MoveTask(getOrder));
+      res.status === 204 && dispatch(getChecklistBySubcategory(pathId));
+    }
+  };
+
   return (
     <SortWrapper>
+      <SortTextDiv onClick={() => AddTaskHandler(data?.id)}>
+        <Priority />
+        Add Task below
+      </SortTextDiv>
       <SortTextDiv onClick={SubHeadingHandler}>
         <Heading />
         {!data?.isHeading ? "Sub-Heading" : "Make a Task"}
