@@ -2,22 +2,15 @@ import styled from "styled-components";
 
 export const LandingContainer = styled.div`
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
-  max-width: 1735px;
-  h3 {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: 500;
 
-    flex-direction: column;
-    max-width: 708px;
+  p {
+    margin-bottom: 1.38em;
+  }
+  h2 {
+    letter-spacing: 0px;
+  }
+  h3 {
   }
   h4 {
     display: flex;
@@ -42,46 +35,43 @@ export const LandingContainer = styled.div`
     }
   }
 `;
-
-export const Heading = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-  font-size: 2.2rem;
-
-  margin-left: auto;
+export const UpperContentWrapper = styled.div`
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
-
-  flex-direction: column;
-
-  margin-top: 90px;
-  text-align: center;
-  @media (max-width: 538px) {
-    font-size: 1.8rem;
+  margin-left: auto;
+  @media (min-width: 768px) {
+    width: 750px;
   }
-  @media (max-width: 970px) {
-    font-size: 1.8rem;
+  @media (min-width: 992px) {
+    width: 970px;
+  }
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+  @media (min-width: 1300px) {
+    width: 1250px;
   }
 `;
 
-export const SecondHeading = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  font-weight: 400;
+export const Heading = styled.div`
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 45px;
+  @media (max-width: 767px) {
+    margin-bottom: 10px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    font-size: 32px;
+    line-height: 35px;
+  }
+`;
 
+export const SecondHeading = styled.h2`
+  line-height: 1.18;
+  margin: 0px 0px 30px 0px;
   font-size: 34px;
-
-  margin-left: auto;
-  margin-right: auto;
-
-  flex-direction: column;
-  max-width: 708px;
-  margin-top: 90px;
-  text-align: center;
+  font-weight: 400;
 `;
 export const NavSection = styled.div`
   padding-top: 1rem;
@@ -90,29 +80,18 @@ export const NavSection = styled.div`
 
 export const LandingCardSection = styled.div`
   display: flex;
-
-  gap: 100px;
   width: 100%;
-
   justify-content: center;
-
   align-items: center;
-  margin: 30px 10px;
-
-  flex-wrap: wrap;
 `;
 export const ChecklistButton = styled.div`
   display: flex;
-  width: 100%;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
-  text-align: center;
   .button {
-    padding: 20px 30px;
-    font-weight: 700;
-    font-size: 20px;
+    font-size: 23px;
+    min-width: 160px;
+    padding: 18px 34px;
+    line-height: 36px;
   }
 `;
 export const SubHeading = styled.div`

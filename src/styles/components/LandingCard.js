@@ -1,18 +1,11 @@
 import styled from "styled-components";
 
 export const SubSection = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  box-shadow: rgb(163 183 223) 0px 0px 3px;
-  border-radius: 10px;
-  height: auto;
-  max-width: 418px;
-  padding: 20px 0px;
-  margin-right: 9px;
-  @media (max-width: 723px) {
-    width: 100%;
-  }
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
 `;
 
 export const Image = styled.div`
@@ -36,7 +29,9 @@ export const Image = styled.div`
 export const Wrap = styled.div`
   align-items: center;
   cursor: pointer;
-  padding: 0 13px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 30px;
   ul {
     list-style: none;
     padding: 0;
