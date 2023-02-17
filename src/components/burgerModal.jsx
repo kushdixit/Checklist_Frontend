@@ -1,15 +1,16 @@
 import React from "react";
-import {  Section,DataWrapper,
-    Heading,
-    ButtonWrapper,
-    ModalButton,
-    SecondSection,
-    SecondSubSection,
-    IconInputField,
-    IconWrapper,} from "styles/components/Navbar";
+import {
+  Section,
+  DataWrapper,
+  Heading,
+  ButtonWrapper,
+  ModalButton,
+  SecondSection,
+  SecondSubSection,
+  IconInputField,
+  IconWrapper,
+} from "styles/components/Navbar";
 
-  
-    
 const BurgerModal = ({ notify }) => {
   // const {
   //   handleSubmit,
@@ -22,11 +23,11 @@ const BurgerModal = ({ notify }) => {
   // });
 
   return (
-   <Section>
-    <DataWrapper >
-         {/* <ModalButton onClick={notify}>Yes</ModalButton> */}
-       
-                <SecondSection>
+    <Section>
+      <DataWrapper>
+        {/* <ModalButton onClick={notify}>Yes</ModalButton> */}
+
+        <SecondSection>
           {/* {search && (
             <IconInputField>
               <TextInput
@@ -82,10 +83,8 @@ const BurgerModal = ({ notify }) => {
             ) : null}
           </ImageSubSection> */}
         </SecondSection>
- 
-   
-  </DataWrapper>
-  </Section>
+      </DataWrapper>
+    </Section>
   );
 };
 

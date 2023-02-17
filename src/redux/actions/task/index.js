@@ -15,21 +15,16 @@ export const getChecklistBySubcategory = (Checklistid) => (dispatch) =>
       return { error: true, data: ex };
     });
 
-export const addNewTask = (data) => (dispatch) =>
-  axioPath
-    .post("v1/Task/tasks", data, {
+export const addNewTask = (data) => async (dispatch) => {
+  try {
+    const response = await axioPath.post("v1/Task/tasks", data, {
       hideLoader: false,
-    })
-    .then((response) => {
-      dispatch({ type: UPDATE_DATA, payload: response.data });
-      return { error: false, data: response.data };
-    })
-    .catch((ex) => {
-      if (typeof ex == "string") {
-        return { ex: { message: ex } };
-      }
-      return { error: true, data: ex };
     });
+    return response?.data;
+  } catch (ex) {
+    return ex.response;
+  }
+};
 
 export const deleteTask = (id, taskListIds) => async (dispatch) => {
   const config = {
