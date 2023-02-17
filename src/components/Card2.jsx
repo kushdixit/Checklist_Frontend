@@ -225,7 +225,7 @@ export const Card = ({
                     placeholder="Enter task..."
                     onClick={() => setShowButtons(true)}
                   >
-                    {data?.taskName}
+                    {data?.taskName || "         "}
                   </Paragraph>
                 )}
                 {showButtons && (

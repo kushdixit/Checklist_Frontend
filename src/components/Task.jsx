@@ -170,9 +170,9 @@ const Task = ({ task, index, checkListId, showEditable }) => {
             )}
             <IconInputField>
               <TextInput
-                defaultValue={task?.taskName.replace(
+                defaultValue={task?.taskName?.replace(
                   /^./,
-                  task?.taskName[0].toUpperCase()
+                  task?.taskName[0]?.toUpperCase()
                 )}
                 name="update"
                 type="text"

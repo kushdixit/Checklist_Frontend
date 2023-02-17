@@ -107,6 +107,7 @@ const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
       );
       const res = await dispatch(MoveTask(getOrder));
       res.status === 204 && dispatch(getChecklistBySubcategory(pathId));
+      dispatch({ type: SET_TASK, payload: 0 });
     }
   };
 

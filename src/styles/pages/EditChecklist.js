@@ -193,6 +193,8 @@ export const EditImage = styled.div`
 `;
 
 export const Paragraph = styled.p`
+  width: 100%;
+  min-height: 20px;
   ${({ isHeading }) =>
     !isHeading
       ? "font-size:14px;font-weight:400"
