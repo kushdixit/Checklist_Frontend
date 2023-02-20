@@ -11,6 +11,10 @@ import Delete from "assets/SVG/Delete";
 import SubTask from "assets/SVG/SubTask";
 import Heading from "assets/SVG/Heading";
 import Priority from "assets/SVG/Priority";
+import DownArrow from "assets/SVG/DownArrow";
+import QuestionMark from "assets/SVG/QuestionMark";
+import Indent from "assets/SVG/Indent";
+import Header from "assets/SVG/Header";
 import Description from "assets/SVG/Description";
 import { SET_TASK } from "redux/actions/action_types";
 
@@ -114,23 +118,23 @@ const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
   return (
     <SortWrapper>
       <SortTextDiv onClick={() => AddTaskHandler(data?.id)}>
-        <Priority />
+        <DownArrow />
         Add Task below
       </SortTextDiv>
       <SortTextDiv onClick={SubHeadingHandler}>
-        <Heading />
+        <QuestionMark />
         {!data?.isHeading ? "Sub-Heading" : "Make a Task"}
       </SortTextDiv>
       <SortTextDiv onClick={PriorityHandler}>
-        <Priority />
+        <Indent />
         Priority
       </SortTextDiv>
       <SortTextDiv onClick={PriorityHandler}>
-        <Description />
+        <Header />
         Describe the task
       </SortTextDiv>
       <SortTextDiv onClick={SubTaskHandler}>
-        <SubTask />
+        <Priority />
         {data?.isSubtask ? "Make a Task" : "Sub-Task"}
       </SortTextDiv>
       <SortTextDiv onClick={DeleteHandler}>

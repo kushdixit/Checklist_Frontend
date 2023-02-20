@@ -8,7 +8,7 @@ import Landing from "pages/landing";
 import Search from "pages/search";
 import CreateList from "pages/CreateList";
 import FreeTemplate from "pages/FreeTemplate";
-
+import Explore from "pages/Explore";
 const Router = () => {
   return (
     <BrowserRouter>
@@ -24,6 +24,7 @@ const Router = () => {
         <Route path="check-list/:id" element={<CheckList />} />
         <Route path="landing" element={<Landing />} />
         <Route path="freeTemplate" element={<FreeTemplate />} />
+        <Route path="explore" element={<Explore />} />
       </Routes>
     </BrowserRouter>
   );

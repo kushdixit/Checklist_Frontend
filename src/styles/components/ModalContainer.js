@@ -12,7 +12,7 @@ export const SortWrapper = styled.div`
   box-shadow: 0px 7px 32px 11px rgb(207 207 207/ 50%);
   border-radius: 4px;
 
-  width: 228px;
+  width: 237px;
   text-align: left;
   left: -35px;
   top: 40px;
@@ -45,5 +45,9 @@ export const SortTextDiv = styled.div`
   border-top: 1px solid #e0e0e0;
   :hover {
     background-color: #f8f8f8;
+  }
+  svg {
+    width: 25px;
+    height: 25px;
   }
 `;
