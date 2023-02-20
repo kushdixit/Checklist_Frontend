@@ -117,7 +117,7 @@ export const NewSection = styled.div`
   display: flex;
 
   justify-content: space-between;
-  margin: 0 auto;
+
   height: auto;
 `;
 

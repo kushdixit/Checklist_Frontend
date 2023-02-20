@@ -3,12 +3,17 @@ import Navbar from "../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate } from "redux/actions/template";
 import ChecklistCards from "../components/ChecklistCards";
-import { LandingContainer, NavSection,IconInputFieldNew,SearchSection,LeftSection,RightSection } from "styles/pages/Explore";
+import { LandingContainer, NavSection,IconInputFieldNew,SearchSection,LeftSection,RightSection,Listeners,SubMainSection,ImageSection,Text,Border } from "styles/pages/Explore";
 import TextInput from "components/FormElements/TextInput";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
 import CheckliCard from "components/CheckliCard";
+import Google from "assets/images/google.png"
+import Person from "assets/images/person.png"
+import Flower from "assets/images/flower.jpg"
+import Footer from "components/Footer";
+import { MainSection } from "components/resetPassword";
 const Explore = ( search) => {
   const dispatch = useDispatch();
   const [updateSearch, SetUpdateSearch] = useState("");
@@ -58,10 +63,75 @@ const Explore = ( search) => {
             </form>
           )}
         </SearchSection>
-        
+        <SubMainSection>
         <LeftSection>  <h4>Popular Checklist</h4><CheckliCard/></LeftSection>
-        <RightSection></RightSection>
+        <RightSection>
+          <Listeners>
+            <h4>Top Publishers</h4>
+            <ImageSection>
+            <img src={Google} alt="Google" />
+            </ImageSection>
+            <ImageSection>
+            <img src={Flower} alt="Flower" />
+            </ImageSection>
+            <ImageSection>
+            <img src={Person} alt="Person" />
+            </ImageSection>
+            <ImageSection>
+            <button className="button">Become a Publisher</button>
+            </ImageSection>
+            <ImageSection>
+            <h4>Categories</h4>
+            </ImageSection>
+            <Text>
+              Education
+            </Text>
+            <Text>
+             Bussiness
+            </Text>
+            <Text>
+             Digital Marketing
+            </Text>
+            <Text>
+            Tech
+            </Text>
+
+            <Text>
+            Health and Fitness
+            </Text>
+            <Text>
+              Lifestyle
+            </Text>
+            <Text>
+             Gaming
+            </Text>
+            <Text>
+            Startup
+            </Text>
+            <Text>
+           Productivity
+            </Text>
+            <Text>
+             Travel
+            </Text>
+            <Border>
+
+            </Border>
+            <Text>
+            New
+            </Text>
+            <Text>
+           Popular
+            </Text>
+            <ImageSection>
+            <button className="button">See More</button>
+            </ImageSection>
+          </Listeners>
+        </RightSection>
+        </SubMainSection>
+        <Footer />
     </LandingContainer>
+    
   );
 };
 
