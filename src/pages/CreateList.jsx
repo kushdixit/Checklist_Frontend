@@ -173,7 +173,7 @@ const ImageWrapper = ({ title }) => {
       <img
         src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
         alt="pic"
-        style={{ width: "100%", maxWidth: "739px", height: "380px" }}
+        style={{ width: "100%", maxWidth: "739px", height: "auto" }}
       />
       <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
         {title}

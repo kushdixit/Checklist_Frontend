@@ -4,6 +4,9 @@ export const ShortBy = styled.div`
   display: flex;
   gap: 10px;
   cursor: pointer;
+  img {
+    width: 15px;
+  }
 `;
 export const SortWrapper = styled.div`
   z-index: 1;
@@ -30,7 +33,7 @@ export const ModalContainer = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
-  margin-left: 5px;
+  padding: 5px;
   align-items: center;
 `;
 export const SortTextDiv = styled.div`

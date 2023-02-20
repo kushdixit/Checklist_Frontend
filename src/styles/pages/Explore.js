@@ -40,7 +40,7 @@ export const LandingContainer = styled.div`
   p {
     font-size: 16px;
     margin-bottom: 0px;
-    line-height: 25px;
+    line-height: 5px;
     color: #777;
   }
 `;
@@ -91,19 +91,15 @@ export const NavSection = styled.div`
 `;
 
 export const LeftSection = styled.div`
-  padding-top: 1rem;
-  padding-bottom: 29px;
+  padding-bottom: 115px;
   padding-top: 8rem;
-  padding-bottom: 29px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+
   display: flex;
   width: 100%;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
+  max-width: 986px;
+  margin-left: 10px;
   flex-wrap: wrap;
-  gap: 46px 10px;
+  gap: 24px 30px;
   h4 {
     margin: 0;
     padding: 0;
@@ -111,12 +107,57 @@ export const LeftSection = styled.div`
     display: flex;
     width: 100%;
     align-items: flex-start;
-    padding-left: 33px;
+    font-size: 18px;
   }
 `;
+export const Listeners = styled.div`
+  padding-top: 8rem;
+  h4 {
+    margin: 0;
+    padding-bottom: 14px;
+    justify-content: left;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    font-size: 18px;
+  }
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 6px 0 0;
+  }
+`;
+
+export const ImageSection = styled.div`
+  .button {
+    color: #777;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 17px;
+    padding: 8px 15px;
+    margin: 20px 0 30px;
+  }
+`;
+
+export const Text = styled.div`
+  padding: 5px 0;
+
+  color: #777;
+  font-size: 14px;
+`;
+export const SubMainSection = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: 1220px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const RightSection = styled.div`
-  padding-top: 1rem;
-  padding-bottom: 29px;
+  text-align: left;
+  margin-right: 10px;
 `;
 export const LandingCardSection = styled.div`
   display: flex;
@@ -191,7 +232,7 @@ export const IconInputFieldNew = styled.div`
   } */
 `;
 export const SearchSection = styled.div`
-  margin-top: 20px;
+  margin-top: 40px;
   @media (max-width: 767px) {
     display: flex;
     width: 100%;
@@ -215,6 +256,13 @@ export const ChecklistButton = styled.div`
     font-size: 20px;
   }
 `;
+
+export const Border = styled.div`
+  border: 1px solid #e8e8e8;
+  margin: 20px 0;
+`;
+
+export const Main = styled.div``;
 export const SubHeading = styled.div`
   display: flex;
   width: 100%;
