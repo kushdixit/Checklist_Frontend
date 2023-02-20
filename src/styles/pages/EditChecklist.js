@@ -93,6 +93,7 @@ export const ChecklistTaskWrapper = styled.div`
   .task-form {
     display: flex;
     position: relative;
+    align-items: baseline;
   }
 `;
 export const TaskContainer = styled.div`

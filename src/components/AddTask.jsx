@@ -55,7 +55,7 @@ const AddTask = () => {
         onSubmit={handleSubmit(DescriptionHandler)}
       >
         <div style={{ width: "100%" }}>
-          <div style={{ display: "flex", gap: "10px" }}>
+          <div style={{ display: "flex", gap: "10px", alignItems: "baseline" }}>
             <ModalContainer
               ref={wrapperRef}
               onClick={() => {
@@ -86,6 +86,7 @@ const AddTask = () => {
                   fontFamily: "inherit",
                   resize: "none",
                   background: "inherit",
+                  borderBottom: "1px solid #007CCB",
                 }}
                 name="checklist"
                 placeholder={""}

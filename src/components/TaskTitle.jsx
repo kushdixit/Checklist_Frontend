@@ -58,7 +58,7 @@ const TaskTitle = () => {
   };
 
   useEffect(() => {
-    if (taskOrder.length) UpdateTaskOrder();
+    if (taskOrder?.length) UpdateTaskOrder();
   }, [taskOrder]);
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
@@ -75,7 +75,8 @@ const TaskTitle = () => {
   return (
     <>
       <DndProvider backend={HTML5Backend}>
-        {cards.map((item, index) => {
+        {pathId && ChecklistDetail?.tasks?.length === 0 && <AddTask />}
+        {cards?.map((item, index) => {
           if (item?.id === addTask)
             return (
               <>

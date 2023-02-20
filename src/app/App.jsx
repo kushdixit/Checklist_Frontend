@@ -8,16 +8,16 @@ import { gapi } from "gapi-script";
 const App = () => {
   const loaderVisible = useSelector((state) => state.loader?.loaderVisible);
 
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId:
-          "889277139020-75dbj8v51vs4af256tggoooibgpkqnao.apps.googleusercontent.com",
-        scope: "",
-      });
-    }
-    gapi.load("client:auth2", start);
-  });
+  // useEffect(() => {
+  //   function start() {
+  //     gapi.client.init({
+  //       clientId:
+  //         "889277139020-75dbj8v51vs4af256tggoooibgpkqnao.apps.googleusercontent.com",
+  //       scope: "",
+  //     });
+  //   }
+  //   gapi.load("client:auth2", start);
+  // });
 
   return (
     <div className="App">
