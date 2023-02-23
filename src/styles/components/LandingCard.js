@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SubSection = styled.div`
   width: 33.33333333%;
   position: relative;
-  min-height: 1px;
+  height: auto;
   padding-right: 15px;
   padding-left: 15px;
 `;
