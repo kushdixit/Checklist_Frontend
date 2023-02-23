@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import TextInput from "components/FormElements/TextInput";
 import Navbar from "../components/Navbar";
 import Button from "components/Button";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,12 +9,13 @@ import {
   LandingContainer,
   Heading,
   NavSection,
-  SubHeading,
   ChecklistButton,
   SecondHeading,
   LandingCardSection,
+  UpperContentWrapper,
 } from "styles/pages/Landing";
 import LandingCard from "../components/LandingCard";
+import Footer from "components/Footer";
 
 const Landing = () => {
   const dispatch = useDispatch();
@@ -31,49 +30,71 @@ const Landing = () => {
 
   return (
     <LandingContainer>
-      <NavSection>
-        <Navbar search={true} navType="home" />
-      </NavSection>
-      <Heading>Make your checklists, and browse through them.</Heading>
-      <h3>
-        Organize your mind or scale your bussiness the right way,every time.
-      </h3>
-      <ChecklistButton>
-        <Button
-          className="button"
-          handleClick={() =>
-            localStorage.getItem("access_token")
-              ? navigate("/check-list")
-              : navigate("/sign-in", {
-                  state: { redirect: "/check-list" },
-                })
-          }
+      <UpperContentWrapper>
+        <NavSection>
+          <Navbar search={true} navType="home" />
+        </NavSection>
+        <div
+          style={{
+            paddingTop: "50px",
+            paddingBottom: "170px",
+          }}
         >
-          Make your checklist
-        </Button>
-      </ChecklistButton>
-      <h1
-        style={{ cursor: "pointer" }}
-        onClick={() =>
-          localStorage.getItem("access_token")
-            ? navigate("/dashboard")
-            : navigate("/sign-in", {
-                state: { redirect: "/dashboard" },
-              })
-        }
-      >
-        Browse Your Checklist
-      </h1>
-      <SecondHeading>How it works</SecondHeading>
-      <h4>
-        Organize your mind or scale your bussiness the right way,every time.
-      </h4>
-      <LandingCardSection>
-        <LandingCard />
-      </LandingCardSection>
-      {allTemplate?.map((item, id) => (
-        <ChecklistCards key={id} item={item} />
-      ))}
+          <Heading>
+            Make your checklists,
+            <br />
+            and browse through them.
+          </Heading>
+          <h3
+            style={{
+              padding: "10px 0px 30px 0px",
+              fontSize: "20px",
+              lineHeight: "31px",
+              margin: "0px",
+              fontWeight: 500,
+            }}
+          >
+            Organize your mind or scale your bussiness the right way,every time.
+          </h3>
+          <ChecklistButton>
+            <Button
+              className="button"
+              handleClick={() =>
+                localStorage.getItem("access_token")
+                  ? navigate("/createChecklist")
+                  : navigate("/sign-in", {
+                      state: { redirect: "/createChecklist" },
+                    })
+              }
+            >
+              Make a free checklist
+            </Button>
+          </ChecklistButton>
+          <h1
+            style={{ cursor: "pointer", margin: "50px 0px" }}
+            onClick={() =>
+              localStorage.getItem("access_token")
+                ? navigate("/dashboard")
+                : navigate("/sign-in", {
+                    state: { redirect: "/dashboard" },
+                  })
+            }
+          >
+            Browse Your Checklist
+          </h1>
+          <SecondHeading>How it works</SecondHeading>
+          <p style={{ paddingBottom: "50px" }}>
+            Organize your mind or scale your bussiness the right way,every time.
+          </p>
+          <LandingCardSection>
+            <LandingCard />
+          </LandingCardSection>
+          {allTemplate?.map((item, id) => (
+            <ChecklistCards key={id} item={item} />
+          ))}
+        </div>
+      </UpperContentWrapper>
+      <Footer />
     </LandingContainer>
   );
 };

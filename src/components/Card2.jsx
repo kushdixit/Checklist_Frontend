@@ -142,6 +142,7 @@ export const Card = ({
       );
       dispatch(getChecklistBySubcategory(pathId));
     }
+    setShowButtons(false);
   };
 
   return (
@@ -268,7 +269,7 @@ export const Card = ({
                     }}
                   >
                     <button
-                      onClick={handleSubmit(TaskUpdateHandler)}
+                      onClick={() => handleSubmit(TaskUpdateHandler)}
                       style={{
                         backgroundColor: "#007ccb",
                         color: "white",
@@ -292,7 +293,7 @@ export const Card = ({
                         fontSize: "14px",
                       }}
                     >
-                      <div>Cancel</div>
+                      <div onClick={() => setShowButtons(false)}>Cancel</div>
                     </button>
                   </div>
                 )}
@@ -300,7 +301,6 @@ export const Card = ({
             </TaskSubContainer>
           </TaskContainer>
         </form>
-        {/* {isHovering && <AddTask />} */}
       </ChecklistTaskWrapper>
     </div>
   );

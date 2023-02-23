@@ -27,9 +27,10 @@ const DescriptionSliderModal = ({
           bottom: "auto",
           border: "1px solid rgb(204, 204, 204)",
           background: "rgb(255, 255, 255)",
-          padding: "15px 35px 24px 35px",
+          padding: "60px",
           width: "50%",
-          height: "auto",
+          height: modalType === "description" ? "100%" : "auto",
+          overflow: "hidden",
         },
       }}
       contentLabel="Example Modal"

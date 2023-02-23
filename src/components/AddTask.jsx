@@ -1,134 +1,96 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useForm } from "react-hook-form";
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import {
   ChecklistTaskWrapper,
   TaskFormSubWrapper,
+  TaskContainer,
+  AddTaskSubContainer,
 } from "styles/pages/EditChecklist";
-import TextArea from "components/FormElements/TextArea";
-import {
-  ShortBy,
-  SortWrapper,
-  ModalContainer,
-  SortTextDiv,
-} from "styles/components/ModalContainer";
-import Plus from "assets/SVG/Plus";
-import Delete from "assets/SVG/Delete";
+import CheckboxInput from "components/FormElements/CheckboxInput";
+import TextInput from "components/FormElements/TextInput";
 
-const AddTask = () => {
-  const [isOpenSort, setIsOpenSort] = useState(false);
-  const [showButtons, setShowButtons] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const wrapperRef = useRef();
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
-        setIsOpenSort(false);
-      }
-    }
+const AddTask = ({ pathId }) => {
+  const dispatch = useDispatch();
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [wrapperRef]);
-  function toggleab(data) {
-    setModal(data);
-  }
   const { handleSubmit, control } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
+    defaultValues: {
+      rememberMe: false,
+    },
   });
-  const DescriptionHandler = async (data) => {
-    console.log("data", data);
+
+  const watchData = useWatch({ control });
+
+  const AddTaskHandler = async (id) => {
+    let data = {
+      taskName: watchData?.checklist,
+      checklistMasterId: pathId,
+    };
+    const response = await dispatch(addNewTask(data, pathId));
+    if (response) dispatch(getChecklistBySubcategory(pathId));
   };
   return (
-    <ChecklistTaskWrapper
-      onMouseOver={() => setIsHovering(true)}
-      onMouseOut={() => setIsHovering(false)}
-    >
-      <form
-        style={{
-          display: "flex",
-          padding: "0px 60px !important",
-        }}
-        onSubmit={handleSubmit(DescriptionHandler)}
-      >
-        <div style={{ width: "100%" }}>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <ModalContainer
-              ref={wrapperRef}
-              onClick={() => {
-                setIsOpenSort(!isOpenSort);
-              }}
-            >
-              <ShortBy>
-                <Plus onClick={() => toggleab(!modal)} />
-                {isOpenSort && (
-                  <SortWrapper>
-                    <SortTextDiv>
-                      <Delete /> Delete
-                    </SortTextDiv>
-                  </SortWrapper>
+    <ChecklistTaskWrapper>
+      <form className="task-form" onSubmit={handleSubmit(AddTaskHandler)}>
+        <TaskContainer>
+          <AddTaskSubContainer>
+            <div style={{ paddingTop: "10px", paddingLeft: "5px" }}>
+              <Controller
+                name="rememberMe"
+                style={{ paddingTop: "10px" }}
+                control={control}
+                render={({ field }) => (
+                  <CheckboxInput
+                    className="checkBox"
+                    style={{
+                      paddingTop: "10px",
+                      width: "23px",
+                      height: "23px",
+                      margin: "0px",
+                    }}
+                    {...field}
+                    onChange={(e) => {
+                      // uncomment to enable checkbox
+                      // reset({
+                      //   rememberMe: e,
+                      // });
+                    }}
+                  />
                 )}
-              </ShortBy>
-            </ModalContainer>
+              />
+            </div>
             <TaskFormSubWrapper>
-              <TextArea
+              <TextInput
                 type="task"
                 style={{
                   fontWeight: "400",
                   fontSize: "16px",
                   lineHeight: "27px",
-                  margin: "5px 0px 0px 0px",
-                  width: "90%",
+                  margin: "6px 0px 0px 0px",
+                  width: "100%",
                   border: "none",
                   fontFamily: "inherit",
                   resize: "none",
                   background: "inherit",
+                  borderBottom: "1px solid rgb(0, 124, 203)",
                 }}
                 name="checklist"
-                placeholder={""}
+                placeholder={``}
                 defaultValue={""}
                 control={control}
-                onFocus={() => setShowButtons(!showButtons)}
-                onBlur={() => setShowButtons(!showButtons)}
+                handleKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.target.blur();
+                    AddTaskHandler();
+                  }
+                }}
               />
-              {showButtons && (
-                <div
-                  style={{ display: "flex", gap: "10px", marginBottom: "10px" }}
-                >
-                  <button
-                    style={{
-                      backgroundColor: "#007ccb",
-                      color: "white",
-                      padding: "4px 12px",
-                      marginTop: "3px",
-                      borderRadius: "3px",
-                      border: "none",
-                      fontSize: "14px",
-                    }}
-                  >
-                    <div>Save</div>
-                  </button>
-                  <button
-                    style={{
-                      backgroundColor: "#f5f5f5",
-                      color: "#000",
-                      padding: "4px 12px",
-                      marginTop: "3px",
-                      borderRadius: "3px",
-                      border: " 1px solid #ddd",
-                      fontSize: "14px",
-                    }}
-                  >
-                    <div>Cancel</div>
-                  </button>
-                </div>
-              )}
             </TaskFormSubWrapper>
-          </div>
-        </div>
+          </AddTaskSubContainer>
+        </TaskContainer>
       </form>
     </ChecklistTaskWrapper>
   );
