@@ -78,8 +78,8 @@ const CreateList = () => {
   const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (!token) navigate("/sign-in");
+    // const token = localStorage.getItem("access_token");
+    // if (!token) navigate("/sign-in");
     pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
