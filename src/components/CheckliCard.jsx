@@ -13,18 +13,20 @@ import {
   ProgressSection,
   Name,
   ProcessSection,
+  CheckliCardSection,
+  CardSection,
 } from "styles/components/CheckliCard";
 
 const CheckliCardWrapper = ({ data }) => {
   return (
-    <div>
+    <CardSection>
       <h4>{data?.templateName}</h4>
-      <div style={{ display: "flex" }}>
+      <CheckliCardSection style={{ display: "flex" }}>
         {data?.checklists?.map((item) => (
           <CheckliCard data={item} />
         ))}
-      </div>
-    </div>
+      </CheckliCardSection>
+    </CardSection>
   );
 };
 
