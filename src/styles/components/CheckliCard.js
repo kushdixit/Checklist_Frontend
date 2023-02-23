@@ -49,6 +49,16 @@ export const ProgressSection = styled.div`
     border-radius: 0 !important;
     width: 215px;
   }
+  @media (max-width: 1196px) {
+    img {
+      width: 160px;
+    }
+  }
+  @media (max-width: 990px) {
+    img {
+      width: 466px;
+    }
+  }
 `;
 export const CardMainSection = styled.div`
   display: flex;
@@ -117,7 +127,7 @@ export const NewSection = styled.div`
   display: flex;
 
   justify-content: space-between;
-  margin: 0 auto;
+
   height: auto;
 `;
 
@@ -296,16 +306,27 @@ export const Small = styled.div`
 export const ImageSection = styled.div`
   background: #fff;
   border: 1px solid #eee;
-  padding: 0px 0px 5px 0px;
+  /* padding: 0px 0px 0 0px; */
   margin-bottom: 10px;
   border-radius: 15px;
   width: 100%;
   max-width: 286px;
-  img {
-    width: 286px;
-    height: auto;
-    border-radius: 15px 15px 0 0;
+
+  @media (max-width: 1276px) {
+    width: 100%;
+    max-width: 264px;
   }
+
+  @media (max-width: 1196px) {
+    width: 100%;
+    max-width: 209px;
+  }
+
+  @media (max-width: 990px) {
+    width: 100%;
+    max-width: 630px;
+  }
+
   h4 {
     display: block;
 
@@ -326,8 +347,54 @@ export const ImageSection = styled.div`
     padding-bottom: 10px;
   }
 `;
+
+export const ProcessSection = styled.div`
+  background: #fff;
+  /* border: 1px solid #eee; */
+  border-radius: 26px 15px 0 0;
+  width: 100%;
+  max-width: 286px;
+  height: auto;
+  border-bottom: none;
+
+  img {
+    width: 286px;
+    height: auto;
+    border-radius: 12px 14px 0 0;
+  }
+  @media (max-width: 1276px) {
+    width: 100%;
+    max-width: 264px;
+  }
+  @media (max-width: 1276px) {
+    img {
+      width: 264px;
+      height: auto;
+    }
+  }
+  @media (max-width: 1196px) {
+    width: 100%;
+    max-width: 209px;
+  }
+  @media (max-width: 1196px) {
+    img {
+      width: 209px;
+      height: auto;
+    }
+  }
+  @media (max-width: 990px) {
+    width: 100%;
+    max-width: 630px;
+  }
+  @media (max-width: 990px) {
+    img {
+      width: 630px;
+      height: auto;
+    }
+  }
+`;
 export const HeaderSection = styled.div`
-  padding: 0 10px;
+  padding: 0 10px 35px 10px;
   h4 {
     display: block;
 
@@ -346,8 +413,27 @@ export const HeaderSection = styled.div`
     padding-top: 10px;
     transition: color 0.5s;
     padding-bottom: 10px;
+    @media (max-width: 990px) {
+      justify-content: center;
+
+      font-weight: 400;
+      font-size: 24px;
+      width: 100%;
+    }
+    @media (max-width: 1196px) {
+      font-size: 20px;
+    }
   }
-  img {
+  /* img {
     width: 260px;
+  } */
+
+  @media (max-width: 990px) {
+    justify-content: center;
+    h4 {
+      font-weight: 400;
+      font-size: 24px;
+      width: 100%;
+    }
   }
 `;

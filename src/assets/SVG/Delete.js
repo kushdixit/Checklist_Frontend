@@ -5,7 +5,7 @@ const SvgComponent = (props) => (
     width="23"
     height="23"
     fill="none"
-    viewBox="0 0 28 30"
+    viewBox="-4 0 37 30"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path

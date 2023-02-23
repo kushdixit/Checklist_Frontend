@@ -138,7 +138,8 @@ const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
         {data?.isSubtask ? "Make a Task" : "Sub-Task"}
       </SortTextDiv>
       <SortTextDiv onClick={DeleteHandler}>
-        <Delete /> Delete
+        <Delete    style={{    width:"10px"             
+                    }} /> Delete
       </SortTextDiv>
     </SortWrapper>
   );
