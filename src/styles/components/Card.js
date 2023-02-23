@@ -145,6 +145,7 @@ export const SubSection = styled.div`
   width: 100%;
   @media (max-width: 723px) {
     width: 100%;
+    max-width: 300px;
   }
 `;
 export const SubSectionNew = styled.div`

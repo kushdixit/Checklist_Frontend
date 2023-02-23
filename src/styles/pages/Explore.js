@@ -36,13 +36,20 @@ export const LandingContainer = styled.div`
     font-size: 45px;
     line-height: 45px;
     margin-bottom: auto;
+    @media (max-width: 658px) {
+      font-size: 30px;
+      padding: 0 22px;
+    }
   }
   p {
     font-size: 16px;
     margin-top: 3px;
     line-height: 21px;
     color: #777;
-    padding: 0;
+
+    @media (max-width: 658px) {
+      padding: 0 22px !important;
+    }
   }
 `;
 
@@ -107,8 +114,15 @@ export const LeftSection = styled.div`
     justify-content: left;
     display: flex;
     width: 100%;
-    align-items: flex-start;
+
+    align-items: center;
     font-size: 18px;
+    @media (max-width: 658px) {
+      align-items: center;
+    }
+  }
+  @media (max-width: 658px) {
+    justify-content: center;
   }
   @media (max-width: 1276px) {
     width: 100%;
@@ -251,7 +265,7 @@ export const IconInputFieldNew = styled.div`
   }
   @media (max-width: 610px) {
     input {
-      width: 72vw;
+      width: 46vw;
     }
   }
   /* @media (max-width: 532px) {
