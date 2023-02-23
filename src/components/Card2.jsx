@@ -62,7 +62,6 @@ export const Card = ({
       rememberMe: data?.ischecked,
     },
   });
-
   const watchData = useWatch({ control });
 
   const ref = useRef(null);
@@ -234,6 +233,7 @@ export const Card = ({
                 )}
                 {showButtons && (
                   <TextArea
+                  autoFocus="autoFocus"
                     type="task"
                     style={{
                       fontWeight: "400",
@@ -241,10 +241,12 @@ export const Card = ({
                       lineHeight: "27px",
                       margin: "6px 0px 0px 0px",
                       width: "90%",
-                      border: "none",
                       fontFamily: "inherit",
                       resize: "none",
-                      background: "inherit",
+                      background: "#fff",
+                      outline: "none",
+                      borderRadius:'5px',
+                      border: "1px solid rgb(224,224,224)",
                     }}
                     name="checklist"
                     placeholder={``}
