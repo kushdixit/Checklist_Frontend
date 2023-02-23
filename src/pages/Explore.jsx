@@ -78,12 +78,12 @@ const Explore = (search) => {
         )}
       </SearchSection>
       <SubMainSection>
-        <div>
+        <LeftSection>
           {allTemplate?.map((item) => (
             <CheckliCardWrapper data={item} />
           ))}
-        </div>
-        <LeftSection> {/* <CheckliCard /> */}</LeftSection>
+        </LeftSection>
+        {/* <CheckliCard /> */}
         <RightSection>
           <Listeners>
             <h4>Top Publishers</h4>
