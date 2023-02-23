@@ -29,11 +29,14 @@ export const EditSection = styled.div`
 `;
 export const Logintext = styled.div`
   margin: 0px;
-  padding: 0px;
+  padding: 0px 10px 0 10px;
   color: rgb(29, 46, 136);
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
+  @media (max-width: 658px) {
+    padding: 10px 20px 0 20px;
+  }
 `;
 export const FreeTemplatetext = styled.div`
   margin: 0px;
@@ -77,7 +80,10 @@ export const HeadingText = styled.div`
   font-weight: 700;
   display: flex;
   align-items: center;
-  padding-left: 6px;
+  padding-left: 10px;
+  @media (max-width: 767px) {
+    padding-left: 20px;
+  }
 `;
 
 export const LogoSearchSection = styled.div`
@@ -364,7 +370,7 @@ export const IconInputFieldNew = styled.div`
   }
   @media (max-width: 610px) {
     input {
-      width: 72vw;
+      width: 46vw;
     }
   }
   /* @media (max-width: 532px) {

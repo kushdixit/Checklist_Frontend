@@ -12,6 +12,7 @@ export const SubSection = styled.div`
   margin-right: 9px;
   @media (max-width: 723px) {
     width: 100%;
+    max-width: 300px;
   }
 `;
 
