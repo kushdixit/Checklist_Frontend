@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import FirstImage from "assets/images/checklist.svg";
 import SecondImage from "assets/images/secondimage.jpg";
+import CheckliCard from "components/CheckliCard";
 import ThirdImage from "assets/images/thirdimage.jpg";
 import { useDispatch } from "react-redux";
 import FourthImage from "assets/images/firstimage.jpg";
@@ -41,15 +42,16 @@ const ChecklistCards = ({ item }) => {
             .reverse()
             .map((subItem, index) => {
               return (
-                <Card
-                  key={index}
-                  index={index}
-                  item={subItem}
-                  Checklist={Checklist}
-                  showEditable={false}
-                  cardType="default"
-                  templateName={item?.templateName}
-                />
+                <CheckliCard data={subItem} />
+                // <Card
+                //   key={index}
+                //   index={index}
+                //   item={subItem}
+                //   Checklist={Checklist}
+                //   showEditable={false}
+                //   cardType="default"
+                //   templateName={item?.templateName}
+                // />
               );
             })}
         </FirstSection>

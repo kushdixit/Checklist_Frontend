@@ -19,7 +19,7 @@ import TextInput from "components/FormElements/TextInput";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { SET_SEARCH } from "redux/actions/action_types";
-import CheckliCardWrapper from "components/CheckliCard";
+import CheckliCardWrapper from "components/CheckliCardWrapper";
 import Google from "assets/images/google.png";
 import Person from "assets/images/person.png";
 import Flower from "assets/images/flower.jpg";

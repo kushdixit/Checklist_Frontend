@@ -15,22 +15,11 @@ import {
   ProcessSection,
 } from "styles/components/CheckliCard";
 
-const CheckliCardWrapper = ({ data }) => {
-  return (
-    <div>
-      <h4>{data?.templateName}</h4>
-      <div style={{ display: "flex" }}>
-        {data?.checklists?.map((item) => (
-          <CheckliCard data={item} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
 const CheckliCard = ({ data }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  console.log("data", data);
 
   return (
     <NewSection
@@ -59,4 +48,4 @@ const CheckliCard = ({ data }) => {
   );
 };
 
-export default CheckliCardWrapper;
+export default CheckliCard;
