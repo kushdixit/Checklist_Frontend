@@ -135,10 +135,9 @@ export const IconInputField = styled.div`
 export const NewSection = styled.div`
   position: relative;
   display: flex;
-
   justify-content: space-between;
-
   height: auto;
+  cursor: pointer;
 `;
 
 export const SelectFieldSection = styled.div`
