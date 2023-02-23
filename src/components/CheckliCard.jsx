@@ -13,22 +13,7 @@ import {
   ProgressSection,
   Name,
   ProcessSection,
-  CheckliCardSection,
-  CardSection,
 } from "styles/components/CheckliCard";
-
-const CheckliCardWrapper = ({ data }) => {
-  return (
-    <CardSection>
-      <h4>{data?.templateName}</h4>
-      <CheckliCardSection style={{ display: "flex" }}>
-        {data?.checklists?.map((item) => (
-          <CheckliCard data={item} />
-        ))}
-      </CheckliCardSection>
-    </CardSection>
-  );
-};
 
 const CheckliCard = ({ data }) => {
   const navigate = useNavigate();
@@ -61,4 +46,4 @@ const CheckliCard = ({ data }) => {
   );
 };
 
-export default CheckliCardWrapper;
+export default CheckliCard;
