@@ -39,9 +39,10 @@ export const LandingContainer = styled.div`
   }
   p {
     font-size: 16px;
-    margin-bottom: 0px;
-    line-height: 5px;
+    margin-top: 3px;
+    line-height: 21px;
     color: #777;
+    padding: 0;
   }
 `;
 
@@ -109,6 +110,12 @@ export const LeftSection = styled.div`
     align-items: flex-start;
     font-size: 18px;
   }
+  @media (max-width: 1276px) {
+    width: 100%;
+  }
+  @media (max-width: 990px) {
+    justify-content: center;
+  }
 `;
 export const Listeners = styled.div`
   padding-top: 8rem;
@@ -139,6 +146,12 @@ export const ImageSection = styled.div`
     padding: 8px 15px;
     margin: 20px 0 30px;
   }
+  @media (max-width: 1276px) {
+    .button {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+  }
 `;
 
 export const Text = styled.div`
@@ -153,11 +166,27 @@ export const SubMainSection = styled.div`
   max-width: 1220px;
   margin-left: auto;
   margin-right: auto;
+  @media (max-width: 1276px) {
+    width: 100%;
+    max-width: 1050px;
+  }
+  @media (max-width: 1196px) {
+    width: 100%;
+    max-width: 880px;
+  }
 `;
 
 export const RightSection = styled.div`
   text-align: left;
   margin-right: 10px;
+  @media (max-width: 1276px) {
+    width: 100%;
+    max-width: 135px;
+    margin-left: 10px;
+  }
+  @media (max-width: 990px) {
+    display: none;
+  }
 `;
 export const LandingCardSection = styled.div`
   display: flex;
@@ -232,7 +261,7 @@ export const IconInputFieldNew = styled.div`
   } */
 `;
 export const SearchSection = styled.div`
-  margin-top: 40px;
+  margin-top: 44px;
   @media (max-width: 767px) {
     display: flex;
     width: 100%;
@@ -263,6 +292,7 @@ export const Border = styled.div`
 `;
 
 export const Main = styled.div``;
+export const PopularHeading = styled.div``;
 export const SubHeading = styled.div`
   display: flex;
   width: 100%;
