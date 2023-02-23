@@ -47,8 +47,8 @@ export const LandingContainer = styled.div`
     line-height: 21px;
     color: #777;
 
-    @media (max-width: 658px) {
-      padding: 0 22px !important;
+    @media (max-width: 970px) {
+      padding: 0 30px !important;
     }
   }
 `;
@@ -114,11 +114,9 @@ export const LeftSection = styled.div`
     justify-content: left;
     display: flex;
     width: 100%;
-
-    align-items: center;
+    align-items: flex-start;
     font-size: 18px;
     @media (max-width: 658px) {
-      align-items: center;
     }
   }
   @media (max-width: 658px) {

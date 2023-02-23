@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate } from "redux/actions/template";
-import ChecklistCards from "../components/ChecklistCards";
 import {
   LandingContainer,
   NavSection,
@@ -18,42 +17,42 @@ import {
 } from "styles/pages/Explore";
 import TextInput from "components/FormElements/TextInput";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
-import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
-import CheckliCard from "components/CheckliCard";
+import { useNavigate } from "react-router-dom";
+import { SET_SEARCH } from "redux/actions/action_types";
+import CheckliCardWrapper from "components/CheckliCard";
 import Google from "assets/images/google.png";
 import Person from "assets/images/person.png";
 import Flower from "assets/images/flower.jpg";
 import Footer from "components/Footer";
-import { MainSection } from "components/resetPassword";
+
 const Explore = (search) => {
   const dispatch = useDispatch();
   const [updateSearch, SetUpdateSearch] = useState("");
   const navigate = useNavigate();
   const allTemplate = useSelector((state) => state.Template?.allTemplate);
+
   useEffect(() => {
     dispatch(getAllTemplate());
   }, []);
-  const {
-    handleSubmit: submitData,
-    control: formControl,
-    watch,
-    reset,
-  } = useForm({
+
+  const { handleSubmit: submitData, control: formControl } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
   });
+
   const searchData = (data) => {
     dispatch({ type: SET_SEARCH, payload: data?.listSearch });
     navigate(`/search/${data?.listSearch}`, {
       state: { searchedterm: data?.listSearch },
     });
   };
+
   useEffect(() => {
     if (updateSearch === "") {
       dispatch({ type: SET_SEARCH, payload: "" });
     } else dispatch({ type: SET_SEARCH, payload: updateSearch });
   }, [updateSearch]);
+
   return (
     <LandingContainer>
       <NavSection>
@@ -80,10 +79,11 @@ const Explore = (search) => {
       </SearchSection>
       <SubMainSection>
         <LeftSection>
-          {" "}
-          <h4>Popular Checklist</h4>
-          <CheckliCard />
+          {allTemplate?.map((item) => (
+            <CheckliCardWrapper data={item} />
+          ))}
         </LeftSection>
+        {/* <CheckliCard /> */}
         <RightSection>
           <Listeners>
             <h4>Top Publishers</h4>

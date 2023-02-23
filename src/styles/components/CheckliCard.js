@@ -25,6 +25,25 @@ export const WrapSubSectionNew = styled.div`
   }
 `;
 
+export const CardSection = styled.div`
+  h4 {
+    @media (max-width: 990px) {
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+    }
+  }
+`;
+export const CheckliCardSection = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 938px;
+  gap: 28px;
+  @media (max-width: 990px) {
+    justify-content: center;
+  }
+`;
 export const Name = styled.div`
   display: flex;
   color: #777;
@@ -135,10 +154,9 @@ export const IconInputField = styled.div`
 export const NewSection = styled.div`
   position: relative;
   display: flex;
-
   justify-content: space-between;
-
   height: auto;
+  cursor: pointer;
 `;
 
 export const SelectFieldSection = styled.div`

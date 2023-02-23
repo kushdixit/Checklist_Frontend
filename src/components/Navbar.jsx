@@ -183,7 +183,7 @@ const NavBar = ({
             </Footer>
           )}
           {navType === "home" && (
-            <FreeTemplatetext onClick={() => navigate("/freeTemplate")}>
+            <FreeTemplatetext onClick={() => navigate("/explore")}>
               Free Template
             </FreeTemplatetext>
           )}
@@ -288,7 +288,7 @@ const NavBar = ({
               </EditSection>
             )}
             {navType == "home" && (
-              <FreeTemplatetext onClick={() => navigate("/freeTemplate")}>
+              <FreeTemplatetext onClick={() => navigate("/explore")}>
                 Free Template
               </FreeTemplatetext>
             )}
