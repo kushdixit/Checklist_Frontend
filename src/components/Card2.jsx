@@ -298,7 +298,6 @@ export const Card = ({
             </TaskSubContainer>
           </TaskContainer>
         </form>
-        {/* {isHovering && <AddTask />} */}
       </ChecklistTaskWrapper>
     </div>
   );

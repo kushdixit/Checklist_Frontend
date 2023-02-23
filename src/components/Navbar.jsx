@@ -103,7 +103,7 @@ const NavBar = ({
   };
 
   const newTemplateHandler = async () => {
-    navigate("/check-list");
+    navigate("/createChecklist");
   };
 
   const searchData = (data) => {

@@ -75,7 +75,9 @@ const TaskTitle = () => {
   return (
     <>
       <DndProvider backend={HTML5Backend}>
-        {pathId && ChecklistDetail?.tasks?.length === 0 && <AddTask />}
+        {pathId && ChecklistDetail?.tasks?.length === 0 && (
+          <AddTask pathId={pathId} />
+        )}
         {cards?.map((item, index) => {
           if (item?.id === addTask)
             return (
@@ -90,7 +92,7 @@ const TaskTitle = () => {
                   taskOrder={taskOrder}
                   pathId={pathId}
                 />
-                <AddTask />
+                <AddTask pathId={pathId} />
               </>
             );
 

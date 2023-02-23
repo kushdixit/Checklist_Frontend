@@ -109,7 +109,12 @@ export const TaskSubContainer = styled.div`
     isPriority ? "#fff3f3" : isHovering ? "#f8f8f8" : "inherit"};
   margin-left: ${({ isSubtask }) => (isSubtask ? "35px" : "0px")};
 `;
-
+export const AddTaskSubContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  background-color: inherit;
+  margin-left: "0px";
+`;
 export const TaskFormSubWrapper = styled.div`
   display: flex;
   width: 100%;
