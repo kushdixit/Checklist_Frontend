@@ -8,6 +8,9 @@ import {
   LinkSection,
   LinkContent,
   StyleButtonWrapper,
+  ViewCount,
+  CopyButtonWrapper,
+  // ButtonsMainWrapper,
 } from "styles/pages/EditChecklist";
 import SliderModal from "components/SliderModal";
 
@@ -37,6 +40,9 @@ const SubModal = ({
   buttonName,
   buttonNew,
   embed,
+  viewCount,
+  copyCount,
+  downloadCount,
 }) => {
   const [modal, setModal] = useState(false);
   const [newmodal, setNewModal] = useState(false);
@@ -49,6 +55,13 @@ const SubModal = ({
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
+
+  const CopyHandler = async () => {
+    console.log("hey");
+    // const res = await dispatch(CopyChecklist(pathId, userEmail));
+    // !res?.error && navigate(`/createChecklist/${res?.data?.data}`);
+  };
+
   return (
     <RightContentWrapper>
       <SliderModal
@@ -58,6 +71,33 @@ const SubModal = ({
       />
 
       <ShareSection>
+        {viewCount && (
+          <ViewCount>
+            <strong>{viewCount}</strong>
+            <br />
+            <p>Views</p>
+          </ViewCount>
+        )}
+        {copyCount && (
+          <CopyButtonWrapper btnColor="#ec4e20" textColor="#fff">
+            <p>
+              <span>{copyCount}</span>
+              <br />
+              copies saved
+            </p>
+            <button onClick={CopyHandler}>Copy</button>
+          </CopyButtonWrapper>
+        )}
+        {downloadCount && (
+          <CopyButtonWrapper btnColor="#f0f0f0" textColor="#000">
+            <p>
+              <span>{downloadCount}</span>
+              <br />
+              downloads
+            </p>
+            <button>pdf</button>
+          </CopyButtonWrapper>
+        )}
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>
           {buttonName && (

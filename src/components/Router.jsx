@@ -9,6 +9,8 @@ import Search from "pages/search";
 import CreateList from "pages/CreateList";
 import FreeTemplate from "pages/FreeTemplate";
 import Explore from "pages/Explore";
+import ViewList from "pages/ViewList";
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -20,6 +22,8 @@ const Router = () => {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="createChecklist" exact element={<CreateList />} />
         <Route path="createChecklist/:id" exact element={<CreateList />} />
+        <Route path="checklists" exact element={<ViewList />} />
+        <Route path="checklists/:id" exact element={<ViewList />} />
         <Route path="check-list" exact element={<CheckList />} />
         <Route path="check-list/:id" element={<CheckList />} />
         <Route path="landing" element={<Landing />} />
