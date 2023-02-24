@@ -18,9 +18,12 @@ const TaskTitle = () => {
   );
   const addTask = useSelector((state) => state.addTask?.addTask);
   const [cards, setCards] = useState([]);
+  const [editable, setEditable] = useState(false);
   const [taskOrder, setTaskOrder] = useState([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) setEditable(true);
     setCards(ChecklistDetail?.tasks);
   }, []);
 
@@ -91,6 +94,7 @@ const TaskTitle = () => {
                   data={item}
                   taskOrder={taskOrder}
                   pathId={pathId}
+                  editable={editable}
                 />
                 <AddTask pathId={pathId} />
               </>
@@ -106,6 +110,7 @@ const TaskTitle = () => {
               data={item}
               taskOrder={taskOrder}
               pathId={pathId}
+              editable={editable}
             />
           );
         })}

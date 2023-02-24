@@ -32,6 +32,7 @@ export const Card = ({
   data,
   taskOrder,
   pathId,
+  editable,
 }) => {
   const [isOpenSort, setIsOpenSort] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
@@ -161,14 +162,13 @@ export const Card = ({
               }}
             >
               <ShortBy>
-              <img src={Plus} alt="Plus"  onClick={() => {
-                    toggleab(!modal);
-                  }}/>
-                {/* <Plus
+                <img
+                  src={Plus}
+                  alt="Plus"
                   onClick={() => {
                     toggleab(!modal);
                   }}
-                /> */}
+                />
                 {isOpenSort && (
                   <TaskColon
                     setIsHovering={setIsHovering}
@@ -233,7 +233,7 @@ export const Card = ({
                 )}
                 {showButtons && (
                   <TextArea
-                  autoFocus="autoFocus"
+                    autoFocus="autoFocus"
                     type="task"
                     style={{
                       fontWeight: "400",
@@ -245,7 +245,7 @@ export const Card = ({
                       resize: "none",
                       background: "#fff",
                       outline: "none",
-                      borderRadius:'5px',
+                      borderRadius: "5px",
                       border: "1px solid rgb(224,224,224)",
                     }}
                     name="checklist"

@@ -23,7 +23,7 @@ const CheckliCard = ({ data }) => {
     <NewSection
       onClick={async () => {
         const re = await dispatch(getChecklistBySubcategory(data.id));
-        re.error === false && navigate(`/createChecklist/${data.id}`);
+        re.error === false && navigate(`/checklists/${data.id}`);
       }}
     >
       <ImageSection>
