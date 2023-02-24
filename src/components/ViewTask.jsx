@@ -9,11 +9,10 @@ const ViewTask = () => {
     pathId ? state.checklist : null
   );
   const [cards, setCards] = useState([]);
-  const [setEditable] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (!token) setEditable(true);
+    // const token = localStorage.getItem("access_token");
+    // if (!token) setEditable(true);
     setCards(ChecklistDetail?.tasks);
   }, []);
 
