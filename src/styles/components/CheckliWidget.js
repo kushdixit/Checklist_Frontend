@@ -3,6 +3,7 @@ export const FirstSection = styled.div`
   display: flex;
   grid-gap: 37px;
   width: 100%;
+
   margin: 0 0 0 10px;
   flex-wrap: wrap;
   justify-content: left;
@@ -14,6 +15,11 @@ export const FirstSection = styled.div`
   }
 `;
 
+export const Content = styled.div`
+  display: flex;
+  color: #006db3;
+  padding: 10px 0 10px 24px;
+`;
 export const WrapSubSectionNew = styled.div`
   h3 {
     margin: 0;
@@ -51,6 +57,7 @@ export const Name = styled.div`
   font-weight: 400;
   width: 100%;
   gap: 10px;
+  padding-left: 12px;
   img {
     width: 34px !important;
     border-radius: 30px !important;
@@ -100,6 +107,7 @@ export const CardMainSection = styled.div`
 export const Section = styled.div``;
 export const Morecontent = styled.div`
   position: absolute;
+
   justify-content: center;
   top: 78px;
   right: 12px;
@@ -109,6 +117,7 @@ export const Morecontent = styled.div`
   background: #fff;
   width: 100%;
   max-width: 307px;
+
   h5 {
     padding: 0;
     margin: 4px 0;
@@ -127,15 +136,18 @@ export const IconInputField = styled.div`
     padding: 14px 54.5px;
     border: 1px solid #c9c9c9;
     background: unset;
+
     border-radius: 20px;
     ::placeholder {
       font-size: 16px;
       color: #9d9d9d;
     }
+
     :-ms-input-placeholder {
       font-size: 16px;
       color: #9d9d9d;
     }
+
     ::-ms-input-placeholder {
       font-size: 16px;
       color: #9d9d9d;
@@ -241,6 +253,7 @@ export const Image = styled.div`
   -ms-flex-pack: center;
   /* justify-content: center; */
   padding-top: 7px;
+
   svg {
     width: 60px;
   }
@@ -318,28 +331,33 @@ export const EmptyMessage = styled.div`
 export const Small = styled.div`
   display: inline-block;
   font-size: 13px;
-  color: #aeb2b4;
+  color: #000;
   margin-left: 5px;
   text-align: left;
   width: 100%;
+  padding-left: 12px;
 `;
 
 export const ImageSection = styled.div`
-  background: #fff;
   border: 1px solid #eee;
   /* padding: 0px 0px 0 0px; */
   margin-bottom: 10px;
   border-radius: 15px;
   width: 100%;
-  max-width: 286px;
+  max-width: 352px;
+  box-shadow: 0 6px 15px 0 rgb(36 37 38 / 8%);
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
   @media (max-width: 1276px) {
     width: 100%;
     max-width: 264px;
   }
+
   @media (max-width: 1196px) {
     width: 100%;
     max-width: 209px;
   }
+
   @media (max-width: 990px) {
     width: 100%;
     max-width: 630px;
@@ -354,11 +372,14 @@ export const ImageSection = styled.div`
   }
   h4 {
     display: block;
+
     overflow: hidden;
+
     display: flex;
     width: 231px;
     margin: 0;
     text-align: left;
+
     color: #000;
     font-weight: 600;
     font-size: 24px;
@@ -371,17 +392,16 @@ export const ImageSection = styled.div`
 `;
 
 export const ProcessSection = styled.div`
-  background: #fff;
   /* border: 1px solid #eee; */
-  border-radius: 26px 15px 0 0;
+
   width: 100%;
-  max-width: 286px;
+  max-width: 352px;
   height: auto;
   border-bottom: none;
+
   img {
-    width: 286px;
+    width: 352px;
     height: auto;
-    border-radius: 12px 14px 0 0;
   }
   @media (max-width: 1276px) {
     width: 100%;
@@ -427,40 +447,14 @@ export const ProcessSection = styled.div`
 export const HeaderSection = styled.div`
   padding: 0 10px 35px 10px;
   h4 {
-    display: block;
-    overflow: hidden;
-    display: flex;
-    width: 231px;
-    margin: 0;
-    text-align: left;
-    align-items: flex-start;
-    color: #000;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
-    margin: 5px;
-    padding-top: 10px;
-    transition: color 0.5s;
-    padding-bottom: 10px;
-    @media (max-width: 990px) {
-      justify-content: center;
-      font-weight: 400;
-      font-size: 24px;
-      width: 100%;
-    }
-    @media (max-width: 1196px) {
-      font-size: 20px;
-    }
-  }
-  /* img {
-    width: 260px;
-  } */
-  @media (max-width: 990px) {
-    justify-content: center;
-    h4 {
-      font-weight: 400;
-      font-size: 24px;
-      width: 100%;
-    }
+    font-size: 14px;
+    /* margin: 5px; */
+    line-height: 20px;
+    font-weight: 400;
+    padding: 24px 20px 0;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: #006db3;
+    width: 343px;
   }
 `;

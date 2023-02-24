@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
+import ChecklistWidget from "components/ChecklistWidget";
 import SubModal from "components/SubModal";
 import DescriptionSliderModal from "components/DescriptionSliderModal";
 import Footer from "components/Footer";
@@ -12,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
+import { getAllTemplate } from "redux/actions/template";
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
@@ -20,15 +22,23 @@ import {
   RightSection,
   LeftContentWrapper,
   RightCardWrapper,
+  ChecklistWidgetSection,
+  RelationHeading,
+  ProgressSection,
+  LeftHeader,
+  ButtonSection,
+  SecondContent,
+  TagButton,
+  TagContent,
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
-
+import Tick from "assets/images/tick.jpg";
 const ViewList = () => {
   const [newmodal, setNewModal] = useState(false);
   function toggleabc(data) {
     setNewModal(data);
   }
-
+  const allTemplate = useSelector((state) => state.Template?.allTemplate);
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,7 +47,9 @@ const ViewList = () => {
     pathId ? state.checklist : null
   );
   const [api, contextHolder] = notification.useNotification();
-
+  useEffect(() => {
+    dispatch(getAllTemplate());
+  }, []);
   useEffect(() => {
     // const token = localStorage.getItem("access_token");
     // if (!token) navigate("/sign-in");
@@ -101,12 +113,42 @@ const ViewList = () => {
               <button onClick={() => toggleabc(true)}>description</button>
               <ViewTask toggleabc={toggleabc} />
             </LeftContentWrapper>
+            <ProgressSection>
+              <img src={Tick} alt="tick" />
+            </ProgressSection>
+            <LeftHeader>
+              This checklist was created by officialcheckli
+            </LeftHeader>
+            <ButtonSection>
+              <button className="button">Save this checklist</button>
+            </ButtonSection>
+            <SecondContent>2290 copies saved</SecondContent>
           </LeftSection>
           <RightSection>
             <CopyCard />
+            <TagContent>Tags</TagContent>
+            <TagButton>
+              <button className="button">digital-marketing-checklist</button>
+            </TagButton>
+            <TagButton>
+              <button className="button">digital-marketing</button>
+            </TagButton>
+            <TagButton>
+              <button className="button">digital-marketing-assistant</button>
+            </TagButton>
+            <TagButton>
+              <button className="button">digital-marketing-strategy</button>
+            </TagButton>
           </RightSection>
         </ChecklistSubWrapper>
+        <RelationHeading>Related Checklists</RelationHeading>
+        <ChecklistWidgetSection>
+          {allTemplate?.map((item) => (
+            <ChecklistWidget data={item} />
+          ))}
+        </ChecklistWidgetSection>
       </ChecklistMainWrapper>
+
       <Footer />
     </Section>
   );
