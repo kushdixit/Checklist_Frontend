@@ -139,6 +139,23 @@ export const ShareText = styled.div`
   font-weight: 600;
   opacity: 0.7;
 `;
+export const ChecklistTitleText = styled.h1`
+  font-size: 32px;
+  letter-spacing: 0px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0.67em 0;
+  margin-bottom: 5px;
+`;
+export const ChecklistDescText = styled.div`
+  width: 100%;
+  color: #000000;
+  resize: none;
+  font-size: 18px;
+  line-height: 25px;
+  margin: 15px 0 40px 0;
+`;
 export const Preview = styled.a`
   text-decoration: none;
   font-size: 14px;

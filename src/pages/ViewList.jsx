@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import DescriptionTitle from "components/DescriptionTitle";
-import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
 import DescriptionSliderModal from "components/DescriptionSliderModal";
 import Footer from "components/Footer";
@@ -20,6 +18,8 @@ import {
   RightSection,
   LeftContentWrapper,
   RightCardWrapper,
+  ChecklistTitleText,
+  ChecklistDescText,
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
 
@@ -93,8 +93,12 @@ const ViewList = () => {
         <ChecklistSubWrapper>
           <LeftSection>
             <LeftContentWrapper>
-              <ChecklistTitle />
-              <DescriptionTitle />
+              <ChecklistTitleText>
+                {ChecklistDetail?.checklistName}
+              </ChecklistTitleText>
+              <ChecklistDescText>
+                {ChecklistDetail?.checklistDescription}
+              </ChecklistDescText>
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
