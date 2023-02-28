@@ -41,10 +41,13 @@ export const Container = styled.div`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 6;
+  padding-right: 30px;
   button {
-    width: 100%;
     cursor: pointer;
     justify-content: right;
     display: flex;
@@ -53,8 +56,8 @@ export const ButtonWrapper = styled.div`
     background: unset;
     color: #000;
     border: unset;
-    font-size: 36px;
-    font-weight: 500;
+    font-size: 40px;
+    font-weight: 200;
   }
   button:hover {
     opacity: 0.4;
