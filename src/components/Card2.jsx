@@ -13,6 +13,8 @@ import {
   TaskContainer,
   TaskSubContainer,
   Paragraph,
+  SeeDescription,
+  SpanDescription,
 } from "styles/pages/EditChecklist";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import TextArea from "components/FormElements/TextArea";
@@ -169,11 +171,6 @@ export const Card = ({
                     toggleab(!modal);
                   }}
                 />
-                <Plus
-                  onClick={() => {
-                    toggleab(!modal);
-                  }}
-                />
                 {isOpenSort && (
                   <TaskColon
                     setIsHovering={setIsHovering}
@@ -192,120 +189,128 @@ export const Card = ({
               isHovering={isHovering}
               isSubtask={data?.isSubtask}
             >
-              {!data?.isHeading && (
-                <div style={{ paddingTop: "10px", paddingLeft: "5px" }}>
-                  <Controller
-                    name="rememberMe"
-                    style={{ paddingTop: "10px" }}
-                    control={control}
-                    render={({ field }) => (
-                      <CheckboxInput
-                        className="checkBox"
-                        style={{
-                          paddingTop: "10px",
-                          width: "23px",
-                          height: "23px",
-                          margin: "0px",
-                        }}
-                        {...field}
-                        onChange={(e) => {
-                          reset({
-                            rememberMe: e,
-                          });
-                          dispatch(
-                            editTaskStatus(
-                              data?.id,
-                              pathId,
-                              e === true ? true : false
-                            )
-                          );
-                        }}
-                      />
-                    )}
-                  />
-                </div>
-              )}
-              <TaskFormSubWrapper>
-                {!showButtons && (
-                  <Paragraph
-                    isHeading={data?.isHeading}
-                    style={{ margin: "0px" }}
-                    href="#"
-                    placeholder="Enter task..."
-                    onClick={() => setShowButtons(true)}
-                  >
-                    {data?.taskName || "         "}
-                  </Paragraph>
-                )}
-                {showButtons && (
-                  <TextArea
-                    autoFocus="autoFocus"
-                    type="task"
-                    style={{
-                      fontWeight: "400",
-                      fontSize: "16px",
-                      lineHeight: "27px",
-                      margin: "6px 0px 0px 0px",
-                      width: "90%",
-                      fontFamily: "inherit",
-                      resize: "none",
-                      background: "#fff",
-                      outline: "none",
-                      borderRadius: "5px",
-                      border: "1px solid rgb(224,224,224)",
-                    }}
-                    name="checklist"
-                    placeholder={``}
-                    defaultValue={data?.taskName}
-                    control={control}
-                    // onFocus={() => setShowButtons(!showButtons)}
-                    onBlur={() => setShowButtons(false)}
-                    handleKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.target.blur();
-                        TaskUpdateHandler();
-                      }
-                    }}
-                  />
-                )}
-                {showButtons && (
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "10px",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    <button
-                      onClick={() => handleSubmit(TaskUpdateHandler)}
-                      style={{
-                        backgroundColor: "#007ccb",
-                        color: "white",
-                        padding: "4px 12px",
-                        marginTop: "3px",
-                        borderRadius: "3px",
-                        border: "none",
-                        fontSize: "14px",
-                      }}
-                    >
-                      <div>Save</div>
-                    </button>
-                    <button
-                      style={{
-                        backgroundColor: "#f5f5f5",
-                        color: "#000",
-                        padding: "4px 12px",
-                        marginTop: "3px",
-                        borderRadius: "3px",
-                        border: " 1px solid #ddd",
-                        fontSize: "14px",
-                      }}
-                    >
-                      <div onClick={() => setShowButtons(false)}>Cancel</div>
-                    </button>
+              <div style={{ display: "flex", gap: "10px" }}>
+                {!data?.isHeading && (
+                  <div style={{ paddingTop: "10px", paddingLeft: "5px" }}>
+                    <Controller
+                      name="rememberMe"
+                      style={{ paddingTop: "10px" }}
+                      control={control}
+                      render={({ field }) => (
+                        <CheckboxInput
+                          className="checkBox"
+                          style={{
+                            paddingTop: "10px",
+                            width: "23px",
+                            height: "23px",
+                            margin: "0px",
+                          }}
+                          {...field}
+                          onChange={(e) => {
+                            reset({
+                              rememberMe: e,
+                            });
+                            dispatch(
+                              editTaskStatus(
+                                data?.id,
+                                pathId,
+                                e === true ? true : false
+                              )
+                            );
+                          }}
+                        />
+                      )}
+                    />
                   </div>
                 )}
-              </TaskFormSubWrapper>
+                <TaskFormSubWrapper cursor="all-scroll">
+                  {!showButtons && (
+                    <Paragraph
+                      isHeading={data?.isHeading}
+                      style={{ margin: "0px" }}
+                      href="#"
+                      placeholder="Enter task..."
+                      onClick={() => setShowButtons(true)}
+                    >
+                      {data?.taskName || "         "}
+                    </Paragraph>
+                  )}
+                  {showButtons && (
+                    <TextArea
+                      autoFocus="autoFocus"
+                      type="task"
+                      style={{
+                        fontWeight: "400",
+                        fontSize: "16px",
+                        lineHeight: "27px",
+                        margin: "6px 0px 0px 0px",
+                        width: "90%",
+                        fontFamily: "inherit",
+                        resize: "none",
+                        background: "#fff",
+                        outline: "none",
+                        borderRadius: "5px",
+                        border: "1px solid rgb(224,224,224)",
+                      }}
+                      name="checklist"
+                      placeholder={``}
+                      defaultValue={data?.taskName}
+                      control={control}
+                      // onFocus={() => setShowButtons(!showButtons)}
+                      onBlur={() => setShowButtons(false)}
+                      handleKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.target.blur();
+                          TaskUpdateHandler();
+                        }
+                      }}
+                    />
+                  )}
+                  {showButtons && (
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "10px",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <button
+                        onClick={() => handleSubmit(TaskUpdateHandler)}
+                        style={{
+                          backgroundColor: "#007ccb",
+                          color: "white",
+                          padding: "4px 12px",
+                          marginTop: "3px",
+                          borderRadius: "3px",
+                          border: "none",
+                          fontSize: "14px",
+                        }}
+                      >
+                        <div>Save</div>
+                      </button>
+                      <button
+                        style={{
+                          backgroundColor: "#f5f5f5",
+                          color: "#000",
+                          padding: "4px 12px",
+                          marginTop: "3px",
+                          borderRadius: "3px",
+                          border: " 1px solid #ddd",
+                          fontSize: "14px",
+                        }}
+                      >
+                        <div onClick={() => setShowButtons(false)}>Cancel</div>
+                      </button>
+                    </div>
+                  )}
+                </TaskFormSubWrapper>
+              </div>
+              {data?.taskDescription &&
+                data?.taskDescription !== "<p><br></p>" && (
+                  <SeeDescription onClick={() => toggleabc(true, data?.id)}>
+                    <SpanDescription>See description</SpanDescription>
+                  </SeeDescription>
+                )}
             </TaskSubContainer>
           </TaskContainer>
         </form>

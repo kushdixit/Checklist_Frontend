@@ -24,8 +24,9 @@ export const TagButton = styled.div`
   padding: 5px;
   .button {
     padding: 5px;
-    border: 1px solid #777;
+    border: 1px solid #ddd;
     border-radius: 3px;
+    background-color: #f5f5f5;
   }
 `;
 export const SecondContent = styled.div`
@@ -140,7 +141,15 @@ export const LeftSection = styled.div`
 export const RightSection = styled.div`
   display: flex;
   flex-direction: column;
-
+  gap: 30px;
+  max-width: 300px;
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+export const RightViewSection = styled.div`
+  display: flex;
+  flex-direction: column;
   max-width: 300px;
   @media (max-width: 767px) {
     display: none;
@@ -187,7 +196,7 @@ export const TaskContainer = styled.div`
 `;
 export const TaskSubContainer = styled.div`
   display: flex;
-  gap: 10px;
+  flex-direction: column;
   border-bottom: 1px solid rgb(224, 224, 224);
   border: ${({ isPriority }) => isPriority && "0px solid #fcd5d5 !important"};
   background-color: ${({ isPriority, isHovering }) =>
@@ -207,7 +216,8 @@ export const TaskFormSubWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 5px;
-  cursor: not-allowed;
+  cursor: ${({ cursor }) => cursor};
+  /* all-scroll */
 `;
 
 export const ShareTextWrapper = styled.div`
@@ -225,6 +235,23 @@ export const ShareText = styled.div`
   margin-bottom: 5px;
   font-weight: 600;
   opacity: 0.7;
+`;
+export const ChecklistTitleText = styled.h1`
+  font-size: 32px;
+  letter-spacing: 0px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0.67em 0;
+  margin-bottom: 5px;
+`;
+export const ChecklistDescText = styled.div`
+  width: 100%;
+  color: #000000;
+  resize: none;
+  font-size: 18px;
+  line-height: 25px;
+  margin: 15px 0 40px 0;
 `;
 export const Preview = styled.a`
   text-decoration: none;
@@ -309,8 +336,6 @@ export const ViewCount = styled.div`
     font-size: 16px;
   }
 `;
-// export const ButtonsMainWrapper = styled.div`
-// `
 export const CopyButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -339,4 +364,22 @@ export const CopyButtonWrapper = styled.div`
     margin-left: 15px;
     cursor: pointer;
   }
+`;
+export const SeeDescription = styled.div`
+  position: relative !important;
+  left: 0 !important;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  color: #0077bc;
+  font-size: 15px !important;
+  cursor: pointer;
+  line-height: 1.71;
+  margin-left: 40px;
+`;
+export const SpanDescription = styled.span`
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 3px;
+  color: #777;
 `;

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import DescriptionTitle from "components/DescriptionTitle";
-import ChecklistTitle from "components/ChecklistTitle";
 import ChecklistWidget from "components/ChecklistWidget";
 import SubModal from "components/SubModal";
-import DescriptionSliderModal from "components/DescriptionSliderModal";
 import Footer from "components/Footer";
 import ViewTask from "components/ViewTask";
 import { useNavigate, useParams } from "react-router-dom";
@@ -19,9 +16,11 @@ import {
   ChecklistSubWrapper,
   Section,
   LeftSection,
-  RightSection,
+  RightViewSection,
   LeftContentWrapper,
   RightCardWrapper,
+  ChecklistTitleText,
+  ChecklistDescText,
   ChecklistWidgetSection,
   RelationHeading,
   ProgressSection,
@@ -33,6 +32,7 @@ import {
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
 import Tick from "assets/images/tick.jpg";
+
 const ViewList = () => {
   const [newmodal, setNewModal] = useState(false);
   function toggleabc(data) {
@@ -89,11 +89,6 @@ const ViewList = () => {
 
   return (
     <Section>
-      <DescriptionSliderModal
-        modalType="description"
-        isOpen={newmodal}
-        togglefunction={toggleabc}
-      />
       {contextHolder}
       <Navbar
         search={false}
@@ -105,12 +100,15 @@ const ViewList = () => {
         <ChecklistSubWrapper>
           <LeftSection>
             <LeftContentWrapper>
-              <ChecklistTitle />
-              <DescriptionTitle />
+              <ChecklistTitleText>
+                {ChecklistDetail?.checklistName}
+              </ChecklistTitleText>
+              <ChecklistDescText>
+                {ChecklistDetail?.checklistDescription}
+              </ChecklistDescText>
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
-              <button onClick={() => toggleabc(true)}>description</button>
               <ViewTask toggleabc={toggleabc} />
             </LeftContentWrapper>
             <ProgressSection>
@@ -124,7 +122,7 @@ const ViewList = () => {
             </ButtonSection>
             <SecondContent>2290 copies saved</SecondContent>
           </LeftSection>
-          <RightSection>
+          <RightViewSection>
             <CopyCard />
             <TagContent>Tags</TagContent>
             <TagButton>
@@ -139,7 +137,7 @@ const ViewList = () => {
             <TagButton>
               <button className="button">digital-marketing-strategy</button>
             </TagButton>
-          </RightSection>
+          </RightViewSection>
         </ChecklistSubWrapper>
 
         <ChecklistWidgetSection>

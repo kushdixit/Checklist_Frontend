@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   RightContentWrapper,
   ShareSection,
@@ -10,12 +12,9 @@ import {
   StyleButtonWrapper,
   ViewCount,
   CopyButtonWrapper,
-  // ButtonsMainWrapper,
 } from "styles/pages/EditChecklist";
+import { CopyChecklist } from "redux/actions/checklist/index";
 import SliderModal from "components/SliderModal";
-
-import DescriptionSliderModal from "components/DescriptionSliderModal";
-import ImageModal from "components/ImageModal";
 import { Select } from "antd";
 
 const { Option } = Select;
@@ -44,13 +43,13 @@ const SubModal = ({
   copyCount,
   downloadCount,
 }) => {
+  const { id: pathId } = useParams();
   const [modal, setModal] = useState(false);
-  const [newmodal, setNewModal] = useState(false);
+  const dispatch = useDispatch();
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
+
   function toggleab(data) {
     setModal(data);
-  }
-  function toggleabc(data) {
-    setNewModal(data);
   }
   function handleChange(value) {
     console.log(`selected ${value}`);
@@ -69,7 +68,6 @@ const SubModal = ({
         isOpen={modal}
         togglefunction={toggleab}
       />
-
       <ShareSection>
         {viewCount && (
           <ViewCount>
@@ -127,7 +125,6 @@ const SubModal = ({
       >
         {subTitle}
       </h4>
-
       {text && (
         <StyleButtonWrapper>
           <div>

@@ -40,7 +40,6 @@ const DescriptionSliderModal = ({
       <ButtonWrapper>
         <button onClick={() => togglefunction(false)}>x</button>
       </ButtonWrapper>
-
       {modalType === "description" && (
         <DescriptionModal
           notify={notify}

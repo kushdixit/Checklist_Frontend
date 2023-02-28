@@ -141,7 +141,6 @@ const CreateList = () => {
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
-              <button onClick={() => toggleabc(true)}>description</button>
               <TaskTitle toggleabc={toggleabc} />
             </LeftContentWrapper>
           </LeftSection>

@@ -10,61 +10,44 @@ import {
   Heading,
   DataInput,
   EmailWrapper,
-  // ResetText,
-  // ResetWrapper,
   IconInputField,
   IconInputFieldTextArea,
   MainTaskSectionForm,
-  // BlankText,
   EditorSection,
   EditorTask,
   DescriptionFormButton,
-  ButtonSection,
 } from "styles/pages/Description";
-import { notification } from "antd";
-import { forgotPassword } from "../redux/actions/auth";
-import TextArea from "components/FormElements/TextArea";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getChecklistBySubcategory,
-  editSubTask,
-  deleteSubTask,
   editSubTaskStatus,
-  SubTaskDescription,
+  TaskDescription,
+  getChecklistBySubcategory,
 } from "redux/actions/task";
+import { useParams } from "react-router-dom";
 import CheckboxInput from "components/FormElements/CheckboxInput";
-// import RadioButton from "components/FormElements/RadioButton";
-import { store } from "redux/index";
-import { DescriptionChecklist } from "redux/actions/checklist";
-// import colorwheel from "assets/images/color-wheel.png";
 
 const DescriptionModal = ({
   notify,
   togglefunction,
-  subIndex,
   task,
   checkListId,
   showEditable,
-  id,
-  setAddSubTask,
-  addSubTask,
-  checklistId,
   checklistDiscriptionId,
 }) => {
-  const forgotPass = async (data) => {
-    const res = await store.dispatch(forgotPassword(data));
-    notify(res);
-    if (res === 204) togglefunction(false);
-  };
+  const { id: pathId } = useParams();
   const [subTaskEdit, setSubTaskEdit] = useState(false);
-  const [newmodal, setNewModal] = useState(false);
-  const [addDescription, setAddDescription] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
-  const [api, contextHolder] = notification.useNotification();
   const wrapperRef = useRef();
   const taskEditable = useSelector((state) => state.editable?.isEditable);
-  const [checkListDescriptionValue, setChecklistdescriptionValue] =
-    useState("");
+  const ChecklistDetail = useSelector((state) =>
+    pathId ? state.checklist : null
+  );
+  const TaskDetail = ChecklistDetail?.tasks?.filter(
+    (item) => item.id === checklistDiscriptionId
+  );
+  const [checkListDescriptionValue, setChecklistdescriptionValue] = useState(
+    TaskDetail[0]?.taskDescription ? TaskDetail[0]?.taskDescription : ""
+  );
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -78,12 +61,9 @@ const DescriptionModal = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [wrapperRef]);
-  function toggleabc(data) {
-    setNewModal(data);
-  }
 
   const dispatch = useDispatch();
-  const { setValue, handleSubmit, control, reset, getValues } = useForm({
+  const { setValue, handleSubmit, control, reset } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
@@ -96,36 +76,15 @@ const DescriptionModal = ({
     setValue("rememberMe", task?.ischecked);
   }, [task?.ischecked]);
 
-  const taskdeleteHandler = (id) => {
-    dispatch(deleteSubTask(id, checkListId));
-  };
-
   const updateSubTaskHandler = async (data) => {
     console.log("data", data);
-    // if (data?.updateSubTask) {
-    //   const response = await dispatch(
-    //     editSubTask(data?.updateSubTask, task.id)
-    //   );
-    //   if (response.status === 204) {
-    //     dispatch(getChecklistBySubcategory(checkListId));
-    //     // setValue("updateSubTask", "");
-    //     setSubTaskEdit(false);
-    //   } else openNotification(response.data.Message);
-    // }
   };
 
-  const removeDescriptionHandler = async () => {
-    const response = await dispatch(SubTaskDescription(task?.id, ""));
-    if (response.status === 204) {
-      dispatch(getChecklistBySubcategory(checkListId));
-      openNotification("Deleted");
-    } else openNotification(response?.data?.errors?.TaskDescription[0]);
-  };
-
-  const openNotification = (message) => {
-    api.info({
-      message,
-    });
+  const DescriptionHandler = async () => {
+    const res = await dispatch(
+      TaskDescription(checklistDiscriptionId, checkListDescriptionValue)
+    );
+    res.status === 204 && (await dispatch(getChecklistBySubcategory(pathId)));
   };
 
   return (
@@ -139,34 +98,26 @@ const DescriptionModal = ({
         </DataWrapper>
       </Container>
       <DataInput>MANAGER TRAINING</DataInput>
-
       <MainTaskSectionForm>
         <EditorSection>
           <EditorTask>How to do this task:</EditorTask>
         </EditorSection>
-
-        <form>
+        <div>
           <IconInputFieldTextArea>
             <ReactQuill
               theme="snow"
+              value={checkListDescriptionValue}
               modules={DescriptionModal.modules}
               placeholder="Click here to start typing"
-              onChange={(e) => {
-                setChecklistdescriptionValue(e);
-              }}
+              onChange={(e) => setChecklistdescriptionValue(e)}
             />
           </IconInputFieldTextArea>
           <div style={{ padding: "0px 6px" }}>
-            <DescriptionFormButton
-              onClick={DescriptionChecklist(
-                checkListDescriptionValue,
-                checklistDiscriptionId
-              )}
-            >
+            <DescriptionFormButton onClick={DescriptionHandler}>
               save
             </DescriptionFormButton>
           </div>
-        </form>
+        </div>
         <h4>Add Subtasks</h4>
         <form
           onSubmit={handleSubmit(updateSubTaskHandler)}
@@ -219,7 +170,6 @@ const DescriptionModal = ({
           </div>
         </form>
       </MainTaskSectionForm>
-
       <MainTaskSectionForm>
         <form
           onSubmit={handleSubmit(updateSubTaskHandler)}
@@ -272,7 +222,6 @@ const DescriptionModal = ({
           </div>
         </form>
       </MainTaskSectionForm>
-
       <MainTaskSectionForm>
         <form
           onSubmit={handleSubmit(updateSubTaskHandler)}
