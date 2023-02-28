@@ -25,11 +25,24 @@ export const WrapSubSectionNew = styled.div`
 `;
 
 export const CardSection = styled.div`
+  @media (max-width: 990px) {
+    width: 100%;
+    max-width: 630px;
+  }
+  @media (max-width: 658px) {
+    width: 100%;
+    max-width: 343px;
+  }
+  @media (max-width: 375px) {
+    width: 100%;
+    max-width: 280px;
+  }
   h4 {
+    padding-bottom: 14px;
     @media (max-width: 990px) {
-      justify-content: center;
+      /* justify-content: center;
       align-items: center;
-      padding: 20px 0;
+      padding: 20px 0; */
     }
   }
 `;

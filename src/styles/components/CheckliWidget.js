@@ -429,11 +429,11 @@ export const ProcessSection = styled.div`
   }
   @media (max-width: 990px) {
     img {
-      width: 630px;
+      width: 469px;
       height: auto;
     }
   }
-  @media (max-width: 658px) {
+  @media (max-width: 654px) {
     img {
       width: 345px;
     }
