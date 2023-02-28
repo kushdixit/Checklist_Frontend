@@ -49,7 +49,7 @@ export const ViewCard = ({ data }) => {
                           width: "23px",
                           height: "23px",
                           margin: "0px",
-                          border: "1px solid #006db3 !important",
+                          // outline: " #006db3 ",
                         }}
                         {...field}
                         onChange={(e) => {}}

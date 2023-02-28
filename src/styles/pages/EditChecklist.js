@@ -24,8 +24,9 @@ export const TagButton = styled.div`
   padding: 5px;
   .button {
     padding: 5px;
-    border: 1px solid #777;
+    border: 1px solid #ddd;
     border-radius: 3px;
+    background-color: #f5f5f5;
   }
 `;
 export const SecondContent = styled.div`

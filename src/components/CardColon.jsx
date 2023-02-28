@@ -22,7 +22,6 @@ import {
   ChecklistCompleted,
   CopyChecklist,
   deleteChecklist,
-  MoveChecklist,
 } from "redux/actions/checklist/index";
 import { getAllTemplateByEmail } from "redux/actions/template";
 import { getChecklistBySubcategory } from "redux/actions/task/index";
