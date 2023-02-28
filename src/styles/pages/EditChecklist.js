@@ -62,6 +62,9 @@ export const ChecklistWidgetSection = styled.div`
   margin-right: auto;
   flex-wrap: wrap;
   gap: 24px 30px;
+  @media (max-width: 990px) {
+    justify-content: center;
+  }
 `;
 export const RelationHeading = styled.div`
   width: 100%;
@@ -79,7 +82,8 @@ export const ProgressSection = styled.div`
   align-items: center;
   justify-content: center;
   img {
-    width: 56px;
+    width: 54px;
+    height: 54px;
     border: 1px solid #000;
     border-radius: 20px;
     border-radius: 30px;
@@ -108,14 +112,14 @@ export const ChecklistSubWrapper = styled.div`
   @media (min-width: 992px) {
     /* width: 970px; */
   }
-  @media (min-width: 768px) {
-    /* width: 750px; */
-  }
+  /* @media (min-width: 768px) {
+    display: unset;
+  } */
 `;
 export const LeftSection = styled.div`
   border: 1px solid #eee;
   background: #ffffff;
-  padding: 90px;
+  padding: 90px 37px;
   max-width: 900px;
   width: 100%;
   @media (max-width: 1300px) {

@@ -2,9 +2,7 @@ import styled from "styled-components";
 export const Section = styled.div`
   text-align: center;
   padding-bottom: 60px;
-  @media (max-width: 767px) {
-    display: none;
-  }
+  background: #f8f8f8;
 `;
 
 export const FirstSection = styled.div`

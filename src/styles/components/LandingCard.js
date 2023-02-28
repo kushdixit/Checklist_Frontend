@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const SubSection = styled.div`
-  width: 33.33333333%;
+  width: 100%;
+  max-width: 380px;
   position: relative;
   height: auto;
   padding-right: 15px;
@@ -44,6 +45,7 @@ export const Wrap = styled.div`
   .textB {
     font-size: 20px;
     font-weight: 600;
+    background-color: none;
   }
 `;
 

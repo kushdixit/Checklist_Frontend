@@ -5,7 +5,7 @@ export const LandingContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  max-width: 1735px;
+  /* max-width: 1735px; */
   h3 {
     display: flex;
     width: 100%;
