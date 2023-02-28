@@ -3,8 +3,8 @@ import * as React from "react";
 const SvgComponent = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 64 8"
-    width={340}
+    viewBox="0 0 24 8"
+    width={140}
     fill="#73cb7f"
     {...props}
   >
