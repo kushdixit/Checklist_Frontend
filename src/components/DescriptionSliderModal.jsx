@@ -12,6 +12,7 @@ const DescriptionSliderModal = ({
   modalType,
   checklistId,
   templateName,
+  checklistDiscriptionId,
 }) => {
   return (
     <ReactModal
@@ -27,22 +28,25 @@ const DescriptionSliderModal = ({
           bottom: "auto",
           border: "1px solid rgb(204, 204, 204)",
           background: "rgb(255, 255, 255)",
-          padding: "60px",
-          width: "50%",
+          padding: "0px 20px",
+          width: "46.5%",
           height: modalType === "description" ? "100%" : "auto",
           overflow: "hidden",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
         },
       }}
       contentLabel="Example Modal"
     >
       <ButtonWrapper>
-        <button className="button" onClick={() => togglefunction(false)}>
-          x
-        </button>
+        <button onClick={() => togglefunction(false)}>x</button>
       </ButtonWrapper>
 
       {modalType === "description" && (
-        <DescriptionModal notify={notify} togglefunction={togglefunction} />
+        <DescriptionModal
+          notify={notify}
+          togglefunction={togglefunction}
+          checklistDiscriptionId={checklistDiscriptionId}
+        />
       )}
     </ReactModal>
   );

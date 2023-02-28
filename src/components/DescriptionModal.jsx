@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import TextInput from "components/FormElements/TextInput";
 import { useForm, Controller } from "react-hook-form";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import {
   MainWrapper,
   Container,
@@ -8,14 +10,16 @@ import {
   Heading,
   DataInput,
   EmailWrapper,
-  ResetText,
-  ResetWrapper,
+  // ResetText,
+  // ResetWrapper,
   IconInputField,
   IconInputFieldTextArea,
   MainTaskSectionForm,
-  BlankText,
+  // BlankText,
   EditorSection,
-  ButtonSection
+  EditorTask,
+  DescriptionFormButton,
+  ButtonSection,
 } from "styles/pages/Description";
 import { notification } from "antd";
 import { forgotPassword } from "../redux/actions/auth";
@@ -29,9 +33,10 @@ import {
   SubTaskDescription,
 } from "redux/actions/task";
 import CheckboxInput from "components/FormElements/CheckboxInput";
-import RadioButton from "components/FormElements/RadioButton";
+// import RadioButton from "components/FormElements/RadioButton";
 import { store } from "redux/index";
-import colorwheel from "assets/images/color-wheel.png";
+import { DescriptionChecklist } from "redux/actions/checklist";
+// import colorwheel from "assets/images/color-wheel.png";
 
 const DescriptionModal = ({
   notify,
@@ -43,8 +48,8 @@ const DescriptionModal = ({
   id,
   setAddSubTask,
   addSubTask,
- 
-
+  checklistId,
+  checklistDiscriptionId,
 }) => {
   const forgotPass = async (data) => {
     const res = await store.dispatch(forgotPassword(data));
@@ -58,6 +63,8 @@ const DescriptionModal = ({
   const [api, contextHolder] = notification.useNotification();
   const wrapperRef = useRef();
   const taskEditable = useSelector((state) => state.editable?.isEditable);
+  const [checkListDescriptionValue, setChecklistdescriptionValue] =
+    useState("");
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -93,19 +100,18 @@ const DescriptionModal = ({
     dispatch(deleteSubTask(id, checkListId));
   };
 
-  
-
   const updateSubTaskHandler = async (data) => {
-    if (data?.updateSubTask) {
-      const response = await dispatch(
-        editSubTask(data?.updateSubTask, task.id)
-      );
-      if (response.status === 204) {
-        dispatch(getChecklistBySubcategory(checkListId));
-        // setValue("updateSubTask", "");
-        setSubTaskEdit(false);
-      } else openNotification(response.data.Message);
-    }
+    console.log("data", data);
+    // if (data?.updateSubTask) {
+    //   const response = await dispatch(
+    //     editSubTask(data?.updateSubTask, task.id)
+    //   );
+    //   if (response.status === 204) {
+    //     dispatch(getChecklistBySubcategory(checkListId));
+    //     // setValue("updateSubTask", "");
+    //     setSubTaskEdit(false);
+    //   } else openNotification(response.data.Message);
+    // }
   };
 
   const removeDescriptionHandler = async () => {
@@ -115,13 +121,6 @@ const DescriptionModal = ({
       openNotification("Deleted");
     } else openNotification(response?.data?.errors?.TaskDescription[0]);
   };
-
- 
-  
-
-  
-
-
 
   const openNotification = (message) => {
     api.info({
@@ -134,42 +133,44 @@ const DescriptionModal = ({
       <Container>
         <DataWrapper>
           <Heading>
-           <button className="button">delete</button>
+            <button className="button">Delete</button>
           </Heading>
           <EmailWrapper></EmailWrapper>
         </DataWrapper>
       </Container>
       <DataInput>MANAGER TRAINING</DataInput>
-    
+
       <MainTaskSectionForm>
         <EditorSection>
-          <h4>How to do this task</h4>
-         
+          <EditorTask>How to do this task:</EditorTask>
         </EditorSection>
-        <ButtonSection><button className="button">H1</button><button className="button">H2</button><button className="button">H3</button>
-        <button className="button">H4</button><button className="button">H5</button><button className="button">H6</button>
-        <button className="button">P</button><button className="button">pre</button><button className="button">"</button>
-        <button className="button">B</button><button className="button">I</button><button className="button">U</button></ButtonSection>
-        <form
-        style={{ paddingTop: "30px"}}
-        
-      >
-        <IconInputFieldTextArea>
-          <TextArea
-            name="taskDescription"
-            type="text"
-            placeholder="Add Description"
-            control={control}
-            className="checklistDescription"
-            autoComplete="off"
-          
-          />
-        </IconInputFieldTextArea>
-      </form>
-      <h4>Add Subtasks</h4>
+
+        <form>
+          <IconInputFieldTextArea>
+            <ReactQuill
+              theme="snow"
+              modules={DescriptionModal.modules}
+              placeholder="Click here to start typing"
+              onChange={(e) => {
+                setChecklistdescriptionValue(e);
+              }}
+            />
+          </IconInputFieldTextArea>
+          <div style={{ padding: "0px 6px" }}>
+            <DescriptionFormButton
+              onClick={DescriptionChecklist(
+                checkListDescriptionValue,
+                checklistDiscriptionId
+              )}
+            >
+              save
+            </DescriptionFormButton>
+          </div>
+        </form>
+        <h4>Add Subtasks</h4>
         <form
           onSubmit={handleSubmit(updateSubTaskHandler)}
-          style={{ display: "flex",marginBottom:"20px" }}
+          style={{ display: "flex", marginBottom: "20px" }}
         >
           <div style={{ display: "flex", width: "100%" }}>
             {!subTaskEdit && (
@@ -218,12 +219,11 @@ const DescriptionModal = ({
           </div>
         </form>
       </MainTaskSectionForm>
-     
+
       <MainTaskSectionForm>
-  
         <form
           onSubmit={handleSubmit(updateSubTaskHandler)}
-          style={{ display: "flex",marginBottom:"20px" }}
+          style={{ display: "flex", marginBottom: "20px" }}
         >
           <div style={{ display: "flex", width: "100%" }}>
             {!subTaskEdit && (
@@ -272,7 +272,7 @@ const DescriptionModal = ({
           </div>
         </form>
       </MainTaskSectionForm>
-      
+
       <MainTaskSectionForm>
         <form
           onSubmit={handleSubmit(updateSubTaskHandler)}
@@ -325,9 +325,39 @@ const DescriptionModal = ({
           </div>
         </form>
       </MainTaskSectionForm>
-    
     </MainWrapper>
   );
+};
+
+DescriptionModal.modules = {
+  toolbar: [
+    [
+      { header: 1 },
+      { header: 2 },
+      "bold",
+      "italic",
+      "underline",
+      "strike",
+      { list: "ordered" },
+      { list: "bullet" },
+      { script: "sub" },
+      { script: "super" },
+      "font",
+      "size",
+      "align",
+      "strike",
+      "script",
+      "blockquote",
+      "background",
+      "list",
+      "bullet",
+      "indent",
+      "link",
+      "image",
+      "color",
+      "code-block",
+    ],
+  ],
 };
 
 export default DescriptionModal;

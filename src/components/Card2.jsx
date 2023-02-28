@@ -32,6 +32,7 @@ export const Card = ({
   data,
   taskOrder,
   pathId,
+  toggleabc,
   editable,
 }) => {
   const [isOpenSort, setIsOpenSort] = useState(false);
@@ -64,7 +65,6 @@ export const Card = ({
     },
   });
   const watchData = useWatch({ control });
-
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -169,12 +169,18 @@ export const Card = ({
                     toggleab(!modal);
                   }}
                 />
+                <Plus
+                  onClick={() => {
+                    toggleab(!modal);
+                  }}
+                />
                 {isOpenSort && (
                   <TaskColon
                     setIsHovering={setIsHovering}
                     pathId={pathId}
                     taskOrder={taskOrder}
                     data={data}
+                    toggleabc={toggleabc}
                   />
                 )}
               </ShortBy>

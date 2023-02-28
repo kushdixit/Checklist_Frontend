@@ -18,7 +18,7 @@ import Header from "assets/SVG/Header";
 import Description from "assets/SVG/Description";
 import { SET_TASK } from "redux/actions/action_types";
 
-const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
+const TaskColon = ({ data, setIsHovering, pathId, taskOrder, toggleabc }) => {
   const dispatch = useDispatch();
   const ChecklistDetail = useSelector((state) =>
     pathId ? state.checklist : null
@@ -129,7 +129,7 @@ const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
         <Indent />
         Priority
       </SortTextDiv>
-      <SortTextDiv onClick={PriorityHandler}>
+      <SortTextDiv onClick={() => toggleabc(true, data?.id)}>
         <Header />
         Describe the task
       </SortTextDiv>
@@ -138,8 +138,7 @@ const TaskColon = ({ data, setIsHovering, pathId, taskOrder }) => {
         {data?.isSubtask ? "Make a Task" : "Sub-Task"}
       </SortTextDiv>
       <SortTextDiv onClick={DeleteHandler}>
-        <Delete    style={{    width:"10px"             
-                    }} /> Delete
+        <Delete style={{ width: "10px" }} /> Delete
       </SortTextDiv>
     </SortWrapper>
   );
