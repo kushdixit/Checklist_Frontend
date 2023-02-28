@@ -3,6 +3,9 @@ export const Section = styled.div`
   text-align: center;
   padding-bottom: 60px;
   background: #f8f8f8;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const FirstSection = styled.div`
