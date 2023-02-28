@@ -90,7 +90,7 @@ export const LogoSearchSection = styled.div`
   display: none;
   @media (max-width: 767px) {
     display: block;
-    /* padding-right: 30px; */
+    padding-right: 30px;
   }
 `;
 
@@ -109,7 +109,7 @@ export const LogoSection = styled.div`
     font-size: 2rem;
     font-weight: 700;
     max-width: 625px;
-    padding-right: 8px;
+    /* padding-right: 8px; */
   }
 `;
 export const BurgerSection = styled.div`
@@ -181,7 +181,7 @@ export const SecondSubSection = styled.div`
     border: unset;
   }
   @media (max-width: 874px) {
-    margin-left: 0px;
+    /* margin-left: 0px; */
   }
 `;
 
@@ -192,6 +192,9 @@ export const SubNavSection = styled.div`
   padding: 15px 0;
   @media (max-width: 767px) {
     padding: 3px 1rem;
+  }
+  @media (max-width: 1184px) {
+    padding: 15px 3rem;
   }
 `;
 export const ImageSubSection = styled.div``;

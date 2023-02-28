@@ -62,8 +62,11 @@ export const ChecklistWidgetSection = styled.div`
   margin-right: auto;
   flex-wrap: wrap;
   gap: 7px 30px;
-  @media (max-width: 990px) {
+  @media (max-width: 967px) {
     justify-content: center;
+  }
+  @media (max-width: 1169px) {
+    max-width: 962px;
   }
 `;
 export const RelationHeading = styled.div`
