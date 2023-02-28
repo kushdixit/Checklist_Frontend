@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
+import ChecklistWidget from "components/ChecklistWidget";
 import SubModal from "components/SubModal";
-import ImageModal from "components/ImageModal";
 import DescriptionSliderModal from "components/DescriptionSliderModal";
 import Footer from "components/Footer";
-import RightSectionCard from "components/RightSectionCard";
-import ShareSectionCard from "components/Share";
-import TaskTitle from "components/TaskTitle";
+import ViewTask from "components/ViewTask";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { notification } from "antd";
@@ -15,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
-
+import { getAllTemplate } from "redux/actions/template";
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
@@ -24,53 +22,23 @@ import {
   RightSection,
   LeftContentWrapper,
   RightCardWrapper,
-  LeftCardWrapper,
-  EditImage,
+  ChecklistWidgetSection,
+  RelationHeading,
+  ProgressSection,
+  LeftHeader,
+  ButtonSection,
+  SecondContent,
+  TagButton,
+  TagContent,
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
-
-const EmbedCode = () => (
-  <RightCardWrapper>
-    <SubModal
-      title="Embed Code"
-      embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
-      linkName="Learn more"
-    />
-  </RightCardWrapper>
-);
-
-const ImageHandler = () => {
-  const [modal, setModal] = useState(false);
-
-  function toggleab(data) {
-    setModal(data);
-  }
-  return (
-    <RightCardWrapper>
-      <ImageModal
-        modalType="editimage"
-        isOpen={modal}
-        togglefunction={toggleab}
-      />
-      <img
-        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
-        alt="pic"
-        style={{ width: "240px", height: "135px" }}
-      />
-      <br />
-      <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
-    </RightCardWrapper>
-  );
-};
-const CreateList = () => {
+import Tick from "assets/images/tick.jpg";
+const ViewList = () => {
   const [newmodal, setNewModal] = useState(false);
-  const [checkListDiscriptionId, setCheckListDiscriptionId] = useState();
-  function toggleabc(data, descriptionId) {
-    setCheckListDiscriptionId(descriptionId);
-    // console.log("descriptionId", descriptionId);
+  function toggleabc(data) {
     setNewModal(data);
   }
-
+  const allTemplate = useSelector((state) => state.Template?.allTemplate);
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -79,7 +47,9 @@ const CreateList = () => {
     pathId ? state.checklist : null
   );
   const [api, contextHolder] = notification.useNotification();
-
+  useEffect(() => {
+    dispatch(getAllTemplate());
+  }, []);
   useEffect(() => {
     // const token = localStorage.getItem("access_token");
     // if (!token) navigate("/sign-in");
@@ -123,7 +93,6 @@ const CreateList = () => {
         modalType="description"
         isOpen={newmodal}
         togglefunction={toggleabc}
-        checklistDiscriptionId={checkListDiscriptionId}
       />
       {contextHolder}
       <Navbar
@@ -142,32 +111,46 @@ const CreateList = () => {
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
               <button onClick={() => toggleabc(true)}>description</button>
-              <TaskTitle toggleabc={toggleabc} />
+              <ViewTask toggleabc={toggleabc} />
             </LeftContentWrapper>
+            <ProgressSection>
+              <img src={Tick} alt="tick" />
+            </ProgressSection>
+            <LeftHeader>
+              This checklist was created by officialcheckli
+            </LeftHeader>
+            <ButtonSection>
+              <button className="button">Save this checklist</button>
+            </ButtonSection>
+            <SecondContent>2290 copies saved</SecondContent>
           </LeftSection>
           <RightSection>
-            <RightSectionCard pathId={pathId} />
-            <ShareSectionCard />
-            <Style />
-            <EmbedCode />
-            <ImageHandler />
+            <CopyCard />
+            <TagContent>Tags</TagContent>
+            <TagButton>
+              <button className="button">digital-marketing-checklist</button>
+            </TagButton>
+            <TagButton>
+              <button className="button">digital-marketing</button>
+            </TagButton>
+            <TagButton>
+              <button className="button">digital-marketing-assistant</button>
+            </TagButton>
+            <TagButton>
+              <button className="button">digital-marketing-strategy</button>
+            </TagButton>
           </RightSection>
         </ChecklistSubWrapper>
+        <RelationHeading>Related Checklists</RelationHeading>
+        <ChecklistWidgetSection>
+          {allTemplate?.map((item) => (
+            <ChecklistWidget data={item} />
+          ))}
+        </ChecklistWidgetSection>
       </ChecklistMainWrapper>
+
       <Footer />
     </Section>
-  );
-};
-
-const Style = () => {
-  return (
-    <RightCardWrapper>
-      <SubModal
-        title="Styles"
-        text="Circles with numbers"
-        buttonName="Fonts/Colors"
-      />
-    </RightCardWrapper>
   );
 };
 
@@ -182,9 +165,22 @@ const ImageWrapper = ({ title }) => {
       <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
         {title}
       </div>
-      <SubModal buttonNew="Description" />
     </div>
   );
 };
 
-export default CreateList;
+const CopyCard = () => {
+  return (
+    <RightCardWrapper>
+      <SubModal
+        title="Embed"
+        viewCount="23,420"
+        copyCount="2280"
+        downloadCount="1001"
+        embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
+      />
+    </RightCardWrapper>
+  );
+};
+
+export default ViewList;

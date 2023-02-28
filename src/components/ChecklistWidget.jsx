@@ -5,6 +5,9 @@ import { getChecklistBySubcategory } from "redux/actions/task";
 import ProcessOne from "assets/images/Process-One.png";
 import Tick from "assets/images/tick.jpg";
 import ChecklistImage from "assets/images/checklist-image.png";
+import Avatar from "assets/images/avatar.jpg";
+
+import ProcessFifth from "assets/images/Process-Fifth.png";
 import {
   NewSection,
   ImageSection,
@@ -13,9 +16,10 @@ import {
   ProgressSection,
   Name,
   ProcessSection,
-} from "styles/components/CheckliCard";
+  Content,
+} from "styles/components/CheckliWidget";
 
-const CheckliCard = ({ data }) => {
+const ChecklistWidget = ({ data }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,17 +32,17 @@ const CheckliCard = ({ data }) => {
     >
       <ImageSection>
         <ProcessSection>
-          <img src={ProcessOne} alt="ProcessOne" />
+          <img src={ProcessFifth} alt="ProcessOne" />
         </ProcessSection>
         <HeaderSection>
-          <h4>{data?.checklistName}</h4>
-          <Small>23,293 Views</Small>
-          <ProgressSection>
-            <img src={ChecklistImage} alt="ChecklistImage" />
-          </ProgressSection>
+          <Content>
+            10 Point Checklist for Branding Your Content Upgrade
+          </Content>
+          <Small>4,048 views</Small>
+
           <Name>
-            <img src={Tick} alt="tick" />
-            Offically Checkli
+            <img src={Avatar} alt="Avatar" />
+            Denisewakeman
           </Name>
         </HeaderSection>
       </ImageSection>
@@ -46,4 +50,4 @@ const CheckliCard = ({ data }) => {
   );
 };
 
-export default CheckliCard;
+export default ChecklistWidget;

@@ -10,6 +10,82 @@ export const BodyWrapper = styled.div`
   background: #fff;
 `;
 
+export const LeftHeader = styled.div`
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+`;
+
+export const TagButton = styled.div`
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  .button {
+    padding: 5px;
+    border: 1px solid #777;
+    border-radius: 3px;
+  }
+`;
+export const SecondContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0 100px 0;
+`;
+export const TagContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0 7px 0;
+`;
+export const ButtonSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  .button {
+    color: white;
+    border-radius: 5px;
+    background: #ec4e20;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+  }
+`;
+export const ChecklistWidgetSection = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: 1161px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  gap: 24px 30px;
+`;
+export const RelationHeading = styled.div`
+  width: 100%;
+  max-width: 933px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 59px 0 15px 0;
+  font-size: 20px;
+  font-weight: 700;
+`;
+
+export const ProgressSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 56px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    border-radius: 30px;
+    border: 3px solid #e8e8e8;
+  }
+`;
 export const ChecklistMainWrapper = styled.div`
   padding: 20px 0 40px;
   width: 100%;
@@ -55,7 +131,7 @@ export const LeftSection = styled.div`
 export const RightSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+
   max-width: 300px;
   @media (max-width: 767px) {
     display: none;
@@ -122,7 +198,7 @@ export const TaskFormSubWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 5px;
-  cursor: all-scroll;
+  cursor: not-allowed;
 `;
 
 export const ShareTextWrapper = styled.div`
@@ -131,7 +207,9 @@ export const ShareTextWrapper = styled.div`
 `;
 export const ShareSection = styled.div``;
 
-export const LeftContentWrapper = styled.div``;
+export const LeftContentWrapper = styled.div`
+  padding-bottom: 120px;
+`;
 export const ShareText = styled.div`
   display: inline-block;
   max-width: 100%;
@@ -205,4 +283,51 @@ export const Paragraph = styled.p`
     !isHeading
       ? "font-size:14px;font-weight:400"
       : "font-size:16px;font-weight:600;margin:8px 0px 2px 6px !important"};
+`;
+export const ViewCount = styled.div`
+  strong {
+    display: inline-block;
+    font-size: 28px;
+    line-height: 0.7;
+    color: #000;
+    padding-top: 10px;
+  }
+  p {
+    margin: 0px 0px 10px 0px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+  }
+`;
+// export const ButtonsMainWrapper = styled.div`
+// `
+export const CopyButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+  p {
+    text-align: right;
+    font-size: 13px;
+    margin-bottom: 5px;
+    line-height: 1.38;
+  }
+  span {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.38;
+  }
+  button {
+    color: ${({ textColor }) => textColor || "black"};
+    font-size: 14px;
+    border-radius: 3px;
+    background: ${({ btnColor }) => btnColor || "black"};
+    width: 90px;
+    padding: 8px 25px;
+    border: 3px solid transparent;
+    opacity: 0.9;
+    margin-left: 15px;
+    cursor: pointer;
+  }
 `;

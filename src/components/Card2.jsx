@@ -33,6 +33,7 @@ export const Card = ({
   taskOrder,
   pathId,
   toggleabc,
+  editable,
 }) => {
   const [isOpenSort, setIsOpenSort] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
@@ -168,11 +169,11 @@ export const Card = ({
                     toggleab(!modal);
                   }}
                 />
-                {/* <Plus
+                <Plus
                   onClick={() => {
                     toggleab(!modal);
                   }}
-                /> */}
+                />
                 {isOpenSort && (
                   <TaskColon
                     setIsHovering={setIsHovering}
