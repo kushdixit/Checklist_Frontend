@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ChecklistWidget from "components/ChecklistWidget";
 import SubModal from "components/SubModal";
-import DescriptionSliderModal from "components/DescriptionSliderModal";
 import Footer from "components/Footer";
 import ViewTask from "components/ViewTask";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,7 +16,7 @@ import {
   ChecklistSubWrapper,
   Section,
   LeftSection,
-  RightSection,
+  RightViewSection,
   LeftContentWrapper,
   RightCardWrapper,
   ChecklistTitleText,
@@ -90,11 +89,6 @@ const ViewList = () => {
 
   return (
     <Section>
-      <DescriptionSliderModal
-        modalType="description"
-        isOpen={newmodal}
-        togglefunction={toggleabc}
-      />
       {contextHolder}
       <Navbar
         search={false}
@@ -115,7 +109,6 @@ const ViewList = () => {
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
-              <button onClick={() => toggleabc(true)}>description</button>
               <ViewTask toggleabc={toggleabc} />
             </LeftContentWrapper>
             <ProgressSection>
@@ -129,7 +122,7 @@ const ViewList = () => {
             </ButtonSection>
             <SecondContent>2290 copies saved</SecondContent>
           </LeftSection>
-          <RightSection>
+          <RightViewSection>
             <CopyCard />
             <TagContent>Tags</TagContent>
             <TagButton>
@@ -144,7 +137,7 @@ const ViewList = () => {
             <TagButton>
               <button className="button">digital-marketing-strategy</button>
             </TagButton>
-          </RightSection>
+          </RightViewSection>
         </ChecklistSubWrapper>
         <RelationHeading>Related Checklists</RelationHeading>
         <ChecklistWidgetSection>

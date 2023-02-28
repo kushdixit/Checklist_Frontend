@@ -132,7 +132,15 @@ export const LeftSection = styled.div`
 export const RightSection = styled.div`
   display: flex;
   flex-direction: column;
-
+  gap: 30px;
+  max-width: 300px;
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+export const RightViewSection = styled.div`
+  display: flex;
+  flex-direction: column;
   max-width: 300px;
   @media (max-width: 767px) {
     display: none;
@@ -179,7 +187,7 @@ export const TaskContainer = styled.div`
 `;
 export const TaskSubContainer = styled.div`
   display: flex;
-  gap: 10px;
+  flex-direction: column;
   border-bottom: 1px solid rgb(224, 224, 224);
   border: ${({ isPriority }) => isPriority && "0px solid #fcd5d5 !important"};
   background-color: ${({ isPriority, isHovering }) =>
@@ -199,7 +207,8 @@ export const TaskFormSubWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 5px;
-  cursor: not-allowed;
+  cursor: ${({ cursor }) => cursor};
+  /* all-scroll */
 `;
 
 export const ShareTextWrapper = styled.div`
@@ -318,8 +327,6 @@ export const ViewCount = styled.div`
     font-size: 16px;
   }
 `;
-// export const ButtonsMainWrapper = styled.div`
-// `
 export const CopyButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -348,4 +355,22 @@ export const CopyButtonWrapper = styled.div`
     margin-left: 15px;
     cursor: pointer;
   }
+`;
+export const SeeDescription = styled.div`
+  position: relative !important;
+  left: 0 !important;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  color: #0077bc;
+  font-size: 15px !important;
+  cursor: pointer;
+  line-height: 1.71;
+  margin-left: 40px;
+`;
+export const SpanDescription = styled.span`
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 3px;
+  color: #777;
 `;

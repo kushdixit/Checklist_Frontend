@@ -35,39 +35,41 @@ export const ViewCard = ({ data }) => {
               isHovering={isHovering}
               isSubtask={data?.isSubtask}
             >
-              {!data?.isHeading && (
-                <div style={{ paddingTop: "10px", paddingLeft: "5px" }}>
-                  <Controller
-                    name="rememberMe"
-                    style={{ paddingTop: "10px" }}
-                    control={control}
-                    render={({ field }) => (
-                      <CheckboxInput
-                        className="checkBox"
-                        style={{
-                          paddingTop: "10px",
-                          width: "23px",
-                          height: "23px",
-                          margin: "0px",
-                          // outline: " #006db3 ",
-                        }}
-                        {...field}
-                        onChange={(e) => {}}
-                      />
-                    )}
-                  />
-                </div>
-              )}
-              <TaskFormSubWrapper>
-                <Paragraph
-                  isHeading={data?.isHeading}
-                  style={{ margin: "0px" }}
-                  href="#"
-                  placeholder="Enter task..."
-                >
-                  {data?.taskName || "         "}
-                </Paragraph>
-              </TaskFormSubWrapper>
+              <div style={{ display: "flex", gap: "10px" }}>
+                {!data?.isHeading && (
+                  <div style={{ paddingTop: "10px", paddingLeft: "5px" }}>
+                    <Controller
+                      name="rememberMe"
+                      style={{ paddingTop: "10px" }}
+                      control={control}
+                      render={({ field }) => (
+                        <CheckboxInput
+                          className="checkBox"
+                          style={{
+                            paddingTop: "10px",
+                            width: "23px",
+                            height: "23px",
+                            margin: "0px",
+                            // outline: " #006db3 ",
+                          }}
+                          {...field}
+                          onChange={(e) => {}}
+                        />
+                      )}
+                    />
+                  </div>
+                )}
+                <TaskFormSubWrapper cursor="not-allowed">
+                  <Paragraph
+                    isHeading={data?.isHeading}
+                    style={{ margin: "0px" }}
+                    href="#"
+                    placeholder="Enter task..."
+                  >
+                    {data?.taskName || "         "}
+                  </Paragraph>
+                </TaskFormSubWrapper>
+              </div>
             </TaskSubContainer>
           </TaskContainer>
         </form>
