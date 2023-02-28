@@ -32,6 +32,7 @@ export const Card = ({
   data,
   taskOrder,
   pathId,
+  toggleabc,
 }) => {
   const [isOpenSort, setIsOpenSort] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
@@ -63,7 +64,6 @@ export const Card = ({
     },
   });
   const watchData = useWatch({ control });
-
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -161,9 +161,13 @@ export const Card = ({
               }}
             >
               <ShortBy>
-              <img src={Plus} alt="Plus"  onClick={() => {
+                <img
+                  src={Plus}
+                  alt="Plus"
+                  onClick={() => {
                     toggleab(!modal);
-                  }}/>
+                  }}
+                />
                 {/* <Plus
                   onClick={() => {
                     toggleab(!modal);
@@ -175,6 +179,7 @@ export const Card = ({
                     pathId={pathId}
                     taskOrder={taskOrder}
                     data={data}
+                    toggleabc={toggleabc}
                   />
                 )}
               </ShortBy>
@@ -233,7 +238,7 @@ export const Card = ({
                 )}
                 {showButtons && (
                   <TextArea
-                  autoFocus="autoFocus"
+                    autoFocus="autoFocus"
                     type="task"
                     style={{
                       fontWeight: "400",
@@ -245,7 +250,7 @@ export const Card = ({
                       resize: "none",
                       background: "#fff",
                       outline: "none",
-                      borderRadius:'5px',
+                      borderRadius: "5px",
                       border: "1px solid rgb(224,224,224)",
                     }}
                     name="checklist"

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
-
   align-items: center;
   justify-content: center;
   h5 {
@@ -53,6 +52,23 @@ export const IconInputField = styled.div`
     color: #000;
   }
   
+`;
+
+export const EditorTask = styled.div`
+  padding: 6px 8px 2px 8px;
+  font-weight: bold;
+  font-size: 13px;
+`;
+
+export const DescriptionFormButton = styled.button`
+  font-size: 13px;
+  padding: 10px 15px;
+  min-width: max-content;
+  background: #007ccb;
+  font-weight: 400;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
 `;
 export const IconInputFieldTextArea = styled.div`
   width: 100%;
@@ -120,6 +136,7 @@ export const DataWrapper = styled.form`
   }
 `;
 export const Heading = styled.div`
+  padding: 30px 0 0 6px;
   .button {
     border: none;
     padding: 7px 10px;
@@ -144,6 +161,7 @@ export const ButtonWrapper = styled.div`
 export const DataInput = styled.div`
   font-size: 18px;
   color: #000;
+  padding: 0 8px;
   /* background: #fff3f3; */
   /* padding: 15px; */
   margin-bottom: 19px;

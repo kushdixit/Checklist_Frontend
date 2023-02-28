@@ -10,7 +10,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import AddTask from "./AddTask";
 
-const TaskTitle = () => {
+const TaskTitle = ({ toggleabc }) => {
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const ChecklistDetail = useSelector((state) =>
@@ -91,6 +91,7 @@ const TaskTitle = () => {
                   data={item}
                   taskOrder={taskOrder}
                   pathId={pathId}
+                  toggleabc={toggleabc}
                 />
                 <AddTask pathId={pathId} />
               </>
@@ -106,6 +107,7 @@ const TaskTitle = () => {
               data={item}
               taskOrder={taskOrder}
               pathId={pathId}
+              toggleabc={toggleabc}
             />
           );
         })}

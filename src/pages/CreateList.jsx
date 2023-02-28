@@ -64,7 +64,10 @@ const ImageHandler = () => {
 };
 const CreateList = () => {
   const [newmodal, setNewModal] = useState(false);
-  function toggleabc(data) {
+  const [checkListDiscriptionId, setCheckListDiscriptionId] = useState();
+  function toggleabc(data, descriptionId) {
+    setCheckListDiscriptionId(descriptionId);
+    // console.log("descriptionId", descriptionId);
     setNewModal(data);
   }
 
@@ -120,6 +123,7 @@ const CreateList = () => {
         modalType="description"
         isOpen={newmodal}
         togglefunction={toggleabc}
+        checklistDiscriptionId={checkListDiscriptionId}
       />
       {contextHolder}
       <Navbar
