@@ -5,7 +5,7 @@ export const NavSection = styled.div`
   margin: 0 auto;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 1735px;
+  max-width: 1180px;
   @media (max-width: 767px) {
   }
 `;
@@ -302,7 +302,7 @@ export const IconInputField = styled.div`
   @media (max-width: 1120px) {
     width: 100%;
     max-width: 205px;
-    padding-right: 30px;
+    /* padding-right: 30px; */
     input {
       width: unset;
       max-width: unset;

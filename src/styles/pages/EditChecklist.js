@@ -61,20 +61,22 @@ export const ChecklistWidgetSection = styled.div`
   margin-left: auto;
   margin-right: auto;
   flex-wrap: wrap;
-  gap: 24px 30px;
+  gap: 7px 30px;
   @media (max-width: 990px) {
     justify-content: center;
   }
 `;
 export const RelationHeading = styled.div`
   width: 100%;
-  max-width: 933px;
+
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 59px 0 15px 0;
-  font-size: 20px;
+
+  padding: 59px 0 0 0;
+  font-size: 19px;
   font-weight: 700;
+  @media (max-width: 968px) {
+    justify-content: center;
+  }
 `;
 
 export const ProgressSection = styled.div`

@@ -141,8 +141,9 @@ const ViewList = () => {
             </TagButton>
           </RightSection>
         </ChecklistSubWrapper>
-        <RelationHeading>Related Checklists</RelationHeading>
+
         <ChecklistWidgetSection>
+          <RelationHeading>Related Checklists</RelationHeading>
           {allTemplate?.map((item) => (
             <ChecklistWidget data={item} />
           ))}
