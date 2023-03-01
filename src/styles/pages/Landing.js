@@ -67,6 +67,42 @@ export const Heading = styled.div`
   }
 `;
 
+export const LandingChecklistCardSection = styled.div`
+  margin: 195px 0 0 0;
+  h5 {
+    font-size: 32px;
+    font-weight: 400;
+    margin: 0;
+  }
+`;
+
+export const ButtonSection = styled.div`
+  display: flex;
+  gap: 16px;
+  margin: 0 auto;
+  padding: 76px 0 0 15px;
+  .button {
+    background-color: #f5f5f5;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 10px;
+    border: 0px;
+    padding: 8px;
+    color: #333;
+  }
+  @media (max-width: 1298px) {
+    width: 100%;
+    max-width: 1053px;
+  }
+  @media (max-width: 1198px) {
+    width: 100%;
+    max-width: 717px;
+  }
+  @media (max-width: 990px) {
+    width: 100%;
+    max-width: 635px;
+  }
+`;
 export const SecondHeading = styled.h2`
   line-height: 1.18;
   margin: 0px 0px 30px 0px;
