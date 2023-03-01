@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const FirstSection = styled.div`
   display: flex;
-  grid-gap: 37px;
+  grid-gap: 43px;
   width: 100%;
 
   margin: 0 0 0 10px;
@@ -33,7 +33,7 @@ export const CardMainSection = styled.div`
   align-items: center;
   width: 100%;
   max-width: 1735px;
-  margin: 0 auto;
+  margin: 19px auto;
 `;
 
 export const Section = styled.div``;

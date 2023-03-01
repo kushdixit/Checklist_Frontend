@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CheckliCard from "components/CheckliCard";
+import LandingCheckliCard from "components/LandingCheckliCard";
 import { useDispatch } from "react-redux";
 import {
   FirstSection,
@@ -18,18 +18,13 @@ const ChecklistCards = ({ item }) => {
 
   return (
     <>
-      <NewSection>
-        <SubSectionNew>
-          <h2> {item.templateName}</h2>
-        </SubSectionNew>
-      </NewSection>
       <CardMainSection>
         <FirstSection>
           {item.checklists
             ?.filter((subItem) => subItem.isActive)
             .reverse()
             .map((subItem) => {
-              return <CheckliCard data={subItem} />;
+              return <LandingCheckliCard data={subItem} />;
             })}
         </FirstSection>
       </CardMainSection>

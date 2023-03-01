@@ -344,12 +344,12 @@ export const ImageSection = styled.div`
   margin-bottom: 10px;
   border-radius: 15px;
   width: 100%;
-  max-width: 286px;
+  max-width: 380px;
   @media (max-width: 1276px) {
     width: 100%;
-    max-width: 264px;
+    max-width: 380px;
   }
-  @media (max-width: 1196px) {
+  @media (max-width: 1198px) {
     width: 100%;
     max-width: 209px;
   }
@@ -388,21 +388,21 @@ export const ProcessSection = styled.div`
   /* border: 1px solid #eee; */
   border-radius: 26px 15px 0 0;
   width: 100%;
-  max-width: 286px;
+  max-width: 380px;
   height: auto;
   border-bottom: none;
   img {
-    width: 286px;
+    width: 380px;
     height: auto;
     border-radius: 12px 14px 0 0;
   }
-  @media (max-width: 1276px) {
+  @media (max-width: 1296px) {
     width: 100%;
-    max-width: 264px;
+    max-width: 320px;
   }
-  @media (max-width: 1276px) {
+  @media (max-width: 1296px) {
     img {
-      width: 264px;
+      width: 320px;
       height: auto;
     }
   }
