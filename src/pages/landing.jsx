@@ -13,6 +13,8 @@ import {
   SecondHeading,
   LandingCardSection,
   UpperContentWrapper,
+  LandingChecklistCardSection,
+  ButtonSection,
 } from "styles/pages/Landing";
 import LandingCard from "../components/LandingCard";
 import Footer from "components/Footer";
@@ -89,9 +91,25 @@ const Landing = () => {
           <LandingCardSection>
             <LandingCard />
           </LandingCardSection>
-          {allTemplate?.map((item, id) => (
-            <ChecklistCards key={id} item={item} />
-          ))}
+          <LandingChecklistCardSection>
+            <h5>Free Template Library</h5>
+            <p>
+              Copy, edit, and use thousands of free checklists and business
+              processes for free.
+            </p>
+            <ButtonSection>
+              <button className="button">New</button>{" "}
+              <button className="button">Digital Marketing</button>
+              <button className="button">Education</button>
+              <button className="button">HR</button>
+              <button className="button">Business</button>
+              <button className="button">Real Estate</button>
+              <button className="button">Start Up</button>
+            </ButtonSection>
+            {allTemplate?.map((item, id) => (
+              <ChecklistCards key={id} item={item} />
+            ))}
+          </LandingChecklistCardSection>
         </div>
       </UpperContentWrapper>
       <Footer />

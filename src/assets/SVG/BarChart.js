@@ -3,7 +3,7 @@ import * as React from "react";
 const SvgComponent = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={45}
+    width={55}
     viewBox="0 0 24 24"
     fill="#147fc9"
     data-name="Bar Chart"

@@ -66,8 +66,8 @@ export const ChecklistWidgetSection = styled.div`
   @media (max-width: 967px) {
     justify-content: center;
   }
-  @media (max-width: 1169px) {
-    max-width: 962px;
+  @media (max-width: 1200px) {
+    max-width: 1005px;
   }
 `;
 export const RelationHeading = styled.div`
