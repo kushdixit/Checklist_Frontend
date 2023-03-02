@@ -10,7 +10,7 @@ import CreateList from "pages/CreateList";
 import FreeTemplate from "pages/FreeTemplate";
 import Explore from "pages/Explore";
 import ViewList from "pages/ViewList";
-
+import ChecklistDashboard from "pages/ChecklistDashboard";
 const Router = () => {
   return (
     <BrowserRouter>
@@ -29,6 +29,7 @@ const Router = () => {
         <Route path="landing" element={<Landing />} />
         <Route path="freeTemplate" element={<FreeTemplate />} />
         <Route path="explore" element={<Explore />} />
+        <Route path="checklistdashboard" element={<ChecklistDashboard />} />
       </Routes>
     </BrowserRouter>
   );
