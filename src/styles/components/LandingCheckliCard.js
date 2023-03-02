@@ -478,3 +478,45 @@ export const HeaderSection = styled.div`
     }
   }
 `;
+
+export const Text = styled.div`
+  
+  
+    display: block;
+    overflow: hidden;
+    display: flex;
+    width: 231px;
+
+    text-align: left;
+    align-items: flex-start;
+    color: #000;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 5px;
+
+    transition: color 0.5s;
+
+ 
+    @media (max-width: 990px) {
+      justify-content: center;
+      font-weight: 400;
+      font-size: 24px;
+      width: 100%;
+    }
+    @media (max-width: 1196px) {
+      font-size: 20px;
+    }
+  }
+  /* img {
+    width: 260px;
+  } */
+  @media (max-width: 990px) {
+    justify-content: center;
+    h4 {
+      font-weight: 400;
+      font-size: 24px;
+      width: 100%;
+    }
+  }
+`;

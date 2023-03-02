@@ -13,6 +13,7 @@ import {
   ProgressSection,
   Name,
   ProcessSection,
+  Text,
 } from "styles/components/LandingCheckliCard";
 
 const LandingCheckliCard = ({ data }) => {
@@ -31,7 +32,7 @@ const LandingCheckliCard = ({ data }) => {
           <img src={ProcessOne} alt="ProcessOne" />
         </ProcessSection>
         <HeaderSection>
-          <h4>{data?.checklistName}</h4>
+          <Text>{data?.checklistName}</Text>
           <Small>23,293 Views</Small>
           <ProgressSection>
             <img src={ChecklistImage} alt="ChecklistImage" />
