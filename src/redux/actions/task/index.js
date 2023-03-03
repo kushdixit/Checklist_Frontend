@@ -236,3 +236,15 @@ export const MoveTask = (taskListIds) => async () => {
     return ex.response;
   }
 };
+
+export const GetImages = () => async () => {
+  try {
+    const response = await axioPath.put("v1/CheckList/checklistimages", {
+      hideLoader: false,
+    });
+    console.log("response", response);
+    return response;
+  } catch (ex) {
+    return ex.response;
+  }
+};
