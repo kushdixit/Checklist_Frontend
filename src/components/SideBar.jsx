@@ -30,7 +30,6 @@ import Trash from "assets/images/trash.png";
 import Plus from "assets/SVG/Plus";
 import Star from "assets/SVG/Star";
 import Flower from "assets/images/flower.jpg";
-import Footer from "components/Footer";
 
 const SideBar = (search) => {
   const dispatch = useDispatch();

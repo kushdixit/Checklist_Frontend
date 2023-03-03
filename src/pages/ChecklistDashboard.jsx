@@ -47,6 +47,7 @@ const ChecklistDashboard = (search) => {
         <Navbar search={true} navType="freeTemplate" />
       </NavSection>
       <SideBar />
+      <Footer />
     </LandingContainer>
   );
 };

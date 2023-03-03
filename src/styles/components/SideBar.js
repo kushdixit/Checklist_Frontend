@@ -191,5 +191,5 @@ export const WrapperSection = styled.div`
   background: #fff;
   border: 1px solid #eee;
   max-width: 924px;
-  padding: 100px;
+  padding: 82px 100px;
 `;
