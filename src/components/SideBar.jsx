@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate } from "redux/actions/template";
 import {
@@ -19,13 +18,8 @@ import {
   ThirdSection,
   FourthSection,
 } from "styles/components/SideBar";
-import TextInput from "components/FormElements/TextInput";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { SET_SEARCH } from "redux/actions/action_types";
-import CheckliCardWrapper from "components/CheckliCardWrapper";
-import Google from "assets/images/google.png";
-import Person from "assets/images/person.png";
 import Share from "assets/images/share.png";
 import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
@@ -39,9 +33,11 @@ import Documents from "assets/images/documents-folder.png";
 import Backward from "assets/images/backward-arrow.png";
 const SideBar = (search) => {
   const dispatch = useDispatch();
-  const [updateSearch, SetUpdateSearch] = useState("");
-  const navigate = useNavigate();
-  const allTemplate = useSelector((state) => state.Template?.allTemplate);
+  const templateData = useSelector((state) => state.Template?.yourTemplate);
+  // console.log(templateData[0]?.checklists);
+
+  const da = templateData[0]?.checklists?.filter((item, index) => index <= 10);
+  console.log("da", da);
 
   useEffect(() => {
     dispatch(getAllTemplate());
@@ -82,6 +78,38 @@ const SideBar = (search) => {
         </Seventh>
       </LeftContainer>
     </LandingContainer>
+  );
+};
+
+const ChecklistWrapper = ({ data }) => {
+  const navigate = useNavigate();
+  return (
+    <FourthSection>
+      <ul>
+        <li>
+          <Star />{" "}
+          <div
+            style={{ cursor: "pointer", textDecoration: "underline" }}
+            onClick={() => {
+              navigate(`/createChecklist/${data?.id}`, {
+                state: { showEditable: false, cardType: "user" },
+              });
+            }}
+          >
+            {data?.checklistName}
+          </div>
+        </li>
+        <li>
+          <img src={Share} alt="Share" />
+        </li>
+        <li>
+          <img src={ChartPie} alt="ChartPie" />
+        </li>
+        <li>
+          <img src={Trash} alt="Trash" />
+        </li>
+      </ul>
+    </FourthSection>
   );
 };
 

@@ -4,16 +4,10 @@ import {
   NewSection,
   SubSectionNew,
   CardMainSection,
-  Footer,
-  Morecontent,
-  IconInputField,
-  SelectFieldSection,
-  ButtonSection,
   EmptyMessage,
 } from "styles/components/Card";
-import Card from "./Card";
+import CheckliCard from "components/CheckliCard";
 import { useSelector } from "react-redux";
-// import FirstImage from "assets/images/firstimage.jpg";
 import FirstImage from "assets/images/checklist.svg";
 
 const YourTemplate = () => {
@@ -31,30 +25,17 @@ const YourTemplate = () => {
           <h2>{templateData[0].templateName}</h2>
         </SubSectionNew>
       </NewSection>
-
       <CardMainSection>
         <FirstSection>
           {templateData[0]?.checklists
             ?.filter((subItem) => subItem.isActive)
             .reverse()
-            .map((subItem, index) => {
-              return (
-                <Card
-                  key={index}
-                  index={index}
-                  item={subItem}
-                  Checklist={Checklist}
-                  showEditable={true}
-                  cardType="user"
-                  templateName={templateData[0]?.templateName}
-                  completed={subItem?.completedTaskCount}
-                  unCompleted={subItem?.inCompleteTaskCount}
-                />
-              );
+            .map((subItem) => {
+              return <CheckliCard data={subItem} />;
             })}
         </FirstSection>
       </CardMainSection>
-      {templateData[0].checklists.length == 0 && (
+      {templateData[0].checklists.length === 0 && (
         <EmptyMessage>Your Template is currently empty</EmptyMessage>
       )}
     </>

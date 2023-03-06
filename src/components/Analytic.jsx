@@ -33,8 +33,10 @@ import Flower from "assets/images/flower.jpg";
 import Footer from "components/Footer";
 const Analytic = (search) => {
   const dispatch = useDispatch();
-  const [updateSearch, SetUpdateSearch] = useState("");
-  const navigate = useNavigate();
+  const templateData = useSelector((state) => state.Template?.yourTemplate);
+  // console.log(templateData[0]?.checklists);
+
+  const da = templateData[0]?.checklists?.filter((item, index) => index <= 10);
   const allTemplate = useSelector((state) => state.Template?.allTemplate);
 
   useEffect(() => {
@@ -62,149 +64,46 @@ const Analytic = (search) => {
               <li>Delete</li>
             </ul>
           </ThirdSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
+          {templateData[0]?.checklists
+            ?.filter((item, index) => index <= 9)
+            .map((item) => (
+              <ChecklistWrapper data={item} />
+            ))}
         </WrapperSection>
       </RightContainer>
     </LandingContainer>
+  );
+};
+
+const ChecklistWrapper = ({ data }) => {
+  const navigate = useNavigate();
+  return (
+    <FourthSection>
+      <ul>
+        <li>
+          <Star />{" "}
+          <div
+            style={{ cursor: "pointer", textDecoration: "underline" }}
+            onClick={() => {
+              navigate(`/createChecklist/${data?.id}`, {
+                state: { showEditable: false, cardType: "user" },
+              });
+            }}
+          >
+            {data?.checklistName}
+          </div>
+        </li>
+        <li>
+          <img src={Share} alt="Share" />
+        </li>
+        <li>
+          <img src={ChartPie} alt="ChartPie" />
+        </li>
+        <li>
+          <img src={Trash} alt="Trash" />
+        </li>
+      </ul>
+    </FourthSection>
   );
 };
 
