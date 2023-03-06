@@ -9,6 +9,8 @@ import {
   Third,
   Fourth,
   Fifth,
+  Sixth,
+  Seventh,
   LeftContainer,
   RightContainer,
   FirstSection,
@@ -30,7 +32,11 @@ import Trash from "assets/images/trash.png";
 import Plus from "assets/SVG/Plus";
 import Star from "assets/SVG/Star";
 import Flower from "assets/images/flower.jpg";
-
+import List from "assets/images/list.png";
+import Calendar from "assets/images/calendar.png";
+import Bell from "assets/images/bell.png";
+import Documents from "assets/images/documents-folder.png";
+import Backward from "assets/images/backward-arrow.png";
 const SideBar = (search) => {
   const dispatch = useDispatch();
   const [updateSearch, SetUpdateSearch] = useState("");
@@ -49,170 +55,32 @@ const SideBar = (search) => {
   return (
     <LandingContainer>
       <LeftContainer>
-        <First></First>
+        <First>
+          <img src={Backward} />
+        </First>
         <Second>
           <Plus />
         </Second>
-        <Third>Dashboard</Third>
-        <Fourth>Calender</Fourth>
-        <Fifth>Reminders</Fifth>
+        <Third>
+          <img src={List} />
+          Dashboard
+        </Third>
+        <Fourth>
+          {" "}
+          <img src={Calendar} />
+          Calender
+        </Fourth>
+        <Fifth>
+          {" "}
+          <img src={Bell} />
+          Reminders
+        </Fifth>
+        <Sixth></Sixth>
+        <Seventh>
+          <img src={Documents} />
+          New Folder
+        </Seventh>
       </LeftContainer>
-      <RightContainer>
-        <WrapperSection>
-          <FirstSection>My Dashboard</FirstSection>
-          <SecondSection>
-            All of your checklists, processes and templates.Help Video
-          </SecondSection>
-          <ThirdSection>
-            <ul>
-              <li>Name</li>
-              <li>Share</li>
-              <li>Insights</li>
-              <li>Delete</li>
-            </ul>
-          </ThirdSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-          <FourthSection>
-            <ul>
-              {" "}
-              <li>
-                <Star /> Minecraft survival to do list
-              </li>
-              <li>
-                {" "}
-                <img src={Share} alt="Share" />
-              </li>
-              <li>
-                {" "}
-                <img src={ChartPie} alt="ChartPie" />
-              </li>
-              <li>
-                {" "}
-                <img src={Trash} alt="Trash" />
-              </li>
-            </ul>
-          </FourthSection>
-        </WrapperSection>
-      </RightContainer>
     </LandingContainer>
   );
 };

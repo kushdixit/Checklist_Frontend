@@ -3,16 +3,15 @@ import styled from "styled-components";
 export const LandingContainer = styled.div`
   width: 100%;
   display: flex;
-  max-width: 249px;
 `;
 export const LeftContainer = styled.div`
   width: 100%;
-  max-width: 249px;
+  max-width: 189px;
   background-color: #fff;
 
   border-right: 1px solid #eee;
   height: 100vh;
-  /* padding: 0 20px; */
+  padding: 0 20px;
 `;
 export const RightContainer = styled.div`
   width: 100%;
@@ -23,87 +22,36 @@ export const RightContainer = styled.div`
   background: #fbfbfb;
   padding-top: 36px;
 `;
-export const First = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding: 7px 20px;
-  img {
-    width: 15px;
-    height: 15px;
-    background: #f1f3f5;
-    padding: 13px;
-    border-radius: 5px;
-  }
-`;
+export const First = styled.div``;
 export const Second = styled.div`
   border-radius: 64px;
 
   display: flex;
 
-  padding: 45px 20px 7px 20px;
+  margin: 5px 0;
+  padding: 6px;
 `;
 export const Third = styled.div`
   display: flex;
 
   color: #000;
-  padding: 7px 20px;
+  padding: 5px 2px;
   font-size: 15px;
-  align-items: center;
-  gap: 13px;
-  img {
-    width: 15px;
-    height: 15px;
-  }
 `;
 
 export const Fourth = styled.div`
   display: flex;
 
   color: #000;
-  padding: 7px 20px;
+  padding: 5px 2px;
   font-size: 15px;
-  align-items: center;
-  gap: 13px;
-  img {
-    width: 15px;
-    height: 15px;
-  }
 `;
 export const Fifth = styled.div`
   display: flex;
   align-items: center;
   color: #000;
-  padding: 7px 20px;
+  padding: 5px 2px;
   font-size: 15px;
-  align-items: center;
-  gap: 13px;
-
-  img {
-    width: 15px;
-    height: 15px;
-  }
-`;
-export const Sixth = styled.div`
-  display: flex;
-  align-items: center;
-
-  gap: 13px;
-  border-bottom: 1px solid #dddddd;
-  padding: 10px 0;
-`;
-export const Seventh = styled.div`
-  display: flex;
-  align-items: center;
-  color: #000;
-  padding: 7px 20px;
-  font-size: 15px;
-
-  gap: 13px;
-
-  img {
-    width: 15px;
-    height: 15px;
-  }
 `;
 export const FirstSection = styled.div`
   display: flex;

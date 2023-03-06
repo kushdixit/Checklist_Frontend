@@ -14,6 +14,7 @@ import {
   ImageSection,
   Text,
   Border,
+  MainSection,
 } from "styles/pages/ChecklistDashboard";
 import TextInput from "components/FormElements/TextInput";
 import { useForm } from "react-hook-form";
@@ -25,7 +26,7 @@ import Person from "assets/images/person.png";
 import Flower from "assets/images/flower.jpg";
 import Footer from "components/Footer";
 import SideBar from "components/SideBar";
-
+import Analytic from "components/Analytic";
 const ChecklistDashboard = (search) => {
   const dispatch = useDispatch();
   const [updateSearch, SetUpdateSearch] = useState("");
@@ -46,7 +47,10 @@ const ChecklistDashboard = (search) => {
       <NavSection>
         <Navbar search={true} navType="freeTemplate" />
       </NavSection>
-      <SideBar />
+      <MainSection>
+        <SideBar />
+        <Analytic />
+      </MainSection>
       <Footer />
     </LandingContainer>
   );

@@ -76,6 +76,9 @@ export const Heading = styled.div`
   }
 `;
 
+export const MainSection = styled.div`
+  display: flex;
+`;
 export const SecondHeading = styled.div`
   display: flex;
   width: 100%;
