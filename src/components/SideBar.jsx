@@ -38,6 +38,7 @@ import Calendar from "assets/images/calendar.png";
 import Bell from "assets/images/bell.png";
 import Documents from "assets/images/documents-folder.png";
 import Backward from "assets/images/backward-arrow.png";
+import Folder from "assets/images/folder.png";
 const SideBar = (search) => {
   const dispatch = useDispatch();
   const [updateSearch, SetUpdateSearch] = useState("");
@@ -65,25 +66,29 @@ const SideBar = (search) => {
       </First>
 
       <LeftContainer>
-        <Second padding={isGood ? "12px 20px" : "10px 0 10px 7px;"}>
+        <Second padding={isGood ? "8px 20px" : "8px 0 8px 7px;"}>
           <Plus />
         </Second>
-        <Third padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
+        <Third padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
           <img src={List} />
           Dashboard
         </Third>
-        <Fourth padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
+        <Fourth padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
           {" "}
           <img src={Calendar} />
           Calender
         </Fourth>
-        <Fifth padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
+        <Fifth padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
           {" "}
           <img src={Bell} />
           Reminders
         </Fifth>
         <Sixth></Sixth>
-        <Seventh padding={isGood ? "12px 20px" : "12px 17px;"}>
+        <Seventh padding={isGood ? "11px 20px" : "11px 17px;"}>
+          <img src={Folder} />
+          Folder 1
+        </Seventh>
+        <Seventh padding={isGood ? "11px 20px" : "11px 17px;"}>
           <img src={Documents} />
           New Folder
         </Seventh>

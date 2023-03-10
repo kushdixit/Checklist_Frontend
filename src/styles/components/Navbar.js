@@ -27,6 +27,15 @@ export const EditSection = styled.div`
     margin-right: 30px;
   }
 `;
+
+export const BlueIcon = styled.div`
+  align-items: center;
+  display: flex;
+  padding: 20px;
+
+  svg {
+  }
+`;
 export const Logintext = styled.div`
   margin: 0px;
   padding: 0px 10px 0 10px;
