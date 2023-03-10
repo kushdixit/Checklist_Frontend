@@ -28,7 +28,7 @@ import Footer from "components/Footer";
 import SideBar from "components/SideBar";
 import Analytic from "components/Analytic";
 import View from "components/View";
-const ChecklistDashboard = (search) => {
+const ChecklistDashboard = (search, icon) => {
   const dispatch = useDispatch();
   const [updateSearch, SetUpdateSearch] = useState("");
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const ChecklistDashboard = (search) => {
   return (
     <LandingContainer>
       <NavSection>
-        <Navbar search={true} navType="freeTemplate" />
+        <Navbar search={true} icon={true} navType="freeTemplate" />
       </NavSection>
       <MainSection>
         <SideBar />
