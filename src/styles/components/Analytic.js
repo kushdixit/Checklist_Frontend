@@ -198,3 +198,65 @@ export const WrapperSection = styled.div`
     padding: 82px 50px;
   }
 `;
+
+export const IconInputFieldNew = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  padding-left: 0px;
+  input {
+    position: relative;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 10px 0px 10px;
+    border: 1px solid #f1f3f5;
+    background: #f1f3f5;
+    max-width: 248px;
+    width: 100%;
+    height: 48px;
+    ::placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+    :-ms-input-placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+    ::-ms-input-placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+    :focus-visible {
+      outline: unset;
+    }
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+
+    input {
+      width: 100%;
+      max-width: 79.6vw;
+    }
+  }
+  @media (max-width: 726px) {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+  @media (max-width: 610px) {
+    input {
+      width: 46vw;
+    }
+  }
+  /* @media (max-width: 532px) {
+    input {
+      width: 70vw;
+    }
+  } */
+`;

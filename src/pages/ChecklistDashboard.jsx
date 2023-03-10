@@ -11,6 +11,7 @@ import Footer from "components/Footer";
 import SideBar from "components/SideBar";
 import Analytic from "components/Analytic";
 import View from "components/View";
+
 const ChecklistDashboard = (search, icon) => {
   const dispatch = useDispatch();
 
@@ -25,8 +26,8 @@ const ChecklistDashboard = (search, icon) => {
       </NavSection>
       <MainSection>
         <SideBar />
-        {/* <Analytic /> */}
-        <View />
+        <Analytic />
+        {/* <View /> */}
       </MainSection>
       <Footer />
     </LandingContainer>
