@@ -1,39 +1,40 @@
 import styled from "styled-components";
 
 export const LandingContainer = styled.div`
-  width: 100%;
-  display: flex;
+  width: ${({ width }) => width || "45px"};
+
   max-width: 249px;
+  border-right: 1px solid #eee;
+  background: #fff;
+  @media (max-width: 1010px) {
+    width: 100%;
+    max-width: 160px;
+  }
 `;
+// export const LandingContainer = styled.div`
+//   width: ${({ width }) => width || "180px"};
+
+//   border-right: 1px solid #eee;
+//   background: #fff;
+//   @media (max-width: 1010px) {
+//     width: 100%;
+//     max-width: 160px;
+//   } font-weight: ${({ width }) => width || 400};
+// `;
 export const LeftContainer = styled.div`
+  /* width: 100%;
+  max-width: 249px;
+  background-color: #fff;
+
+  border-right: 1px solid #eee;
+  height: 100vh; */
+  /* padding: 0 20px; */
   width: 100%;
   max-width: 249px;
   background-color: #fff;
 
   border-right: 1px solid #eee;
   height: 100vh;
-  /* padding: 0 20px; */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 300px;
-    height: 100%;
-    background-color: peru;
-    transition: left 300ms ease-out;
-  }
-  .sidebar.active {
-    left: 0;
-  }
-  .sidebar.active .hamburger:before {
-    transform: translateY(12px) rotate(135deg);
-  }
-  .sidebar.active .hamburger::after {
-    transform: translateY(-12px) rotate(-135deg);
-  }
-  .sidebar.active .hamburger div {
-    transform: scale(0);
-  }
 `;
 export const RightContainer = styled.div`
   width: 100%;
@@ -46,57 +47,37 @@ export const RightContainer = styled.div`
 `;
 export const First = styled.div`
   display: flex;
-  justify-content: flex-end;
-  padding: 7px 20px;
+
+  padding: ${({ padding }) => padding || "40px 0 40px 0;"};
+  width: 100%;
+  max-width: 210px;
+
   img {
     width: 15px;
     height: 15px;
+  }
+  .button {
     background: #f1f3f5;
-    padding: 13px;
+    padding: 16px;
     border-radius: 5px;
-  }
-  .hamburger {
-    border: none;
-    outline: 0;
-    width: 50px;
-    position: absolute;
-    right: -50px;
-    background-color: peru;
-  }
-
-  .hamburger:after,
-  .hamburger:before,
-  .hamburger div {
-    background-color: #fff;
-    height: 5px;
-    margin: 7px 0;
-    border-radius: 3px;
-    content: "";
-    display: block;
-    transition: all 300ms ease-in-out;
-  }
-  .sidebar.active .hamburger:before {
-    transform: translateY(12px) rotate(135deg);
-  }
-  .sidebar.active .hamburger::after {
-    transform: translateY(-12px) rotate(-135deg);
-  }
-  .sidebar.active .hamburger div {
-    transform: scale(0);
+    display: flex;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    justify-content: center;
   }
 `;
 export const Second = styled.div`
   border-radius: 64px;
 
   display: flex;
-
-  padding: 45px 20px 7px 20px;
+  padding: ${({ padding }) => padding || "12px 17px;"};
 `;
 export const Third = styled.div`
   display: flex;
 
   color: #000;
-  padding: 7px 20px;
+  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -110,7 +91,7 @@ export const Fourth = styled.div`
   display: flex;
 
   color: #000;
-  padding: 7px 20px;
+  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -123,7 +104,7 @@ export const Fifth = styled.div`
   display: flex;
   align-items: center;
   color: #000;
-  padding: 7px 20px;
+  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -145,7 +126,7 @@ export const Seventh = styled.div`
   display: flex;
   align-items: center;
   color: #000;
-  padding: 7px 20px;
+  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
   font-size: 15px;
 
   gap: 13px;

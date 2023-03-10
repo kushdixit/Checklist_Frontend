@@ -78,6 +78,8 @@ export const Heading = styled.div`
 
 export const MainSection = styled.div`
   display: flex;
+  padding-bottom: 80px;
+  background: #fbfbfb;
 `;
 export const SecondHeading = styled.div`
   display: flex;
