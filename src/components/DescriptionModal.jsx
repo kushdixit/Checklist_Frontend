@@ -52,12 +52,19 @@ const DescriptionModal = ({ task, checklistDiscriptionId }) => {
     res.status === 204 && (await dispatch(getChecklistBySubcategory(pathId)));
   };
 
+  const DeleteHandler = async () => {
+    const res = await dispatch(TaskDescription(checklistDiscriptionId, ""));
+    res.status === 204 && (await dispatch(getChecklistBySubcategory(pathId)));
+  };
+
   return (
     <MainWrapper>
       <Container>
         <DataWrapper>
           <Heading>
-            <button className="button">Delete</button>
+            <button className="button" onClick={DeleteHandler}>
+              Delete
+            </button>
           </Heading>
           <EmailWrapper></EmailWrapper>
         </DataWrapper>
