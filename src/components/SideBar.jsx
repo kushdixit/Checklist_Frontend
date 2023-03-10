@@ -56,38 +56,37 @@ const SideBar = (search) => {
   });
 
   return (
-    <LandingContainer width={isGood ? "280px" : "180px"}>
-      <First>
+    <LandingContainer width={isGood ? "280px" : "45px"}>
+      <First padding={isGood ? "40px 20px" : "40px 7px 40px 6px;"}>
         <button className="button" onClick={() => setIsGood(!isGood)}>
           <img src={Backward} />
         </button>
       </First>
-      {isGood ? (
-        <LeftContainer>
-          <Second>
-            <Plus />
-          </Second>
-          <Third>
-            <img src={List} />
-            Dashboard
-          </Third>
-          <Fourth>
-            {" "}
-            <img src={Calendar} />
-            Calender
-          </Fourth>
-          <Fifth>
-            {" "}
-            <img src={Bell} />
-            Reminders
-          </Fifth>
-          <Sixth></Sixth>
-          <Seventh>
-            <img src={Documents} />
-            New Folder
-          </Seventh>
-        </LeftContainer>
-      ) : null}
+
+      <LeftContainer>
+        <Second padding={isGood ? "12px 20px" : "10px 0 10px 7px;"}>
+          <Plus />
+        </Second>
+        <Third padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
+          <img src={List} />
+          Dashboard
+        </Third>
+        <Fourth padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
+          {" "}
+          <img src={Calendar} />
+          Calender
+        </Fourth>
+        <Fifth padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
+          {" "}
+          <img src={Bell} />
+          Reminders
+        </Fifth>
+        <Sixth></Sixth>
+        <Seventh padding={isGood ? "12px 20px" : "12px 17px;"}>
+          <img src={Documents} />
+          New Folder
+        </Seventh>
+      </LeftContainer>
     </LandingContainer>
   );
 };

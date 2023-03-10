@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-export const LandingContainer =
-  styled.div <
-  { width } >
-  `
-  width: ${({ width }) => width || "180px"};
-  max-width: isGood? 249px: 210px ;
+export const LandingContainer = styled.div`
+  width: ${({ width }) => width || "45px"};
+
+  max-width: 249px;
   border-right: 1px solid #eee;
   background: #fff;
   @media (max-width: 1010px) {
@@ -13,6 +11,16 @@ export const LandingContainer =
     max-width: 160px;
   }
 `;
+// export const LandingContainer = styled.div`
+//   width: ${({ width }) => width || "180px"};
+
+//   border-right: 1px solid #eee;
+//   background: #fff;
+//   @media (max-width: 1010px) {
+//     width: 100%;
+//     max-width: 160px;
+//   } font-weight: ${({ width }) => width || 400};
+// `;
 export const LeftContainer = styled.div`
   /* width: 100%;
   max-width: 249px;
@@ -40,10 +48,10 @@ export const RightContainer = styled.div`
 export const First = styled.div`
   display: flex;
 
-  padding: 17px 20px;
+  padding: ${({ padding }) => padding || "40px 0 40px 0;"};
   width: 100%;
   max-width: 210px;
-  justify-content: flex-end;
+
   img {
     width: 15px;
     height: 15px;
@@ -63,14 +71,13 @@ export const Second = styled.div`
   border-radius: 64px;
 
   display: flex;
-
-  padding: 45px 20px 7px 20px;
+  padding: ${({ padding }) => padding || "12px 17px;"};
 `;
 export const Third = styled.div`
   display: flex;
 
   color: #000;
-  padding: 7px 20px;
+  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -84,7 +91,7 @@ export const Fourth = styled.div`
   display: flex;
 
   color: #000;
-  padding: 7px 20px;
+  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -97,7 +104,7 @@ export const Fifth = styled.div`
   display: flex;
   align-items: center;
   color: #000;
-  padding: 7px 20px;
+  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -119,7 +126,7 @@ export const Seventh = styled.div`
   display: flex;
   align-items: center;
   color: #000;
-  padding: 7px 20px;
+  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
   font-size: 15px;
 
   gap: 13px;
