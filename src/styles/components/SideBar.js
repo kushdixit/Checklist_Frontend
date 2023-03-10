@@ -71,13 +71,13 @@ export const Second = styled.div`
   border-radius: 64px;
 
   display: flex;
-  padding: ${({ padding }) => padding || "12px 17px;"};
+  padding: ${({ padding }) => padding || "8px 17px;"};
 `;
 export const Third = styled.div`
   display: flex;
 
   color: #000;
-  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
+  padding: ${({ padding }) => padding || "8px 0 8px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -91,7 +91,7 @@ export const Fourth = styled.div`
   display: flex;
 
   color: #000;
-  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
+  padding: ${({ padding }) => padding || "8px 0 8px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -104,7 +104,7 @@ export const Fifth = styled.div`
   display: flex;
   align-items: center;
   color: #000;
-  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
+  padding: ${({ padding }) => padding || "8px 0 8px 17px;"};
   font-size: 15px;
   align-items: center;
   gap: 13px;
@@ -126,9 +126,8 @@ export const Seventh = styled.div`
   display: flex;
   align-items: center;
   color: #000;
-  padding: ${({ padding }) => padding || "10px 0 10px 17px;"};
-  font-size: 15px;
-
+  padding: ${({ padding }) => padding || "11px 0 11px 17px;"};
+  font-size: 0;
   gap: 13px;
 
   img {

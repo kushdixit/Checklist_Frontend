@@ -26,6 +26,7 @@ import {
   ButtonEditSection,
   Logintext,
   FreeTemplatetext,
+  BlueIcon,
 } from "styles/components/Navbar";
 import Button from "components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -37,9 +38,11 @@ import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
-
+// import PlusBlue from "assets/images/plusblue.png";
+import PlusBlue from "assets/SVG/PlusBlue";
 const NavBar = ({
   search,
+  icon,
   buttonType,
   addButton,
   createList,
@@ -295,6 +298,11 @@ const NavBar = ({
             {localStorage.getItem("access_token") ? (
               <ImageSubSection>
                 <SecondSubSection>
+                  {icon && (
+                    <BlueIcon>
+                      <PlusBlue />
+                    </BlueIcon>
+                  )}
                   <Profile>
                     <h4>{firstName[0].toUpperCase() + firstName.slice(1)} </h4>
                     <h4>{lastName[0].toUpperCase() + lastName.slice(1)}</h4>
