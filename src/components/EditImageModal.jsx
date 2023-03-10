@@ -15,12 +15,14 @@ import {
   TagSection,
   SecondHeading,
   ImageSection,
+  StatusBucketCards,
 } from "styles/pages/EditImage";
 import { useDispatch, useSelector } from "react-redux";
-import FeaturedImageCard from "components/FeaturedImageCard";
 
 const EditImageModal = ({ task }) => {
   const dispatch = useDispatch();
+  const imageArray = useSelector((state) => state?.getImages?.images);
+
   const { setValue, handleSubmit, control, reset, getValues } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
@@ -31,13 +33,11 @@ const EditImageModal = ({ task }) => {
   });
 
   useEffect(() => {
-    ImageHanlder();
-  }, [task?.ischecked]);
+    console.log();
+    if (imageArray && imageArray?.length === 0) ImageHanlder();
+  }, []);
 
-  const ImageHanlder = async () => {
-    const res = await dispatch(GetImages());
-    console.log("res", res);
-  };
+  const ImageHanlder = () => dispatch(GetImages());
 
   return (
     <MainWrapper>
@@ -72,7 +72,14 @@ const EditImageModal = ({ task }) => {
           </TagSection>
           <SecondHeading>Remove featured Image</SecondHeading>
           <ImageSection>
-            <FeaturedImageCard />
+            <StatusBucketCards>
+              {imageArray?.map((item) => (
+                <img
+                  src={`http://192.168.11.66:9001/ChecklistImages/${item?.imageName}`}
+                  alt="img"
+                />
+              ))}
+            </StatusBucketCards>
           </ImageSection>
         </DataWrapper>
       </Container>

@@ -10,7 +10,6 @@ import PrivateRoutes from "components/PrivateRoute";
 import routes, { LandingRoute } from "constants/routes";
 
 const PublicRoutes = ({ component: RouteComponent, restricted }) => {
-  console.log("public", RouteComponent);
   const navigate = useNavigate();
   //   useEffect(() => {
   //     if (isUser()) {

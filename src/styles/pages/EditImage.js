@@ -237,3 +237,21 @@ export const ModalButton = styled.div`
     width: 20vw;
   }
 `;
+
+export const StatusBucketCards = styled.div`
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  flex-wrap: wrap;
+  border-radius: 21px 21px 0 0;
+  color: #fff;
+  -webkit-transition: -webkit-transform 0.2s;
+  -webkit-transition: transform 0.2s;
+  transition: transform 0.2s;
+  img {
+    width: 393px;
+    height: auto;
+    display: flex;
+    gap: 30px;
+  }
+`;

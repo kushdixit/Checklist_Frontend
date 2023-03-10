@@ -1,5 +1,5 @@
 import axioPath from "api/axioPath";
-import { UPDATE_DATA } from "redux/actions/action_types";
+import { UPDATE_DATA, GET_IMAGES } from "redux/actions/action_types";
 
 export const getChecklistBySubcategory = (Checklistid) => (dispatch) =>
   axioPath
@@ -237,12 +237,13 @@ export const MoveTask = (taskListIds) => async () => {
   }
 };
 
-export const GetImages = () => async () => {
+export const GetImages = () => async (dispatch) => {
   try {
-    const response = await axioPath.put("v1/CheckList/checklistimages", {
+    const response = await axioPath.get("v1/CheckList/checklistimages", {
       hideLoader: false,
     });
     console.log("response", response);
+    dispatch({ type: GET_IMAGES, payload: response.data });
     return response;
   } catch (ex) {
     return ex.response;

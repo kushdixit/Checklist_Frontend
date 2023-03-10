@@ -7,6 +7,7 @@ import Template from "redux/reducers/template";
 import editable from "redux/reducers/editable";
 import search from "redux/reducers/searched";
 import addTask from "redux/reducers/addTask";
+import getImages from "redux/reducers/images";
 
 export default combineReducers({
   loader,
@@ -17,4 +18,5 @@ export default combineReducers({
   editable,
   search,
   addTask,
+  getImages,
 });
