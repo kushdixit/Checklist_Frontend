@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllTemplate } from "redux/actions/template";
+import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
+import { deleteChecklist } from "redux/actions/checklist/index";
 import {
   LandingContainer,
   First,
@@ -78,7 +79,13 @@ const SideBar = (search) => {
 };
 
 const ChecklistWrapper = ({ data }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const DeleteHandler = async () => {
+    const response = await dispatch(deleteChecklist(data?.id));
+    if (response.status === 204) dispatch(getAllTemplateByEmail(userEmail));
+  };
   return (
     <FourthSection>
       <ul>
@@ -101,7 +108,7 @@ const ChecklistWrapper = ({ data }) => {
         <li>
           <img src={ChartPie} alt="ChartPie" />
         </li>
-        <li>
+        <li onClick={DeleteHandler}>
           <img src={Trash} alt="Trash" />
         </li>
       </ul>
