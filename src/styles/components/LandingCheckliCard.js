@@ -396,7 +396,7 @@ export const ProcessSection = styled.div`
     height: auto;
     border-radius: 12px 14px 0 0;
   }
-  @media (max-width: 1296px) {
+  @media (max-width: 1298px) {
     width: 100%;
     max-width: 320px;
   }
