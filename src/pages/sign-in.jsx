@@ -62,14 +62,14 @@ const SignIn = () => {
     setResetError(true);
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (token) navigate("/dashboard");
-    else
-      navigate("/sign-in", {
-        state,
-      });
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("access_token");
+  //   if (token) navigate("/dashboard");
+  //   else
+  //     navigate("/sign-in", {
+  //       state,
+  //     });
+  // }, []);
 
   const {
     handleSubmit,
@@ -90,11 +90,11 @@ const SignIn = () => {
       issocial: 0,
     };
     const res = await store.dispatch(authLogin(payload));
-    if (res?.data?.accessToken) navigate(state?.redirect || "/dashboard");
-    else {
-      setLoginError(true);
-      setResetError(false);
-    }
+    // if (res?.data?.accessToken) navigate(state?.redirect || "/dashboard");
+    // else {
+    //   setLoginError(true);
+    //   setResetError(false);
+    // }
   };
   const formFields = () => {
     return (

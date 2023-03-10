@@ -32,10 +32,10 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [signinError, setSigninError] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    token && navigate("/dashboard");
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("access_token");
+  //   token && navigate("/dashboard");
+  // }, []);
 
   let schema = yup.object().shape({
     firstName: yup
