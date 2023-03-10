@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllTemplate } from "redux/actions/template";
+import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
+import { deleteChecklist } from "redux/actions/checklist/index";
 import {
   LandingContainer,
   First,

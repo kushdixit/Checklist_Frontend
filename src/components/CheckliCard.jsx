@@ -32,7 +32,7 @@ const CheckliCard = ({ data }) => {
         </ProcessSection>
         <HeaderSection>
           <h4>{data?.checklistName}</h4>
-          <Small>23,293 Views</Small>
+          <Small>{data?.viewCount} Views</Small>
           <ProgressSection>
             <img src={ChecklistImage} alt="ChecklistImage" />
           </ProgressSection>

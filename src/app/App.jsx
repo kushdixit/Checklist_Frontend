@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Router from "components/Router";
+import CustomRouter from "components/CustomRouter";
 import Layout from "components/Layout";
 import Spinner from "components/Spinner";
 import { gapi } from "gapi-script";
@@ -24,7 +25,7 @@ const App = () => {
       {loaderVisible && <Spinner />}
       <header className="App-header">
         <Layout />
-        <Router />
+        <CustomRouter />
       </header>
     </div>
   );

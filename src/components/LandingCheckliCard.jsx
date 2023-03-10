@@ -33,7 +33,7 @@ const LandingCheckliCard = ({ data }) => {
         </ProcessSection>
         <HeaderSection>
           <Text>{data?.checklistName}</Text>
-          <Small>23,293 Views</Small>
+          <Small>{data?.viewCount} Views</Small>
           <ProgressSection>
             <img src={ChecklistImage} alt="ChecklistImage" />
           </ProgressSection>
