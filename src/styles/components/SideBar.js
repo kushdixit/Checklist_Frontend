@@ -1,39 +1,32 @@
 import styled from "styled-components";
 
-export const LandingContainer = styled.div`
-  width: 100%;
-  display: flex;
-  max-width: 249px;
+export const LandingContainer =
+  styled.div <
+  { width } >
+  `
+  width: ${({ width }) => width || "180px"};
+  max-width: isGood? 249px: 210px ;
+  border-right: 1px solid #eee;
+  background: #fff;
+  @media (max-width: 1010px) {
+    width: 100%;
+    max-width: 160px;
+  }
 `;
 export const LeftContainer = styled.div`
+  /* width: 100%;
+  max-width: 249px;
+  background-color: #fff;
+
+  border-right: 1px solid #eee;
+  height: 100vh; */
+  /* padding: 0 20px; */
   width: 100%;
   max-width: 249px;
   background-color: #fff;
 
   border-right: 1px solid #eee;
   height: 100vh;
-  /* padding: 0 20px; */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 300px;
-    height: 100%;
-    background-color: peru;
-    transition: left 300ms ease-out;
-  }
-  .sidebar.active {
-    left: 0;
-  }
-  .sidebar.active .hamburger:before {
-    transform: translateY(12px) rotate(135deg);
-  }
-  .sidebar.active .hamburger::after {
-    transform: translateY(-12px) rotate(-135deg);
-  }
-  .sidebar.active .hamburger div {
-    transform: scale(0);
-  }
 `;
 export const RightContainer = styled.div`
   width: 100%;
@@ -46,43 +39,24 @@ export const RightContainer = styled.div`
 `;
 export const First = styled.div`
   display: flex;
+
+  padding: 17px 20px;
+  width: 100%;
+  max-width: 210px;
   justify-content: flex-end;
-  padding: 7px 20px;
   img {
     width: 15px;
     height: 15px;
+  }
+  .button {
     background: #f1f3f5;
-    padding: 13px;
+    padding: 16px;
     border-radius: 5px;
-  }
-  .hamburger {
-    border: none;
-    outline: 0;
-    width: 50px;
-    position: absolute;
-    right: -50px;
-    background-color: peru;
-  }
-
-  .hamburger:after,
-  .hamburger:before,
-  .hamburger div {
-    background-color: #fff;
-    height: 5px;
-    margin: 7px 0;
-    border-radius: 3px;
-    content: "";
-    display: block;
-    transition: all 300ms ease-in-out;
-  }
-  .sidebar.active .hamburger:before {
-    transform: translateY(12px) rotate(135deg);
-  }
-  .sidebar.active .hamburger::after {
-    transform: translateY(-12px) rotate(-135deg);
-  }
-  .sidebar.active .hamburger div {
-    transform: scale(0);
+    display: flex;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    justify-content: center;
   }
 `;
 export const Second = styled.div`

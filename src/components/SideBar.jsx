@@ -42,7 +42,10 @@ const SideBar = (search) => {
   const [updateSearch, SetUpdateSearch] = useState("");
   const navigate = useNavigate();
   const allTemplate = useSelector((state) => state.Template?.allTemplate);
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [isGood, setIsGood] = useState(true);
   useEffect(() => {
     dispatch(getAllTemplate());
   }, []);
@@ -53,34 +56,38 @@ const SideBar = (search) => {
   });
 
   return (
-    <LandingContainer>
-      <LeftContainer>
-        <First>
+    <LandingContainer width={isGood ? "280px" : "180px"}>
+      <First>
+        <button className="button" onClick={() => setIsGood(!isGood)}>
           <img src={Backward} />
-        </First>
-        <Second>
-          <Plus />
-        </Second>
-        <Third>
-          <img src={List} />
-          Dashboard
-        </Third>
-        <Fourth>
-          {" "}
-          <img src={Calendar} />
-          Calender
-        </Fourth>
-        <Fifth>
-          {" "}
-          <img src={Bell} />
-          Reminders
-        </Fifth>
-        <Sixth></Sixth>
-        <Seventh>
-          <img src={Documents} />
-          New Folder
-        </Seventh>
-      </LeftContainer>
+        </button>
+      </First>
+      {isGood ? (
+        <LeftContainer>
+          <Second>
+            <Plus />
+          </Second>
+          <Third>
+            <img src={List} />
+            Dashboard
+          </Third>
+          <Fourth>
+            {" "}
+            <img src={Calendar} />
+            Calender
+          </Fourth>
+          <Fifth>
+            {" "}
+            <img src={Bell} />
+            Reminders
+          </Fifth>
+          <Sixth></Sixth>
+          <Seventh>
+            <img src={Documents} />
+            New Folder
+          </Seventh>
+        </LeftContainer>
+      ) : null}
     </LandingContainer>
   );
 };
