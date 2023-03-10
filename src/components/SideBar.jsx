@@ -43,7 +43,10 @@ const SideBar = (search) => {
   const [updateSearch, SetUpdateSearch] = useState("");
   const navigate = useNavigate();
   const allTemplate = useSelector((state) => state.Template?.allTemplate);
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [isGood, setIsGood] = useState(true);
   useEffect(() => {
     dispatch(getAllTemplate());
   }, []);
@@ -54,30 +57,33 @@ const SideBar = (search) => {
   });
 
   return (
-    <LandingContainer>
-      <LeftContainer>
-        <First>
+    <LandingContainer width={isGood ? "280px" : "45px"}>
+      <First padding={isGood ? "40px 20px" : "40px 7px 40px 6px;"}>
+        <button className="button" onClick={() => setIsGood(!isGood)}>
           <img src={Backward} />
-        </First>
-        <Second>
+        </button>
+      </First>
+
+      <LeftContainer>
+        <Second padding={isGood ? "12px 20px" : "10px 0 10px 7px;"}>
           <Plus />
         </Second>
-        <Third>
+        <Third padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
           <img src={List} />
           Dashboard
         </Third>
-        <Fourth>
+        <Fourth padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
           {" "}
           <img src={Calendar} />
           Calender
         </Fourth>
-        <Fifth>
+        <Fifth padding={isGood ? "12px 20px" : "10px 0 10px 17px;"}>
           {" "}
           <img src={Bell} />
           Reminders
         </Fifth>
         <Sixth></Sixth>
-        <Seventh>
+        <Seventh padding={isGood ? "12px 20px" : "12px 17px;"}>
           <img src={Documents} />
           New Folder
         </Seventh>

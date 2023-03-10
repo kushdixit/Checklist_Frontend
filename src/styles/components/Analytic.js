@@ -192,4 +192,9 @@ export const WrapperSection = styled.div`
   border: 1px solid #eee;
   max-width: 924px;
   padding: 82px 100px;
+  margin-left: 15px;
+  margin-right: 15px;
+  @media (max-width: 1010px) {
+    padding: 82px 50px;
+  }
 `;

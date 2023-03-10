@@ -10,6 +10,7 @@ import {
 import Footer from "components/Footer";
 import SideBar from "components/SideBar";
 import Analytic from "components/Analytic";
+
 const ChecklistDashboard = (search) => {
   const dispatch = useDispatch();
 

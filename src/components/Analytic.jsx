@@ -59,7 +59,11 @@ const ChecklistWrapper = ({ data }) => {
         <li>
           <Star />{" "}
           <div
-            style={{ cursor: "pointer", textDecoration: "underline" }}
+            style={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              textAlign: "left",
+            }}
             onClick={() => {
               navigate(`/createChecklist/${data?.id}`, {
                 state: { showEditable: false, cardType: "user" },
