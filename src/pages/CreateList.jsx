@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import SubModal from "components/SubModal";
@@ -12,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getChecklistBySubcategory } from "redux/actions/task";
+import { getChecklistBySubcategory, GetImage } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 
@@ -101,6 +101,8 @@ const CreateList = () => {
     });
   };
 
+  console.log("asf");
+
   const getPayload = async () => {
     const multipleValues = getValues(["checklist", "description"]);
     const res = await dispatch(
@@ -140,6 +142,7 @@ const CreateList = () => {
               <DescriptionTitle />
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+                imageId={ChecklistDetail?.checklistImageId}
               />
               <TaskTitle toggleabc={toggleabc} />
             </LeftContentWrapper>
@@ -170,18 +173,40 @@ const Style = () => {
   );
 };
 
-const ImageWrapper = ({ title }) => {
+const ImageWrapper = ({ title, imageId }) => {
+  const dispatch = useDispatch();
+  const imageRef = useRef(null);
+  const idRef = useRef(null);
+
+  const ImageHandler = async () => {
+    const res = await dispatch(GetImage(imageId));
+    if (res?.status === 200) imageRef.current = res?.data[0]?.imageName;
+  };
+
+  useEffect(() => {
+    if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
+    idRef.current = imageId;
+  }, []);
+
   return (
     <div style={{ marginBottom: "30px" }}>
-      <img
-        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
-        alt="pic"
-        style={{ width: "100%", maxWidth: "739px", height: "auto" }}
-      />
-      <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
+      {imageRef?.current && (
+        <img
+          src={`http://192.168.11.66:9001/ChecklistImages/${imageRef?.current}`}
+          alt="pic"
+          style={{ width: "100%", height: "auto" }}
+        />
+      )}
+      <div
+        style={{
+          fontSize: "12px",
+          color: "#aaa",
+          fontStyle: "italic",
+          display: "flex",
+        }}
+      >
         {title}
       </div>
-      <SubModal buttonNew="Description" />
     </div>
   );
 };

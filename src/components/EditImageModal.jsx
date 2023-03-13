@@ -77,6 +77,7 @@ const EditImageModal = ({ task }) => {
                 <img
                   src={`http://192.168.11.66:9001/ChecklistImages/${item?.imageName}`}
                   alt="img"
+                  onClick={() => console.log(item?.id)}
                 />
               ))}
             </StatusBucketCards>
