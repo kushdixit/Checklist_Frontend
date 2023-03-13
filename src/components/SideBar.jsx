@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
-import { deleteChecklist } from "redux/actions/checklist/index";
+import { getAllTemplate } from "redux/actions/template";
 import {
   LandingContainer,
   First,
@@ -13,61 +12,38 @@ import {
   Sixth,
   Seventh,
   LeftContainer,
-  RightContainer,
-  FirstSection,
-  SecondSection,
-  WrapperSection,
-  ThirdSection,
-  FourthSection,
+  ArrowImage,
 } from "styles/components/SideBar";
-import TextInput from "components/FormElements/TextInput";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { SET_SEARCH } from "redux/actions/action_types";
-import CheckliCardWrapper from "components/CheckliCardWrapper";
-import Google from "assets/images/google.png";
-import Person from "assets/images/person.png";
-import Share from "assets/images/share.png";
-import ChartPie from "assets/images/chart-pie.png";
-import Trash from "assets/images/trash.png";
 import Plus from "assets/SVG/Plus";
-import Star from "assets/SVG/Star";
-import Flower from "assets/images/flower.jpg";
 import List from "assets/images/list.png";
 import Calendar from "assets/images/calendar.png";
 import Bell from "assets/images/bell.png";
 import Documents from "assets/images/documents-folder.png";
 import Backward from "assets/images/backward-arrow.png";
 import Folder from "assets/images/folder.png";
-const SideBar = (search) => {
-  const dispatch = useDispatch();
-  const [updateSearch, SetUpdateSearch] = useState("");
+import Forward from "assets/images/abcd.png";
+
+const SideBar = () => {
   const navigate = useNavigate();
-  const allTemplate = useSelector((state) => state.Template?.allTemplate);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const dispatch = useDispatch();
   const [isGood, setIsGood] = useState(true);
   useEffect(() => {
     dispatch(getAllTemplate());
   }, []);
 
-  const { handleSubmit: submitData, control: formControl } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-  });
-
   return (
-    <LandingContainer width={isGood ? "280px" : "45px"}>
-      <First padding={isGood ? "40px 20px" : "40px 7px 40px 6px;"}>
+    <LandingContainer width={isGood ? "280px" : "60px"}>
+      <First position={isGood}>
         <button className="button" onClick={() => setIsGood(!isGood)}>
-          <img src={Backward} />
+          <ArrowImage src={!isGood ? Forward : Backward} />
         </button>
       </First>
-
       <LeftContainer>
-        <Second padding={isGood ? "8px 20px" : "8px 0 8px 7px;"}>
-          <Plus />
+        <Second padding={isGood ? "8px 20px" : "8px 0 8px 7px"}>
+          <Plus
+            onClick={() => navigate("/createChecklist")}
+            style={{ cursor: "pointer" }}
+          />
         </Second>
         <Third padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
           <img src={List} />
