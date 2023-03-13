@@ -58,7 +58,7 @@ const SideBar = (search) => {
   });
 
   return (
-    <LandingContainer width={isGood ? "280px" : "45px"}>
+    <LandingContainer width={isGood ? "100%" : "60px"}>
       <First padding={isGood ? "40px 20px" : "40px 7px 40px 6px;"}>
         <button className="button" onClick={() => setIsGood(!isGood)}>
           <img src={Backward} />
@@ -71,26 +71,28 @@ const SideBar = (search) => {
         </Second>
         <Third padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
           <img src={List} />
-          Dashboard
+          <h2 style={{ display: isGood ? "block" : "none" }}>Dashboard</h2>
         </Third>
         <Fourth padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
           {" "}
           <img src={Calendar} />
-          Calender
+          <h2 style={{ display: isGood ? "block" : "none" }}>Calender</h2>
         </Fourth>
         <Fifth padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
           {" "}
           <img src={Bell} />
-          Reminders
+          <h2 style={{ display: isGood ? "block" : "none" }}>Reminders</h2>
         </Fifth>
-        <Sixth></Sixth>
+        <Sixth style={{ display: isGood ? "block" : "none" }}></Sixth>
         <Seventh padding={isGood ? "11px 20px" : "11px 17px;"}>
+          {" "}
           <img src={Folder} />
-          Folder 1
+          <h2 style={{ display: isGood ? "block" : "none" }}> Folder 1</h2>
         </Seventh>
         <Seventh padding={isGood ? "11px 20px" : "11px 17px;"}>
+          {" "}
           <img src={Documents} />
-          New Folder
+          <h2 style={{ display: isGood ? "block" : "none" }}> New Folder</h2>
         </Seventh>
       </LeftContainer>
     </LandingContainer>
