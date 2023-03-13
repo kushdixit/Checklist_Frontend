@@ -198,7 +198,7 @@ export const SubNavSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 15px 0;
+  /* padding: 15px 0; */
   @media (max-width: 767px) {
     padding: 3px 1rem;
   }

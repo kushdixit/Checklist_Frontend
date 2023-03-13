@@ -6,10 +6,10 @@ export const LandingContainer = styled.div`
   max-width: 249px;
   border-right: 1px solid #eee;
   background: #fff;
-  @media (max-width: 1010px) {
+  /* @media (max-width: 1010px) {
     width: 100%;
     max-width: 160px;
-  }
+  } */
 `;
 // export const LandingContainer = styled.div`
 //   width: ${({ width }) => width || "180px"};
@@ -83,6 +83,13 @@ export const Third = styled.div`
     width: 15px;
     height: 15px;
   }
+  h2 {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 export const Fourth = styled.div`
@@ -96,6 +103,13 @@ export const Fourth = styled.div`
   img {
     width: 15px;
     height: 15px;
+  }
+  h2 {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
   }
 `;
 export const Fifth = styled.div`
@@ -111,6 +125,13 @@ export const Fifth = styled.div`
     width: 15px;
     height: 15px;
   }
+  h2 {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+  }
 `;
 export const Sixth = styled.div`
   display: flex;
@@ -119,6 +140,13 @@ export const Sixth = styled.div`
   gap: 13px;
   border-bottom: 1px solid #dddddd;
   padding: 10px 0;
+  h2 {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+  }
 `;
 export const Seventh = styled.div`
   display: flex;
@@ -127,6 +155,13 @@ export const Seventh = styled.div`
   padding: ${({ padding }) => padding || "11px 0 11px 17px;"};
   font-size: 0;
   gap: 13px;
+  h2 {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+  }
 
   img {
     width: 15px;

@@ -17,7 +17,7 @@ import Share from "assets/images/share.png";
 import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
 import Star from "assets/SVG/Star";
-
+import StarGrey from "assets/SVG/StarGrey";
 const Analytic = () => {
   const [search, setSearch] = useState("");
   const [details, setDetails] = useState([]);
@@ -101,7 +101,7 @@ const ChecklistWrapper = ({ data }) => {
     <FourthSection>
       <ul>
         <li>
-          <Star />
+          <Star /> <StarGrey />
           <div
             style={{
               cursor: "pointer",
