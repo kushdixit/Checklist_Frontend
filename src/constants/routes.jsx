@@ -94,9 +94,23 @@ export const ViewListRouteById = {
   restricted: false,
 };
 
-export const ChecklistDashboardRoute = {
+export const TempRoute = {
   component: ChecklistDashboard,
-  path: "/checklistdashboard",
+  path: "/temp",
+  exact: true,
+  restricted: false,
+};
+
+export const TempRouteById = {
+  component: ChecklistDashboard,
+  path: "/temp/:id",
+  exact: true,
+  restricted: false,
+};
+
+export const ProcessRoute = {
+  component: ChecklistDashboard,
+  path: "/process",
   exact: true,
   restricted: true,
 };
@@ -112,9 +126,11 @@ const ROUTES = [
   FreeTemplateRoute,
   ExploreRoute,
   ViewListRoute,
-  ChecklistDashboardRoute,
+  ProcessRoute,
   CreateListRouteById,
   ViewListRouteById,
+  TempRoute,
+  TempRouteById,
 ];
 
 export default ROUTES;

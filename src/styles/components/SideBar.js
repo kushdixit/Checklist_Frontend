@@ -57,13 +57,14 @@ export const First = styled.div`
   }
   .button {
     background: #f1f3f5;
-    padding: 16px;
+    padding: 17px;
     border-radius: 5px;
     display: flex;
     align-items: center;
     width: 15px;
     height: 15px;
     justify-content: center;
+    border: none;
   }
 `;
 export const Second = styled.div`
