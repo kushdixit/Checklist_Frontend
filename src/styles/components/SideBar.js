@@ -6,10 +6,10 @@ export const LandingContainer = styled.div`
   max-width: 249px;
   border-right: 1px solid #eee;
   background: #fff;
-  @media (max-width: 1010px) {
+  /* @media (max-width: 1010px) {
     width: 100%;
     max-width: 160px;
-  }
+  } */
 `;
 // export const LandingContainer = styled.div`
 //   width: ${({ width }) => width || "180px"};
