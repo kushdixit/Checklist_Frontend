@@ -1,52 +1,55 @@
-import React, { useState, useRef, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllTemplate } from "redux/actions/template";
+import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
+import { deleteChecklist } from "redux/actions/checklist/index";
 import {
   LandingContainer,
-  First,
-  Second,
-  Third,
-  Fourth,
-  Fifth,
-  LeftContainer,
   RightContainer,
   FirstSection,
   SecondSection,
   WrapperSection,
   ThirdSection,
   FourthSection,
+  IconInputFieldNew,
 } from "styles/components/Analytic";
-import TextInput from "components/FormElements/TextInput";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { SET_SEARCH } from "redux/actions/action_types";
-import CheckliCardWrapper from "components/CheckliCardWrapper";
-import Google from "assets/images/google.png";
-import Person from "assets/images/person.png";
 import Share from "assets/images/share.png";
 import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
-import Plus from "assets/SVG/Plus";
 import Star from "assets/SVG/Star";
-import Flower from "assets/images/flower.jpg";
-import Footer from "components/Footer";
-const Analytic = (search) => {
+
+const Analytic = () => {
+  const [search, setSearch] = useState("");
+  const [details, setDetails] = useState([]);
   const dispatch = useDispatch();
   const templateData = useSelector((state) => state.Template?.yourTemplate);
-  // console.log(templateData[0]?.checklists);
-
-  const da = templateData[0]?.checklists?.filter((item, index) => index <= 10);
-  const allTemplate = useSelector((state) => state.Template?.allTemplate);
 
   useEffect(() => {
     dispatch(getAllTemplate());
   }, []);
 
-  const { handleSubmit: submitData, control: formControl } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-  });
+  useEffect(() => {
+    if (templateData[0]?.checklists) {
+      setDetails(templateData[0]?.checklists);
+    }
+  }, [templateData[0]?.checklists]);
+
+  useEffect(() => {
+    if (search !== "") {
+      const data = templateData[0]?.checklists?.filter((item) => {
+        if (item?.checklistName?.toLowerCase()?.includes(search?.toLowerCase()))
+          return item;
+      });
+      setDetails(data);
+    } else {
+      setDetails(templateData[0]?.checklists);
+    }
+  }, [search]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(e?.target?.value);
+  };
 
   return (
     <LandingContainer>
@@ -56,6 +59,14 @@ const Analytic = (search) => {
           <SecondSection>
             All of your checklists, processes and templates.Help Video
           </SecondSection>
+          <IconInputFieldNew>
+            <input
+              name="listSearch"
+              type="text"
+              placeholder="Search"
+              onChange={(e) => handleSearch(e)}
+            />
+          </IconInputFieldNew>
           <ThirdSection>
             <ul>
               <li>Name</li>
@@ -64,7 +75,7 @@ const Analytic = (search) => {
               <li>Delete</li>
             </ul>
           </ThirdSection>
-          {templateData[0]?.checklists
+          {details
             ?.filter((item, index) => index <= 9)
             .map((item) => (
               <ChecklistWrapper data={item} />
@@ -76,7 +87,16 @@ const Analytic = (search) => {
 };
 
 const ChecklistWrapper = ({ data }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
+
+  const DeleteChecklist = async () => {
+    const res = await dispatch(deleteChecklist(data?.id));
+    if (res.status === 204) {
+      dispatch(getAllTemplateByEmail(userEmail));
+    }
+  };
   return (
     <FourthSection>
       <ul>
@@ -103,7 +123,7 @@ const ChecklistWrapper = ({ data }) => {
         <li>
           <img src={ChartPie} alt="ChartPie" />
         </li>
-        <li>
+        <li onClick={DeleteChecklist}>
           <img src={Trash} alt="Trash" />
         </li>
       </ul>
