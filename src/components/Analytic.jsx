@@ -1,7 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import TextInput from "components/FormElements/TextInput";
 import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
 import { deleteChecklist } from "redux/actions/checklist/index";
 import {
@@ -19,10 +17,10 @@ import Share from "assets/images/share.png";
 import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
 import Star from "assets/SVG/Star";
-// import { IconInputFieldNew } from "styles/components/Navbar";
 
 const Analytic = () => {
   const [search, setSearch] = useState("");
+  const [details, setDetails] = useState([]);
   const dispatch = useDispatch();
   const templateData = useSelector((state) => state.Template?.yourTemplate);
 
@@ -30,22 +28,27 @@ const Analytic = () => {
     dispatch(getAllTemplate());
   }, []);
 
-  const {
-    handleSubmit: submitData,
-    control: formControl,
-    watch,
-    reset,
-  } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-  });
+  useEffect(() => {
+    if (templateData[0]?.checklists) {
+      setDetails(templateData[0]?.checklists);
+    }
+  }, [templateData[0]?.checklists]);
 
-  const searchData = (data) => {
-    console.log("data", data);
-    // dispatch({ type: SET_SEARCH, payload: data?.listSearch });
-    // navigate(`/search/${data?.listSearch}`, {
-    //   state: { searchedterm: data?.listSearch },
-    // });
+  useEffect(() => {
+    if (search !== "") {
+      const data = templateData[0]?.checklists?.filter((item) => {
+        if (item?.checklistName?.toLowerCase()?.includes(search?.toLowerCase()))
+          return item;
+      });
+      setDetails(data);
+    } else {
+      setDetails(templateData[0]?.checklists);
+    }
+  }, [search]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(e?.target?.value);
   };
 
   return (
@@ -56,17 +59,14 @@ const Analytic = () => {
           <SecondSection>
             All of your checklists, processes and templates.Help Video
           </SecondSection>
-          {/* <form onSubmit={submitData(searchData)}> */}
           <IconInputFieldNew>
-            <TextInput
-              control={formControl}
+            <input
               name="listSearch"
               type="text"
               placeholder="Search"
-              onChange={(e) => console.log(e)}
+              onChange={(e) => handleSearch(e)}
             />
           </IconInputFieldNew>
-          {/* </form> */}
           <ThirdSection>
             <ul>
               <li>Name</li>
@@ -75,7 +75,7 @@ const Analytic = () => {
               <li>Delete</li>
             </ul>
           </ThirdSection>
-          {templateData[0]?.checklists
+          {details
             ?.filter((item, index) => index <= 9)
             .map((item) => (
               <ChecklistWrapper data={item} />
