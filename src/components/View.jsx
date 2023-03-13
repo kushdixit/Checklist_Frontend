@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { GetImage } from "redux/actions/task";
 import {
   LandingContainer,
   RightContainer,
@@ -14,11 +15,9 @@ import { getChecklistBySubcategory, editTask } from "redux/actions/task";
 import { useWatch } from "react-hook-form";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
-import SubModal from "components/SubModal";
 import TaskTitle from "components/TaskTitle";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import TextArea from "components/FormElements/TextArea";
 import Star from "assets/SVG/Star";
 
 const View = (search, data) => {
@@ -85,6 +84,7 @@ const View = (search, data) => {
             <DescriptionTitle />
             <ImageWrapper
               title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+              imageId={ChecklistDetail?.checklistImageId}
             />
             <TaskTitle />
           </LeftContentWrapper>
@@ -94,14 +94,30 @@ const View = (search, data) => {
   );
 };
 
-const ImageWrapper = ({ title }) => {
+const ImageWrapper = ({ title, imageId }) => {
+  const dispatch = useDispatch();
+  const imageRef = useRef(null);
+  const idRef = useRef(null);
+
+  const ImageHandler = async () => {
+    const res = await dispatch(GetImage(imageId));
+    if (res?.status === 200) imageRef.current = res?.data[0]?.imageName;
+  };
+
+  useEffect(() => {
+    if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
+    idRef.current = imageId;
+  }, []);
+
   return (
     <div style={{ marginBottom: "30px" }}>
-      <img
-        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
-        alt="pic"
-        style={{ width: "100%", height: "auto" }}
-      />
+      {imageRef?.current && (
+        <img
+          src={`http://192.168.11.66:9001/ChecklistImages/${imageRef?.current}`}
+          alt="pic"
+          style={{ width: "100%", height: "auto" }}
+        />
+      )}
       <div
         style={{
           fontSize: "12px",
@@ -112,8 +128,8 @@ const ImageWrapper = ({ title }) => {
       >
         {title}
       </div>
-      <SubModal buttonNew="Description" />
     </div>
   );
 };
+
 export default View;

@@ -90,11 +90,11 @@ const SignIn = () => {
       issocial: 0,
     };
     const res = await store.dispatch(authLogin(payload));
-    // if (res?.data?.accessToken) navigate(state?.redirect || "/dashboard");
-    // else {
-    //   setLoginError(true);
-    //   setResetError(false);
-    // }
+    if (res?.data?.accessToken) navigate(state?.redirect || "/process");
+    else {
+      setLoginError(true);
+      setResetError(false);
+    }
   };
   const formFields = () => {
     return (

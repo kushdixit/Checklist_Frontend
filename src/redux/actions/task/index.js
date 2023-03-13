@@ -249,3 +249,17 @@ export const GetImages = () => async (dispatch) => {
     return ex.response;
   }
 };
+
+export const GetImage = (id) => async () => {
+  try {
+    const response = await axioPath.get(
+      `v1/CheckList/checklistimages/${id + 1}`,
+      {
+        hideLoader: false,
+      }
+    );
+    return response;
+  } catch (ex) {
+    return ex.response;
+  }
+};
