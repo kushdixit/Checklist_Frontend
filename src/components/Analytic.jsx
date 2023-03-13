@@ -109,7 +109,7 @@ const ChecklistWrapper = ({ data }) => {
               textAlign: "left",
             }}
             onClick={() => {
-              navigate(`/createChecklist/${data?.id}`, {
+              navigate(`/temp/${data?.id}`, {
                 state: { showEditable: false, cardType: "user" },
               });
             }}

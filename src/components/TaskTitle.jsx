@@ -116,6 +116,7 @@ const TaskTitle = ({ toggleabc }) => {
             />
           );
         })}
+        {localStorage.getItem("access_token") && <AddTask pathId={pathId} />}
       </DndProvider>
     </>
   );

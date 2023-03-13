@@ -5,7 +5,7 @@ import {
   ButtonWrapper,
   ModalButton,
   IconWrapper,
-  IconInputField
+  IconInputField,
 } from "styles/pages/MoveModal";
 import Button from "components/Button";
 import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
@@ -88,40 +88,34 @@ const MoveModal = ({ notify, togglefunction, checklistId, templateName }) => {
     <DataWrapper>
       {contextHolder}
       <Heading>Assign Category</Heading>
-    
-           
-              <form
-                style={{display: "flex" }}
-                onSubmit={submitData(searchData)}
-              >
-                <IconInputField>
-                  <TextInput
-                    name="listSearch"
-                    type="text"
-                    placeholder="Search"
-                    control={formControl}
-                    handleKeyDown={handleKeyDown}
-                    handlekeyPress={(e) => {
-                      SetUpdateSearch((prev) => prev + e.key);
-                    }}
-                  />
-                </IconInputField>
-                <IconWrapper onClick={handleIconClick}>
-                <Button
-                  style={{
-                    background: "transparent",
-                    border: "none",
-                    boxShadow: "none",
-                    cursor: "text",
-                  }}
-                >
-                  {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
-                </Button>
-              </IconWrapper>
-              </form>
-            
-           
-         
+
+      <form style={{ display: "flex" }} onSubmit={submitData(searchData)}>
+        <IconInputField>
+          <TextInput
+            name="listSearch"
+            type="text"
+            placeholder="Search"
+            control={formControl}
+            handleKeyDown={handleKeyDown}
+            handlekeyPress={(e) => {
+              SetUpdateSearch((prev) => prev + e.key);
+            }}
+          />
+        </IconInputField>
+        <IconWrapper onClick={handleIconClick}>
+          <Button
+            style={{
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
+              cursor: "text",
+            }}
+          >
+            {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
+          </Button>
+        </IconWrapper>
+      </form>
+
       <ButtonWrapper>
         {/* {templateData
           ?.filter((item) => item?.templateName !== templateName)
@@ -137,8 +131,7 @@ const MoveModal = ({ notify, togglefunction, checklistId, templateName }) => {
               {item?.templateName}
             </ModalButton>
           ))} */}
-           <ModalButton>
-             +            </ModalButton>
+        <ModalButton>+ </ModalButton>
       </ButtonWrapper>
     </DataWrapper>
   );

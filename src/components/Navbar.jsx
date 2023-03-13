@@ -38,8 +38,8 @@ import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
-// import PlusBlue from "assets/images/plusblue.png";
 import PlusBlue from "assets/SVG/PlusBlue";
+
 const NavBar = ({
   search,
   icon,
@@ -290,7 +290,7 @@ const NavBar = ({
                 </Button>
               </EditSection>
             )}
-            {navType == "home" && (
+            {navType === "home" && (
               <FreeTemplatetext onClick={() => navigate("/explore")}>
                 Free Template
               </FreeTemplatetext>
@@ -299,7 +299,10 @@ const NavBar = ({
               <ImageSubSection>
                 <SecondSubSection>
                   {icon && (
-                    <BlueIcon>
+                    <BlueIcon
+                      onClick={() => navigate("/createChecklist")}
+                      style={{ cursor: "pointer" }}
+                    >
                       <PlusBlue />
                     </BlueIcon>
                   )}

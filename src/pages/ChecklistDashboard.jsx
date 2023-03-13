@@ -11,9 +11,11 @@ import Footer from "components/Footer";
 import SideBar from "components/SideBar";
 import Analytic from "components/Analytic";
 import View from "components/View";
+import { useLocation } from "react-router-dom";
 
-const ChecklistDashboard = (search, icon) => {
+const ChecklistDashboard = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(getAllTemplate());
@@ -30,8 +32,7 @@ const ChecklistDashboard = (search, icon) => {
 
       <MainSection>
         <SideBar />
-        <Analytic />
-        {/* <View /> */}
+        {pathname === "/process" ? <Analytic /> : <View />}
       </MainSection>
       <Footer />
     </LandingContainer>

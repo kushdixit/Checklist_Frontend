@@ -14,7 +14,7 @@ import TextInput from "components/FormElements/TextInput";
 const AddTask = ({ pathId }) => {
   const dispatch = useDispatch();
 
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, reset } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     defaultValues: {
@@ -30,7 +30,10 @@ const AddTask = ({ pathId }) => {
       checklistMasterId: pathId,
     };
     const response = await dispatch(addNewTask(data, pathId));
-    if (response) dispatch(getChecklistBySubcategory(pathId));
+    if (response) {
+      reset({ checklist: "" });
+      dispatch(getChecklistBySubcategory(pathId));
+    }
   };
   return (
     <ChecklistTaskWrapper>
@@ -76,6 +79,7 @@ const AddTask = ({ pathId }) => {
                   resize: "none",
                   background: "inherit",
                   borderBottom: "1px solid rgb(0, 124, 203)",
+                  outline: "none",
                 }}
                 name="checklist"
                 placeholder={``}

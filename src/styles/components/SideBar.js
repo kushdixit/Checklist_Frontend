@@ -47,35 +47,33 @@ export const RightContainer = styled.div`
 `;
 export const First = styled.div`
   display: flex;
-
-  padding: ${({ padding }) => padding || "40px 0 40px 0;"};
+  justify-content: ${({ position }) => (!position ? "center" : "end")};
+  padding: 0px;
   width: 100%;
   max-width: 210px;
-
   img {
     width: 15px;
     height: 15px;
   }
   .button {
     background: #f1f3f5;
-    padding: 16px;
+    padding: 17px;
     border-radius: 5px;
     display: flex;
     align-items: center;
     width: 15px;
     height: 15px;
     justify-content: center;
+    border: none;
   }
 `;
 export const Second = styled.div`
   border-radius: 64px;
-
   display: flex;
   padding: ${({ padding }) => padding || "8px 17px;"};
 `;
 export const Third = styled.div`
   display: flex;
-
   color: #000;
   padding: ${({ padding }) => padding || "8px 0 8px 17px;"};
   font-size: 15px;
@@ -311,3 +309,4 @@ export const WrapperSection = styled.div`
   max-width: 924px;
   padding: 82px 100px;
 `;
+export const ArrowImage = styled.img``;
