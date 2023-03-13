@@ -48,9 +48,10 @@ export const RightContainer = styled.div`
 export const First = styled.div`
   display: flex;
   justify-content: ${({ position }) => (!position ? "center" : "end")};
-  padding: 0px;
+  padding: 20px 0 50px 0;
   width: 100%;
-  max-width: 210px;
+  max-width: 233px;
+
   img {
     width: 15px;
     height: 15px;
