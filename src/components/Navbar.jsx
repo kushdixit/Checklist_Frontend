@@ -88,6 +88,8 @@ const NavBar = ({
     reValidateMode: "onBlur",
   });
 
+  const access_token = localStorage.getItem("access_token");
+
   useEffect(() => {
     const subscription = watch((value) =>
       setIconHandle(value?.listSearch.length)
@@ -137,7 +139,7 @@ const NavBar = ({
     <NavSection>
       <BurgerSection>
         <HeaderWrapper>
-          {localStorage.getItem("access_token") ? (
+          {access_token ? (
             <ImageSubSection>
               <SecondSubSection>
                 <button
@@ -173,7 +175,13 @@ const NavBar = ({
             <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
           )}
           <LogoSearchSection>
-            <LogoSection onClick={() => navigate("/")}>Checklist</LogoSection>
+            <LogoSection
+              onClick={() =>
+                access_token ? navigate("/process") : navigate("/")
+              }
+            >
+              Checklist
+            </LogoSection>
           </LogoSearchSection>
           {addButton && (
             <Footer>
@@ -220,7 +228,13 @@ const NavBar = ({
       </BurgerSection>
       <SubNavSection>
         <FirstSection>
-          <HeadingText onClick={() => navigate("/")}>Checklist</HeadingText>
+          <HeadingText
+            onClick={() =>
+              access_token ? navigate("/process") : navigate("/")
+            }
+          >
+            Checklist
+          </HeadingText>
         </FirstSection>
         <SecondSection>
           {search && (
@@ -295,7 +309,7 @@ const NavBar = ({
                 Free Template
               </FreeTemplatetext>
             )}
-            {localStorage.getItem("access_token") ? (
+            {access_token ? (
               <ImageSubSection>
                 <SecondSubSection>
                   {icon && (

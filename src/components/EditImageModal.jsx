@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import TextInput from "components/FormElements/TextInput";
 import { GetImages } from "redux/actions/task";
 import {
@@ -19,17 +20,18 @@ import {
 } from "styles/pages/EditImage";
 import { useDispatch, useSelector } from "react-redux";
 
-const EditImageModal = ({ task }) => {
+const EditImageModal = () => {
   const dispatch = useDispatch();
+  const { id: pathId } = useParams();
+
+  console.log("pathId", pathId);
+
   const imageArray = useSelector((state) => state?.getImages?.images);
 
   const { setValue, handleSubmit, control, reset, getValues } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
-    defaultValues: {
-      rememberMe: task?.ischecked,
-    },
   });
 
   useEffect(() => {

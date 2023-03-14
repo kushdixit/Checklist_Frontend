@@ -1,6 +1,10 @@
 import React, { useRef, useEffect } from "react";
+import Pdf from "react-to-pdf";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetImage } from "redux/actions/task";
+import { PinChecklist } from "redux/actions/checklist/index";
+import DropdownBox from "./Dropdown";
 import {
   LandingContainer,
   RightContainer,
@@ -11,43 +15,16 @@ import {
   Helpers,
   ShareButton,
 } from "styles/components/View";
-import { getChecklistBySubcategory, editTask } from "redux/actions/task";
-import { useWatch } from "react-hook-form";
+import { getChecklistBySubcategory } from "redux/actions/task";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import TaskTitle from "components/TaskTitle";
-import { useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import Star from "assets/SVG/Star";
+import StarGrey from "assets/SVG/StarGrey";
+
+const reff = React.createRef();
 
 const View = (search, data) => {
-  const { handleSubmit, control } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-    defaultValues: {
-      rememberMe: data?.ischecked,
-    },
-  });
-
-  const watchData = useWatch({ control });
-  const TaskUpdateHandler = async () => {
-    if (watchData?.checklist) {
-      await dispatch(
-        editTask(
-          watchData?.checklist,
-          data?.id,
-          data?.isHeading,
-          data?.isPriority,
-          data?.isSubtask,
-          "",
-          "",
-          "",
-          ""
-        )
-      );
-      dispatch(getChecklistBySubcategory(pathId));
-    }
-  };
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const ChecklistDetail = useSelector((state) =>
@@ -60,16 +37,34 @@ const View = (search, data) => {
     pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
+  const PinnedHandler = async () => {
+    const pinn = !ChecklistDetail?.pinned ? 1 : 0;
+    const res = await dispatch(PinChecklist(pathId, pinn));
+    if (res?.status === 200) dispatch(getChecklistBySubcategory(pathId));
+  };
+
   return (
     <LandingContainer>
       <RightContainer>
-        <Helpers>
-          <div>
-            <ShareButton>Share</ShareButton>
-          </div>
-        </Helpers>
         <WrapperSection>
-          <LeftContentWrapper>
+          <Helpers>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <ShareButton>Share</ShareButton>
+              <ShareButton>
+                <DropdownBox />
+              </ShareButton>
+              <Pdf
+                targetRef={reff}
+                filename="checklist.pdf"
+                x={0.5}
+                y={0.5}
+                scale={0.8}
+              >
+                {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+              </Pdf>
+            </div>
+          </Helpers>
+          <LeftContentWrapper id="divToPrint" ref={reff}>
             <DetailWrapper>
               <div>
                 <Date>
@@ -77,7 +72,11 @@ const View = (search, data) => {
                 </Date>
               </div>
               <div style={{ width: "25px" }}>
-                <Star />
+                {ChecklistDetail?.pinned ? (
+                  <Star onClick={PinnedHandler} />
+                ) : (
+                  <StarGrey onClick={PinnedHandler} />
+                )}
               </div>
             </DetailWrapper>
             <ChecklistTitle />

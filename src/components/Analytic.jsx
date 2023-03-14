@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
-import { deleteChecklist } from "redux/actions/checklist/index";
+import { deleteChecklist, PinChecklist } from "redux/actions/checklist/index";
 import {
   LandingContainer,
   RightContainer,
@@ -18,6 +18,7 @@ import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
 import Star from "assets/SVG/Star";
 import StarGrey from "assets/SVG/StarGrey";
+
 const Analytic = () => {
   const [search, setSearch] = useState("");
   const [details, setDetails] = useState([]);
@@ -77,6 +78,13 @@ const Analytic = () => {
           </ThirdSection>
           {details
             ?.filter((item, index) => index <= 9)
+            ?.filter((item) => item?.pinned)
+            .map((item) => (
+              <ChecklistWrapper data={item} />
+            ))}
+          {details
+            ?.filter((item, index) => index <= 9)
+            ?.filter((item) => !item?.pinned)
             .map((item) => (
               <ChecklistWrapper data={item} />
             ))}
@@ -97,11 +105,22 @@ const ChecklistWrapper = ({ data }) => {
       dispatch(getAllTemplateByEmail(userEmail));
     }
   };
+
+  const PinnedHandler = async () => {
+    const pinn = !data?.pinned ? 1 : 0;
+    const res = await dispatch(PinChecklist(data?.id, pinn));
+    if (res?.status === 200) dispatch(getAllTemplateByEmail(userEmail));
+  };
+
   return (
     <FourthSection>
       <ul>
         <li>
-          <Star /> <StarGrey />
+          {data?.pinned ? (
+            <Star onClick={PinnedHandler} />
+          ) : (
+            <StarGrey onClick={PinnedHandler} />
+          )}
           <div
             style={{
               cursor: "pointer",

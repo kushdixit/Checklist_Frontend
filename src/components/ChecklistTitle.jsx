@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getChecklistBySubcategory } from "redux/actions/task";
@@ -16,6 +16,12 @@ const ChecklistTitle = () => {
   const ChecklistDetail = useSelector((state) =>
     pathId ? state.checklist : null
   );
+  const [list, setList] = useState({});
+
+  useEffect(() => {
+    if (ChecklistDetail) setList(ChecklistDetail);
+  }, [ChecklistDetail]);
+
   const [api, contextHolder] = notification.useNotification();
 
   const { handleSubmit, control } = useForm({
@@ -38,7 +44,6 @@ const ChecklistTitle = () => {
     if (res?.error) openNotification(res?.message);
     else {
       res?.id && dispatch(getChecklistBySubcategory(res?.id));
-      // dispatch({ type: SET_IS_EDITABLE, payload: true });
       res?.error === false &&
         navigate(`/createChecklist/${res?.id}`, {
           state: { showEditable: false, cardType: "user" },
@@ -85,7 +90,7 @@ const ChecklistTitle = () => {
               }}
               name="checklist"
               placeholder={"Untitled"}
-              defaultValue={pathId ? ChecklistDetail?.checklistName : ""}
+              defaultValue={pathId ? list?.checklistName : ""}
               control={control}
               handlekeyPress={(e) => {
                 if (e.key === "Enter") {

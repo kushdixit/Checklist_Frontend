@@ -161,3 +161,22 @@ export const MoveChecklist = (id, templateId) => async (dispatch) => {
     return { error: true, message: ex?.response?.data?.Errors[0] };
   }
 };
+
+export const PinChecklist = (id, pinned) => async (dispatch) => {
+  const payload = {
+    id,
+    pinned,
+  };
+  try {
+    const res = await axioPath.put(
+      "v1/CheckList/checklistPinnedUpdate",
+      payload,
+      {
+        hideLoader: false,
+      }
+    );
+    return res;
+  } catch (ex) {
+    return { error: true, message: ex?.response?.data?.Errors[0] };
+  }
+};

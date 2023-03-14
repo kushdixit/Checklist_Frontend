@@ -1,4 +1,5 @@
 import React from "react";
+import Pdf from "react-to-pdf";
 import {
   RightCardWrapper,
   RightContentWrapper,
@@ -7,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CopyChecklist } from "redux/actions/checklist/index";
 
-const RightSectionCard = ({ pathId }) => {
+const RightSectionCard = ({ pathId, reff }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const inCompleteTaskCount = useSelector(
@@ -69,6 +70,7 @@ const RightSectionCard = ({ pathId }) => {
               paddingTop: "5px",
               border: 0,
               borderRadius: "10px",
+              cursor: "pointer",
               backgroundColor: "#f5f5f5",
             }}
           >
@@ -78,34 +80,45 @@ const RightSectionCard = ({ pathId }) => {
                 textDecoration: "none",
                 fontSize: "13px",
                 color: "#333",
-                cursor: "pointer",
               }}
               onClick={CopyHandler}
             >
               duplicate
             </div>
           </button>
-          <button
-            style={{
-              marginBottom: "10px",
-              paddingBottom: "5px",
-              paddingTop: "5px",
-              border: 0,
-              borderRadius: "10px",
-              backgroundColor: "#f5f5f5",
-            }}
+          <Pdf
+            targetRef={reff}
+            filename="checklist.pdf"
+            x={0.5}
+            y={0.5}
+            scale={0.8}
           >
-            <div
-              style={{
-                padding: "8px",
-                textDecoration: "none",
-                fontSize: "13px",
-                color: "#333",
-              }}
-            >
-              pdf
-            </div>
-          </button>
+            {({ toPdf }) => (
+              <button
+                onClick={toPdf}
+                style={{
+                  marginBottom: "10px",
+                  paddingBottom: "5px",
+                  paddingTop: "5px",
+                  border: 0,
+                  cursor: "pointer",
+                  borderRadius: "10px",
+                  backgroundColor: "#f5f5f5",
+                }}
+              >
+                <div
+                  style={{
+                    padding: "8px",
+                    textDecoration: "none",
+                    fontSize: "13px",
+                    color: "#333",
+                  }}
+                >
+                  pdf
+                </div>
+              </button>
+            )}
+          </Pdf>
         </div>
       </RightContentWrapper>
     </RightCardWrapper>
