@@ -21,7 +21,7 @@ import Bell from "assets/images/bell.png";
 import Documents from "assets/images/documents-folder.png";
 import Backward from "assets/images/backward-arrow.png";
 import Folder from "assets/images/folder.png";
-import Forward from "assets/images/abcd.png";
+import Forward from "assets/images/forward.png";
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ const SideBar = () => {
           <img src={Bell} />
           <h2 style={{ display: isGood ? "block" : "none" }}>Reminders</h2>
         </Fifth>
-        <Sixth style={{ display: isGood ? "block" : "none" }}></Sixth>
+        <Sixth style={{ display: isGood ? "block" : "block" }}></Sixth>
         <Seventh padding={isGood ? "11px 20px" : "11px 17px;"}>
           {" "}
           <img src={Folder} />
