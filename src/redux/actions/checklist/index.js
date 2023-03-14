@@ -175,8 +175,7 @@ export const PinChecklist = (id, pinned) => async (dispatch) => {
         hideLoader: false,
       }
     );
-    console.log("res", res);
-    return { error: false };
+    return res;
   } catch (ex) {
     return { error: true, message: ex?.response?.data?.Errors[0] };
   }

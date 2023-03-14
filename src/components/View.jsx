@@ -1,6 +1,10 @@
 import React, { useRef, useEffect } from "react";
+import Pdf from "react-to-pdf";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetImage } from "redux/actions/task";
+import { PinChecklist } from "redux/actions/checklist/index";
+import DropdownBox from "./Dropdown";
 import {
   LandingContainer,
   RightContainer,
@@ -15,9 +19,10 @@ import { getChecklistBySubcategory } from "redux/actions/task";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import TaskTitle from "components/TaskTitle";
-import { useParams } from "react-router-dom";
 import Star from "assets/SVG/Star";
-import DropdownBox from "./Dropdown";
+import StarGrey from "assets/SVG/StarGrey";
+
+const reff = React.createRef();
 
 const View = (search, data) => {
   const { id: pathId } = useParams();
@@ -32,6 +37,12 @@ const View = (search, data) => {
     pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
+  const PinnedHandler = async () => {
+    const pinn = !ChecklistDetail?.pinned ? 1 : 0;
+    const res = await dispatch(PinChecklist(pathId, pinn));
+    if (res?.status === 200) dispatch(getChecklistBySubcategory(pathId));
+  };
+
   return (
     <LandingContainer>
       <RightContainer>
@@ -42,9 +53,18 @@ const View = (search, data) => {
               <ShareButton>
                 <DropdownBox />
               </ShareButton>
+              <Pdf
+                targetRef={reff}
+                filename="checklist.pdf"
+                x={0.5}
+                y={0.5}
+                scale={0.8}
+              >
+                {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+              </Pdf>
             </div>
           </Helpers>
-          <LeftContentWrapper>
+          <LeftContentWrapper id="divToPrint" ref={reff}>
             <DetailWrapper>
               <div>
                 <Date>
@@ -52,7 +72,11 @@ const View = (search, data) => {
                 </Date>
               </div>
               <div style={{ width: "25px" }}>
-                <Star />
+                {ChecklistDetail?.pinned ? (
+                  <Star onClick={PinnedHandler} />
+                ) : (
+                  <StarGrey onClick={PinnedHandler} />
+                )}
               </div>
             </DetailWrapper>
             <ChecklistTitle />

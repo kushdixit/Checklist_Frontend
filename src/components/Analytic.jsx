@@ -18,6 +18,7 @@ import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
 import Star from "assets/SVG/Star";
 import StarGrey from "assets/SVG/StarGrey";
+
 const Analytic = () => {
   const [search, setSearch] = useState("");
   const [details, setDetails] = useState([]);
@@ -77,6 +78,13 @@ const Analytic = () => {
           </ThirdSection>
           {details
             ?.filter((item, index) => index <= 9)
+            ?.filter((item) => item?.pinned)
+            .map((item) => (
+              <ChecklistWrapper data={item} />
+            ))}
+          {details
+            ?.filter((item, index) => index <= 9)
+            ?.filter((item) => !item?.pinned)
             .map((item) => (
               <ChecklistWrapper data={item} />
             ))}
@@ -98,8 +106,10 @@ const ChecklistWrapper = ({ data }) => {
     }
   };
 
-  const PinnedHandler = () => {
-    dispatch(PinChecklist(data?.id, !data?.pinned));
+  const PinnedHandler = async () => {
+    const pinn = !data?.pinned ? 1 : 0;
+    const res = await dispatch(PinChecklist(data?.id, pinn));
+    if (res?.status === 200) dispatch(getAllTemplateByEmail(userEmail));
   };
 
   return (

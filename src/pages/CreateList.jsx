@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChecklistBySubcategory, GetImage } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
-
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
@@ -24,10 +23,11 @@ import {
   RightSection,
   LeftContentWrapper,
   RightCardWrapper,
-  LeftCardWrapper,
   EditImage,
 } from "styles/pages/EditChecklist";
 import Navbar from "components/Navbar";
+
+const reff = React.createRef();
 
 const EmbedCode = () => (
   <RightCardWrapper>
@@ -138,7 +138,7 @@ const CreateList = () => {
       <ChecklistMainWrapper>
         <ChecklistSubWrapper>
           <LeftSection>
-            <LeftContentWrapper>
+            <LeftContentWrapper ref={reff}>
               <ChecklistTitle />
               <DescriptionTitle />
               <ImageWrapper
@@ -149,7 +149,7 @@ const CreateList = () => {
             </LeftContentWrapper>
           </LeftSection>
           <RightSection>
-            <RightSectionCard pathId={pathId} />
+            <RightSectionCard pathId={pathId} reff={reff} />
             <ShareSectionCard />
             <Style />
             <EmbedCode />
@@ -194,7 +194,7 @@ const ImageWrapper = ({ title, imageId }) => {
       {imageRef?.current && (
         <img
           // src={`http://192.168.11.66:9001/ChecklistImages/${imageRef?.current}`}
-          src={"http://192.168.11.66:9001/ChecklistImages/process1.png"}
+          src={"http://112.196.2.202:9005/ChecklistImages/process5.png"}
           alt="pic"
           style={{ width: "100%", height: "auto" }}
         />

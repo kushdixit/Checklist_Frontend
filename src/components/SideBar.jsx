@@ -1,14 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllTemplate } from "redux/actions/template";
 import {
   LandingContainer,
   First,
   Second,
-  Third,
-  Fourth,
-  Fifth,
+  DisabledText,
   Sixth,
   Seventh,
   LeftContainer,
@@ -23,6 +21,24 @@ import Backward from "assets/images/backward-arrow.png";
 import Folder from "assets/images/folder.png";
 import Forward from "assets/images/forward.png";
 
+const Pages = [
+  {
+    image: List,
+    name: "Dashboard",
+    disabled: false,
+  },
+  {
+    image: Calendar,
+    name: "Calender",
+    disabled: true,
+  },
+  {
+    image: Bell,
+    name: "Reminders",
+    disabled: true,
+  },
+];
+
 const SideBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,43 +48,36 @@ const SideBar = () => {
   }, []);
 
   return (
-    <LandingContainer width={isGood ? "100%" : "60px"}>
+    <LandingContainer width={isGood}>
       <First position={isGood}>
         <button className="button" onClick={() => setIsGood(!isGood)}>
           <ArrowImage src={!isGood ? Forward : Backward} />
         </button>
       </First>
       <LeftContainer>
-        <Second padding={isGood ? "8px 20px" : "8px 0 8px 7px"}>
+        <Second padding={isGood}>
           <Plus
             onClick={() => navigate("/createChecklist")}
             style={{ cursor: "pointer" }}
           />
         </Second>
-        <Third padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
-          <img src={List} />
-          <h2 style={{ display: isGood ? "block" : "none" }}>Dashboard</h2>
-        </Third>
-        <Fourth padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
-          {" "}
-          <img src={Calendar} />
-          <h2 style={{ display: isGood ? "block" : "none" }}>Calender</h2>
-        </Fourth>
-        <Fifth padding={isGood ? "8px 20px" : "8px 0 8px 17px;"}>
-          {" "}
-          <img src={Bell} />
-          <h2 style={{ display: isGood ? "block" : "none" }}>Reminders</h2>
-        </Fifth>
-        <Sixth style={{ display: isGood ? "block" : "block" }}></Sixth>
-        <Seventh padding={isGood ? "11px 20px" : "11px 17px;"}>
-          {" "}
-          <img src={Folder} />
-          <h2 style={{ display: isGood ? "block" : "none" }}> Folder 1</h2>
+        {Pages?.map((item) => (
+          <DisabledText
+            onClick={() => item?.name === "Dashboard" && navigate("/process")}
+            disabled={item?.disabled}
+          >
+            <img src={item?.image} alt={item?.name} />
+            {isGood && <h2>{item?.name}</h2>}
+          </DisabledText>
+        ))}
+        <Sixth></Sixth>
+        <Seventh>
+          <img src={Folder} alt=" Folder 1" />
+          {isGood && <h2> Folder 1</h2>}
         </Seventh>
-        <Seventh padding={isGood ? "11px 20px" : "11px 17px;"}>
-          {" "}
-          <img src={Documents} />
-          <h2 style={{ display: isGood ? "block" : "none" }}> New Folder</h2>
+        <Seventh>
+          <img src={Documents} alt=" New Folder" />
+          {isGood && <h2> New Folder</h2>}
         </Seventh>
       </LeftContainer>
     </LandingContainer>

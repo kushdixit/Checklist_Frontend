@@ -20,13 +20,7 @@ const ChecklistDashboard = () => {
 
   return (
     <LandingContainer>
-      <Navbar
-        search={true}
-        // style={{ padding: "0" }}
-        icon={true}
-        navType="freeTemplate"
-      />
-
+      <Navbar search={true} icon={true} navType="freeTemplate" />
       <MainSection>
         <SideBar />
         {pathname === "/process" ? <Analytic /> : <View />}

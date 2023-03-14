@@ -116,7 +116,9 @@ const TaskTitle = ({ toggleabc }) => {
             />
           );
         })}
-        {localStorage.getItem("access_token") && <AddTask pathId={pathId} />}
+        {localStorage.getItem("access_token") &&
+          pathId &&
+          ChecklistDetail?.tasks?.length !== 0 && <AddTask pathId={pathId} />}
       </DndProvider>
     </>
   );
