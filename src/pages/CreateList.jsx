@@ -53,7 +53,8 @@ const ImageHandler = () => {
         togglefunction={toggleab}
       />
       <img
-        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+        // src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
+        src={"http://192.168.11.66:9001/ChecklistImages/process1.png"}
         alt="pic"
         style={{ width: "240px", height: "135px" }}
       />
@@ -192,7 +193,8 @@ const ImageWrapper = ({ title, imageId }) => {
     <div style={{ marginBottom: "30px" }}>
       {imageRef?.current && (
         <img
-          src={`http://192.168.11.66:9001/ChecklistImages/${imageRef?.current}`}
+          // src={`http://192.168.11.66:9001/ChecklistImages/${imageRef?.current}`}
+          src={"http://192.168.11.66:9001/ChecklistImages/process1.png"}
           alt="pic"
           style={{ width: "100%", height: "auto" }}
         />

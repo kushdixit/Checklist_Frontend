@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
-import { deleteChecklist } from "redux/actions/checklist/index";
+import { deleteChecklist, PinChecklist } from "redux/actions/checklist/index";
 import {
   LandingContainer,
   RightContainer,
@@ -97,11 +97,20 @@ const ChecklistWrapper = ({ data }) => {
       dispatch(getAllTemplateByEmail(userEmail));
     }
   };
+
+  const PinnedHandler = () => {
+    dispatch(PinChecklist(data?.id, !data?.pinned));
+  };
+
   return (
     <FourthSection>
       <ul>
         <li>
-          <Star /> <StarGrey />
+          {data?.pinned ? (
+            <Star onClick={PinnedHandler} />
+          ) : (
+            <StarGrey onClick={PinnedHandler} />
+          )}
           <div
             style={{
               cursor: "pointer",

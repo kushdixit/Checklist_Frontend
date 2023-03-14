@@ -11,43 +11,15 @@ import {
   Helpers,
   ShareButton,
 } from "styles/components/View";
-import { getChecklistBySubcategory, editTask } from "redux/actions/task";
-import { useWatch } from "react-hook-form";
+import { getChecklistBySubcategory } from "redux/actions/task";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
 import TaskTitle from "components/TaskTitle";
 import { useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import Star from "assets/SVG/Star";
+import DropdownBox from "./Dropdown";
 
 const View = (search, data) => {
-  const { handleSubmit, control } = useForm({
-    mode: "onSubmit",
-    reValidateMode: "onBlur",
-    defaultValues: {
-      rememberMe: data?.ischecked,
-    },
-  });
-
-  const watchData = useWatch({ control });
-  const TaskUpdateHandler = async () => {
-    if (watchData?.checklist) {
-      await dispatch(
-        editTask(
-          watchData?.checklist,
-          data?.id,
-          data?.isHeading,
-          data?.isPriority,
-          data?.isSubtask,
-          "",
-          "",
-          "",
-          ""
-        )
-      );
-      dispatch(getChecklistBySubcategory(pathId));
-    }
-  };
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const ChecklistDetail = useSelector((state) =>
@@ -63,12 +35,15 @@ const View = (search, data) => {
   return (
     <LandingContainer>
       <RightContainer>
-        <Helpers>
-          <div>
-            <ShareButton>Share</ShareButton>
-          </div>
-        </Helpers>
         <WrapperSection>
+          <Helpers>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <ShareButton>Share</ShareButton>
+              <ShareButton>
+                <DropdownBox />
+              </ShareButton>
+            </div>
+          </Helpers>
           <LeftContentWrapper>
             <DetailWrapper>
               <div>

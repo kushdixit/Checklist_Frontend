@@ -18,17 +18,19 @@ export const RightContainer = styled.div`
 
 export const WrapperSection = styled.div`
   width: 100%;
+  position: relative;
   background: #fff;
   border: 1px solid #eee;
   max-width: 924px;
-  padding: 90px;
+  margin-top: 65px;
   @media (max-width: 1010px) {
     padding: 82px 50px;
   }
 `;
 
 export const LeftContentWrapper = styled.div`
-  padding-bottom: 120px;
+  min-height: 1294px;
+  padding: 90px;
 `;
 
 export const DetailWrapper = styled.div`
@@ -44,8 +46,9 @@ export const Date = styled.h3`
   line-height: 31px;
 `;
 export const Helpers = styled.div`
+  position: absolute;
+  top: -55px;
   width: 100%;
-  max-width: 924px;
   display: flex;
   justify-content: end;
   margin-bottom: 10px;
