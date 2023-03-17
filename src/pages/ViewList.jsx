@@ -81,11 +81,13 @@ const ViewList = () => {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       const re = await dispatch(getChecklistBySubcategory(res?.id));
       re.error === false &&
-        navigate(`/createChecklist/${res?.id}`, {
+        navigate(`/temp/${res?.id}`, {
           state: { showEditable: false, cardType: "user" },
         });
     }
   };
+
+  console.log("ChecklistDetail", ChecklistDetail);
 
   return (
     <Section>
@@ -115,7 +117,7 @@ const ViewList = () => {
               <img src={Tick} alt="tick" />
             </ProgressSection>
             <LeftHeader>
-              This checklist was created by officialcheckli
+              This checklist was created by {ChecklistDetail?.createdBy}
             </LeftHeader>
             <ButtonSection>
               <button className="button">Save this checklist</button>

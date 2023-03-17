@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const LandingContainer = styled.div`
+export const LandingContainer = styled(motion.div)`
   width: ${({ width }) => (width ? "100%" : "60px")};
   max-width: 249px;
   border-right: 1px solid #eee;

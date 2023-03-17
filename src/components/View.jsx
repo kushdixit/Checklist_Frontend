@@ -24,7 +24,7 @@ import StarGrey from "assets/SVG/StarGrey";
 
 const reff = React.createRef();
 
-const View = (search, data) => {
+const View = () => {
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const ChecklistDetail = useSelector((state) =>
@@ -32,15 +32,15 @@ const View = (search, data) => {
   );
 
   useEffect(() => {
-    // const token = localStorage.getItem("access_token");
-    // if (!token) navigate("/sign-in");
     pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
   const PinnedHandler = async () => {
-    const pinn = !ChecklistDetail?.pinned ? 1 : 0;
-    const res = await dispatch(PinChecklist(pathId, pinn));
-    if (res?.status === 200) dispatch(getChecklistBySubcategory(pathId));
+    if (pathId) {
+      const pinn = !ChecklistDetail?.pinned ? 1 : 0;
+      const res = await dispatch(PinChecklist(pathId, pinn));
+      if (res?.status === 200) dispatch(getChecklistBySubcategory(pathId));
+    }
   };
 
   return (
@@ -68,7 +68,10 @@ const View = (search, data) => {
             <DetailWrapper>
               <div>
                 <Date>
-                  Created: {ChecklistDetail?.dateCreated?.split("T")[0]}
+                  Created:{" "}
+                  {pathId
+                    ? ChecklistDetail?.dateCreated?.split("T")[0]
+                    : new window.Date().toLocaleString()?.split(",")[0]}
                 </Date>
               </div>
               <div style={{ width: "25px" }}>
@@ -81,10 +84,13 @@ const View = (search, data) => {
             </DetailWrapper>
             <ChecklistTitle />
             <DescriptionTitle />
-            <ImageWrapper
-              title={pathId ? ChecklistDetail?.checklistName : "untitled"}
-              imageId={ChecklistDetail?.checklistImageId}
-            />
+            {console.log("ChecklistDetail?.checklistImageId")}
+            {pathId && ChecklistDetail?.checklistImageId !== 0 && (
+              <ImageWrapper
+                title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+                imageId={ChecklistDetail?.checklistImageId}
+              />
+            )}
             <TaskTitle />
           </LeftContentWrapper>
         </WrapperSection>
@@ -99,14 +105,20 @@ const ImageWrapper = ({ title, imageId }) => {
   const idRef = useRef(null);
 
   const ImageHandler = async () => {
-    const res = await dispatch(GetImage(imageId));
-    if (res?.status === 200) imageRef.current = res?.data[0]?.imageName;
+    if (imageId) {
+      const res = await dispatch(GetImage(imageId));
+      if (res?.status === 200) imageRef.current = res?.data[0]?.imageName;
+    }
   };
 
   useEffect(() => {
     if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
     idRef.current = imageId;
   }, []);
+
+  useEffect(() => {
+    if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
+  }, [imageId]);
 
   return (
     <div style={{ marginBottom: "30px" }}>

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllTemplate } from "redux/actions/template";
@@ -42,22 +43,22 @@ const Pages = [
 const SideBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isGood, setIsGood] = useState(true);
+  const [open, setOpen] = useState(true);
   useEffect(() => {
     dispatch(getAllTemplate());
   }, []);
 
   return (
-    <LandingContainer width={isGood}>
-      <First position={isGood}>
-        <button className="button" onClick={() => setIsGood(!isGood)}>
-          <ArrowImage src={!isGood ? Forward : Backward} />
+    <LandingContainer width={open} animate={{ x: 8 }}>
+      <First position={open}>
+        <button className="button" onClick={() => setOpen(!open)}>
+          <ArrowImage src={!open ? Forward : Backward} />
         </button>
       </First>
       <LeftContainer>
-        <Second padding={isGood}>
+        <Second padding={open}>
           <Plus
-            onClick={() => navigate("/createChecklist")}
+            onClick={() => navigate("/temp")}
             style={{ cursor: "pointer" }}
           />
         </Second>
@@ -67,18 +68,18 @@ const SideBar = () => {
             disabled={item?.disabled}
           >
             <img src={item?.image} alt={item?.name} />
-            {isGood && <h2>{item?.name}</h2>}
+            {open && <h2>{item?.name}</h2>}
           </DisabledText>
         ))}
         <Sixth></Sixth>
-        <Seventh>
+        <DisabledText disabled={true}>
           <img src={Folder} alt=" Folder 1" />
-          {isGood && <h2> Folder 1</h2>}
-        </Seventh>
-        <Seventh>
+          {open && <h2> Folder 1</h2>}
+        </DisabledText>
+        <DisabledText disabled={true}>
           <img src={Documents} alt=" New Folder" />
-          {isGood && <h2> New Folder</h2>}
-        </Seventh>
+          {open && <h2> New Folder</h2>}
+        </DisabledText>
       </LeftContainer>
     </LandingContainer>
   );

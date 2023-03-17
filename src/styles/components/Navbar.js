@@ -83,7 +83,7 @@ export const SecondSection = styled.div`
   }
 `;
 export const HeadingText = styled.div`
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #1d2e88;
   cursor: pointer;
   font-weight: 700;
@@ -429,8 +429,8 @@ export const IconWrapper = styled.div`
 `;
 export const IconWrapperNew = styled.div``;
 export const InitialsWrapper = styled.div`
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3.2rem;
+  height: 3.2rem;
   display: flex;
   justify-content: center;
   align-items: center;

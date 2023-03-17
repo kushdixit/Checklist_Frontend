@@ -7,15 +7,16 @@ import {
 } from "react-router-dom";
 import { isUser } from "helpers/isUser";
 import PrivateRoutes from "components/PrivateRoute";
-import routes, { LandingRoute } from "constants/routes";
+import routes, { ProcessRoute } from "constants/routes";
 
 const PublicRoutes = ({ component: RouteComponent, restricted }) => {
   const navigate = useNavigate();
-  //   useEffect(() => {
-  //     if (isUser()) {
-  //       navigate(LandingRoute.path);
-  //     }
-  //   }, [restricted, navigate]);
+  console.log("RouteComponent", RouteComponent);
+  useEffect(() => {
+    if (isUser()) {
+      navigate(ProcessRoute.path);
+    }
+  }, [restricted, navigate]);
   return <RouteComponent />;
 };
 

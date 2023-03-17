@@ -252,8 +252,24 @@ export const GetImages = () => async (dispatch) => {
 
 export const GetImage = (id) => async () => {
   try {
-    const response = await axioPath.get(
-      `v1/CheckList/checklistimages/${id + 1}`,
+    const response = await axioPath.get(`v1/CheckList/checklistimages/${id}`, {
+      hideLoader: false,
+    });
+    return response;
+  } catch (ex) {
+    return ex.response;
+  }
+};
+
+export const UpdateChecklistImage = (id, checkListImageId) => async () => {
+  const payload = {
+    id,
+    checkListImageId,
+  };
+  try {
+    const response = await axioPath.put(
+      "v1/CheckList/checklistImageUpdate",
+      payload,
       {
         hideLoader: false,
       }

@@ -8,14 +8,11 @@ import {
   MoveTask,
 } from "redux/actions/task";
 import Delete from "assets/SVG/Delete";
-import SubTask from "assets/SVG/SubTask";
-import Heading from "assets/SVG/Heading";
 import Priority from "assets/SVG/Priority";
 import DownArrow from "assets/SVG/DownArrow";
 import QuestionMark from "assets/SVG/QuestionMark";
 import Indent from "assets/SVG/Indent";
 import Header from "assets/SVG/Header";
-import Description from "assets/SVG/Description";
 import { SET_TASK } from "redux/actions/action_types";
 
 const TaskColon = ({ data, setIsHovering, pathId, taskOrder, toggleabc }) => {

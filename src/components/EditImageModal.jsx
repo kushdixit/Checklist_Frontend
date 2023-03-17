@@ -1,17 +1,19 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import TextInput from "components/FormElements/TextInput";
-import { GetImages } from "redux/actions/task";
+import {
+  GetImages,
+  UpdateChecklistImage,
+  getChecklistBySubcategory,
+} from "redux/actions/task";
 import {
   MainWrapper,
   Container,
   DataWrapper,
   Heading,
-  DataInput,
   EmailWrapper,
   IconInputField,
-  BlankText,
   SectionOne,
   TagSection,
   SecondHeading,
@@ -23,8 +25,6 @@ import { useDispatch, useSelector } from "react-redux";
 const EditImageModal = () => {
   const dispatch = useDispatch();
   const { id: pathId } = useParams();
-
-  console.log("pathId", pathId);
 
   const imageArray = useSelector((state) => state?.getImages?.images);
 
@@ -40,6 +40,11 @@ const EditImageModal = () => {
   }, []);
 
   const ImageHanlder = () => dispatch(GetImages());
+
+  const ImageUpdateHandler = async (id) => {
+    const res = await dispatch(UpdateChecklistImage(pathId, id));
+    if (res?.status === 200) dispatch(getChecklistBySubcategory(pathId));
+  };
 
   return (
     <MainWrapper>
@@ -72,23 +77,22 @@ const EditImageModal = () => {
               </IconInputField>
             </EmailWrapper>
           </TagSection>
-          <SecondHeading>Remove featured Image</SecondHeading>
+          <SecondHeading onClick={() => ImageUpdateHandler(0)}>
+            Remove featured Image
+          </SecondHeading>
           <ImageSection>
             <StatusBucketCards>
               {imageArray?.map((item) => (
                 <img
                   src={`http://192.168.11.66:9001/ChecklistImages/${item?.imageName}`}
                   alt="img"
-                  onClick={() => console.log(item?.id)}
+                  onClick={() => ImageUpdateHandler(item?.id)}
                 />
               ))}
             </StatusBucketCards>
           </ImageSection>
         </DataWrapper>
       </Container>
-      <DataInput></DataInput>
-
-      <BlankText></BlankText>
     </MainWrapper>
   );
 };

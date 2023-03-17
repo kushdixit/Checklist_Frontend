@@ -39,8 +39,23 @@ const EmbedCode = () => (
   </RightCardWrapper>
 );
 
-const ImageHandler = () => {
+const ImageHandler = ({ imageId }) => {
   const [modal, setModal] = useState(false);
+
+  const dispatch = useDispatch();
+  const [imagePath, setImagePath] = useState(null);
+  const idRef = useRef(null);
+
+  const HandleImage = async () => {
+    const res = await dispatch(GetImage(imageId));
+    if (res?.status === 200) setImagePath(res?.data[0]?.imageName);
+  };
+
+  useEffect(() => {
+    console.log(imageId, idRef?.current);
+    if (imageId !== 0 && idRef?.current !== imageId) HandleImage();
+    idRef.current = imageId;
+  }, [imageId]);
 
   function toggleab(data) {
     setModal(data);
@@ -53,8 +68,7 @@ const ImageHandler = () => {
         togglefunction={toggleab}
       />
       <img
-        // src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
-        src={"http://192.168.11.66:9001/ChecklistImages/process1.png"}
+        src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
         alt="pic"
         style={{ width: "240px", height: "135px" }}
       />
@@ -102,8 +116,6 @@ const CreateList = () => {
     });
   };
 
-  console.log("asf");
-
   const getPayload = async () => {
     const multipleValues = getValues(["checklist", "description"]);
     const res = await dispatch(
@@ -141,10 +153,12 @@ const CreateList = () => {
             <LeftContentWrapper ref={reff}>
               <ChecklistTitle />
               <DescriptionTitle />
-              <ImageWrapper
-                title={pathId ? ChecklistDetail?.checklistName : "untitled"}
-                imageId={ChecklistDetail?.checklistImageId}
-              />
+              {pathId && ChecklistDetail?.checklistImageId !== 0 && (
+                <ImageWrapper
+                  title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+                  imageId={ChecklistDetail?.checklistImageId}
+                />
+              )}
               <TaskTitle toggleabc={toggleabc} />
             </LeftContentWrapper>
           </LeftSection>
@@ -153,7 +167,7 @@ const CreateList = () => {
             <ShareSectionCard />
             <Style />
             <EmbedCode />
-            <ImageHandler />
+            <ImageHandler imageId={ChecklistDetail?.checklistImageId} />
           </RightSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
@@ -176,25 +190,24 @@ const Style = () => {
 
 const ImageWrapper = ({ title, imageId }) => {
   const dispatch = useDispatch();
-  const imageRef = useRef(null);
+  const [imagePath, setImagePath] = useState(null);
   const idRef = useRef(null);
 
   const ImageHandler = async () => {
     const res = await dispatch(GetImage(imageId));
-    if (res?.status === 200) imageRef.current = res?.data[0]?.imageName;
+    if (res?.status === 200) setImagePath(res?.data[0]?.imageName);
   };
 
   useEffect(() => {
     if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
     idRef.current = imageId;
-  }, []);
+  }, [imageId]);
 
   return (
     <div style={{ marginBottom: "30px" }}>
-      {imageRef?.current && (
+      {imagePath && (
         <img
-          // src={`http://192.168.11.66:9001/ChecklistImages/${imageRef?.current}`}
-          src={"http://112.196.2.202:9005/ChecklistImages/process5.png"}
+          src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
           alt="pic"
           style={{ width: "100%", height: "auto" }}
         />
