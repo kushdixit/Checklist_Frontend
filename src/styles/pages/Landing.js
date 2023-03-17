@@ -149,3 +149,8 @@ export const SubHeading = styled.div`
   margin-top: 90px;
   text-align: center;
 `;
+export const ChecklistImage = styled.img`
+  @media (max-width: 1000px) {
+    width: 80%;
+  }
+`;

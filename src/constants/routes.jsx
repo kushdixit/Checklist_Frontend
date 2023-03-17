@@ -47,9 +47,16 @@ export const CheckListRoute = {
 
 export const SearchRoute = {
   component: Search,
+  path: "/search",
+  exact: true,
+  restricted: true,
+};
+
+export const SearchByIdRoute = {
+  component: Search,
   path: "/search/:id",
   exact: true,
-  restricted: false,
+  restricted: true,
 };
 
 export const CreateListRoute = {
@@ -98,14 +105,14 @@ export const TempRoute = {
   component: ChecklistDashboard,
   path: "/temp",
   exact: true,
-  restricted: false,
+  restricted: true,
 };
 
 export const TempRouteById = {
   component: ChecklistDashboard,
   path: "/temp/:id",
   exact: true,
-  restricted: false,
+  restricted: true,
 };
 
 export const ProcessRoute = {
@@ -122,6 +129,7 @@ const ROUTES = [
   CheckListRoute,
   SignUpRoute,
   SearchRoute,
+  SearchByIdRoute,
   CreateListRoute,
   FreeTemplateRoute,
   ExploreRoute,

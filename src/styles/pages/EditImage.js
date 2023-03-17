@@ -94,6 +94,7 @@ export const SecondHeading = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 44px;
+  cursor: pointer;
 `;
 export const TagSection = styled.div`
   display: flex;
@@ -105,10 +106,10 @@ export const TagSection = styled.div`
     input {
       max-width: 349px;
     }
-     @media (max-width: 799px) {
-   
-    input {
-      max-width: 349px;
+    @media (max-width: 799px) {
+      input {
+        max-width: 349px;
+      }
     }
   }
 `;

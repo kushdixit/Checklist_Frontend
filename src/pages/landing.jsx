@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Button from "components/Button";
-import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate } from "redux/actions/template";
+import Footer from "components/Footer";
+import LandingCard from "../components/LandingCard";
 import ChecklistCards from "../components/ChecklistCards";
 import {
   LandingContainer,
@@ -15,20 +17,22 @@ import {
   UpperContentWrapper,
   LandingChecklistCardSection,
   ButtonSection,
+  ChecklistImage,
 } from "styles/pages/Landing";
-import LandingCard from "../components/LandingCard";
-import Footer from "components/Footer";
 
 const Landing = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allTemplate = useSelector((state) => state.Template?.allTemplate);
+
   useEffect(() => {
     // const token = localStorage.getItem("access_token");
     // if (token) navigate("/dashboard");
     // else navigate("/landing");
     dispatch(getAllTemplate());
   }, []);
+
+  console.log("allTemplate", allTemplate);
 
   return (
     <LandingContainer>
@@ -84,6 +88,18 @@ const Landing = () => {
           >
             Browse Your Checklist
           </h1>
+          <div
+            style={{
+              width: "100%",
+              borderBottom: "1px solid #eaeaea",
+              marginBottom: "100px",
+            }}
+          >
+            <ChecklistImage
+              src="https://www.checkli.com/app/css/images/free-list-maker.png"
+              alt="Share"
+            />
+          </div>
           <SecondHeading>How it works</SecondHeading>
           <p style={{ paddingBottom: "50px" }}>
             Organize your mind or scale your bussiness the right way,every time.
@@ -107,7 +123,7 @@ const Landing = () => {
               <button className="button">Start Up</button>
             </ButtonSection>
             {allTemplate?.map((item, id) => (
-              <ChecklistCards key={id} item={item} />
+              <ChecklistCards key={id} item={item} index={id} />
             ))}
           </LandingChecklistCardSection>
         </div>

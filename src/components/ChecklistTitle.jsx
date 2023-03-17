@@ -45,7 +45,7 @@ const ChecklistTitle = () => {
     else {
       res?.id && dispatch(getChecklistBySubcategory(res?.id));
       res?.error === false &&
-        navigate(`/createChecklist/${res?.id}`, {
+        navigate(`/temp/${res?.id}`, {
           state: { showEditable: false, cardType: "user" },
         });
     }

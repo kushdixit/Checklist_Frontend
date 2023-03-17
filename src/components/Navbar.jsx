@@ -108,7 +108,7 @@ const NavBar = ({
   };
 
   const newTemplateHandler = async () => {
-    navigate("/createChecklist");
+    navigate("/temp");
   };
 
   const searchData = (data) => {
@@ -270,7 +270,14 @@ const NavBar = ({
               </IconWrapper>
             </IconInputField>
           )}
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "20px",
+              maxHeight: "63px",
+            }}
+          >
             {addButton && (
               <Footer>
                 <Button
@@ -314,7 +321,7 @@ const NavBar = ({
                 <SecondSubSection>
                   {icon && (
                     <BlueIcon
-                      onClick={() => navigate("/createChecklist")}
+                      onClick={() => navigate("/temp")}
                       style={{ cursor: "pointer" }}
                     >
                       <PlusBlue />

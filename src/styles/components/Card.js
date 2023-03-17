@@ -29,6 +29,7 @@ export const WrapSection = styled.div``;
 
 export const CardMainSection = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -260,4 +261,30 @@ export const WrapSubSection = styled.div`
 export const EmptyMessage = styled.div`
   justify-content: flex-start;
   padding-left: 1rem;
+`;
+export const SeeMoreWrapper = styled.div`
+  padding-bottom: 100px;
+  margin-top: 20px;
+  width: 100%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  color: #000;
+`;
+
+export const SeeMore = styled.a`
+  color: #777;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 17px;
+  padding: 8px 15px;
+  text-decoration: none;
+  cursor: pointer;
 `;
