@@ -46,24 +46,25 @@ const View = () => {
   return (
     <LandingContainer>
       <RightContainer>
+        <Helpers>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <ShareButton>Share</ShareButton>
+            <ShareButton>
+              <DropdownBox />
+            </ShareButton>
+            <Pdf
+              targetRef={reff}
+              filename="checklist.pdf"
+              x={0.5}
+              y={0.5}
+              scale={0.8}
+            >
+              {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+            </Pdf>
+          </div>
+        </Helpers>
+
         <WrapperSection>
-          <Helpers>
-            <div style={{ display: "flex", gap: "10px" }}>
-              <ShareButton>Share</ShareButton>
-              <ShareButton>
-                <DropdownBox />
-              </ShareButton>
-              <Pdf
-                targetRef={reff}
-                filename="checklist.pdf"
-                x={0.5}
-                y={0.5}
-                scale={0.8}
-              >
-                {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
-              </Pdf>
-            </div>
-          </Helpers>
           <LeftContentWrapper id="divToPrint" ref={reff}>
             <DetailWrapper>
               <div>

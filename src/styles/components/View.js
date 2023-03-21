@@ -14,18 +14,20 @@ export const RightContainer = styled.div`
   justify-content: center;
   background: #fbfbfb;
   padding-top: 36px;
+  margin-left: 15px;
+  margin-right: 15px;
 `;
 
 export const WrapperSection = styled.div`
   width: 100%;
-  position: relative;
+  /* position: relative; */
   background: #fff;
   border: 1px solid #eee;
   max-width: 924px;
-  margin-top: 65px;
-  @media (max-width: 1010px) {
+  margin-top: 22px;
+  /* @media (max-width: 1010px) {
     padding: 82px 50px;
-  }
+  } */
 `;
 
 export const LeftContentWrapper = styled.div`
@@ -46,12 +48,13 @@ export const Date = styled.h3`
   line-height: 31px;
 `;
 export const Helpers = styled.div`
-  position: absolute;
-  top: -55px;
+  /* position: absolute;
+  top: -55px; */
   width: 100%;
+  max-width: 924px;
   display: flex;
   justify-content: end;
-  margin-bottom: 10px;
+  margin: 54px 0 0 0;
 `;
 export const ShareButton = styled.button`
   color: #5b5757;
