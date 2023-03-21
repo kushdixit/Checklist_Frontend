@@ -126,6 +126,8 @@ const ChecklistWrapper = ({ data }) => {
               cursor: "pointer",
               textDecoration: "underline",
               textAlign: "left",
+              width: "100%",
+              maxWidth: "502",
             }}
             onClick={() => {
               navigate(`/temp/${data?.id}`, {
