@@ -8,6 +8,7 @@ import SideBar from "components/SideBar";
 import Analytic from "components/Analytic";
 import View from "components/View";
 import { useLocation } from "react-router-dom";
+import Search from "./search";
 
 const ChecklistDashboard = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,9 @@ const ChecklistDashboard = () => {
       <Navbar search={true} icon={true} navType="freeTemplate" />
       <MainSection>
         <SideBar />
-        {pathname === "/process" ? <Analytic /> : <View />}
+        {pathname.includes("/search") && <Search />}
+        {pathname === "/process" && <Analytic />}
+        {pathname.includes("/temp") && <View />}
       </MainSection>
       <Footer />
     </LandingContainer>

@@ -1,4 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
+import AlertModal from "components/AlertModal";
+import TextInput from "components/FormElements/TextInput";
+import Button from "components/Button";
 import {
   NavSection,
   FirstSection,
@@ -28,27 +34,13 @@ import {
   FreeTemplatetext,
   BlueIcon,
 } from "styles/components/Navbar";
-import Button from "components/Button";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
 import Logout from "assets/SVG/Logout";
-import AlertModal from "components/AlertModal";
 import { useForm } from "react-hook-form";
-import TextInput from "components/FormElements/TextInput";
 import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
 import PlusBlue from "assets/SVG/PlusBlue";
 
-const NavBar = ({
-  search,
-  icon,
-  buttonType,
-  addButton,
-  createList,
-  getPayload,
-  navType,
-}) => {
+const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   const wrapperRef = useRef();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -96,6 +88,7 @@ const NavBar = ({
     );
     return () => subscription.unsubscribe();
   }, [watch]);
+
   useEffect(() => {
     if (updateSearch === "") {
       dispatch({ type: SET_SEARCH, payload: "" });
@@ -212,7 +205,7 @@ const NavBar = ({
           )}
         </HeaderWrapper>
         <SearchSection>
-          {search && (
+          {access_token && search && (
             <form onSubmit={submitData(searchData)}>
               <IconInputFieldNew>
                 <TextInput
@@ -237,7 +230,7 @@ const NavBar = ({
           </HeadingText>
         </FirstSection>
         <SecondSection>
-          {search && (
+          {access_token && search && (
             <IconInputField style={{ display: "flex" }}>
               <form
                 style={{ width: "100%", display: "flex" }}
@@ -288,16 +281,6 @@ const NavBar = ({
                 </Button>
               </Footer>
             )}
-            {/* Remove below commented code in future */}
-            {/* {createList && (
-              <Button
-                className="button"
-                style={{ padding: "0.5rem 1rem" }}
-                handleClick={() => getPayload()}
-              >
-                Save
-              </Button>
-            )} */}
             {state?.showEditable && (
               <EditSection>
                 <Button

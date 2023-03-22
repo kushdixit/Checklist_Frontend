@@ -7,9 +7,8 @@ const axioPath = axios.create({
   // baseURL: process.env.PUBLIC_API_URL,
   // baseURL: "https://checklist-dev.thewitslab.com/api/",
   // baseURL: "http://112.196.2.202:9005/api/",
-  baseURL: "http://112.196.2.202:9005/api/",
-
-  // baseURL: "http://112.196.2.202:8080/api/",
+  // baseURL: "http://112.196.2.202:9005/api/",
+  baseURL: "http://112.196.2.202:8080/api/",
   headers: {
     "x-checklist-application-id": "checklist-ui-application-id",
     "Content-Type": "application/json",

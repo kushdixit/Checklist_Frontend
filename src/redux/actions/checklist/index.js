@@ -180,3 +180,17 @@ export const PinChecklist = (id, pinned) => async (dispatch) => {
     return { error: true, message: ex?.response?.data?.Errors[0] };
   }
 };
+
+export const SearchList = (filterType) => async (dispatch) => {
+  try {
+    const res = await axioPath.get(
+      `v1/CheckList/checklistsearch${filterType}`,
+      {
+        hideLoader: false,
+      }
+    );
+    return res;
+  } catch (ex) {
+    return { error: true, message: ex };
+  }
+};

@@ -3,7 +3,7 @@ import SignUp from "pages/sign-up";
 import Dashboard from "pages/dashboard";
 import CheckList from "pages/check-list";
 import Landing from "pages/landing";
-import Search from "pages/search";
+import Categories from "pages/Categories";
 import CreateList from "pages/CreateList";
 import FreeTemplate from "pages/FreeTemplate";
 import Explore from "pages/Explore";
@@ -46,14 +46,14 @@ export const CheckListRoute = {
 };
 
 export const SearchRoute = {
-  component: Search,
+  component: ChecklistDashboard,
   path: "/search",
   exact: true,
   restricted: true,
 };
 
 export const SearchByIdRoute = {
-  component: Search,
+  component: ChecklistDashboard,
   path: "/search/:id",
   exact: true,
   restricted: true,
@@ -122,6 +122,13 @@ export const ProcessRoute = {
   restricted: true,
 };
 
+export const CategoriesRoutes = {
+  component: Categories,
+  path: "/categories/:id",
+  exact: true,
+  restricted: false,
+};
+
 const ROUTES = [
   SignInRoute,
   LandingRoute,
@@ -139,6 +146,7 @@ const ROUTES = [
   ViewListRouteById,
   TempRoute,
   TempRouteById,
+  CategoriesRoutes,
 ];
 
 export default ROUTES;

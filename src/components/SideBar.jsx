@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -8,8 +8,6 @@ import {
   First,
   Second,
   DisabledText,
-  Sixth,
-  Seventh,
   LeftContainer,
   ArrowImage,
 } from "styles/components/SideBar";
@@ -17,9 +15,7 @@ import Plus from "assets/SVG/Plus";
 import List from "assets/images/list.png";
 import Calendar from "assets/images/calendar.png";
 import Bell from "assets/images/bell.png";
-import Documents from "assets/images/documents-folder.png";
 import Backward from "assets/images/backward-arrow.png";
-import Folder from "assets/images/folder.png";
 import Forward from "assets/images/forward.png";
 
 const Pages = [
@@ -71,15 +67,6 @@ const SideBar = () => {
             {open && <h2>{item?.name}</h2>}
           </DisabledText>
         ))}
-        <Sixth></Sixth>
-        <DisabledText disabled={true}>
-          <img src={Folder} alt=" Folder 1" />
-          {open && <h2> Folder 1</h2>}
-        </DisabledText>
-        <DisabledText disabled={true}>
-          <img src={Documents} alt=" New Folder" />
-          {open && <h2> New Folder</h2>}
-        </DisabledText>
       </LeftContainer>
     </LandingContainer>
   );
