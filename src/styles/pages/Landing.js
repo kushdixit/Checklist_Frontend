@@ -89,6 +89,7 @@ export const ButtonSection = styled.div`
     border: 0px;
     padding: 8px;
     color: #333;
+    cursor: pointer;
   }
   @media (max-width: 1298px) {
     width: 100%;

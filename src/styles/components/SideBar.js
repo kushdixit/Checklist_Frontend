@@ -63,39 +63,4 @@ export const DisabledText = styled.div`
   }
 `;
 
-export const Sixth = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  border-bottom: 1px solid #dddddd;
-  padding: 10px 0;
-  h2 {
-    display: block;
-    font-size: 15px;
-    font-weight: 400;
-    padding: 0;
-    margin: 0;
-  }
-`;
-export const Seventh = styled.div`
-  display: flex;
-  align-items: center;
-  color: #000;
-  padding: ${({ padding }) => padding || "11px 0 11px 17px;"};
-  font-size: 0;
-  gap: 13px;
-  h2 {
-    display: block;
-    font-size: 15px;
-    font-weight: 400;
-    padding: 0;
-    margin: 0;
-  }
-
-  img {
-    width: 15px;
-    height: 15px;
-  }
-`;
-
 export const ArrowImage = styled.img``;

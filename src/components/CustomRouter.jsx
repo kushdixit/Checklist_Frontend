@@ -11,7 +11,6 @@ import routes, { ProcessRoute } from "constants/routes";
 
 const PublicRoutes = ({ component: RouteComponent, restricted }) => {
   const navigate = useNavigate();
-  console.log("RouteComponent", RouteComponent);
   useEffect(() => {
     if (isUser()) {
       navigate(ProcessRoute.path);

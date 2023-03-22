@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Button from "components/Button";
 import { getAllTemplate } from "redux/actions/template";
+import Navbar from "components/Navbar";
+import Button from "components/Button";
 import Footer from "components/Footer";
-import LandingCard from "../components/LandingCard";
-import ChecklistCards from "../components/ChecklistCards";
+import LandingCard from "components/LandingCard";
+import ChecklistCards from "components/ChecklistCards";
 import {
   LandingContainer,
   Heading,
@@ -20,6 +20,8 @@ import {
   ChecklistImage,
 } from "styles/pages/Landing";
 
+const Tags = ["New", "Yoga", "Test", "Monday", "Education"];
+
 const Landing = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,8 +33,6 @@ const Landing = () => {
     // else navigate("/landing");
     dispatch(getAllTemplate());
   }, []);
-
-  console.log("allTemplate", allTemplate);
 
   return (
     <LandingContainer>
@@ -114,13 +114,16 @@ const Landing = () => {
               processes for free.
             </p>
             <ButtonSection>
-              <button className="button">New</button>{" "}
-              <button className="button">Digital Marketing</button>
-              <button className="button">Education</button>
-              <button className="button">HR</button>
-              <button className="button">Business</button>
-              <button className="button">Real Estate</button>
-              <button className="button">Start Up</button>
+              {Tags?.map((item) => (
+                <button
+                  className="button"
+                  onClick={() => {
+                    navigate(`/categories/${item}`);
+                  }}
+                >
+                  {item}
+                </button>
+              ))}
             </ButtonSection>
             {allTemplate?.map((item, id) => (
               <ChecklistCards key={id} item={item} index={id} />
