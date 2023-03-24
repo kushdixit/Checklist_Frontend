@@ -15,7 +15,6 @@ export const LandingContainer = styled.div`
     margin-left: auto;
     margin-right: auto;
     font-weight: 500;
-
     flex-direction: column;
     max-width: 708px;
   }
@@ -60,12 +59,9 @@ export const Heading = styled.div`
   align-items: center;
   font-weight: 600;
   font-size: 2.2rem;
-
   margin-left: auto;
   margin-right: auto;
-
   flex-direction: column;
-
   margin-top: 90px;
   text-align: center;
   @media (max-width: 538px) {
@@ -82,12 +78,9 @@ export const SecondHeading = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 400;
-
   font-size: 34px;
-
   margin-left: auto;
   margin-right: auto;
-
   flex-direction: column;
   max-width: 708px;
   margin-top: 90px;
@@ -99,15 +92,12 @@ export const NavSection = styled.div`
 `;
 
 export const LeftSection = styled.div`
-  padding-bottom: 115px;
-  padding-top: 8rem;
-
   display: flex;
   width: 100%;
   max-width: 986px;
   margin-left: 10px;
   flex-wrap: wrap;
-  gap: 24px 30px;
+  gap: 0px 30px;
   h4 {
     margin: 0;
     padding: 0;
@@ -168,7 +158,6 @@ export const ImageSection = styled.div`
 
 export const Text = styled.div`
   padding: 5px 0;
-
   color: #777;
   font-size: 14px;
 `;
@@ -178,6 +167,7 @@ export const SubMainSection = styled.div`
   max-width: 1220px;
   margin-left: auto;
   margin-right: auto;
+  justify-content: space-around;
   @media (max-width: 1276px) {
     width: 100%;
     max-width: 1050px;
@@ -202,21 +192,16 @@ export const RightSection = styled.div`
 `;
 export const LandingCardSection = styled.div`
   display: flex;
-
   gap: 100px;
   width: 100%;
-
   justify-content: center;
-
   align-items: center;
   margin: 30px 10px;
-
   flex-wrap: wrap;
 `;
 export const IconInputFieldNew = styled.div`
   position: relative;
   width: 100%;
-
   input {
     position: relative;
     text-align: left;
@@ -273,7 +258,8 @@ export const IconInputFieldNew = styled.div`
   } */
 `;
 export const SearchSection = styled.div`
-  margin-top: 44px;
+  margin-top: 20px;
+  margin-bottom: 8rem;
   @media (max-width: 767px) {
     display: flex;
     width: 100%;
@@ -316,9 +302,34 @@ export const SubHeading = styled.div`
   line-height: 57px;
   margin-left: auto;
   margin-right: auto;
-
   flex-direction: column;
   max-width: 708px;
   margin-top: 90px;
   text-align: center;
+`;
+export const SeeMoreWrapper = styled.div`
+  padding-bottom: 100px;
+  margin-top: 20px;
+  width: 100%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  color: #000;
+`;
+
+export const SeeMore = styled.a`
+  color: #777;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 17px;
+  padding: 8px 15px;
+  text-decoration: none;
+  cursor: pointer;
 `;

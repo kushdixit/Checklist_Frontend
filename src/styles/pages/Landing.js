@@ -155,3 +155,18 @@ export const ChecklistImage = styled.img`
     width: 80%;
   }
 `;
+export const FirstSection = styled.div`
+  display: flex;
+  grid-gap: 43px;
+  width: 100%;
+
+  margin: 0 0 0 10px;
+  flex-wrap: wrap;
+  justify-content: left;
+  @media (max-width: 1012px) {
+    justify-content: center;
+  }
+  @media (max-width: 1722px) {
+    justify-content: center;
+  }
+`;

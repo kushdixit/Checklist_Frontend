@@ -49,14 +49,14 @@ export const SearchRoute = {
   component: ChecklistDashboard,
   path: "/search",
   exact: true,
-  restricted: true,
+  restricted: false,
 };
 
 export const SearchByIdRoute = {
   component: ChecklistDashboard,
   path: "/search/:id",
   exact: true,
-  restricted: true,
+  restricted: false,
 };
 
 export const CreateListRoute = {

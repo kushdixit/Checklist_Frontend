@@ -39,7 +39,7 @@ export const BlueIcon = styled.div`
 export const Logintext = styled.div`
   margin: 0px;
   padding: 0px 10px 0 10px;
-  color: rgb(29, 46, 136);
+  color: rgb(45 66 177);
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
@@ -50,7 +50,7 @@ export const Logintext = styled.div`
 export const FreeTemplatetext = styled.div`
   margin: 0px;
   padding: 0px;
-  color: rgb(29, 46, 136);
+  color: rgb(45 66 177);
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
@@ -469,4 +469,14 @@ export const ModalButton = styled.div`
   color: white;
   text-align: center;
   cursor: pointer;
+`;
+export const UseButton = styled.div`
+  background-color: #007ccb;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 0px;
+  padding: 10px 22px;
+  color: #fff;
+  margin-left: 10px;
 `;

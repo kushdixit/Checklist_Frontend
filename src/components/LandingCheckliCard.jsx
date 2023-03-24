@@ -39,7 +39,7 @@ const LandingCheckliCard = ({ data }) => {
           </ProgressSection>
           <Name>
             <img src={Tick} alt="tick" />
-            Offically Checkli
+            {data?.createdBy?.split("@")[0]}
           </Name>
         </HeaderSection>
       </ImageSection>

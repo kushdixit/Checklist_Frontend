@@ -5,7 +5,11 @@ import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import { SearchList } from "redux/actions/checklist";
 import { SET_SEARCH } from "redux/actions/action_types";
 import LandingCheckliCard from "components/LandingCheckliCard";
-import { SearchWrapper, SearchText } from "styles/pages/Search";
+import {
+  SearchWrapper,
+  SearchText,
+  SearchCardWrapper,
+} from "styles/pages/Search";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -42,10 +46,12 @@ const Search = () => {
   return (
     <SearchWrapper>
       <SearchText>Search Results</SearchText>
-      {Searched.length > 0 &&
-        Searched?.map((item, id) => (
-          <LandingCheckliCard key={id} data={item} index={id} />
-        ))}
+      <SearchCardWrapper>
+        {Searched.length > 0 &&
+          Searched?.map((item, id) => (
+            <LandingCheckliCard key={id} data={item} index={id} />
+          ))}
+      </SearchCardWrapper>
     </SearchWrapper>
   );
 };

@@ -45,7 +45,7 @@ export const DisabledText = styled.div`
   display: flex;
   color: #000;
   opacity: ${({ disabled }) => (disabled ? 0.4 : 1)};
-  padding: 8px 0 8px 17px;
+  padding: 8px 20px 8px 17px;
   font-size: 15px;
   align-items: center;
   gap: 13px;

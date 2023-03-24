@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
 import AlertModal from "components/AlertModal";
@@ -33,6 +33,7 @@ import {
   Logintext,
   FreeTemplatetext,
   BlueIcon,
+  UseButton,
 } from "styles/components/Navbar";
 import Logout from "assets/SVG/Logout";
 import { useForm } from "react-hook-form";
@@ -165,7 +166,17 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
               ) : null}
             </ImageSubSection>
           ) : (
-            <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
+              <UseButton>
+                <Link
+                  to={"/sign-up"}
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Use for free
+                </Link>
+              </UseButton>
+            </div>
           )}
           <LogoSearchSection>
             <LogoSection
@@ -268,7 +279,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
               display: "flex",
               alignItems: "center",
               gap: "20px",
-              maxHeight: "63px",
+              minHeight: "63px",
             }}
           >
             {addButton && (
@@ -339,7 +350,19 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                 </SecondSubSection>
               </ImageSubSection>
             ) : (
-              <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Logintext onClick={() => navigate("/sign-in")}>
+                  Login
+                </Logintext>
+                <UseButton>
+                  <Link
+                    to={"/sign-up"}
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    Use for free
+                  </Link>
+                </UseButton>
+              </div>
             )}
           </div>
         </SecondSection>

@@ -62,7 +62,6 @@ export const NavSection = styled.div`
 
 export const LeftSection = styled.div`
   padding-bottom: 115px;
-  padding-top: 75px;
   display: flex;
   width: 100%;
   max-width: 986px;
@@ -147,7 +146,7 @@ export const SubMainSection = styled.div`
   max-width: 1220px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 70px;
+  margin-top: 60px;
   @media (max-width: 1276px) {
     width: 100%;
     max-width: 1050px;
