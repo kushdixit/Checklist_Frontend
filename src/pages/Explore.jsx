@@ -1,38 +1,57 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllTemplate } from "redux/actions/template";
+import LandingCheckliCard from "components/LandingCheckliCard";
+import { SearchList } from "redux/actions/checklist";
+import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import {
   LandingContainer,
   NavSection,
   IconInputFieldNew,
   SearchSection,
   LeftSection,
-  RightSection,
-  Listeners,
   SubMainSection,
-  ImageSection,
-  Text,
-  Border,
+  SeeMore,
+  SeeMoreWrapper,
 } from "styles/pages/Explore";
 import TextInput from "components/FormElements/TextInput";
+import SideTags from "components/SideTags";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { SET_SEARCH } from "redux/actions/action_types";
-import CheckliCardWrapper from "components/CheckliCardWrapper";
-import Google from "assets/images/google.png";
-import Person from "assets/images/person.png";
-import Flower from "assets/images/flower.jpg";
 import Footer from "components/Footer";
 
 const Explore = (search) => {
   const dispatch = useDispatch();
   const [updateSearch, SetUpdateSearch] = useState("");
   const navigate = useNavigate();
-  const allTemplate = useSelector((state) => state.Template?.allTemplate);
+  const [Popular, setPopular] = useState([]);
+  const [New, setNew] = useState([]);
+
+  const ListHandler = async () => {
+    const response = await dispatch(SearchList(`?SortBy=true`));
+    dispatch(hideAppLoader());
+    if (response.status === 200) {
+      setPopular(response?.data);
+    } else {
+      setPopular([]);
+    }
+  };
+
+  const NewListHandler = async () => {
+    const response = await dispatch(SearchList(`?SortBy=false`));
+    dispatch(hideAppLoader());
+    if (response.status === 200) {
+      setNew(response?.data);
+    } else {
+      setNew([]);
+    }
+  };
 
   useEffect(() => {
-    dispatch(getAllTemplate());
+    dispatch(showAppLoader());
+    ListHandler();
+    NewListHandler();
   }, []);
 
   const { handleSubmit: submitData, control: formControl } = useForm({
@@ -45,6 +64,12 @@ const Explore = (search) => {
     navigate(`/search/${data?.listSearch}`, {
       state: { searchedterm: data?.listSearch },
     });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Backspace") {
+      SetUpdateSearch((prev) => prev.slice(0, -1));
+    }
   };
 
   useEffect(() => {
@@ -68,62 +93,61 @@ const Explore = (search) => {
           <form onSubmit={submitData(searchData)}>
             <IconInputFieldNew>
               <TextInput
-                control={formControl}
                 name="listSearch"
                 type="text"
-                placeholder="i.e blog posts"
+                placeholder="Search"
+                control={formControl}
+                handleKeyDown={handleKeyDown}
+                handlekeyPress={(e) => {
+                  SetUpdateSearch((prev) => prev + e.key);
+                }}
               />
             </IconInputFieldNew>
           </form>
         )}
       </SearchSection>
       <SubMainSection>
-        <LeftSection>
-          {allTemplate?.map((item) => (
-            <CheckliCardWrapper data={item} />
-          ))}
-        </LeftSection>
-        {/* <CheckliCard /> */}
-        <RightSection>
-          <Listeners>
-            <h4>Top Publishers</h4>
-            <ImageSection>
-              <img src={Google} alt="Google" />
-            </ImageSection>
-            <ImageSection>
-              <img src={Flower} alt="Flower" />
-            </ImageSection>
-            <ImageSection>
-              <img src={Person} alt="Person" />
-            </ImageSection>
-            <ImageSection>
-              <button className="button">Become a Publisher</button>
-            </ImageSection>
-            <ImageSection>
-              <h4>Categories</h4>
-            </ImageSection>
-            <Text>Education</Text>
-            <Text>Bussiness</Text>
-            <Text>Digital Marketing</Text>
-            <Text>Tech</Text>
-
-            <Text>Health and Fitness</Text>
-            <Text>Lifestyle</Text>
-            <Text>Gaming</Text>
-            <Text>Startup</Text>
-            <Text>Productivity</Text>
-            <Text>Travel</Text>
-            <Border></Border>
-            <Text>New</Text>
-            <Text>Popular</Text>
-            <ImageSection>
-              <button className="button">See More</button>
-            </ImageSection>
-          </Listeners>
-        </RightSection>
+        <div>
+          <MiniCardWrapper data={Popular} title="Popular" />
+          <MiniCardWrapper data={New} title="New" />
+        </div>
+        <SideTags />
       </SubMainSection>
       <Footer />
     </LandingContainer>
+  );
+};
+
+const MiniCardWrapper = ({ data, title }) => {
+  return (
+    <>
+      <LeftSection>
+        <div
+          style={{
+            marginTop: "25px",
+            width: "100%",
+            display: "flex",
+          }}
+        >
+          <h4
+            style={{
+              paddingBottom: "20px",
+              fontWeight: "400",
+            }}
+          >
+            {title} Checklists
+          </h4>
+        </div>
+        {data
+          ?.filter((item, index) => index <= 2)
+          ?.map((item) => (
+            <LandingCheckliCard data={item} />
+          ))}
+        <SeeMoreWrapper>
+          <SeeMore href={`/categories/${title}`}>See More</SeeMore>
+        </SeeMoreWrapper>
+      </LeftSection>
+    </>
   );
 };
 

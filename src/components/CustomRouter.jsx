@@ -9,10 +9,10 @@ import { isUser } from "helpers/isUser";
 import PrivateRoutes from "components/PrivateRoute";
 import routes, { ProcessRoute } from "constants/routes";
 
-const PublicRoutes = ({ component: RouteComponent, restricted }) => {
+const PublicRoutes = ({ component: RouteComponent, restricted, path }) => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (isUser()) {
+    if (isUser() && path !== "/checklists/:id" && path !== "/search/:id") {
       navigate(ProcessRoute.path);
     }
   }, [restricted, navigate]);
@@ -32,7 +32,11 @@ const CustomRouter = () => (
               restricted ? (
                 <PrivateRoutes component={Component} />
               ) : (
-                <PublicRoutes restricted={false} component={Component} />
+                <PublicRoutes
+                  restricted={false}
+                  component={Component}
+                  path={path}
+                />
               )
             }
           />
