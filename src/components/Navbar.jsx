@@ -279,7 +279,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
               display: "flex",
               alignItems: "center",
               gap: "20px",
-              maxHeight: "63px",
+              minHeight: "63px",
             }}
           >
             {addButton && (

@@ -167,6 +167,7 @@ export const SubMainSection = styled.div`
   max-width: 1220px;
   margin-left: auto;
   margin-right: auto;
+  justify-content: space-around;
   @media (max-width: 1276px) {
     width: 100%;
     max-width: 1050px;

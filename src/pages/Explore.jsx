@@ -138,14 +138,18 @@ const MiniCardWrapper = ({ data, title }) => {
             {title} Checklists
           </h4>
         </div>
-        {data
-          ?.filter((item, index) => index <= 2)
-          ?.map((item) => (
-            <LandingCheckliCard data={item} />
-          ))}
-        <SeeMoreWrapper>
-          <SeeMore href={`/categories/${title}`}>See More</SeeMore>
-        </SeeMoreWrapper>
+        {data.length > 0 ? (
+          data
+            ?.filter((item, index) => index <= 2)
+            ?.map((item) => <LandingCheckliCard data={item} />)
+        ) : (
+          <div style={{ color: "#d65e5e" }}>No Record Found.</div>
+        )}
+        {data.length > 0 && (
+          <SeeMoreWrapper>
+            <SeeMore href={`/categories/${title}`}>See More</SeeMore>
+          </SeeMoreWrapper>
+        )}
       </LeftSection>
     </>
   );
