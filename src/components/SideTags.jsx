@@ -33,7 +33,6 @@ const SideTags = () => {
             style={{ textDecoration: "none" }}
             key={id}
           >
-            {console.log("item", item)}
             <Text>{item}</Text>
           </Link>
         ))}

@@ -1,6 +1,5 @@
 import SignIn from "pages/sign-in";
 import SignUp from "pages/sign-up";
-import Dashboard from "pages/dashboard";
 import CheckList from "pages/check-list";
 import Landing from "pages/landing";
 import Categories from "pages/Categories";
@@ -29,13 +28,6 @@ export const SignUpRoute = {
   path: "/sign-up",
   exact: true,
   restricted: false,
-};
-
-export const DashboardRoute = {
-  component: Dashboard,
-  path: "/dashboard",
-  exact: true,
-  restricted: true,
 };
 
 export const CheckListRoute = {
@@ -129,10 +121,16 @@ export const CategoriesRoutes = {
   restricted: false,
 };
 
+export const InsightRoutes = {
+  component: ChecklistDashboard,
+  path: "/insight/:id",
+  exact: true,
+  restricted: true,
+};
+
 const ROUTES = [
   SignInRoute,
   LandingRoute,
-  DashboardRoute,
   CheckListRoute,
   SignUpRoute,
   SearchRoute,
@@ -147,6 +145,7 @@ const ROUTES = [
   TempRoute,
   TempRouteById,
   CategoriesRoutes,
+  InsightRoutes,
 ];
 
 export default ROUTES;

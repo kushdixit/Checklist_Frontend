@@ -3,9 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
+import Pdf from "react-to-pdf";
 import { deleteChecklist } from "redux/actions/checklist/index";
 
-const DropdownBox = () => {
+const DropdownBox = ({ reff }) => {
   const { id: pathId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,7 +34,29 @@ const DropdownBox = () => {
     },
     {
       key: "3",
-      label: <div onClick={() => console.log("dsa")}>Print this checklist</div>,
+      label: (
+        <Pdf
+          targetRef={reff?.current}
+          filename="checklist.pdf"
+          x={0.5}
+          y={0.5}
+          scale={0.8}
+        >
+          {({ toPdf }) => (
+            <button
+              onClick={toPdf}
+              style={{
+                border: "none",
+                background: "transparent",
+                padding: "1px 0px",
+                cursor: "pointer",
+              }}
+            >
+              Generate Pdf
+            </button>
+          )}
+        </Pdf>
+      ),
     },
     {
       key: "4",
@@ -42,13 +65,13 @@ const DropdownBox = () => {
     },
   ];
   return (
-    <Dropdown menu={{ items }}>
-      <a onClick={(e) => e.preventDefault()}>
+    <Dropdown menu={{ items }} disabled={!(pathId !== undefined && pathId)}>
+      <div onClick={(e) => e.preventDefault()}>
         <Space>
           Select
           <DownOutlined />
         </Space>
-      </a>
+      </div>
     </Dropdown>
   );
 };

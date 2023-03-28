@@ -7,12 +7,12 @@ import {
 } from "styles/pages/ForgetPassword";
 import { useNavigate } from "react-router-dom";
 
-const LogoutModal = ({ notify, togglefunction }) => {
+const LogoutModal = ({ notify, togglefunction, title }) => {
   const navigate = useNavigate();
 
   return (
     <DataWrapper>
-      <Heading>Confirm Logout</Heading>
+      <Heading>Confirm {title}</Heading>
       <ButtonWrapper>
         <ModalButton
           onClick={() => {

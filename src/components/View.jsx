@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import Pdf from "react-to-pdf";
+import React, { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetImage } from "redux/actions/task";
@@ -50,29 +49,20 @@ const View = () => {
           <div style={{ display: "flex", gap: "10px" }}>
             <ShareButton>Share</ShareButton>
             <ShareButton>
-              <DropdownBox />
+              <DropdownBox reff={reff} />
             </ShareButton>
-            <Pdf
-              targetRef={reff}
-              filename="checklist.pdf"
-              x={0.5}
-              y={0.5}
-              scale={0.8}
-            >
-              {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
-            </Pdf>
           </div>
         </Helpers>
-
         <WrapperSection>
           <LeftContentWrapper id="divToPrint" ref={reff}>
             <DetailWrapper>
               <div>
                 <Date>
-                  Created:{" "}
                   {pathId
-                    ? ChecklistDetail?.dateCreated?.split("T")[0]
-                    : new window.Date().toLocaleString()?.split(",")[0]}
+                    ? `Created: ${ChecklistDetail?.dateCreated?.split("T")[0]}`
+                    : `Date: ${
+                        new window.Date().toLocaleString()?.split(",")[0]
+                      }`}
                 </Date>
               </div>
               <div style={{ width: "25px" }}>
@@ -84,13 +74,16 @@ const View = () => {
               </div>
             </DetailWrapper>
             <ChecklistTitle />
-            <DescriptionTitle />
-            {console.log("ChecklistDetail?.checklistImageId")}
-            {pathId && ChecklistDetail?.checklistImageId !== 0 && (
-              <ImageWrapper
-                title={pathId ? ChecklistDetail?.checklistName : "untitled"}
-                imageId={ChecklistDetail?.checklistImageId}
-              />
+            {pathId && (
+              <>
+                <DescriptionTitle />
+                {ChecklistDetail?.checklistImageId !== 0 && (
+                  <ImageWrapper
+                    title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+                    imageId={ChecklistDetail?.checklistImageId}
+                  />
+                )}
+              </>
             )}
             <TaskTitle />
           </LeftContentWrapper>
@@ -102,30 +95,26 @@ const View = () => {
 
 const ImageWrapper = ({ title, imageId }) => {
   const dispatch = useDispatch();
-  const imageRef = useRef(null);
+  const [imagePath, setImagePath] = useState(null);
   const idRef = useRef(null);
 
   const ImageHandler = async () => {
-    if (imageId) {
-      const res = await dispatch(GetImage(imageId));
-      if (res?.status === 200) imageRef.current = res?.data[0]?.imageName;
-    }
+    const res = await dispatch(GetImage(imageId));
+    if (res?.status === 200) setImagePath(res?.data[0]?.imageName);
   };
 
   useEffect(() => {
     if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
     idRef.current = imageId;
-  }, []);
-
-  useEffect(() => {
-    if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
   }, [imageId]);
+
+  console.log("imagePath", imagePath);
 
   return (
     <div style={{ marginBottom: "30px" }}>
-      {imageRef?.current && (
+      {imagePath?.current && (
         <img
-          src={`http://192.168.11.66:9001/ChecklistImages/${imageRef?.current}`}
+          src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
           alt="pic"
           style={{ width: "100%", height: "auto" }}
         />

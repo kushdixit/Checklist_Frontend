@@ -142,7 +142,18 @@ const ChecklistWrapper = ({ data }) => {
           <img src={Share} alt="Share" />
         </li>
         <li>
-          <img src={ChartPie} alt="ChartPie" />
+          <img
+            src={ChartPie}
+            alt="ChartPie"
+            onClick={() =>
+              navigate(`/insight/${data?.id}`, {
+                state: {
+                  inProgress: data?.totalTaskCount,
+                  completed: data?.inCompleteTaskCount,
+                },
+              })
+            }
+          />
         </li>
         <li onClick={DeleteChecklist}>
           <img src={Trash} alt="Trash" />

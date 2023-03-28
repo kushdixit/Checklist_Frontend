@@ -120,6 +120,7 @@ export const FourthSection = styled.div`
     border-bottom: 1px solid #aaa;
   }
   li {
+    cursor: pointer;
     padding: 20px 35px 0 0;
     text-decoration: none;
     list-style: none;

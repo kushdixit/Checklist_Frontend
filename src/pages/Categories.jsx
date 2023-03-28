@@ -19,12 +19,14 @@ import {
 const Categories = () => {
   const { id: pathId } = useParams();
   const paramRef = useRef(pathId);
+  const abcd = useRef(null);
   const dispatch = useDispatch();
   const [Searched, setSearched] = useState("");
+  const [count, setCount] = useState(1);
 
   const TagHandler = async () => {
     const response = await dispatch(
-      SearchList(`?Name=${pathId}&Type=1&SortBy=false&Pagination=1`)
+      SearchList(`?Name=${pathId}&Type=1&SortBy=false&Pagination=${count}`)
     );
     dispatch(hideAppLoader());
     if (response.status === 200) {
@@ -34,8 +36,16 @@ const Categories = () => {
     }
   };
 
+  useEffect(() => {
+    let chatBox = document.getElementById(`card${count * 24}`);
+    if (chatBox != null) chatBox.scrollIntoView();
+    abcd?.current?.scrollIntoView();
+  }, [Searched]);
+
   const ViewHandler = async (flag) => {
-    const response = await dispatch(SearchList(`?SortBy=${flag}`));
+    const response = await dispatch(
+      SearchList(`?SortBy=${flag}&Pagination=${count}`)
+    );
     dispatch(hideAppLoader());
     if (response.status === 200) {
       setSearched(response?.data);
@@ -50,7 +60,7 @@ const Categories = () => {
       if (pathId === "New") ViewHandler(false);
       else ViewHandler(true);
     } else TagHandler();
-  }, []);
+  }, [count]);
 
   useEffect(() => {
     if (paramRef?.current !== pathId) {
@@ -60,7 +70,7 @@ const Categories = () => {
   }, [pathId]);
 
   return (
-    <LandingContainer>
+    <LandingContainer ref={abcd}>
       <NavSection>
         <Navbar search={true} navType="home" />
       </NavSection>
@@ -109,12 +119,23 @@ const Categories = () => {
             <LeftSection>
               {Searched.length > 0 ? (
                 Searched?.map((item, id) => (
-                  <LandingCheckliCard key={id} data={item} index={id} />
+                  <LandingCheckliCard
+                    key={id}
+                    data={item}
+                    index={id}
+                    id={`card${id}`}
+                  />
                 ))
               ) : (
                 <div style={{ color: "#d65e5e" }}>No Record Found.</div>
               )}
             </LeftSection>
+            <button
+              className="button"
+              onClick={() => setCount((prev) => prev + 1)}
+            >
+              See More
+            </button>
           </div>
           <SideTags />
         </div>

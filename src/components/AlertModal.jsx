@@ -45,13 +45,24 @@ const AlertModal = ({
         </button>
       </ButtonWrapper>
       {modalType === "logout" && (
-        <LogoutModal togglefunction={togglefunction} notify={notify} />
+        <LogoutModal
+          togglefunction={togglefunction}
+          notify={notify}
+          title="Logout"
+        />
       )}
       {modalType === "forgot" && (
         <ForgotPassword notify={notify} togglefunction={togglefunction} />
       )}
       {modalType === "burger" && (
         <BurgerModal notify={notify} togglefunction={togglefunction} />
+      )}
+      {modalType === "delete" && (
+        <LogoutModal
+          togglefunction={togglefunction}
+          notify={notify}
+          title="Delete"
+        />
       )}
       {modalType === "move" && (
         <MoveModal
