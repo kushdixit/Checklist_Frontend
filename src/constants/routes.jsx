@@ -1,6 +1,5 @@
 import SignIn from "pages/sign-in";
 import SignUp from "pages/sign-up";
-import CheckList from "pages/check-list";
 import Landing from "pages/landing";
 import Categories from "pages/Categories";
 import CreateList from "pages/CreateList";
@@ -28,13 +27,6 @@ export const SignUpRoute = {
   path: "/sign-up",
   exact: true,
   restricted: false,
-};
-
-export const CheckListRoute = {
-  component: CheckList,
-  path: "/check-list",
-  exact: true,
-  restricted: true,
 };
 
 export const SearchRoute = {
@@ -131,7 +123,6 @@ export const InsightRoutes = {
 const ROUTES = [
   SignInRoute,
   LandingRoute,
-  CheckListRoute,
   SignUpRoute,
   SearchRoute,
   SearchByIdRoute,
