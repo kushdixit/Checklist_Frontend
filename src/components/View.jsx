@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetImage } from "redux/actions/task";
 import { PinChecklist } from "redux/actions/checklist/index";
+import ImageModal from "components/ImageModal";
 import DropdownBox from "./Dropdown";
 import {
   LandingContainer,
@@ -25,6 +26,7 @@ const reff = React.createRef();
 
 const View = () => {
   const { id: pathId } = useParams();
+  const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const ChecklistDetail = useSelector((state) =>
     pathId ? state.checklist : null
@@ -42,6 +44,10 @@ const View = () => {
     }
   };
 
+  function toggleab(data) {
+    setModal(data);
+  }
+
   return (
     <LandingContainer>
       <RightContainer>
@@ -49,7 +55,7 @@ const View = () => {
           <div style={{ display: "flex", gap: "10px" }}>
             <ShareButton>Share</ShareButton>
             <ShareButton>
-              <DropdownBox reff={reff} />
+              <DropdownBox reff={reff} toggleab={toggleab} />
             </ShareButton>
           </div>
         </Helpers>
@@ -89,6 +95,11 @@ const View = () => {
           </LeftContentWrapper>
         </WrapperSection>
       </RightContainer>
+      <ImageModal
+        modalType="editimage"
+        isOpen={modal}
+        togglefunction={toggleab}
+      />
     </LandingContainer>
   );
 };
@@ -108,11 +119,9 @@ const ImageWrapper = ({ title, imageId }) => {
     idRef.current = imageId;
   }, [imageId]);
 
-  console.log("imagePath", imagePath);
-
   return (
     <div style={{ marginBottom: "30px" }}>
-      {imagePath?.current && (
+      {imagePath && (
         <img
           src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
           alt="pic"

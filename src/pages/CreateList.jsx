@@ -52,7 +52,6 @@ const ImageHandler = ({ imageId }) => {
   };
 
   useEffect(() => {
-    console.log(imageId, idRef?.current);
     if (imageId !== 0 && idRef?.current !== imageId) HandleImage();
     idRef.current = imageId;
   }, [imageId]);
@@ -67,11 +66,13 @@ const ImageHandler = ({ imageId }) => {
         isOpen={modal}
         togglefunction={toggleab}
       />
-      <img
-        src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
-        alt="pic"
-        style={{ width: "240px", height: "135px" }}
-      />
+      {imagePath && (
+        <img
+          src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
+          alt="pic"
+          style={{ width: "240px", height: "135px" }}
+        />
+      )}
       <br />
       <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
     </RightCardWrapper>
@@ -82,7 +83,6 @@ const CreateList = () => {
   const [checkListDiscriptionId, setCheckListDiscriptionId] = useState();
   function toggleabc(data, descriptionId) {
     setCheckListDiscriptionId(descriptionId);
-    // console.log("descriptionId", descriptionId);
     setNewModal(data);
   }
 

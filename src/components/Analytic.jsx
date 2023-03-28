@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
 import { deleteChecklist, PinChecklist } from "redux/actions/checklist/index";
@@ -12,7 +13,6 @@ import {
   FourthSection,
   IconInputFieldNew,
 } from "styles/components/Analytic";
-import { useNavigate } from "react-router-dom";
 import Share from "assets/images/share.png";
 import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
@@ -77,13 +77,13 @@ const Analytic = () => {
             </ul>
           </ThirdSection>
           {details
-            ?.filter((item, index) => index <= 9)
+            ?.filter((item, index) => index <= 39)
             ?.filter((item) => item?.pinned)
             .map((item) => (
               <ChecklistWrapper data={item} />
             ))}
           {details
-            ?.filter((item, index) => index <= 9)
+            ?.filter((item, index) => index <= 39)
             ?.filter((item) => !item?.pinned)
             .map((item) => (
               <ChecklistWrapper data={item} />

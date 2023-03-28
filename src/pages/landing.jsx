@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllTemplate } from "redux/actions/template";
 import Navbar from "components/Navbar";
 import Button from "components/Button";
 import Footer from "components/Footer";
-import LandingCard from "components/LandingCard";
 import ChecklistCards from "components/ChecklistCards";
 import {
   LandingContainer,
@@ -19,6 +18,8 @@ import {
   ButtonSection,
   ChecklistImage,
 } from "styles/pages/Landing";
+
+const LandingCard = lazy(() => import("components/LandingCard"));
 
 const Tags = ["New", "Yoga", "Test", "Monday", "Education"];
 
@@ -105,7 +106,9 @@ const Landing = () => {
             Organize your mind or scale your bussiness the right way,every time.
           </p>
           <LandingCardSection>
-            <LandingCard />
+            <Suspense fallback={<h1>Loading…</h1>}>
+              <LandingCard />
+            </Suspense>
           </LandingCardSection>
           <LandingChecklistCardSection>
             <h5>Free Template Library</h5>

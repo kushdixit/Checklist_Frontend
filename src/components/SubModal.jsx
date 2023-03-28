@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { isUser } from "helpers/isUser";
+import { CopyHandler } from "helpers/copy";
 import {
   RightContentWrapper,
   ShareSection,
@@ -42,8 +44,10 @@ const SubModal = ({
   viewCount,
   copyCount,
   downloadCount,
+  counts,
 }) => {
   const { id: pathId } = useParams();
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
@@ -55,11 +59,12 @@ const SubModal = ({
     console.log(`selected ${value}`);
   }
 
-  const CopyHandler = async () => {
-    console.log("hey");
-    // const res = await dispatch(CopyChecklist(pathId, userEmail));
-    // !res?.error && navigate(`/createChecklist/${res?.data?.data}`);
-  };
+  // const CopyHandler = async () => {
+  //   const res = await dispatch(
+  //     CopyChecklist(pathId, isUser() ? userEmail : "guest@gmail.com")
+  //   );
+  //   !res?.error && navigate(`/createChecklist/${res?.data?.data}`);
+  // };
 
   return (
     <RightContentWrapper>
@@ -76,31 +81,41 @@ const SubModal = ({
             <p>Views</p>
           </ViewCount>
         )}
-        {copyCount && (
-          <CopyButtonWrapper btnColor="#ec4e20" textColor="#fff">
-            <p>
-              <span>{copyCount}</span>
-              <br />
-              copies saved
-            </p>
-            <button onClick={CopyHandler}>Copy</button>
-          </CopyButtonWrapper>
-        )}
-        {downloadCount && (
-          <CopyButtonWrapper btnColor="#f0f0f0" textColor="#000">
-            <p>
-              <span>{downloadCount}</span>
-              <br />
-              downloads
-            </p>
-            <button>pdf</button>
-          </CopyButtonWrapper>
+        {counts && (
+          <>
+            <CopyButtonWrapper btnColor="#ec4e20" textColor="#fff">
+              <p>
+                <span>{copyCount}</span>
+                <br />
+                copies saved
+              </p>
+              <button
+                onClick={() =>
+                  CopyHandler(
+                    pathId,
+                    isUser() ? userEmail : "guest@gmail.com",
+                    navigate
+                  )
+                }
+              >
+                Copy
+              </button>
+            </CopyButtonWrapper>
+            <CopyButtonWrapper btnColor="#f0f0f0" textColor="#000">
+              <p>
+                <span>{downloadCount}</span>
+                <br />
+                downloads
+              </p>
+              <button>pdf</button>
+            </CopyButtonWrapper>
+          </>
         )}
         <ShareTextWrapper>
           <ShareText>{title}</ShareText>
           {buttonName && (
             <Preview onClick={() => toggleab(true)}>{buttonName}</Preview>
-          )}{" "}
+          )}
           {linkName && <Preview href="#">{linkName}</Preview>}
         </ShareTextWrapper>
       </ShareSection>
@@ -145,7 +160,6 @@ const SubModal = ({
           </div>
         </StyleButtonWrapper>
       )}
-      {/* <button onClick={() => toggleabc(true)}>description</button> */}
     </RightContentWrapper>
   );
 };

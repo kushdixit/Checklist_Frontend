@@ -22,7 +22,7 @@ import {
 } from "styles/pages/EditImage";
 import { useDispatch, useSelector } from "react-redux";
 
-const EditImageModal = () => {
+const EditImageModal = ({ togglefunction }) => {
   const dispatch = useDispatch();
   const { id: pathId } = useParams();
 
@@ -43,7 +43,10 @@ const EditImageModal = () => {
 
   const ImageUpdateHandler = async (id) => {
     const res = await dispatch(UpdateChecklistImage(pathId, id));
-    if (res?.status === 200) dispatch(getChecklistBySubcategory(pathId));
+    if (res?.status === 200) {
+      dispatch(getChecklistBySubcategory(pathId));
+      togglefunction(false);
+    }
   };
 
   return (
@@ -84,7 +87,7 @@ const EditImageModal = () => {
             <StatusBucketCards>
               {imageArray?.map((item) => (
                 <img
-                  src={`http://192.168.11.66:9001/ChecklistImages/${item?.imageName}`}
+                  src={`http://112.196.2.202:8080/ChecklistImages/${item?.imageName}`}
                   alt="img"
                   onClick={() => ImageUpdateHandler(item?.id)}
                 />

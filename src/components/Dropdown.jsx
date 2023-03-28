@@ -6,7 +6,7 @@ import { Dropdown, Space } from "antd";
 import Pdf from "react-to-pdf";
 import { deleteChecklist } from "redux/actions/checklist/index";
 
-const DropdownBox = ({ reff }) => {
+const DropdownBox = ({ reff, toggleab }) => {
   const { id: pathId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const DropdownBox = ({ reff }) => {
   const items = [
     {
       key: "0",
-      label: <div onClick={() => console.log("dsa")}>Add media header</div>,
+      label: <div onClick={() => toggleab(true)}>Add media header</div>,
     },
     {
       key: "1",

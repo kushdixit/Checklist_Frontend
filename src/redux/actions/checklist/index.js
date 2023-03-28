@@ -194,3 +194,22 @@ export const SearchList = (filterType) => async (dispatch) => {
     return { error: true, message: ex };
   }
 };
+
+export const saveListByUser = (id, email) => async (dispatch) => {
+  const payload = {
+    id,
+    email,
+  };
+  try {
+    const res = await axioPath.get(
+      "v1/CheckList/checklistCopyUpdateEmail",
+      payload,
+      {
+        hideLoader: false,
+      }
+    );
+    return res;
+  } catch (ex) {
+    return { error: true, message: ex };
+  }
+};

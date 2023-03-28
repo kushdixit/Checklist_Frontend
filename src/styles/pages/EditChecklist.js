@@ -53,6 +53,7 @@ export const ButtonSection = styled.div`
     border: none;
     padding: 14px;
     font-size: 16px;
+    cursor: pointer;
   }
 `;
 export const ChecklistWidgetSection = styled.div`

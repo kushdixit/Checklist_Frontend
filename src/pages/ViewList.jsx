@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import ChecklistWidget from "components/ChecklistWidget";
-import SubModal from "components/SubModal";
-import Footer from "components/Footer";
-import ViewTask from "components/ViewTask";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import { notification } from "antd";
 import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import { getAllTemplate } from "redux/actions/template";
+import ChecklistWidget from "components/ChecklistWidget";
+import SubModal from "components/SubModal";
+import Footer from "components/Footer";
+import ViewTask from "components/ViewTask";
+import { isUser } from "helpers/isUser";
+import { CopyHandler } from "helpers/copy";
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
@@ -87,8 +89,6 @@ const ViewList = () => {
     }
   };
 
-  console.log("ChecklistDetail", ChecklistDetail);
-
   return (
     <Section>
       {contextHolder}
@@ -120,12 +120,25 @@ const ViewList = () => {
               This checklist was created by {ChecklistDetail?.createdBy}
             </LeftHeader>
             <ButtonSection>
-              <button className="button">Save this checklist</button>
+              <button
+                className="button"
+                onClick={() =>
+                  CopyHandler(
+                    pathId,
+                    isUser() ? userEmail : "guest@gmail.com",
+                    navigate
+                  )
+                }
+              >
+                Save this checklist
+              </button>
             </ButtonSection>
-            <SecondContent>2290 copies saved</SecondContent>
+            <SecondContent>
+              {ChecklistDetail?.copyCount} copies saved
+            </SecondContent>
           </LeftSection>
           <RightViewSection>
-            <CopyCard />
+            <CopyCard info={ChecklistDetail} />
             <TagContent>Tags</TagContent>
             <TagButton>
               <button className="button">digital-marketing-checklist</button>
@@ -141,7 +154,6 @@ const ViewList = () => {
             </TagButton>
           </RightViewSection>
         </ChecklistSubWrapper>
-
         <ChecklistWidgetSection>
           <RelationHeading>Related Checklists</RelationHeading>
           {allTemplate?.map((item) => (
@@ -170,14 +182,15 @@ const ImageWrapper = ({ title }) => {
   );
 };
 
-const CopyCard = () => {
+const CopyCard = ({ info }) => {
   return (
     <RightCardWrapper>
       <SubModal
         title="Embed"
-        viewCount="23,420"
-        copyCount="2280"
-        downloadCount="1001"
+        counts={true}
+        viewCount={info?.viewCount}
+        copyCount={info?.copyCount}
+        downloadCount={info?.downloadCount}
         embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
       />
     </RightCardWrapper>

@@ -15,7 +15,9 @@ import { LandingContainer, MainSection } from "styles/pages/ChecklistDashboard";
 const ChecklistDashboard = () => {
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
+
+  console.log("state", state);
 
   useEffect(() => {
     dispatch(getAllTemplateByEmail(userEmail));

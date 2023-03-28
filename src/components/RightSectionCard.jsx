@@ -1,12 +1,12 @@
 import React from "react";
 import Pdf from "react-to-pdf";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { CopyChecklist } from "redux/actions/checklist/index";
 import {
   RightCardWrapper,
   RightContentWrapper,
 } from "styles/pages/EditChecklist";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { CopyChecklist } from "redux/actions/checklist/index";
 
 const RightSectionCard = ({ pathId, reff }) => {
   const navigate = useNavigate();
@@ -42,6 +42,7 @@ const RightSectionCard = ({ pathId, reff }) => {
             border: 0,
             background: "white",
           }}
+          onClick={() => navigate("/sign-in", { state: { userApi: true } })}
         >
           <div
             style={{
