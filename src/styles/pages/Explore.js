@@ -97,7 +97,7 @@ export const LeftSection = styled.div`
   max-width: 986px;
   margin-left: 10px;
   flex-wrap: wrap;
-  gap: 0px 30px;
+  gap: 15px 30px;
   h4 {
     margin: 0;
     padding: 0;
@@ -251,11 +251,6 @@ export const IconInputFieldNew = styled.div`
       width: 46vw;
     }
   }
-  /* @media (max-width: 532px) {
-    input {
-      width: 70vw;
-    }
-  } */
 `;
 export const SearchSection = styled.div`
   margin-top: 20px;

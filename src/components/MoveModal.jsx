@@ -54,7 +54,7 @@ const MoveModal = ({ notify, togglefunction, checklistId, templateName }) => {
   const searchData = (data) => {
     dispatch({ type: SET_SEARCH, payload: data?.listSearch });
     navigate(`/search/${data?.listSearch}`, {
-      state: { searchedterm: data?.listSearch },
+      state: { searchedterm: data?.listSearch, tagTerm: "" },
     });
   };
   const handleKeyDown = (e) => {

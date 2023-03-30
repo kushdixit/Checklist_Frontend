@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import { getChecklistBySubcategory } from "redux/actions/task";
-import { addTempChecklist } from "redux/actions/checklist";
+import { addTempChecklist, SearchList } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import { getAllTemplate } from "redux/actions/template";
 import ChecklistWidget from "components/ChecklistWidget";
@@ -13,6 +13,7 @@ import Footer from "components/Footer";
 import ViewTask from "components/ViewTask";
 import { isUser } from "helpers/isUser";
 import { CopyHandler } from "helpers/copy";
+import { SET_SEARCH } from "redux/actions/action_types";
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
@@ -89,6 +90,17 @@ const ViewList = () => {
     }
   };
 
+  const TagSearchHandler = (title) => {
+    dispatch({ type: SET_SEARCH, payload: title });
+    navigate(`/search/${title}`, {
+      state: { tagTerm: title, searchedterm: "" },
+    });
+
+    // const response = await dispatch(
+    //   SearchList(`?Name=${title}&Type=3&SortBy=false`)
+    // );
+  };
+
   return (
     <Section>
       {contextHolder}
@@ -139,19 +151,17 @@ const ViewList = () => {
           </LeftSection>
           <RightViewSection>
             <CopyCard info={ChecklistDetail} />
-            <TagContent>Tags</TagContent>
-            <TagButton>
-              <button className="button">digital-marketing-checklist</button>
-            </TagButton>
-            <TagButton>
-              <button className="button">digital-marketing</button>
-            </TagButton>
-            <TagButton>
-              <button className="button">digital-marketing-assistant</button>
-            </TagButton>
-            <TagButton>
-              <button className="button">digital-marketing-strategy</button>
-            </TagButton>
+            {ChecklistDetail?.tag && <TagContent>Tags</TagContent>}
+            {ChecklistDetail?.tag?.split(",")?.map((title, index) => (
+              <TagButton key={index}>
+                <button
+                  className="button"
+                  onClick={() => TagSearchHandler(title)}
+                >
+                  {title}
+                </button>
+              </TagButton>
+            ))}
           </RightViewSection>
         </ChecklistSubWrapper>
         <ChecklistWidgetSection>

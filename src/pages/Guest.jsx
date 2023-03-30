@@ -1,85 +1,29 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import DescriptionTitle from "components/DescriptionTitle";
 import ChecklistTitle from "components/ChecklistTitle";
-import SubModal from "components/SubModal";
-import ImageModal from "components/ImageModal";
 import DescriptionSliderModal from "components/DescriptionSliderModal";
 import Footer from "components/Footer";
-import RightSectionCard from "components/RightSectionCard";
-import ShareSectionCard from "components/Share";
 import TaskTitle from "components/TaskTitle";
-import { ImageWrapper } from "helpers/copy";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getChecklistBySubcategory, GetImage } from "redux/actions/task";
+import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
+import { ImageWrapper } from "helpers/copy";
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
   Section,
-  LeftSection,
-  RightSection,
+  CenterSection,
   LeftContentWrapper,
-  RightCardWrapper,
-  EditImage,
-} from "styles/pages/EditChecklist";
+} from "styles/pages/Guest";
 import Navbar from "components/Navbar";
 
 const reff = React.createRef();
 
-const EmbedCode = () => (
-  <RightCardWrapper>
-    <SubModal
-      title="Embed Code"
-      embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
-      linkName="Learn more"
-    />
-  </RightCardWrapper>
-);
-
-const ImageHandler = ({ imageId }) => {
-  const [modal, setModal] = useState(false);
-
-  const dispatch = useDispatch();
-  const [imagePath, setImagePath] = useState(null);
-  const idRef = useRef(null);
-
-  const HandleImage = async () => {
-    const res = await dispatch(GetImage(imageId));
-    if (res?.status === 200) setImagePath(res?.data[0]?.imageName);
-  };
-
-  useEffect(() => {
-    if (imageId !== 0 && idRef?.current !== imageId) HandleImage();
-    idRef.current = imageId;
-  }, [imageId]);
-
-  function toggleab(data) {
-    setModal(data);
-  }
-  return (
-    <RightCardWrapper>
-      <ImageModal
-        modalType="editimage"
-        isOpen={modal}
-        togglefunction={toggleab}
-      />
-      {imagePath && (
-        <img
-          src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
-          alt="pic"
-          style={{ width: "240px", height: "135px" }}
-        />
-      )}
-      <br />
-      <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
-    </RightCardWrapper>
-  );
-};
-const CreateList = () => {
+const Guest = () => {
   const [newmodal, setNewModal] = useState(false);
   const [checkListDiscriptionId, setCheckListDiscriptionId] = useState();
   function toggleabc(data, descriptionId) {
@@ -150,7 +94,7 @@ const CreateList = () => {
       />
       <ChecklistMainWrapper>
         <ChecklistSubWrapper>
-          <LeftSection>
+          <CenterSection>
             <LeftContentWrapper ref={reff}>
               <ChecklistTitle />
               <DescriptionTitle />
@@ -162,14 +106,7 @@ const CreateList = () => {
               )}
               <TaskTitle toggleabc={toggleabc} />
             </LeftContentWrapper>
-          </LeftSection>
-          <RightSection>
-            <RightSectionCard pathId={pathId} reff={reff} />
-            <ShareSectionCard />
-            <Style />
-            <EmbedCode />
-            <ImageHandler imageId={ChecklistDetail?.checklistImageId} />
-          </RightSection>
+          </CenterSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
       <Footer />
@@ -177,16 +114,4 @@ const CreateList = () => {
   );
 };
 
-const Style = () => {
-  return (
-    <RightCardWrapper>
-      <SubModal
-        title="Styles"
-        text="Circles with numbers"
-        buttonName="Fonts/Colors"
-      />
-    </RightCardWrapper>
-  );
-};
-
-export default CreateList;
+export default Guest;

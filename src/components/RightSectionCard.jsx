@@ -42,7 +42,9 @@ const RightSectionCard = ({ pathId, reff }) => {
             border: 0,
             background: "white",
           }}
-          onClick={() => navigate("/sign-in", { state: { userApi: true } })}
+          onClick={() =>
+            navigate("/sign-in", { state: { userApi: true, id: pathId } })
+          }
         >
           <div
             style={{

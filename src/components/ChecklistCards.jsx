@@ -46,7 +46,9 @@ const ChecklistCards = ({ item, index }) => {
         <SeeMoreWrapper>
           <SeeMore
             onClick={() => {
-              navigate(`/categories/New`);
+              index === 0
+                ? navigate(`/explore/New`)
+                : navigate(`/explore/Popular`);
             }}
           >
             See More

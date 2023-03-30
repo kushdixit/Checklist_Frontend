@@ -94,6 +94,7 @@ const SignIn = () => {
       navigate(state?.redirect || "/process", {
         state: {
           userApi: state?.userApi || false,
+          id: state?.id,
         },
       });
     else {

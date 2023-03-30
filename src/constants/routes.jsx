@@ -7,6 +7,8 @@ import FreeTemplate from "pages/FreeTemplate";
 import Explore from "pages/Explore";
 import ViewList from "pages/ViewList";
 import ChecklistDashboard from "pages/ChecklistDashboard";
+import Guest from "pages/Guest";
+import CategoryByName from "pages/CategoryByName";
 
 export const LandingRoute = {
   component: Landing,
@@ -71,6 +73,13 @@ export const ExploreRoute = {
   restricted: false,
 };
 
+export const CategoryByNameRoute = {
+  component: CategoryByName,
+  path: "/explore/:id",
+  exact: true,
+  restricted: false,
+};
+
 export const ViewListRoute = {
   component: ViewList,
   path: "/checklists",
@@ -120,6 +129,13 @@ export const InsightRoutes = {
   restricted: true,
 };
 
+export const GuestRoutes = {
+  component: Guest,
+  path: "/guest/:id",
+  exact: true,
+  restricted: false,
+};
+
 const ROUTES = [
   SignInRoute,
   LandingRoute,
@@ -137,6 +153,8 @@ const ROUTES = [
   TempRouteById,
   CategoriesRoutes,
   InsightRoutes,
+  GuestRoutes,
+  CategoryByNameRoute,
 ];
 
 export default ROUTES;

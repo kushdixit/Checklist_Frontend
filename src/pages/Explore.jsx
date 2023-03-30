@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
-import LandingCheckliCard from "components/LandingCheckliCard";
+import { useNavigate } from "react-router-dom";
 import { SearchList } from "redux/actions/checklist";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
+import { SET_SEARCH } from "redux/actions/action_types";
+import Navbar from "components/Navbar";
+import LandingCheckliCard from "components/LandingCheckliCard";
+import TextInput from "components/FormElements/TextInput";
+import SideTags from "components/SideTags";
+import Footer from "components/Footer";
 import {
   LandingContainer,
   NavSection,
@@ -14,12 +20,6 @@ import {
   SeeMore,
   SeeMoreWrapper,
 } from "styles/pages/Explore";
-import TextInput from "components/FormElements/TextInput";
-import SideTags from "components/SideTags";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { SET_SEARCH } from "redux/actions/action_types";
-import Footer from "components/Footer";
 
 const Explore = (search) => {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const Explore = (search) => {
   const searchData = (data) => {
     dispatch({ type: SET_SEARCH, payload: data?.listSearch });
     navigate(`/search/${data?.listSearch}`, {
-      state: { searchedterm: data?.listSearch },
+      state: { searchedterm: data?.listSearch, tagTerm: "" },
     });
   };
 
@@ -140,14 +140,14 @@ const MiniCardWrapper = ({ data, title }) => {
         </div>
         {data.length > 0 ? (
           data
-            ?.filter((item, index) => index <= 2)
+            ?.filter((item, index) => index <= 8)
             ?.map((item) => <LandingCheckliCard data={item} />)
         ) : (
           <div style={{ color: "#d65e5e" }}>No Record Found.</div>
         )}
         {data.length > 0 && (
           <SeeMoreWrapper>
-            <SeeMore href={`/categories/${title}`}>See More</SeeMore>
+            <SeeMore href={`/explore/${title}`}>See More</SeeMore>
           </SeeMoreWrapper>
         )}
       </LeftSection>

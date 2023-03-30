@@ -201,7 +201,7 @@ export const saveListByUser = (id, email) => async (dispatch) => {
     email,
   };
   try {
-    const res = await axioPath.get(
+    const res = await axioPath.put(
       "v1/CheckList/checklistCopyUpdateEmail",
       payload,
       {
