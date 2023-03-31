@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { notification, Checkbox } from "antd";
 import { PinChecklist } from "redux/actions/checklist/index";
 import ImageModal from "components/ImageModal";
 import DropdownBox from "./Dropdown";
@@ -32,6 +33,14 @@ const View = () => {
     pathId ? state.checklist : null
   );
 
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
+
   useEffect(() => {
     pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
@@ -50,10 +59,20 @@ const View = () => {
 
   return (
     <LandingContainer>
+      {contextHolder}
       <RightContainer>
         <Helpers>
           <div style={{ display: "flex", gap: "10px" }}>
-            <ShareButton>Share</ShareButton>
+            <ShareButton
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `http://112.196.2.202:3000/guest/${pathId}`
+                );
+                openNotification("url copied");
+              }}
+            >
+              Share
+            </ShareButton>
             <ShareButton>
               <DropdownBox reff={reff} toggleab={toggleab} />
             </ShareButton>
@@ -100,6 +119,8 @@ const View = () => {
         isOpen={modal}
         togglefunction={toggleab}
       />
+      <Checkbox className="foo" />
+      <input type="checkbox" class="checkbox-round" />
     </LandingContainer>
   );
 };

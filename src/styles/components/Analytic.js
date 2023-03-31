@@ -107,6 +107,7 @@ export const ThirdSection = styled.div`
 export const FourthSection = styled.div`
   display: flex;
   width: 100%;
+  position: relative;
   ul {
     text-decoration: none;
     list-style: none;
