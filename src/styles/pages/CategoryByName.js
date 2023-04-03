@@ -63,8 +63,8 @@ export const NavSection = styled.div`
 export const LeftSection = styled.div`
   padding-bottom: 115px;
   display: flex;
+  justify-content: center;
   width: 100%;
-  max-width: 986px;
   margin-left: 10px;
   flex-wrap: wrap;
   gap: 24px 30px;
@@ -89,56 +89,6 @@ export const LeftSection = styled.div`
     justify-content: center;
   }
 `;
-export const Listeners = styled.div`
-  padding-top: 2rem;
-  h4 {
-    margin: 0;
-    padding-bottom: 14px;
-    justify-content: left;
-    display: flex;
-    width: 100%;
-    align-items: flex-start;
-    font-size: 18px;
-  }
-  img {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    margin: 6px 0 0;
-  }
-`;
-
-export const ImageSection = styled.div`
-  .button {
-    color: #777;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    border-radius: 17px;
-    padding: 8px 15px;
-    margin: 20px 0 30px;
-    cursor: pointer;
-    :hover {
-      text-decoration: underline;
-    }
-  }
-  @media (max-width: 1276px) {
-    .button {
-      padding: 8px 12px;
-      font-size: 12px;
-    }
-  }
-`;
-
-export const Text = styled.div`
-  padding: 5px 0;
-  color: #777;
-  font-size: 14px;
-  cursor: pointer;
-  :hover {
-    text-decoration: underline;
-  }
-`;
 export const SubMainSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -146,7 +96,7 @@ export const SubMainSection = styled.div`
   max-width: 1220px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 60px;
+  margin-top: 25px;
   @media (max-width: 1276px) {
     width: 100%;
     max-width: 1050px;
@@ -175,43 +125,67 @@ export const SubMainSection = styled.div`
     }
   }
 `;
-
-export const RightSection = styled.div`
-  text-align: left;
-  margin-right: 10px;
-  @media (max-width: 1276px) {
+export const SearchSection = styled.div`
+  margin-bottom: 20px;
+  @media (max-width: 767px) {
+    display: flex;
     width: 100%;
-    max-width: 135px;
-    margin-left: 10px;
+    justify-content: center;
+    form {
+      width: 100%;
+    }
   }
-  @media (max-width: 990px) {
-    display: none;
+`;
+export const IconInputFieldNew = styled.div`
+  position: relative;
+  width: 100%;
+  input {
+    position: relative;
+    text-align: left;
+    font-size: 14px;
+    padding: 21px 41.5px;
+    border: 1px solid #c9c9c9;
+    background: unset;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 30px;
+    ::placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+
+    :-ms-input-placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+
+    ::-ms-input-placeholder {
+      font-size: 16px;
+      color: #9d9d9d;
+    }
+    :focus-visible {
+      outline: unset;
+    }
   }
-`;
 
-export const Border = styled.div`
-  border: 1px solid #e8e8e8;
-  margin: 20px 0;
-`;
+  @media (max-width: 767px) {
+    width: 100%;
 
-export const TextWrapper = styled.div`
-  padding-left: 30px;
-  text-align: left;
-`;
-export const CreateList = styled.div`
-  margin: 20px 30px 5px 0px;
-  padding: 18px 25px 18px 25px;
-  border-radius: 40px;
-  font-size: 20px;
-  font-weight: bold;
-  max-width: 220px;
-  font-family: "Roboto", sans-serif;
-  line-height: 1.2;
-  text-decoration: none;
-  vertical-align: middle;
-  text-align: center;
-  border: 0;
-  cursor: pointer;
-  background: #007ccb;
-  color: white;
+    input {
+      width: 100%;
+      max-width: 79.6vw;
+    }
+  }
+  @media (max-width: 726px) {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+  @media (max-width: 610px) {
+    input {
+      width: 46vw;
+    }
+  }
 `;

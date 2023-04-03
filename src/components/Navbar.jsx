@@ -108,7 +108,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   const searchData = (data) => {
     dispatch({ type: SET_SEARCH, payload: data?.listSearch });
     navigate(`/search/${data?.listSearch}`, {
-      state: { searchedterm: data?.listSearch },
+      state: { searchedterm: data?.listSearch, tagTerm: "" },
     });
   };
 
@@ -322,8 +322,9 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                     </BlueIcon>
                   )}
                   <Profile>
-                    <h4>{firstName[0].toUpperCase() + firstName.slice(1)} </h4>
-                    <h4>{lastName[0].toUpperCase() + lastName.slice(1)}</h4>
+                    <h4 style={{ textTransform: "capitalize" }}>
+                      {firstName} {lastName}
+                    </h4>
                   </Profile>
                   <button
                     style={{ cursor: "pointer" }}

@@ -26,7 +26,6 @@ export const TagButton = styled.div`
     padding: 5px;
     border: 1px solid #ddd;
     border-radius: 3px;
-    cursor: pointer;
     background-color: #f5f5f5;
   }
 `;
@@ -124,12 +123,11 @@ export const ChecklistSubWrapper = styled.div`
     display: unset;
   } */
 `;
-export const LeftSection = styled.div`
+export const CenterSection = styled.div`
   border: 1px solid #eee;
   background: #ffffff;
   padding: 90px 37px;
-  max-width: 900px;
-  width: 100%;
+  width: 66.66%;
   @media (max-width: 1300px) {
     max-width: 835px;
   }
@@ -140,15 +138,6 @@ export const LeftSection = styled.div`
     max-width: 400px;
   }
 `;
-export const RightSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  max-width: 300px;
-  @media (max-width: 767px) {
-    display: none;
-  }
-`;
 export const RightViewSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -156,14 +145,6 @@ export const RightViewSection = styled.div`
   @media (max-width: 767px) {
     display: none;
   }
-`;
-
-export const RightCardWrapper = styled.div`
-  border: 1px solid #eee;
-  background: #ffffff;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
 `;
 export const LeftCardWrapper = styled.div``;
 export const RightContentWrapper = styled.div`
@@ -304,16 +285,6 @@ export const StyleButtonWrapper = styled.div`
     height: auto !important;
   }
 `;
-
-export const EditImage = styled.div`
-  text-decoration: none;
-  font-size: 14px;
-  display: inline;
-  text-align: center;
-  cursor: pointer;
-  color: rgb(0, 0, 238);
-`;
-
 export const Paragraph = styled.p`
   width: 100%;
   min-height: 20px;

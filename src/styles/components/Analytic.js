@@ -107,6 +107,7 @@ export const ThirdSection = styled.div`
 export const FourthSection = styled.div`
   display: flex;
   width: 100%;
+  position: relative;
   ul {
     text-decoration: none;
     list-style: none;
@@ -120,6 +121,7 @@ export const FourthSection = styled.div`
     border-bottom: 1px solid #aaa;
   }
   li {
+    cursor: pointer;
     padding: 20px 35px 0 0;
     text-decoration: none;
     list-style: none;

@@ -3,6 +3,26 @@ import styled from "styled-components";
 export const LandingContainer = styled.div`
   width: 100%;
   display: flex;
+  .ant-checkbox.foo span.ant-checkbox-inner {
+    background-color: hotpink;
+    border-radius: 50%;
+  }
+  .checkbox-round {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .checkbox-round:checked {
+    background-color: blue;
+  }
 `;
 
 export const RightContainer = styled.div`

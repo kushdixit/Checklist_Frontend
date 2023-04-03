@@ -15,7 +15,7 @@ const Tags = [
   "Kids",
   "Love",
   "Productivity",
-  "Sports",
+  "Test",
   "Tech",
   "Nil",
 ];
@@ -33,13 +33,12 @@ const SideTags = () => {
             style={{ textDecoration: "none" }}
             key={id}
           >
-            {console.log("item", item)}
             <Text>{item}</Text>
           </Link>
         ))}
-        <ImageSection>
+        {/* <ImageSection>
           <button className="button">See More</button>
-        </ImageSection>
+        </ImageSection> */}
       </Listeners>
     </RightSection>
   );

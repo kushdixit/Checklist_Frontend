@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
 import { useForm, Controller, useWatch } from "react-hook-form";
@@ -53,6 +53,8 @@ const AddTask = ({ pathId }) => {
                       width: "23px",
                       height: "23px",
                       margin: "0px",
+                      border: "1px solid #999 !important",
+                      borderRadius: "50% !important",
                     }}
                     {...field}
                     onChange={(e) => {

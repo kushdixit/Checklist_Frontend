@@ -1,23 +1,11 @@
 import React from "react";
-
-import EditImageModal from "./EditImageModal";
+import EditImageModal from "components/EditImageModal";
+import ShareModal from "components/ShareModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/ImageModal";
 
 const customStyles = {
   content: {
-    // top: "17%",
-    // left: "74%",
-    // right: "auto",
-    // bottom: "auto",
-    // marginRight: "-50%",
-    // borderRadius: "19px 11px 9px 19px;",
-    // transform: "translate(-50%, -50%)",
-    // padding: "15px 35px",
-    // width: "100%",
-    // maxWidth: "934px",
-    // height: "auto",
-    // overflowY: "hidden",
     display: "block",
     position: "fixed",
     top: "0px",
@@ -26,13 +14,8 @@ const customStyles = {
     bottom: "auto",
     border: "1px solid rgb(204, 204, 204)",
     background: "rgb(255, 255, 255)",
-    //  overflow: "auto hidden",
-    /* outline: none; */
     padding: "15px 0 24px 0",
-    /* margin-right: -50%; */
-    /* transform: translate(-53%, -50%); */
     width: "100%",
-
     height: "auto",
   },
 };
@@ -43,9 +26,8 @@ const ImageModal = ({
   hideButton,
   notify,
   modalType,
-  checklistId,
-  templateName,
 }) => {
+  console.log("modalType", modalType);
   return (
     <ReactModal
       isOpen={isOpen}
@@ -58,9 +40,11 @@ const ImageModal = ({
           x
         </button>
       </ButtonWrapper>
-
       {modalType === "editimage" && (
         <EditImageModal notify={notify} togglefunction={togglefunction} />
+      )}
+      {modalType === "share" && (
+        <ShareModal notify={notify} togglefunction={togglefunction} />
       )}
     </ReactModal>
   );

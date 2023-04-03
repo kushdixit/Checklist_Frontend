@@ -42,6 +42,8 @@ export const TaskList = styled.div`
   input[type="checkbox"] {
     width: 24px; /*Desired width*/
     height: 24px; /*Desired height*/
+    border: 1px solid #999;
+    border-radius: 50%;
   }
   .checkbox-field {
     margin-top: 6px;

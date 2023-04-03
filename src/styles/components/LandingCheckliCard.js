@@ -341,6 +341,7 @@ export const ImageSection = styled.div`
   background: #fff;
   border: 1px solid #eee;
   /* padding: 0px 0px 0 0px; */
+  box-shadow: 0 6px 15px 0 rgba(36, 37, 38, 0.08);
   margin-bottom: 10px;
   border-radius: 15px;
   width: 100%;
@@ -480,34 +481,31 @@ export const HeaderSection = styled.div`
 `;
 
 export const Text = styled.div`
-  
-  
-    display: block;
-    overflow: hidden;
-    display: flex;
-    width: 231px;
+  display: block;
+  overflow: hidden;
+  display: flex;
+  width: 231px;
 
-    text-align: left;
-    align-items: flex-start;
-    color: #000;
-    font-weight: 600;
+  text-align: left;
+  align-items: flex-start;
+  color: #000;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 5px;
+
+  transition: color 0.5s;
+
+  @media (max-width: 990px) {
+    justify-content: center;
+    font-weight: 400;
     font-size: 24px;
-    line-height: 29px;
-    margin: 5px;
-
-    transition: color 0.5s;
-
- 
-    @media (max-width: 990px) {
-      justify-content: center;
-      font-weight: 400;
-      font-size: 24px;
-      width: 100%;
-    }
-    @media (max-width: 1196px) {
-      font-size: 20px;
-    }
+    width: 100%;
   }
+  @media (max-width: 1196px) {
+    font-size: 20px;
+  }
+
   /* img {
     width: 260px;
   } */

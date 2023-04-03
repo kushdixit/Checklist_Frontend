@@ -4,6 +4,19 @@ export const SearchWrapper = styled.div`
   margin-top: 35px;
   padding: 40px 0px;
   margin: 0px 55px;
+  .button {
+    color: #777;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 17px;
+    padding: 8px 15px;
+    margin: 20px 0 30px;
+    cursor: pointer;
+    :hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const SearchText = styled.h3`
