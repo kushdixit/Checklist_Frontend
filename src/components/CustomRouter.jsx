@@ -12,7 +12,12 @@ import routes, { ProcessRoute } from "constants/routes";
 const PublicRoutes = ({ component: RouteComponent, restricted, path }) => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (isUser() && path !== "/checklists/:id" && path !== "/search/:id") {
+    if (
+      isUser() &&
+      path !== "/checklists/:id" &&
+      path !== "/search/:id" &&
+      path !== "/guest/:id"
+    ) {
       navigate(ProcessRoute.path);
     }
   }, [restricted, navigate]);

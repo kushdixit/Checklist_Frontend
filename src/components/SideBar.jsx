@@ -24,16 +24,16 @@ const Pages = [
     name: "Dashboard",
     disabled: false,
   },
-  {
-    image: Calendar,
-    name: "Calender",
-    disabled: true,
-  },
-  {
-    image: Bell,
-    name: "Reminders",
-    disabled: true,
-  },
+  // {
+  //   image: Calendar,
+  //   name: "Calender",
+  //   disabled: true,
+  // },
+  // {
+  //   image: Bell,
+  //   name: "Reminders",
+  //   disabled: true,
+  // },
 ];
 
 const SideBar = () => {

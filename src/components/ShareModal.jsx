@@ -16,13 +16,10 @@ import {
   IconInputField,
   SectionOne,
   TagSection,
-  SecondHeading,
-  ImageSection,
-  StatusBucketCards,
 } from "styles/pages/EditImage";
 import { useDispatch, useSelector } from "react-redux";
 
-const EditImageModal = ({ togglefunction }) => {
+const ShareModal = ({ togglefunction }) => {
   const dispatch = useDispatch();
   const { id: pathId } = useParams();
 
@@ -80,24 +77,10 @@ const EditImageModal = ({ togglefunction }) => {
               </IconInputField>
             </EmailWrapper>
           </TagSection>
-          <SecondHeading onClick={() => ImageUpdateHandler(0)}>
-            Remove featured Image
-          </SecondHeading>
-          <ImageSection>
-            <StatusBucketCards>
-              {imageArray?.map((item) => (
-                <img
-                  src={`http://112.196.2.202:8080/ChecklistImages/${item?.imageName}`}
-                  alt="img"
-                  onClick={() => ImageUpdateHandler(item?.id)}
-                />
-              ))}
-            </StatusBucketCards>
-          </ImageSection>
         </DataWrapper>
       </Container>
     </MainWrapper>
   );
 };
 
-export default EditImageModal;
+export default ShareModal;

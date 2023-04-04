@@ -1,7 +1,5 @@
 import SignIn from "pages/sign-in";
 import SignUp from "pages/sign-up";
-import Dashboard from "pages/dashboard";
-import CheckList from "pages/check-list";
 import Landing from "pages/landing";
 import Categories from "pages/Categories";
 import CreateList from "pages/CreateList";
@@ -9,6 +7,8 @@ import FreeTemplate from "pages/FreeTemplate";
 import Explore from "pages/Explore";
 import ViewList from "pages/ViewList";
 import ChecklistDashboard from "pages/ChecklistDashboard";
+import Guest from "pages/Guest";
+import CategoryByName from "pages/CategoryByName";
 
 export const LandingRoute = {
   component: Landing,
@@ -29,20 +29,6 @@ export const SignUpRoute = {
   path: "/sign-up",
   exact: true,
   restricted: false,
-};
-
-export const DashboardRoute = {
-  component: Dashboard,
-  path: "/dashboard",
-  exact: true,
-  restricted: true,
-};
-
-export const CheckListRoute = {
-  component: CheckList,
-  path: "/check-list",
-  exact: true,
-  restricted: true,
 };
 
 export const SearchRoute = {
@@ -83,6 +69,13 @@ export const FreeTemplateRoute = {
 export const ExploreRoute = {
   component: Explore,
   path: "/explore",
+  exact: true,
+  restricted: false,
+};
+
+export const CategoryByNameRoute = {
+  component: CategoryByName,
+  path: "/explore/:id",
   exact: true,
   restricted: false,
 };
@@ -129,11 +122,23 @@ export const CategoriesRoutes = {
   restricted: false,
 };
 
+export const InsightRoutes = {
+  component: ChecklistDashboard,
+  path: "/insight/:id",
+  exact: true,
+  restricted: true,
+};
+
+export const GuestRoutes = {
+  component: Guest,
+  path: "/guest/:id",
+  exact: true,
+  restricted: false,
+};
+
 const ROUTES = [
   SignInRoute,
   LandingRoute,
-  DashboardRoute,
-  CheckListRoute,
   SignUpRoute,
   SearchRoute,
   SearchByIdRoute,
@@ -147,6 +152,9 @@ const ROUTES = [
   TempRoute,
   TempRouteById,
   CategoriesRoutes,
+  InsightRoutes,
+  GuestRoutes,
+  CategoryByNameRoute,
 ];
 
 export default ROUTES;

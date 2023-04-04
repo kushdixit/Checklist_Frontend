@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import LandingCheckliCard from "components/LandingCheckliCard";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import LandingCheckliCard from "components/LandingCheckliCard";
 import {
   FirstSection,
-  NewSection,
-  SubSectionNew,
   SeeMoreWrapper,
   CardMainSection,
   SeeMore,
@@ -13,6 +12,7 @@ import { getChecklist } from "redux/actions/checklist";
 
 const ChecklistCards = ({ item, index }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getChecklist());
@@ -44,7 +44,15 @@ const ChecklistCards = ({ item, index }) => {
             })}
         </FirstSection>
         <SeeMoreWrapper>
-          <SeeMore href="/search">See More</SeeMore>
+          <SeeMore
+            onClick={() => {
+              index === 0
+                ? navigate(`/explore/New`)
+                : navigate(`/explore/Popular`);
+            }}
+          >
+            See More
+          </SeeMore>
         </SeeMoreWrapper>
       </CardMainSection>
     </>

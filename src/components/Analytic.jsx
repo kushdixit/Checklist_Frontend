@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
 import { deleteChecklist, PinChecklist } from "redux/actions/checklist/index";
+import { notification } from "antd";
 import {
   LandingContainer,
   RightContainer,
@@ -12,7 +14,6 @@ import {
   FourthSection,
   IconInputFieldNew,
 } from "styles/components/Analytic";
-import { useNavigate } from "react-router-dom";
 import Share from "assets/images/share.png";
 import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
@@ -77,13 +78,13 @@ const Analytic = () => {
             </ul>
           </ThirdSection>
           {details
-            ?.filter((item, index) => index <= 9)
+            ?.filter((item, index) => index <= 39)
             ?.filter((item) => item?.pinned)
             .map((item) => (
               <ChecklistWrapper data={item} />
             ))}
           {details
-            ?.filter((item, index) => index <= 9)
+            ?.filter((item, index) => index <= 39)
             ?.filter((item) => !item?.pinned)
             .map((item) => (
               <ChecklistWrapper data={item} />
@@ -98,6 +99,13 @@ const ChecklistWrapper = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   const DeleteChecklist = async () => {
     const res = await dispatch(deleteChecklist(data?.id));
@@ -114,6 +122,7 @@ const ChecklistWrapper = ({ data }) => {
 
   return (
     <FourthSection>
+      {contextHolder}
       <ul>
         <li>
           {data?.pinned ? (
@@ -139,10 +148,30 @@ const ChecklistWrapper = ({ data }) => {
           </div>
         </li>
         <li>
-          <img src={Share} alt="Share" />
+          <img
+            src={Share}
+            alt="Share"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `http://112.196.2.202:3000/guest/${data?.id}`
+              );
+              openNotification("url copied");
+            }}
+          />
         </li>
         <li>
-          <img src={ChartPie} alt="ChartPie" />
+          <img
+            src={ChartPie}
+            alt="ChartPie"
+            onClick={() =>
+              navigate(`/insight/${data?.id}`, {
+                state: {
+                  inProgress: data?.totalTaskCount,
+                  completed: data?.inCompleteTaskCount,
+                },
+              })
+            }
+          />
         </li>
         <li onClick={DeleteChecklist}>
           <img src={Trash} alt="Trash" />

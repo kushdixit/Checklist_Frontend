@@ -1,10 +1,11 @@
-import React, { useRef, useEffect } from "react";
-import Pdf from "react-to-pdf";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { GetImage } from "redux/actions/task";
+import { notification, Checkbox } from "antd";
 import { PinChecklist } from "redux/actions/checklist/index";
+import ImageModal from "components/ImageModal";
 import DropdownBox from "./Dropdown";
+import { ImageWrapper } from "helpers/copy";
 import {
   LandingContainer,
   RightContainer,
@@ -26,10 +27,19 @@ const reff = React.createRef();
 
 const View = () => {
   const { id: pathId } = useParams();
+  const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const ChecklistDetail = useSelector((state) =>
     pathId ? state.checklist : null
   );
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   useEffect(() => {
     pathId && dispatch(getChecklistBySubcategory(pathId));
@@ -43,36 +53,41 @@ const View = () => {
     }
   };
 
+  function toggleab(data) {
+    setModal(data);
+  }
+
   return (
     <LandingContainer>
+      {contextHolder}
       <RightContainer>
         <Helpers>
           <div style={{ display: "flex", gap: "10px" }}>
-            <ShareButton>Share</ShareButton>
-            <ShareButton>
-              <DropdownBox />
-            </ShareButton>
-            <Pdf
-              targetRef={reff}
-              filename="checklist.pdf"
-              x={0.5}
-              y={0.5}
-              scale={0.8}
+            <ShareButton
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `http://112.196.2.202:3000/guest/${pathId}`
+                );
+                openNotification("url copied");
+              }}
             >
-              {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
-            </Pdf>
+              Share
+            </ShareButton>
+            <ShareButton>
+              <DropdownBox reff={reff} toggleab={toggleab} />
+            </ShareButton>
           </div>
         </Helpers>
-
         <WrapperSection>
           <LeftContentWrapper id="divToPrint" ref={reff}>
             <DetailWrapper>
               <div>
                 <Date>
-                  Created:{" "}
                   {pathId
-                    ? ChecklistDetail?.dateCreated?.split("T")[0]
-                    : new window.Date().toLocaleString()?.split(",")[0]}
+                    ? `Created: ${ChecklistDetail?.dateCreated?.split("T")[0]}`
+                    : `Date: ${
+                        new window.Date().toLocaleString()?.split(",")[0]
+                      }`}
                 </Date>
               </div>
               <div style={{ width: "25px" }}>
@@ -84,63 +99,29 @@ const View = () => {
               </div>
             </DetailWrapper>
             <ChecklistTitle />
-            <DescriptionTitle />
-            {console.log("ChecklistDetail?.checklistImageId")}
-            {pathId && ChecklistDetail?.checklistImageId !== 0 && (
-              <ImageWrapper
-                title={pathId ? ChecklistDetail?.checklistName : "untitled"}
-                imageId={ChecklistDetail?.checklistImageId}
-              />
+            {pathId && (
+              <>
+                <DescriptionTitle />
+                {ChecklistDetail?.checklistImageId !== 0 && (
+                  <ImageWrapper
+                    title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+                    imageId={ChecklistDetail?.checklistImageId}
+                  />
+                )}
+              </>
             )}
             <TaskTitle />
           </LeftContentWrapper>
         </WrapperSection>
       </RightContainer>
+      <ImageModal
+        modalType="editimage"
+        isOpen={modal}
+        togglefunction={toggleab}
+      />
+      <Checkbox className="foo" />
+      <input type="checkbox" class="checkbox-round" />
     </LandingContainer>
-  );
-};
-
-const ImageWrapper = ({ title, imageId }) => {
-  const dispatch = useDispatch();
-  const imageRef = useRef(null);
-  const idRef = useRef(null);
-
-  const ImageHandler = async () => {
-    if (imageId) {
-      const res = await dispatch(GetImage(imageId));
-      if (res?.status === 200) imageRef.current = res?.data[0]?.imageName;
-    }
-  };
-
-  useEffect(() => {
-    if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
-    idRef.current = imageId;
-  }, []);
-
-  useEffect(() => {
-    if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
-  }, [imageId]);
-
-  return (
-    <div style={{ marginBottom: "30px" }}>
-      {imageRef?.current && (
-        <img
-          src={`http://192.168.11.66:9001/ChecklistImages/${imageRef?.current}`}
-          alt="pic"
-          style={{ width: "100%", height: "auto" }}
-        />
-      )}
-      <div
-        style={{
-          fontSize: "12px",
-          color: "#aaa",
-          fontStyle: "italic",
-          display: "flex",
-        }}
-      >
-        {title}
-      </div>
-    </div>
   );
 };
 

@@ -16,12 +16,13 @@ import {
   Text,
 } from "styles/components/LandingCheckliCard";
 
-const LandingCheckliCard = ({ data }) => {
+const LandingCheckliCard = ({ data, id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   return (
     <NewSection
+      id={id}
       onClick={async () => {
         const re = await dispatch(getChecklistBySubcategory(data.id));
         re.error === false && navigate(`/checklists/${data.id}`);

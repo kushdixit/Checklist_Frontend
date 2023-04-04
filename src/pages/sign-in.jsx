@@ -90,7 +90,13 @@ const SignIn = () => {
       issocial: 0,
     };
     const res = await store.dispatch(authLogin(payload));
-    if (res?.data?.accessToken) navigate(state?.redirect || "/process");
+    if (res?.data?.accessToken)
+      navigate(state?.redirect || "/process", {
+        state: {
+          userApi: state?.userApi || false,
+          id: state?.id,
+        },
+      });
     else {
       setLoginError(true);
       setResetError(false);
