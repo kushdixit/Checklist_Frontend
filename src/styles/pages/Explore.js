@@ -106,7 +106,8 @@ export const LeftSection = styled.div`
     width: 100%;
     align-items: flex-start;
     font-size: 18px;
-    @media (max-width: 658px) {
+    @media (max-width: 988px) {
+      align-items: center !important;
     }
   }
   @media (max-width: 658px) {

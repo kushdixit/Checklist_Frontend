@@ -26,7 +26,7 @@ const ChecklistCards = ({ item, index }) => {
             <h2
               style={{
                 paddingBottom: "10px",
-                marginLeft: "20px",
+                marginLeft: "8px",
                 fontWeight: "600",
               }}
             >

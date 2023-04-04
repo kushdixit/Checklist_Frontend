@@ -478,5 +478,5 @@ export const UseButton = styled.div`
   border: 0px;
   padding: 10px 22px;
   color: #fff;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 `;
