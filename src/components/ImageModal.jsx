@@ -27,7 +27,6 @@ const ImageModal = ({
   notify,
   modalType,
 }) => {
-  console.log("modalType", modalType);
   return (
     <ReactModal
       isOpen={isOpen}

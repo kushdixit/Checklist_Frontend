@@ -14,6 +14,7 @@ import {
   FourthSection,
   IconInputFieldNew,
 } from "styles/components/Analytic";
+import { UPDATE_DATA } from "redux/actions/action_types";
 import Share from "assets/images/share.png";
 import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
@@ -25,26 +26,32 @@ const Analytic = () => {
   const [details, setDetails] = useState([]);
   const dispatch = useDispatch();
   const templateData = useSelector((state) => state.Template?.yourTemplate);
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
 
   useEffect(() => {
     dispatch(getAllTemplate());
+    dispatch(getAllTemplateByEmail(userEmail));
   }, []);
 
   useEffect(() => {
-    if (templateData[0]?.checklists) {
+    if (templateData?.length && templateData[0]?.checklists) {
       setDetails(templateData[0]?.checklists);
     }
-  }, [templateData[0]?.checklists]);
+  }, [templateData]);
 
   useEffect(() => {
-    if (search !== "") {
-      const data = templateData[0]?.checklists?.filter((item) => {
-        if (item?.checklistName?.toLowerCase()?.includes(search?.toLowerCase()))
-          return item;
-      });
-      setDetails(data);
-    } else {
-      setDetails(templateData[0]?.checklists);
+    if (templateData) {
+      if (search !== "") {
+        const data = templateData[0]?.checklists?.filter((item) => {
+          if (
+            item?.checklistName?.toLowerCase()?.includes(search?.toLowerCase())
+          )
+            return item;
+        });
+        setDetails(data);
+      } else {
+        setDetails(templateData[0]?.checklists);
+      }
     }
   }, [search]);
 
@@ -139,6 +146,7 @@ const ChecklistWrapper = ({ data }) => {
               maxWidth: "502",
             }}
             onClick={() => {
+              dispatch({ type: UPDATE_DATA, payload: {} });
               navigate(`/temp/${data?.id}`, {
                 state: { showEditable: false, cardType: "user" },
               });

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_IS_EDITABLE, SET_SEARCH } from "redux/actions/action_types";
+import { SET_SEARCH } from "redux/actions/action_types";
 import AlertModal from "components/AlertModal";
 import TextInput from "components/FormElements/TextInput";
 import Button from "components/Button";
@@ -50,7 +50,6 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   const [iconHandle, setIconHandle] = useState();
   const [updateSearch, SetUpdateSearch] = useState("");
   const [modal, setModal] = useState(false);
-  const taskEditable = useSelector((state) => state.editable?.isEditable);
   const firstName = useSelector((state) => state.auth?.userData?.firstName);
   const lastName = useSelector((state) => state.auth?.userData?.lastName);
 
@@ -202,18 +201,6 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
               Free Template
             </FreeTemplatetext>
           )}
-          {state?.showEditable && (
-            <ButtonEditSection>
-              <Button
-                style={{ padding: "0.5rem 1rem" }}
-                handleClick={() =>
-                  dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
-                }
-              >
-                {`${taskEditable ? "Done" : "Edit"}`}
-              </Button>
-            </ButtonEditSection>
-          )}
         </HeaderWrapper>
         <SearchSection>
           {access_token && search && (
@@ -291,19 +278,6 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                   {`+ ${buttonType}`}
                 </Button>
               </Footer>
-            )}
-            {state?.showEditable && (
-              <EditSection>
-                <Button
-                  className="button"
-                  style={{ padding: "0.5rem 1rem" }}
-                  handleClick={() =>
-                    dispatch({ type: SET_IS_EDITABLE, payload: !taskEditable })
-                  }
-                >
-                  {`${taskEditable ? "Done" : "Edit"}`}
-                </Button>
-              </EditSection>
             )}
             {navType === "home" && (
               <FreeTemplatetext onClick={() => navigate("/explore")}>
