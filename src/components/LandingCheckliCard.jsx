@@ -39,7 +39,7 @@ const LandingCheckliCard = ({ data, id }) => {
             <img src={ChecklistImage} alt="ChecklistImage" />
           </ProgressSection>
           <Name>
-            <img src={Tick} alt="tick" />
+            <div>by:</div>
             {data?.createdBy?.split("@")[0]}
           </Name>
         </HeaderSection>

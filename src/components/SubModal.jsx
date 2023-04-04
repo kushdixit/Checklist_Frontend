@@ -15,7 +15,6 @@ import {
   ViewCount,
   CopyButtonWrapper,
 } from "styles/pages/EditChecklist";
-import { CopyChecklist } from "redux/actions/checklist/index";
 import SliderModal from "components/SliderModal";
 import { Select } from "antd";
 

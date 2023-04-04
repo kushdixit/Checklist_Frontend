@@ -63,7 +63,7 @@ export const Name = styled.div`
   line-height: 35px;
   font-weight: 400;
   width: 100%;
-  gap: 10px;
+  gap: 3px;
   img {
     width: 34px !important;
     border-radius: 30px !important;
