@@ -484,7 +484,7 @@ export const Text = styled.div`
   display: block;
   overflow: hidden;
   display: flex;
-  width: 231px;
+  /* width: 100%; */
 
   text-align: left;
   align-items: flex-start;
@@ -495,6 +495,8 @@ export const Text = styled.div`
   margin: 5px;
 
   transition: color 0.5s;
+  width: 100%;
+  max-width: 289px;
 
   @media (max-width: 990px) {
     justify-content: center;
@@ -503,7 +505,8 @@ export const Text = styled.div`
     width: 100%;
   }
   @media (max-width: 1196px) {
-    font-size: 20px;
+    font-size: 14px;
+    width: 100%;
   }
 
   /* img {
@@ -511,6 +514,8 @@ export const Text = styled.div`
   } */
   @media (max-width: 990px) {
     justify-content: center;
+    font-size: 20px;
+    /* font-weight: 600; */
     h4 {
       font-weight: 400;
       font-size: 24px;

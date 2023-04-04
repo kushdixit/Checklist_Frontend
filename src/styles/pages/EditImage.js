@@ -249,6 +249,8 @@ export const StatusBucketCards = styled.div`
   -webkit-transition: -webkit-transform 0.2s;
   -webkit-transition: transform 0.2s;
   transition: transform 0.2s;
+  justify-content: center;
+  margin-bottom: 100px;
   img {
     width: 393px;
     height: auto;

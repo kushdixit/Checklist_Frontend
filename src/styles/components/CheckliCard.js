@@ -443,7 +443,7 @@ export const HeaderSection = styled.div`
     display: block;
     overflow: hidden;
     display: flex;
-    width: 231px;
+    width: 100%;
 
     text-align: left;
     align-items: flex-start;
