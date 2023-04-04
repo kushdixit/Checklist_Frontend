@@ -102,6 +102,8 @@ export const ButtonSection = styled.div`
   @media (max-width: 990px) {
     width: 100%;
     max-width: 635px;
+    display: flex;
+    justify-content: center;
   }
 `;
 export const SecondHeading = styled.h2`

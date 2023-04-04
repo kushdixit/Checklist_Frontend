@@ -35,6 +35,22 @@ export const CardMainSection = styled.div`
   width: 100%;
   max-width: 1735px;
   margin: 19px auto;
+  h2 {
+    @media (max-width: 1298px) {
+      width: 100%;
+      max-width: 245px;
+    }
+    @media (max-width: 1198px) {
+      width: 100%;
+      max-width: 376px;
+    }
+    @media (max-width: 990px) {
+      width: 100%;
+      max-width: 927px;
+      display: flex;
+      justify-content: center;
+    }
+  }
 `;
 
 export const Section = styled.div``;

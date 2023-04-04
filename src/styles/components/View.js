@@ -23,7 +23,7 @@ export const WrapperSection = styled.div`
   /* position: relative; */
   background: #fff;
   border: 1px solid #eee;
-  max-width: 924px;
+  max-width: 1095px;
   margin-top: 22px;
   /* @media (max-width: 1010px) {
     padding: 82px 50px;
@@ -51,7 +51,7 @@ export const Helpers = styled.div`
   /* position: absolute;
   top: -55px; */
   width: 100%;
-  max-width: 924px;
+  max-width: 1089px;
   display: flex;
   justify-content: end;
   margin: 54px 0 0 0;
