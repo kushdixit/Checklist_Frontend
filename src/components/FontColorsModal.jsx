@@ -15,41 +15,21 @@ import {
   BlankText,
 } from "styles/pages/FontColors";
 import { notification } from "antd";
-import { forgotPassword } from "../redux/actions/auth";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   getChecklistBySubcategory,
   editSubTask,
-  deleteSubTask,
   editSubTaskStatus,
-  SubTaskDescription,
 } from "redux/actions/task";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import RadioButton from "components/FormElements/RadioButton";
-import { store } from "redux/index";
 import colorwheel from "assets/images/color-wheel.png";
 
-const FontColorsModal = ({
-  notify,
-  togglefunction,
-  subIndex,
-  task,
-  checkListId,
-  showEditable,
-}) => {
-  const forgotPass = async (data) => {
-    const res = await store.dispatch(forgotPassword(data));
-    notify(res);
-    if (res === 204) togglefunction(false);
-  };
+const FontColorsModal = ({ task, checkListId, showEditable }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [addDescription, setAddDescription] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
   const [api, contextHolder] = notification.useNotification();
   const wrapperRef = useRef();
-  const taskEditable = useSelector((state) => state.editable?.isEditable);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -63,9 +43,6 @@ const FontColorsModal = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [wrapperRef]);
-  function toggleab(data) {
-    setModal(data);
-  }
 
   const dispatch = useDispatch();
   const { setValue, handleSubmit, control, reset, getValues } = useForm({
@@ -81,10 +58,6 @@ const FontColorsModal = ({
     setValue("rememberMe", task?.ischecked);
   }, [task?.ischecked]);
 
-  const taskdeleteHandler = (id) => {
-    dispatch(deleteSubTask(id, checkListId));
-  };
-
   const openNotification = (message) => {
     api.info({
       message,
@@ -98,18 +71,9 @@ const FontColorsModal = ({
       );
       if (response.status === 204) {
         dispatch(getChecklistBySubcategory(checkListId));
-        // setValue("updateSubTask", "");
         setSubTaskEdit(false);
       } else openNotification(response.data.Message);
     }
-  };
-
-  const removeDescriptionHandler = async () => {
-    const response = await dispatch(SubTaskDescription(task?.id, ""));
-    if (response.status === 204) {
-      dispatch(getChecklistBySubcategory(checkListId));
-      openNotification("Deleted");
-    } else openNotification(response?.data?.errors?.TaskDescription[0]);
   };
 
   return (
@@ -176,7 +140,6 @@ const FontColorsModal = ({
                 type="text"
                 placeholder={task?.subTaskName}
                 control={control}
-                disabled={!taskEditable}
                 handlekeyPress={(e) =>
                   e.key === "Enter" && updateSubTaskHandler()
                 }
@@ -229,7 +192,6 @@ const FontColorsModal = ({
                 type="text"
                 placeholder={task?.subTaskName}
                 control={control}
-                disabled={!taskEditable}
                 handlekeyPress={(e) =>
                   e.key === "Enter" && updateSubTaskHandler()
                 }
@@ -282,7 +244,6 @@ const FontColorsModal = ({
                 type="text"
                 placeholder={task?.subTaskName}
                 control={control}
-                disabled={!taskEditable}
                 handlekeyPress={(e) =>
                   e.key === "Enter" && updateSubTaskHandler()
                 }

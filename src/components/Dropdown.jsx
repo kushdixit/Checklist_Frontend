@@ -1,15 +1,17 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
 import Pdf from "react-to-pdf";
 import { deleteChecklist } from "redux/actions/checklist/index";
+import { SET_BOX_TYPE } from "redux/actions/action_types";
 
 const DropdownBox = ({ reff, toggleab }) => {
   const { id: pathId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const boxType = useSelector((state) => state?.checkBox?.boxType);
 
   const DeleteChecklist = async () => {
     const res = await dispatch(deleteChecklist(pathId));
@@ -17,6 +19,13 @@ const DropdownBox = ({ reff, toggleab }) => {
       navigate("/process");
     }
   };
+
+  const CheckboxHandler = () => {
+    if (boxType === "square")
+      dispatch({ type: SET_BOX_TYPE, payload: "round" });
+    else dispatch({ type: SET_BOX_TYPE, payload: "square" });
+  };
+
   const items = [
     {
       key: "0",
@@ -24,7 +33,11 @@ const DropdownBox = ({ reff, toggleab }) => {
     },
     {
       key: "1",
-      label: <div onClick={() => console.log("dsa")}>Checkbox Styles</div>,
+      label: (
+        <div onClick={CheckboxHandler}>
+          {boxType === "square" ? "Round" : "Square"} Checkbox
+        </div>
+      ),
     },
     {
       key: "2",

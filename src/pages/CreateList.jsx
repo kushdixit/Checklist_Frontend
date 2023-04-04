@@ -165,7 +165,7 @@ const CreateList = () => {
           </LeftSection>
           <RightSection>
             <RightSectionCard pathId={pathId} reff={reff} />
-            <ShareSectionCard />
+            <ShareSectionCard pathId={pathId} />
             <Style />
             <EmbedCode />
             <ImageHandler imageId={ChecklistDetail?.checklistImageId} />

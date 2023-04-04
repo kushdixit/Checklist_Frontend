@@ -8,6 +8,7 @@ import editable from "redux/reducers/editable";
 import search from "redux/reducers/searched";
 import addTask from "redux/reducers/addTask";
 import getImages from "redux/reducers/images";
+import checkBox from "redux/reducers/boxType";
 
 export default combineReducers({
   loader,
@@ -19,4 +20,5 @@ export default combineReducers({
   search,
   addTask,
   getImages,
+  checkBox,
 });

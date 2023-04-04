@@ -3,25 +3,27 @@ import styled from "styled-components";
 export const LandingContainer = styled.div`
   width: 100%;
   display: flex;
-  .ant-checkbox.foo span.ant-checkbox-inner {
-    background-color: hotpink;
-    border-radius: 50%;
+  ${({ boxType }) => boxType === "round" && "font-size:14px;font-weight:400"};
+  span {
+    ${({ boxType }) =>
+      boxType === "round" &&
+      "color: #131313;font-family: 'Lato', sans-serif;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;white-space: nowrap;"};
   }
-  .checkbox-round {
-    width: 1.3em;
-    height: 1.3em;
-    background-color: white;
-    border-radius: 50%;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
+  input[type="checkbox"] {
+    ${({ boxType }) => boxType === "round" && "display: none;"};
   }
-
-  .checkbox-round:checked {
-    background-color: blue;
+  input[type="checkbox"] + span:before {
+    ${({ boxType }) =>
+      boxType === "round" &&
+      "    width: 18px;height: 18px;border: 1.5px solid #f0f0f0;content: '';display: inline-block;margin: 0 16px 0 0;padding: 0;vertical-align: top; border-radius: 50%;"};
+  }
+  input[type="checkbox"]:checked + span:before {
+    ${({ boxType }) =>
+      boxType === "round" &&
+      "background: #1460c8;border: 1.5px solid #1460c8;box-shadow: inset 0px 0px 0px 1px #fff;color: #333;content: '';text-align: center;border-radius: 50%;"};
+  }
+  input[type="checkbox"]:focus + span::before {
+    ${({ boxType }) => boxType === "round" && "outline: 0;"};
   }
 `;
 

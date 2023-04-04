@@ -33,4 +33,5 @@ export const SearchCardWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  max-width: 80%;
 `;

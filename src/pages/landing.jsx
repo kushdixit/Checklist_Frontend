@@ -18,6 +18,7 @@ import {
   ButtonSection,
   ChecklistImage,
 } from "styles/pages/Landing";
+import Screenshot from "assets/images/Screenshot.png";
 
 const LandingCard = lazy(() => import("components/LandingCard"));
 
@@ -34,6 +35,8 @@ const Landing = () => {
     // else navigate("/landing");
     dispatch(getAllTemplate());
   }, []);
+
+  if (allTemplate.includes("<!DOCTYPE html>")) return <div>Loading...</div>;
 
   return (
     <LandingContainer>
@@ -97,7 +100,8 @@ const Landing = () => {
             }}
           >
             <ChecklistImage
-              src="https://www.checkli.com/app/css/images/free-list-maker.png"
+              src={Screenshot}
+              // src="https://www.checkli.com/app/css/images/free-list-maker.png"
               alt="Share"
             />
           </div>

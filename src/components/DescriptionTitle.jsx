@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm, useWatch } from "react-hook-form";
 import { ChecklistDescriptionWrapper } from "styles/pages/EditChecklist";
@@ -13,6 +13,13 @@ const DescriptionTitle = () => {
   const ChecklistDetail = useSelector((state) =>
     pathId ? state.checklist : null
   );
+
+  const [list, setList] = useState({});
+
+  useEffect(() => {
+    if (ChecklistDetail) setList(ChecklistDetail);
+  }, [ChecklistDetail]);
+
   const { handleSubmit, control } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
@@ -57,7 +64,7 @@ const DescriptionTitle = () => {
               }}
               name="checklist"
               placeholder={"Description..."}
-              defaultValue={pathId ? ChecklistDetail?.checklistDescription : ""}
+              defaultValue={pathId ? list?.checklistDescription : ""}
               control={control}
               handleKeyDown={(e) => {
                 if (e.key === "Enter" && pathId) {

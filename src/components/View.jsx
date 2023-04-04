@@ -32,7 +32,7 @@ const View = () => {
   const ChecklistDetail = useSelector((state) =>
     pathId ? state.checklist : null
   );
-
+  const boxType = useSelector((state) => state?.checkBox?.boxType);
   const [api, contextHolder] = notification.useNotification();
 
   const openNotification = (message) => {
@@ -58,7 +58,7 @@ const View = () => {
   }
 
   return (
-    <LandingContainer>
+    <LandingContainer boxType={boxType}>
       {contextHolder}
       <RightContainer>
         <Helpers>
@@ -119,8 +119,6 @@ const View = () => {
         isOpen={modal}
         togglefunction={toggleab}
       />
-      <Checkbox className="foo" />
-      <input type="checkbox" class="checkbox-round" />
     </LandingContainer>
   );
 };
