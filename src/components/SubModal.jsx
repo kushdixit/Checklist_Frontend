@@ -15,22 +15,12 @@ import {
   ViewCount,
   CopyButtonWrapper,
 } from "styles/pages/EditChecklist";
-import { CopyChecklist } from "redux/actions/checklist/index";
 import SliderModal from "components/SliderModal";
 import { Select } from "antd";
 
 const { Option } = Select;
 
-const options = [
-  "Squared",
-  "Checkboxes",
-  "Yes_No",
-  "-------------",
-  "Checkmark_Square",
-  "Number_Square",
-  "Checkmark_Circle",
-  "Number_Circle",
-];
+const options = ["Squared", "Round"];
 
 const SubModal = ({
   title,
