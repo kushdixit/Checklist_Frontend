@@ -32,7 +32,6 @@ export const BlueIcon = styled.div`
   align-items: center;
   display: flex;
   padding: 20px;
-
   svg {
   }
 `;
@@ -43,9 +42,6 @@ export const Logintext = styled.div`
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
-  @media (max-width: 658px) {
-    padding: 10px 20px 0 20px;
-  }
 `;
 export const FreeTemplatetext = styled.div`
   margin: 0px;
@@ -479,4 +475,7 @@ export const UseButton = styled.div`
   padding: 10px 22px;
   color: #fff;
   /* margin-left: 10px; */
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;

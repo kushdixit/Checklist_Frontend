@@ -152,7 +152,7 @@ const ChecklistWrapper = ({ data }) => {
               });
             }}
           >
-            {data?.checklistName.slice(0, 4)}
+            {data?.checklistName}
           </div>
         </li>
         <li>

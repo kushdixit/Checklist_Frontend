@@ -12,6 +12,7 @@ const axioPath = axios.create({
   headers: {
     "x-checklist-application-id": "checklist-ui-application-id",
     "Content-Type": "application/json",
+    Authorization: "",
   },
 });
 

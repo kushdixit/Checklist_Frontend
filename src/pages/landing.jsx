@@ -1,11 +1,13 @@
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { useEffect, Suspense, lazy, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import { getAllTemplate } from "redux/actions/template";
+import { SearchList } from "redux/actions/checklist";
 import Navbar from "components/Navbar";
 import Button from "components/Button";
 import Footer from "components/Footer";
-import ChecklistCards from "components/ChecklistCards";
+import LandingCheckliCard from "components/LandingCheckliCard";
 import {
   LandingContainer,
   Heading,
@@ -17,7 +19,15 @@ import {
   LandingChecklistCardSection,
   ButtonSection,
   ChecklistImage,
+  Wrapper,
 } from "styles/pages/Landing";
+import {
+  FirstSection,
+  SeeMoreWrapper,
+  CardMainSection,
+  SeeMore,
+} from "styles/components/Card";
+
 import Screenshot from "assets/images/Screenshot.png";
 
 const LandingCard = lazy(() => import("components/LandingCard"));
@@ -28,13 +38,32 @@ const Landing = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allTemplate = useSelector((state) => state.Template?.allTemplate);
+  const [Popular, setPopular] = useState([]);
+
+  const [searchError, setSearchError] = useState(false);
 
   useEffect(() => {
     // const token = localStorage.getItem("access_token");
     // if (token) navigate("/dashboard");
     // else navigate("/landing");
     dispatch(getAllTemplate());
+    dispatch(showAppLoader());
+    SearchHandler(true);
+    dispatch(hideAppLoader());
   }, []);
+
+  const SearchHandler = async (flag) => {
+    const response = await dispatch(SearchList(`?SortBy=${flag}`));
+    dispatch(hideAppLoader());
+    console.log("response?.data", response?.data);
+    if (response.status === 200) {
+      if (searchError) setSearchError(false);
+      setPopular(response?.data);
+    }
+    if (response.message.response.status === 404) {
+      setSearchError(true);
+    }
+  };
 
   if (allTemplate.includes("<!DOCTYPE html>")) return <div>Loading...</div>;
 
@@ -44,12 +73,7 @@ const Landing = () => {
         <NavSection>
           <Navbar search={true} navType="home" />
         </NavSection>
-        <div
-          style={{
-            paddingTop: "50px",
-            paddingBottom: "170px",
-          }}
-        >
+        <Wrapper>
           <Heading>
             Make your checklists,
             <br />
@@ -132,14 +156,50 @@ const Landing = () => {
                 </button>
               ))}
             </ButtonSection>
-            {allTemplate?.map((item, id) => (
-              <ChecklistCards key={id} item={item} index={id} />
-            ))}
+            <MiniCardWrapper data={Popular} title="popular" />
           </LandingChecklistCardSection>
-        </div>
+        </Wrapper>
       </UpperContentWrapper>
       <Footer />
     </LandingContainer>
+  );
+};
+
+const MiniCardWrapper = ({ data, title }) => {
+  const navigate = useNavigate();
+  return (
+    <>
+      <CardMainSection>
+        <div style={{ marginTop: "25px", width: "100%", display: "flex" }}>
+          <h2
+            style={{
+              paddingBottom: "10px",
+              marginLeft: "8px",
+              fontWeight: "600",
+            }}
+          >
+            Popular
+          </h2>
+        </div>
+        <FirstSection>
+          {data
+            ?.filter((subItem) => subItem.isActive)
+            ?.filter((item, index) => index < 9)
+            .map((subItem) => {
+              return <LandingCheckliCard data={subItem} />;
+            })}
+        </FirstSection>
+        <SeeMoreWrapper>
+          <SeeMore
+            onClick={() => {
+              navigate(`/explore/New`);
+            }}
+          >
+            See More
+          </SeeMore>
+        </SeeMoreWrapper>
+      </CardMainSection>
+    </>
   );
 };
 

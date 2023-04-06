@@ -174,3 +174,10 @@ export const FirstSection = styled.div`
     justify-content: center;
   }
 `;
+export const Wrapper = styled.div`
+  padding-top: 50px;
+  padding-bottom: 170px;
+  @media (max-width: 767px) {
+    padding-bottom: 0px !important;
+  }
+`;

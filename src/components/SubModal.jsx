@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { notification } from "antd";
 import { isUser } from "helpers/isUser";
 import { CopyHandler } from "helpers/copy";
 import {
@@ -41,6 +42,13 @@ const SubModal = ({
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (message) => {
+    api.info({
+      message,
+    });
+  };
 
   function toggleab(data) {
     setModal(data);
@@ -58,6 +66,7 @@ const SubModal = ({
 
   return (
     <RightContentWrapper>
+      {contextHolder}
       <SliderModal
         modalType="fontcolors"
         isOpen={modal}
@@ -106,7 +115,20 @@ const SubModal = ({
           {buttonName && (
             <Preview onClick={() => toggleab(true)}>{buttonName}</Preview>
           )}
-          {linkName && <Preview href="#">{linkName}</Preview>}
+          {linkName && (
+            <Preview
+              href="#"
+              onClick={() => {
+                linkName === "copy" &&
+                  navigator.clipboard.writeText(
+                    `http://112.196.2.202:3000/guest/${pathId}`
+                  );
+                openNotification("url copied");
+              }}
+            >
+              {linkName}
+            </Preview>
+          )}
         </ShareTextWrapper>
       </ShareSection>
       {link && (

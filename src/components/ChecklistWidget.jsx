@@ -18,6 +18,8 @@ const ChecklistWidget = ({ data }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  console.log("data", data);
+
   return (
     <NewSection
       onClick={async () => {
@@ -30,14 +32,11 @@ const ChecklistWidget = ({ data }) => {
           <img src={ProcessFifth} alt="ProcessOne" />
         </ProcessSection>
         <HeaderSection>
-          <Content>
-            10 Point Checklist for Branding Your Content Upgrade
-          </Content>
-          <Small>4,048 views</Small>
-
+          <Content>{data?.checklistName}</Content>
+          <Small>{data?.viewCount} views</Small>
           <Name>
             <img src={Avatar} alt="Avatar" />
-            Denisewakeman
+            {data?.updatedBy?.split("@")[0]}
           </Name>
         </HeaderSection>
       </ImageSection>

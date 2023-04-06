@@ -166,12 +166,11 @@ const ViewList = () => {
         </ChecklistSubWrapper>
         <ChecklistWidgetSection>
           <RelationHeading>Related Checklists</RelationHeading>
-          {allTemplate?.map((item) => (
+          {allTemplate[0]?.checklists?.slice(0, 2)?.map((item) => (
             <ChecklistWidget data={item} />
           ))}
         </ChecklistWidgetSection>
       </ChecklistMainWrapper>
-
       <Footer />
     </Section>
   );
@@ -196,12 +195,12 @@ const CopyCard = ({ info }) => {
   return (
     <RightCardWrapper>
       <SubModal
-        title="Embed"
+        // title="Embed"
         counts={true}
         viewCount={info?.viewCount}
         copyCount={info?.copyCount}
         downloadCount={info?.downloadCount}
-        embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
+        // embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
       />
     </RightCardWrapper>
   );

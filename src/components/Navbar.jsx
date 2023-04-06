@@ -167,14 +167,6 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
           ) : (
             <div style={{ display: "flex", alignItems: "center" }}>
               <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
-              <UseButton>
-                <Link
-                  to={"/sign-up"}
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  Use for free
-                </Link>
-              </UseButton>
             </div>
           )}
           <LogoSearchSection>
