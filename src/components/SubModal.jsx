@@ -106,7 +106,7 @@ const SubModal = ({
                 <br />
                 downloads
               </p>
-              <button>pdf</button>
+              <button onClick={() => navigate("/sign-in")}>pdf</button>
             </CopyButtonWrapper>
           </>
         )}

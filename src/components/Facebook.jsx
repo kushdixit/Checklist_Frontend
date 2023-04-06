@@ -50,7 +50,6 @@ const Facebook = () => {
           icon="fa-facebook"
         />
       </FacebookSection>
-
       <FacebookSectionMobile>
         <FacebookLogin
           appId="561436628788154"
@@ -66,6 +65,7 @@ const Facebook = () => {
 };
 
 export default Facebook;
+
 export const FacebookSection = styled.div`
   background: unset;
   border: unset;
@@ -114,7 +114,7 @@ export const FacebookSectionMobile = styled.div`
       padding: 10px !important;
     }
   }
-  @media (max-width: 1920px) {
+  @media (min-width: 466px) {
     display: none;
   }
   @media (max-width: 465px) {

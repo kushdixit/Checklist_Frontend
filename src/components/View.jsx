@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { notification, Checkbox } from "antd";
 import { PinChecklist } from "redux/actions/checklist/index";
 import ImageModal from "components/ImageModal";
+import DescriptionSliderModal from "components/DescriptionSliderModal";
 import DropdownBox from "./Dropdown";
 import { ImageWrapper } from "helpers/copy";
 import {
@@ -34,6 +35,13 @@ const View = () => {
   );
   const boxType = useSelector((state) => state?.checkBox?.boxType);
   const [api, contextHolder] = notification.useNotification();
+  const [newmodal, setNewModal] = useState(false);
+  const [checkListDiscriptionId, setCheckListDiscriptionId] = useState();
+
+  function toggleabc(data, descriptionId) {
+    setCheckListDiscriptionId(descriptionId);
+    setNewModal(data);
+  }
 
   const openNotification = (message) => {
     api.info({
@@ -60,6 +68,12 @@ const View = () => {
   return (
     <LandingContainer boxType={boxType}>
       {contextHolder}
+      <DescriptionSliderModal
+        modalType="description"
+        isOpen={newmodal}
+        togglefunction={toggleabc}
+        checklistDiscriptionId={checkListDiscriptionId}
+      />
       <RightContainer>
         <Helpers>
           <div style={{ display: "flex", gap: "10px" }}>
@@ -110,7 +124,7 @@ const View = () => {
                 )}
               </>
             )}
-            <TaskTitle />
+            <TaskTitle toggleabc={toggleabc} />
           </LeftContentWrapper>
         </WrapperSection>
       </RightContainer>

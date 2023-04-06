@@ -65,7 +65,7 @@ const Landing = () => {
     }
   };
 
-  if (allTemplate.includes("<!DOCTYPE html>")) return <div>Loading...</div>;
+  // if (allTemplate.includes("<!DOCTYPE html>")) return <div>Loading...</div>;
 
   return (
     <LandingContainer>
@@ -170,7 +170,7 @@ const MiniCardWrapper = ({ data, title }) => {
   return (
     <>
       <CardMainSection>
-        <div style={{ marginTop: "25px", width: "100%", display: "flex" }}>
+        <div style={{ width: "100%", display: "flex" }}>
           <h2
             style={{
               paddingBottom: "10px",

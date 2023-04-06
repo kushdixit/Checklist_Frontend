@@ -12,8 +12,7 @@ const TextArea = (props) => {
       <Controller
         render={({ field: { value, rules, onChange } }) => (
           <textarea
-          
-          autoFocus={props.autoFocus}
+            autoFocus={props.autoFocus}
             onChange={(e) => {
               onChange(e);
             }}

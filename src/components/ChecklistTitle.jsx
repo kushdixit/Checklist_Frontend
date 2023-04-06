@@ -55,9 +55,7 @@ const ChecklistTitle = () => {
     console.log("edit", watchData?.checklist);
     const res =
       watchData?.checklist &&
-      (await dispatch(
-        editChecklistApi(watchData?.checklist, ChecklistDetail?.id)
-      ));
+      (await dispatch(editChecklistApi(watchData?.checklist, pathId)));
     if (res?.error === false) {
       dispatch(getChecklistBySubcategory(pathId));
     }
