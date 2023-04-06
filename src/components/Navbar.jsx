@@ -34,13 +34,14 @@ import {
   FreeTemplatetext,
   BlueIcon,
   UseButton,
+  LoginSection,
 } from "styles/components/Navbar";
 import Logout from "assets/SVG/Logout";
 import { useForm } from "react-hook-form";
 import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
 import PlusBlue from "assets/SVG/PlusBlue";
-
+import Login from "assets/images/login.png";
 const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   const wrapperRef = useRef();
   const navigate = useNavigate();
@@ -166,7 +167,10 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
             </ImageSubSection>
           ) : (
             <div style={{ display: "flex", alignItems: "center" }}>
-              <Logintext onClick={() => navigate("/sign-in")}>Login</Logintext>
+              <LoginSection onClick={() => navigate("/sign-in")}>
+                {" "}
+                <img src={Login} alt="img" />{" "}
+              </LoginSection>
             </div>
           )}
           <LogoSearchSection>
@@ -321,6 +325,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                 <Logintext onClick={() => navigate("/sign-in")}>
                   Login
                 </Logintext>
+
                 <UseButton>
                   <Link
                     to={"/sign-up"}

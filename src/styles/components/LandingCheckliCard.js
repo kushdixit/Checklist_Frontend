@@ -87,7 +87,7 @@ export const ProgressSection = styled.div`
   }
   @media (max-width: 990px) {
     img {
-      width: 466px;
+      width: 364px;
     }
   }
   @media (max-width: 658px) {
@@ -419,11 +419,11 @@ export const ProcessSection = styled.div`
   }
   @media (max-width: 990px) {
     width: 100%;
-    max-width: 630px;
+    max-width: 500px;
   }
   @media (max-width: 990px) {
     img {
-      width: 630px;
+      width: 500px;
       height: auto;
     }
   }
