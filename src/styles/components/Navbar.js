@@ -6,6 +6,7 @@ export const NavSection = styled.div`
   flex-wrap: wrap;
   width: 100%;
   max-width: 1180px;
+  padding: 15px 0;
   @media (max-width: 767px) {
   }
 `;
@@ -27,7 +28,11 @@ export const EditSection = styled.div`
     margin-right: 30px;
   }
 `;
-
+export const LoginSection = styled.div`
+  img {
+    width: 35px;
+  }
+`;
 export const BlueIcon = styled.div`
   align-items: center;
   display: flex;
@@ -95,7 +100,6 @@ export const LogoSearchSection = styled.div`
   display: none;
   @media (max-width: 767px) {
     display: block;
-    padding-right: 30px;
   }
 `;
 
@@ -126,7 +130,7 @@ export const BurgerSection = styled.div`
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
-    gap: 1rem;
+
     form {
       justify-content: center;
       text-align: center;
@@ -198,9 +202,9 @@ export const SubNavSection = styled.div`
   @media (max-width: 767px) {
     padding: 3px 1rem;
   }
-  @media (max-width: 1184px) {
+  /* @media (max-width: 1184px) {
     padding: 15px 3rem;
-  }
+  } */
 `;
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
