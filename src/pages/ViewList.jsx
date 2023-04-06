@@ -164,12 +164,6 @@ const ViewList = () => {
             ))}
           </RightViewSection>
         </ChecklistSubWrapper>
-        <ChecklistWidgetSection>
-          <RelationHeading>Related Checklists</RelationHeading>
-          {allTemplate[0]?.checklists?.slice(0, 2)?.map((item) => (
-            <ChecklistWidget data={item} />
-          ))}
-        </ChecklistWidgetSection>
       </ChecklistMainWrapper>
       <Footer />
     </Section>

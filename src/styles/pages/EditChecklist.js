@@ -384,6 +384,7 @@ export const SeeDescription = styled.div`
   cursor: pointer;
   line-height: 1.71;
   margin-left: 40px;
+  display: flex;
 `;
 export const SpanDescription = styled.span`
   background-color: #f1f1f1;

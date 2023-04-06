@@ -65,7 +65,7 @@ const Landing = () => {
     }
   };
 
-  if (allTemplate.includes("<!DOCTYPE html>")) return <div>Loading...</div>;
+  // if (allTemplate.includes("<!DOCTYPE html>")) return <div>Loading...</div>;
 
   return (
     <LandingContainer>
