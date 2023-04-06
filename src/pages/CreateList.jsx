@@ -75,7 +75,9 @@ const ImageHandler = ({ imageId }) => {
         />
       )}
       <br />
-      <EditImage onClick={() => toggleab(true)}>edit image</EditImage>
+      <EditImage onClick={() => toggleab(true)}>
+        {imageId === 0 ? "add" : "edit"} image
+      </EditImage>
     </RightCardWrapper>
   );
 };

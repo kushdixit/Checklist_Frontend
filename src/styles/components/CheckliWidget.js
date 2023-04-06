@@ -360,7 +360,7 @@ export const ImageSection = styled.div`
 
   @media (max-width: 990px) {
     width: 100%;
-    max-width: 630px;
+    max-width: 550px;
   }
   @media (max-width: 658px) {
     width: 100%;
@@ -429,7 +429,7 @@ export const ProcessSection = styled.div`
   }
   @media (max-width: 990px) {
     img {
-      width: 469px;
+      width: 100%;
       height: auto;
     }
   }

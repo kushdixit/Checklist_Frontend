@@ -15,6 +15,7 @@ export const LeftHeader = styled.div`
   display: flex;
   justify-content: center;
   padding: 10px;
+  text-align: center;
 `;
 
 export const TagButton = styled.div`
@@ -35,6 +36,9 @@ export const SecondContent = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px 0 100px 0;
+  @media (max-width: 967px) {
+    padding-bottom: 0px;
+  }
 `;
 export const TagContent = styled.div`
   display: flex;
@@ -130,14 +134,11 @@ export const LeftSection = styled.div`
   padding: 90px 37px;
   max-width: 900px;
   width: 100%;
-  @media (max-width: 1300px) {
+  @media (min-width: 1300px) {
     max-width: 835px;
   }
-  @media (max-width: 1200px) {
-    max-width: 605px;
-  }
-  @media (max-width: 990px) {
-    max-width: 400px;
+  @media (max-width: 767px) {
+    padding-bottom: 50px;
   }
 `;
 export const RightSection = styled.div`
@@ -230,6 +231,9 @@ export const ShareSection = styled.div``;
 
 export const LeftContentWrapper = styled.div`
   padding-bottom: 120px;
+  @media (max-width: 767px) {
+    padding-bottom: 60px;
+  }
 `;
 export const ShareText = styled.div`
   display: inline-block;
@@ -244,6 +248,7 @@ export const ChecklistTitleText = styled.h1`
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   line-height: 1.1;
+  text-transform: capitalize;
   margin: 0.67em 0;
   margin-bottom: 5px;
 `;
@@ -254,6 +259,7 @@ export const ChecklistDescText = styled.div`
   font-size: 18px;
   line-height: 25px;
   margin: 15px 0 40px 0;
+  text-transform: capitalize;
 `;
 export const Preview = styled.a`
   text-decoration: none;
@@ -317,6 +323,7 @@ export const EditImage = styled.div`
 export const Paragraph = styled.p`
   width: 100%;
   min-height: 20px;
+  text-transform: capitalize;
   ${({ isHeading }) =>
     !isHeading
       ? "font-size:14px;font-weight:400"
