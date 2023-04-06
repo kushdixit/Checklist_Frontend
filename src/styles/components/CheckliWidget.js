@@ -446,6 +446,10 @@ export const ProcessSection = styled.div`
 `;
 export const HeaderSection = styled.div`
   padding: 0 10px 35px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 10px;
   h4 {
     font-size: 14px;
     /* margin: 5px; */

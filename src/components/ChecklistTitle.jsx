@@ -87,6 +87,7 @@ const ChecklistTitle = () => {
                 border: "none",
                 fontFamily: "inherit",
                 resize: "none",
+                textTransform: "capitalize",
               }}
               name="checklist"
               placeholder={"Untitled"}

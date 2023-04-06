@@ -46,7 +46,7 @@ export const LandingContainer = styled.div`
     margin-top: 3px;
     line-height: 21px;
     color: #777;
-
+    text-transform: capitalize;
     @media (max-width: 970px) {
       padding: 0 30px !important;
     }

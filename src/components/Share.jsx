@@ -22,7 +22,7 @@ const ShareSectionCard = ({ pathId }) => {
       <SubModal
         title="Share Checklist"
         link={`http://112.196.2.202:3000/guest/${pathId}`}
-        linkName="Preview"
+        linkName="copy"
       />
     </RightCardWrapper>
   );
