@@ -30,16 +30,6 @@ import Navbar from "components/Navbar";
 
 const reff = React.createRef();
 
-const EmbedCode = () => (
-  <RightCardWrapper>
-    <SubModal
-      title="Embed Code"
-      embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
-      linkName="Learn more"
-    />
-  </RightCardWrapper>
-);
-
 const ImageHandler = ({ imageId }) => {
   const [modal, setModal] = useState(false);
 
@@ -169,7 +159,6 @@ const CreateList = () => {
             <RightSectionCard pathId={pathId} reff={reff} />
             <ShareSectionCard pathId={pathId} />
             <Style />
-            <EmbedCode />
             <ImageHandler imageId={ChecklistDetail?.checklistImageId} />
           </RightSection>
         </ChecklistSubWrapper>

@@ -54,7 +54,7 @@ const SideBar = () => {
       <LeftContainer>
         <Second padding={open}>
           <Plus
-            onClick={() => navigate("/temp")}
+            onClick={() => navigate("/create-list")}
             style={{ cursor: "pointer" }}
           />
         </Second>

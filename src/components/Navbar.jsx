@@ -102,7 +102,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   };
 
   const newTemplateHandler = async () => {
-    navigate("/temp");
+    navigate("/create-list");
   };
 
   const searchData = (data) => {
@@ -285,7 +285,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                 <SecondSubSection>
                   {icon && (
                     <BlueIcon
-                      onClick={() => navigate("/temp")}
+                      onClick={() => navigate("/create-list")}
                       style={{ cursor: "pointer" }}
                     >
                       <PlusBlue />
