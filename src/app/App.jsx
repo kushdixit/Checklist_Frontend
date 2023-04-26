@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import Router from "components/Router";
 import CustomRouter from "components/CustomRouter";
 import Layout from "components/Layout";
 import Spinner from "components/Spinner";

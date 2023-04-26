@@ -101,6 +101,13 @@ export const TempRoute = {
   restricted: true,
 };
 
+export const TempRouteeee = {
+  component: ChecklistDashboard,
+  path: "/create-list",
+  exact: true,
+  restricted: true,
+};
+
 export const TempRouteById = {
   component: ChecklistDashboard,
   path: "/temp/:id",
@@ -155,6 +162,7 @@ const ROUTES = [
   InsightRoutes,
   GuestRoutes,
   CategoryByNameRoute,
+  TempRouteeee,
 ];
 
 export default ROUTES;

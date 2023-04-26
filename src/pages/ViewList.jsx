@@ -189,12 +189,10 @@ const CopyCard = ({ info }) => {
   return (
     <RightCardWrapper>
       <SubModal
-        // title="Embed"
         counts={true}
         viewCount={info?.viewCount}
         copyCount={info?.copyCount}
         downloadCount={info?.downloadCount}
-        // embed='<div id="checkli-embed-63d3ca63a546c" class="checkli-embed" url="https://www.checkli.com/checklists/63cfd4f426835/embed"></div><script defer src="https://checkli.com/js/checkli-embed.js"></script>'
       />
     </RightCardWrapper>
   );
