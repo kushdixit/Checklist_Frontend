@@ -7,7 +7,7 @@ import { SearchList } from "redux/actions/checklist";
 import Navbar from "components/Navbar";
 import Button from "components/Button";
 import Footer from "components/Footer";
-import LandingCheckliCard from "components/LandingCheckliCard";
+import ClientCard from "components/ClientCard";
 import {
   LandingContainer,
   Heading,
@@ -22,12 +22,11 @@ import {
   Wrapper,
 } from "styles/pages/Landing";
 import {
-  FirstSection,
   SeeMoreWrapper,
   CardMainSection,
   SeeMore,
 } from "styles/components/Card";
-
+import { FirstSection } from "styles/components/ClientCard";
 import Screenshot from "assets/images/Screenshot.png";
 
 const LandingCard = lazy(() => import("components/LandingCard"));
@@ -37,9 +36,7 @@ const Tags = ["New", "Yoga", "Test", "Monday", "Education"];
 const Landing = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const allTemplate = useSelector((state) => state.Template?.allTemplate);
   const [Popular, setPopular] = useState([]);
-
   const [searchError, setSearchError] = useState(false);
 
   useEffect(() => {
@@ -156,7 +153,11 @@ const Landing = () => {
                 </button>
               ))}
             </ButtonSection>
-            <MiniCardWrapper data={Popular} title="popular" />
+            {Popular.length > 0 ? (
+              <MiniCardWrapper data={Popular} title="popular" />
+            ) : (
+              <div>Loading...</div>
+            )}
           </LandingChecklistCardSection>
         </Wrapper>
       </UpperContentWrapper>
@@ -186,7 +187,7 @@ const MiniCardWrapper = ({ data, title }) => {
             ?.filter((subItem) => subItem.isActive)
             ?.filter((item, index) => index < 9)
             .map((subItem) => {
-              return <LandingCheckliCard data={subItem} />;
+              return <ClientCard data={subItem} />;
             })}
         </FirstSection>
         <SeeMoreWrapper>
