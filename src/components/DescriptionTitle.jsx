@@ -34,7 +34,6 @@ const DescriptionTitle = () => {
       ));
     if (res.error === false) {
       dispatch(getChecklistBySubcategory(pathId));
-      // setEditChecklist(!editChecklist);
     }
   };
 

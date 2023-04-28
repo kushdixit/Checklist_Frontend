@@ -80,7 +80,6 @@ const Guest = () => {
   return (
     <Section>
       <DescriptionSliderModal
-        modalType="description"
         isOpen={newmodal}
         togglefunction={toggleabc}
         checklistDiscriptionId={checkListDiscriptionId}

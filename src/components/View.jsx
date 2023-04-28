@@ -69,7 +69,6 @@ const View = () => {
     <LandingContainer boxType={boxType}>
       {contextHolder}
       <DescriptionSliderModal
-        modalType="description"
         isOpen={newmodal}
         togglefunction={toggleabc}
         checklistDiscriptionId={checkListDiscriptionId}

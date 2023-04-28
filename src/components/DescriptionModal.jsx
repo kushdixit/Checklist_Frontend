@@ -32,7 +32,7 @@ const DescriptionModal = ({ task, checklistDiscriptionId }) => {
   );
 
   const dispatch = useDispatch();
-  const { setValue, handleSubmit, control, reset } = useForm({
+  const { setValue } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,

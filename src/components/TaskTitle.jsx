@@ -1,14 +1,15 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getChecklistBySubcategory } from "redux/actions/task";
 import { SET_TASK } from "redux/actions/action_types";
 import { MoveTask } from "redux/actions/task";
 import update from "immutability-helper";
-import { Card } from "./Card2";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import AddTask from "./AddTask";
+
+const AddTask = lazy(() => import("components/AddTask"));
+const Card = lazy(() => import("components/Card2"));
 
 const TaskTitle = ({ toggleabc }) => {
   const { id: pathId } = useParams();
@@ -77,49 +78,51 @@ const TaskTitle = ({ toggleabc }) => {
 
   return (
     <>
-      <DndProvider backend={HTML5Backend}>
-        {pathId && ChecklistDetail?.tasks?.length === 0 && (
-          <AddTask pathId={pathId} />
-        )}
-        {cards?.map((item, index) => {
-          if (item?.id === addTask)
-            return (
-              <>
-                <Card
-                  key={index}
-                  index={index}
-                  id={index}
-                  text={item?.taskName}
-                  moveCard={moveCard}
-                  data={item}
-                  taskOrder={taskOrder}
-                  pathId={pathId}
-                  toggleabc={toggleabc}
-                  editable={editable}
-                />
-                <AddTask pathId={pathId} />
-              </>
-            );
+      <Suspense fallback={<h1>Loading…</h1>}>
+        <DndProvider backend={HTML5Backend}>
+          {pathId && ChecklistDetail?.tasks?.length === 0 && (
+            <AddTask pathId={pathId} />
+          )}
+          {cards?.map((item, index) => {
+            if (item?.id === addTask)
+              return (
+                <>
+                  <Card
+                    key={index}
+                    index={index}
+                    id={index}
+                    text={item?.taskName}
+                    moveCard={moveCard}
+                    data={item}
+                    taskOrder={taskOrder}
+                    pathId={pathId}
+                    toggleabc={toggleabc}
+                    editable={editable}
+                  />
+                  <AddTask pathId={pathId} />
+                </>
+              );
 
-          return (
-            <Card
-              key={index}
-              index={index}
-              id={index}
-              text={item?.taskName}
-              moveCard={moveCard}
-              data={item}
-              taskOrder={taskOrder}
-              pathId={pathId}
-              toggleabc={toggleabc}
-              editable={editable}
-            />
-          );
-        })}
-        {localStorage.getItem("access_token") &&
-          pathId &&
-          ChecklistDetail?.tasks?.length !== 0 && <AddTask pathId={pathId} />}
-      </DndProvider>
+            return (
+              <Card
+                key={index}
+                index={index}
+                id={index}
+                text={item?.taskName}
+                moveCard={moveCard}
+                data={item}
+                taskOrder={taskOrder}
+                pathId={pathId}
+                toggleabc={toggleabc}
+                editable={editable}
+              />
+            );
+          })}
+          {localStorage.getItem("access_token") &&
+            pathId &&
+            ChecklistDetail?.tasks?.length !== 0 && <AddTask pathId={pathId} />}
+        </DndProvider>
+      </Suspense>
     </>
   );
 };

@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
-import {
-  SubSection,
-  Image,
-  Wrap,
-  Heading,
-  SubHeading,
-} from "styles/components/LandingCard";
-
-import SecondCopy from "assets/SVG/SecondCopy";
+import React from "react";
+import { SubSection, Wrap } from "styles/components/LandingCard";
 import List from "assets/SVG/List";
 import ShareSquare from "assets/SVG/ShareSquare";
 import BarChart from "assets/SVG/BarChart";
 const LandingCard = () => {
-  const [cardText, setCardText] = useState([
+  const cardText = [
     {
       img: <List />,
       subTextA: "  1. Create or copy a process",
@@ -31,7 +23,7 @@ const LandingCard = () => {
       subTextC:
         "  When a team member completes a business process you'll get notified so you make sure recurring work gets done right..",
     },
-  ]);
+  ];
 
   return (
     <>

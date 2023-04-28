@@ -1,7 +1,6 @@
 import React from "react";
 import ForgotPassword from "./forgetPassword";
 import LogoutModal from "./LogoutModal";
-import MoveModal from "./MoveModal";
 import FontColorsModal from "./FontColorsModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/AlertModal";
@@ -59,24 +58,9 @@ const AlertModal = ({
           title="Delete"
         />
       )}
-      {modalType === "move" && (
-        <MoveModal
-          notify={notify}
-          togglefunction={togglefunction}
-          checklistId={checklistId}
-          templateName={templateName}
-        />
-      )}
       {modalType === "fontcolors" && (
         <FontColorsModal notify={notify} togglefunction={togglefunction} />
       )}
-      {/* {modalType === "forgot" && (
-        <EditTask
-          notifynew={notify}
-          togglefunctionnew={togglefunction}
-          style={{ inset: "50% auto auto 78%" }}
-        />
-      )} */}
     </ReactModal>
   );
 };
