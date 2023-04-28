@@ -26,7 +26,7 @@ export const FirstSection = styled.div`
 `;
 
 export const ProgressSection = styled.div`
-  padding: 20px 5px;
+  padding: 2px 5px;
   width: 100%;
   text-align: left;
   img {
@@ -69,15 +69,18 @@ export const Small = styled.div`
 `;
 
 export const ImageSection = styled.div`
-  width: 20vw;
+  width: 20rem;
   margin: 2em auto;
   padding: 2em;
   background-color: white;
   border-radius: 0.5em;
   box-shadow: rgba(36, 37, 38, 0.08) 0px 6px 15px 0px;
   border: 1px solid rgb(238, 238, 238);
+  @media (max-width: 1400px) {
+    width: 17rem;
+  }
   @media (max-width: 1198px) {
-    width: 30vw;
+    width: 20rem;
   }
   @media (max-width: 900px) {
     width: 30vw;

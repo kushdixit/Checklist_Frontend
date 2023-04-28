@@ -81,7 +81,6 @@ export const Card = ({
       }
       const dragIndex = item.index;
       const hoverIndex = index;
-      // console.log(item);
       // Don't replace items with themselves
       if (dragIndex === hoverIndex) {
         return;

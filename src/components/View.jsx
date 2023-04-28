@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { notification, Checkbox } from "antd";
+import { notification } from "antd";
 import { PinChecklist } from "redux/actions/checklist/index";
 import ImageModal from "components/ImageModal";
 import DescriptionSliderModal from "components/DescriptionSliderModal";

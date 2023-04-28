@@ -42,7 +42,6 @@ const MoveModal = ({ notify, togglefunction, checklistId, templateName }) => {
     reValidateMode: "onBlur",
   });
   const handleIconClick = () => {
-    console.log("is here");
     if (updateSearch.length !== 0) {
       SetUpdateSearch("");
       dispatch({ type: SET_SEARCH, payload: "" });

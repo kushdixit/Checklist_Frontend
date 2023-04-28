@@ -119,7 +119,6 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   };
 
   const handleIconClick = () => {
-    console.log("is here");
     if (updateSearch.length !== 0) {
       SetUpdateSearch("");
       dispatch({ type: SET_SEARCH, payload: "" });

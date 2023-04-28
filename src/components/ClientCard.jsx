@@ -19,7 +19,16 @@ const ClientCard = ({ data, id }) => {
     <NewSection id={id}>
       <ImageSection>
         <HeaderSection>
-          <h1 style={{ lineBreak: "anywhere" }}>{data?.checklistName}</h1>
+          <h1
+            style={{
+              lineBreak: "anywhere",
+              lineHeight: "40px",
+              marginTop: "0.75rem",
+            }}
+          >
+            {data?.checklistName.slice(0, 24)}
+            {data?.checklistName.length > 24 && "..."}
+          </h1>
           <Small>{data?.viewCount} Views</Small>
           <ProgressSection>
             <img src={ChecklistImage} alt="ChecklistImage" />

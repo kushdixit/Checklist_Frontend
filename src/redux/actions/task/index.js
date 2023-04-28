@@ -242,7 +242,6 @@ export const GetImages = () => async (dispatch) => {
     const response = await axioPath.get("v1/CheckList/checklistimages", {
       hideLoader: false,
     });
-    console.log("response", response);
     dispatch({ type: GET_IMAGES, payload: response.data });
     return response;
   } catch (ex) {

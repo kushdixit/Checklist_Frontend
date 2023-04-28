@@ -30,7 +30,6 @@ const CategoryByName = () => {
   useEffect(() => {
     if (Searched.length && count > 1) {
       let chatBox = document.getElementById(`card${count - 1 * 24}`);
-      console.log("chatBox", chatBox);
       if (chatBox != null) chatBox.scrollIntoView();
     } else {
     }
