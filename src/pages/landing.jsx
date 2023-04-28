@@ -1,13 +1,11 @@
 import React, { useEffect, Suspense, lazy, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import { getAllTemplate } from "redux/actions/template";
 import { SearchList } from "redux/actions/checklist";
 import Navbar from "components/Navbar";
 import Button from "components/Button";
-import Footer from "components/Footer";
-import LandingCheckliCard from "components/LandingCheckliCard";
 import {
   LandingContainer,
   Heading,
@@ -22,30 +20,26 @@ import {
   Wrapper,
 } from "styles/pages/Landing";
 import {
-  FirstSection,
   SeeMoreWrapper,
   CardMainSection,
   SeeMore,
 } from "styles/components/Card";
-
-import Screenshot from "assets/images/Screenshot.png";
+import { FirstSection } from "styles/components/ClientCard";
+import preview from "assets/images/preview.webp";
 
 const LandingCard = lazy(() => import("components/LandingCard"));
+const Footer = lazy(() => import("components/Footer"));
+const ClientCard = lazy(() => import("components/ClientCard"));
 
 const Tags = ["New", "Yoga", "Test", "Monday", "Education"];
 
 const Landing = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const allTemplate = useSelector((state) => state.Template?.allTemplate);
   const [Popular, setPopular] = useState([]);
-
   const [searchError, setSearchError] = useState(false);
 
   useEffect(() => {
-    // const token = localStorage.getItem("access_token");
-    // if (token) navigate("/dashboard");
-    // else navigate("/landing");
     dispatch(getAllTemplate());
     dispatch(showAppLoader());
     SearchHandler(true);
@@ -55,7 +49,6 @@ const Landing = () => {
   const SearchHandler = async (flag) => {
     const response = await dispatch(SearchList(`?SortBy=${flag}`));
     dispatch(hideAppLoader());
-    console.log("response?.data", response?.data);
     if (response.status === 200) {
       if (searchError) setSearchError(false);
       setPopular(response?.data);
@@ -64,8 +57,6 @@ const Landing = () => {
       setSearchError(true);
     }
   };
-
-  // if (allTemplate.includes("<!DOCTYPE html>")) return <div>Loading...</div>;
 
   return (
     <LandingContainer>
@@ -123,11 +114,7 @@ const Landing = () => {
               marginBottom: "100px",
             }}
           >
-            <ChecklistImage
-              src={Screenshot}
-              // src="https://www.checkli.com/app/css/images/free-list-maker.png"
-              alt="Share"
-            />
+            <ChecklistImage src={preview} alt="Share" />
           </div>
           <SecondHeading>How it works</SecondHeading>
           <p style={{ paddingBottom: "50px" }}>
@@ -144,28 +131,37 @@ const Landing = () => {
               Copy, edit, and use thousands of free checklists and business
               processes for free.
             </p>
-            <ButtonSection>
-              {Tags?.map((item) => (
-                <button
-                  className="button"
-                  onClick={() => {
-                    navigate(`/categories/${item}`);
-                  }}
-                >
-                  {item}
-                </button>
-              ))}
-            </ButtonSection>
-            <MiniCardWrapper data={Popular} title="popular" />
+            {Popular.length > 0 ? (
+              <>
+                <ButtonSection>
+                  {Tags?.map((item, id) => (
+                    <button
+                      className="button"
+                      onClick={() => {
+                        navigate(`/categories/${item}`);
+                      }}
+                      key={id}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </ButtonSection>
+                <MiniCardWrapper data={Popular} title="popular" />
+              </>
+            ) : (
+              <div>Loading...</div>
+            )}
           </LandingChecklistCardSection>
         </Wrapper>
       </UpperContentWrapper>
-      <Footer />
+      <Suspense fallback={<h1>Loading…</h1>}>
+        <Footer />
+      </Suspense>
     </LandingContainer>
   );
 };
 
-const MiniCardWrapper = ({ data, title }) => {
+const MiniCardWrapper = ({ data }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -181,23 +177,27 @@ const MiniCardWrapper = ({ data, title }) => {
             Popular
           </h2>
         </div>
-        <FirstSection>
-          {data
-            ?.filter((subItem) => subItem.isActive)
-            ?.filter((item, index) => index < 9)
-            .map((subItem) => {
-              return <LandingCheckliCard data={subItem} />;
-            })}
-        </FirstSection>
-        <SeeMoreWrapper>
-          <SeeMore
-            onClick={() => {
-              navigate(`/explore/New`);
-            }}
-          >
-            See More
-          </SeeMore>
-        </SeeMoreWrapper>
+        <Suspense fallback={<h1>Loading…</h1>}>
+          <>
+            <FirstSection>
+              {data
+                ?.filter((subItem) => subItem.isActive)
+                ?.filter((item, index) => index < 9)
+                .map((subItem, id) => {
+                  return <ClientCard data={subItem} key={id} />;
+                })}
+            </FirstSection>
+            <SeeMoreWrapper>
+              <SeeMore
+                onClick={() => {
+                  navigate(`/explore/New`);
+                }}
+              >
+                See More
+              </SeeMore>
+            </SeeMoreWrapper>
+          </>
+        </Suspense>
       </CardMainSection>
     </>
   );

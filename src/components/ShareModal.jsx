@@ -32,7 +32,6 @@ const ShareModal = ({ togglefunction }) => {
   });
 
   useEffect(() => {
-    console.log();
     if (imageArray && imageArray?.length === 0) ImageHanlder();
   }, []);
 

@@ -26,7 +26,6 @@ const Facebook = () => {
       issocial: 2,
     };
     const res = await store.dispatch(authSignup(payload));
-    console.log("res", res);
     if (res.error === false) navigate("/dashboard");
     else if (res.data.response.data.Message === "Already exist.")
       openNotification("Email already exist.Please try Logging in");

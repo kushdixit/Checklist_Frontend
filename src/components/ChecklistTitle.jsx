@@ -52,7 +52,6 @@ const ChecklistTitle = () => {
   };
 
   const editChecklistHandler = async () => {
-    console.log("edit", watchData?.checklist);
     const res =
       watchData?.checklist &&
       (await dispatch(editChecklistApi(watchData?.checklist, pathId)));

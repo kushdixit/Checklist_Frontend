@@ -5,7 +5,7 @@ export const LandingContainer = styled.div`
   text-align: center;
 
   p {
-    margin-bottom: 1.38em;
+    margin-bottom: 0px;
   }
   h2 {
     letter-spacing: 0px;
@@ -155,7 +155,7 @@ export const SubHeading = styled.div`
 export const ChecklistImage = styled.img`
   border: 1px solid #eeeeee;
   box-shadow: 0 6px 15px 0 rgba(36, 37, 38, 0.08);
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     width: 80%;
   }
 `;

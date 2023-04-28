@@ -27,13 +27,11 @@ const DescriptionTitle = () => {
   const watchData = useWatch({ control });
 
   const DescriptionHandler = async () => {
-    console.log(" watchData?.checklist", watchData?.checklist);
     const res =
       watchData?.checklist &&
       (await dispatch(
         DescriptionChecklist(watchData?.checklist, ChecklistDetail?.id)
       ));
-    console.log(res);
     if (res.error === false) {
       dispatch(getChecklistBySubcategory(pathId));
       // setEditChecklist(!editChecklist);

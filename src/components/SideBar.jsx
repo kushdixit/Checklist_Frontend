@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllTemplate } from "redux/actions/template";
@@ -13,8 +12,6 @@ import {
 } from "styles/components/SideBar";
 import Plus from "assets/SVG/Plus";
 import List from "assets/images/list.png";
-import Calendar from "assets/images/calendar.png";
-import Bell from "assets/images/bell.png";
 import Backward from "assets/images/backward-arrow.png";
 import Forward from "assets/images/forward.png";
 
@@ -24,16 +21,6 @@ const Pages = [
     name: "Dashboard",
     disabled: false,
   },
-  // {
-  //   image: Calendar,
-  //   name: "Calender",
-  //   disabled: true,
-  // },
-  // {
-  //   image: Bell,
-  //   name: "Reminders",
-  //   disabled: true,
-  // },
 ];
 
 const SideBar = () => {

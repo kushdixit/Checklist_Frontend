@@ -18,6 +18,7 @@ import {
 } from "styles/pages/EditChecklist";
 import SliderModal from "components/SliderModal";
 import { Select } from "antd";
+import { SET_BOX_TYPE } from "redux/actions/action_types";
 
 const { Option } = Select;
 
@@ -30,7 +31,6 @@ const SubModal = ({
   subTitle,
   text,
   buttonName,
-  buttonNew,
   embed,
   viewCount,
   copyCount,
@@ -54,15 +54,10 @@ const SubModal = ({
     setModal(data);
   }
   function handleChange(value) {
-    console.log(`selected ${value}`);
+    if (value === "Squared")
+      dispatch({ type: SET_BOX_TYPE, payload: "square" });
+    else dispatch({ type: SET_BOX_TYPE, payload: "round" });
   }
-
-  // const CopyHandler = async () => {
-  //   const res = await dispatch(
-  //     CopyChecklist(pathId, isUser() ? userEmail : "guest@gmail.com")
-  //   );
-  //   !res?.error && navigate(`/createChecklist/${res?.data?.data}`);
-  // };
 
   return (
     <RightContentWrapper>

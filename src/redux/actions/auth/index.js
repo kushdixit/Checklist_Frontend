@@ -19,7 +19,6 @@ export const authLogin = (payload) => async (dispatch) => {
 export const authSignup = (payload) => async (dispatch) => {
   try {
     const response = await axioPath.post("v1/Account/usersignup", payload);
-    console.log("response", response);
     localStorage.setItem("access_token", response.data.accessToken);
     dispatch({ type: SIGN_IN, payload: response.data });
     return { error: false, data: response.data };
@@ -47,7 +46,6 @@ export const forgotPassword = (data) => async (dispatch) => {
 };
 
 export const resetPassword = (pass, id) => async (dispatch) => {
-  console.log(pass, id);
   const payload = {
     id,
     password: pass,

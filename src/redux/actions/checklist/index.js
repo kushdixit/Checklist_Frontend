@@ -128,7 +128,6 @@ export const CopyChecklist = (id, email) => async (dispatch) => {
 
 export const DescriptionChecklist =
   (checklistdescription, id) => async (dispatch) => {
-    console.log(id, checklistdescription);
     const payload = {
       id,
       checklistdescription: checklistdescription || "",

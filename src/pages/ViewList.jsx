@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import { getChecklistBySubcategory } from "redux/actions/task";
-import { addTempChecklist, SearchList } from "redux/actions/checklist";
+import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import { getAllTemplate } from "redux/actions/template";
-import ChecklistWidget from "components/ChecklistWidget";
 import SubModal from "components/SubModal";
 import Footer from "components/Footer";
 import ViewTask from "components/ViewTask";
@@ -24,8 +23,6 @@ import {
   RightCardWrapper,
   ChecklistTitleText,
   ChecklistDescText,
-  ChecklistWidgetSection,
-  RelationHeading,
   ProgressSection,
   LeftHeader,
   ButtonSection,
@@ -41,7 +38,6 @@ const ViewList = () => {
   function toggleabc(data) {
     setNewModal(data);
   }
-  const allTemplate = useSelector((state) => state.Template?.allTemplate);
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();

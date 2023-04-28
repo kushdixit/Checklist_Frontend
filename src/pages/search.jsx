@@ -25,7 +25,6 @@ const Search = () => {
       SearchList(`?Name=${title}&Type=${type}&Pagination=${count}`)
     );
     dispatch(hideAppLoader());
-    console.log("response?.data", response?.data);
     if (response.status === 200) {
       setSearched((prev) => [...prev, ...response?.data]);
       if (searchError) setSearchError(false);

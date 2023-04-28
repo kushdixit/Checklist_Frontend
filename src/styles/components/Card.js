@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const FirstSection = styled.div`
   display: flex;
-  grid-gap: 43px;
+  grid-gap: 20px;
   width: 100%;
 
   margin: 0 0 0 10px;
