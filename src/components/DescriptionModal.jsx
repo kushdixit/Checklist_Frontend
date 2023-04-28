@@ -8,7 +8,6 @@ import {
   DataWrapper,
   Heading,
   DataInput,
-  EmailWrapper,
   IconInputFieldTextArea,
   MainTaskSectionForm,
   EditorSection,
@@ -66,7 +65,6 @@ const DescriptionModal = ({ task, checklistDiscriptionId }) => {
               Delete
             </button>
           </Heading>
-          <EmailWrapper></EmailWrapper>
         </DataWrapper>
       </Container>
       <DataInput>MANAGER TRAINING</DataInput>

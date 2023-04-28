@@ -5,7 +5,6 @@ export const LandingContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  /* max-width: 1735px; */
   h3 {
     display: flex;
     width: 100%;
@@ -52,40 +51,6 @@ export const LandingContainer = styled.div`
   }
 `;
 
-export const Heading = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-  font-size: 2.2rem;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  margin-top: 90px;
-  text-align: center;
-  @media (max-width: 538px) {
-    font-size: 1.8rem;
-  }
-  @media (max-width: 970px) {
-    font-size: 1.8rem;
-  }
-`;
-
-export const SecondHeading = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  font-weight: 400;
-  font-size: 34px;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  max-width: 708px;
-  margin-top: 90px;
-  text-align: center;
-`;
 export const NavSection = styled.div`
   padding-top: 1rem;
   padding-bottom: 29px;
@@ -120,48 +85,7 @@ export const LeftSection = styled.div`
     justify-content: center;
   }
 `;
-export const Listeners = styled.div`
-  padding-top: 8rem;
-  h4 {
-    margin: 0;
-    padding-bottom: 14px;
-    justify-content: left;
-    display: flex;
-    width: 100%;
-    align-items: flex-start;
-    font-size: 18px;
-  }
-  img {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    margin: 6px 0 0;
-  }
-`;
 
-export const ImageSection = styled.div`
-  .button {
-    color: #777;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    border-radius: 17px;
-    padding: 8px 15px;
-    margin: 20px 0 30px;
-  }
-  @media (max-width: 1276px) {
-    .button {
-      padding: 8px 12px;
-      font-size: 12px;
-    }
-  }
-`;
-
-export const Text = styled.div`
-  padding: 5px 0;
-  color: #777;
-  font-size: 14px;
-`;
 export const SubMainSection = styled.div`
   display: flex;
   width: 100%;
@@ -179,27 +103,6 @@ export const SubMainSection = styled.div`
   }
 `;
 
-export const RightSection = styled.div`
-  text-align: left;
-  margin-right: 10px;
-  @media (max-width: 1276px) {
-    width: 100%;
-    max-width: 135px;
-    margin-left: 10px;
-  }
-  @media (max-width: 990px) {
-    display: none;
-  }
-`;
-export const LandingCardSection = styled.div`
-  display: flex;
-  gap: 100px;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin: 30px 10px;
-  flex-wrap: wrap;
-`;
 export const IconInputFieldNew = styled.div`
   position: relative;
   width: 100%;
@@ -234,7 +137,6 @@ export const IconInputFieldNew = styled.div`
 
   @media (max-width: 767px) {
     width: 100%;
-
     input {
       width: 100%;
       max-width: 79.6vw;
@@ -242,7 +144,6 @@ export const IconInputFieldNew = styled.div`
   }
   @media (max-width: 726px) {
     width: 100%;
-
     input {
       width: 100%;
     }
@@ -265,44 +166,7 @@ export const SearchSection = styled.div`
     }
   }
 `;
-export const ChecklistButton = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
-  text-align: center;
-  .button {
-    padding: 20px 30px;
-    font-weight: 700;
-    font-size: 20px;
-  }
-`;
 
-export const Border = styled.div`
-  border: 1px solid #e8e8e8;
-  margin: 20px 0;
-`;
-
-export const Main = styled.div``;
-export const PopularHeading = styled.div``;
-export const SubHeading = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-  font-size: 45px;
-  font-size: 45px;
-  line-height: 57px;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  max-width: 708px;
-  margin-top: 90px;
-  text-align: center;
-`;
 export const SeeMoreWrapper = styled.div`
   padding-bottom: 100px;
   margin-top: 20px;

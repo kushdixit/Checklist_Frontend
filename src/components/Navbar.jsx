@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_SEARCH } from "redux/actions/action_types";
 import AlertModal from "components/AlertModal";
@@ -28,8 +28,6 @@ import {
   IconInputField,
   IconWrapper,
   IconInputFieldNew,
-  EditSection,
-  ButtonEditSection,
   Logintext,
   FreeTemplatetext,
   BlueIcon,
@@ -45,7 +43,6 @@ import Login from "assets/images/login.png";
 const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   const wrapperRef = useRef();
   const navigate = useNavigate();
-  const { state } = useLocation();
   const dispatch = useDispatch();
   const [logoutModal, setLogoutModal] = useState(false);
   const [iconHandle, setIconHandle] = useState();

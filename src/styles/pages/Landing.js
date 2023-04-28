@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const LandingContainer = styled.div`
   width: 100%;
   text-align: center;
-
   p {
     margin-bottom: 0px;
   }
@@ -135,23 +134,7 @@ export const ChecklistButton = styled.div`
     line-height: 36px;
   }
 `;
-export const SubHeading = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-  font-size: 45px;
-  font-size: 45px;
-  line-height: 57px;
-  margin-left: auto;
-  margin-right: auto;
 
-  flex-direction: column;
-  max-width: 708px;
-  margin-top: 90px;
-  text-align: center;
-`;
 export const ChecklistImage = styled.img`
   border: 1px solid #eeeeee;
   box-shadow: 0 6px 15px 0 rgba(36, 37, 38, 0.08);
@@ -159,21 +142,7 @@ export const ChecklistImage = styled.img`
     width: 80%;
   }
 `;
-export const FirstSection = styled.div`
-  display: flex;
-  grid-gap: 43px;
-  width: 100%;
 
-  margin: 0 0 0 10px;
-  flex-wrap: wrap;
-  justify-content: left;
-  @media (max-width: 1012px) {
-    justify-content: center;
-  }
-  @media (max-width: 1722px) {
-    justify-content: center;
-  }
-`;
 export const Wrapper = styled.div`
   padding-top: 50px;
   padding-bottom: 170px;

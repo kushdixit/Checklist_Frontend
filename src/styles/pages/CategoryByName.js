@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const LandingContainer = styled.div`
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  /* max-width: 1735px; */
   h3 {
     display: flex;
     width: 100%;
@@ -154,12 +152,10 @@ export const IconInputFieldNew = styled.div`
       font-size: 16px;
       color: #9d9d9d;
     }
-
     :-ms-input-placeholder {
       font-size: 16px;
       color: #9d9d9d;
     }
-
     ::-ms-input-placeholder {
       font-size: 16px;
       color: #9d9d9d;
@@ -171,7 +167,6 @@ export const IconInputFieldNew = styled.div`
 
   @media (max-width: 767px) {
     width: 100%;
-
     input {
       width: 100%;
       max-width: 79.6vw;
@@ -179,7 +174,6 @@ export const IconInputFieldNew = styled.div`
   }
   @media (max-width: 726px) {
     width: 100%;
-
     input {
       width: 100%;
     }

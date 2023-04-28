@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-export const BodyContainer = styled.div``;
 export const FormContainer = styled.div`
   max-width: 450px;
   width: 100%;
@@ -13,26 +12,6 @@ export const Heading = styled.h4`
   color: #1d2e88;
   font-weight: 700;
   font-size: 25px;
-`;
-export const ForgotEmailHeading = styled.span`
-  color: #6f7172;
-  font-size: 23px;
-  font-family: "Poppinslight";
-`;
-export const ForgotEmailSection = styled.div`
-  margin-top: 25px;
-`;
-export const BackLogo = styled.div`
-  padding-bottom: 27px;
-  margin: 0;
-  img {
-    cursor: pointer;
-    position: absolute;
-    top: 29%;
-  }
-  img:hover {
-    opacity: 0.6;
-  }
 `;
 
 export const ChecklistHeader = styled.div`
@@ -60,38 +39,6 @@ export const FormBody = styled.div`
   margin: 0 auto;
 `;
 
-export const RememberSection = styled.div`
-  display: flex;
-  position: relative;
-  bottom: 40px;
-  align-items: center;
-  font-size: 12px;
-
-  label {
-    display: flex;
-    color: #1d2e88;
-    font-size: 12px;
-  }
-  > div:nth-child(2) {
-    color: #2b3ed4;
-    font-size: 14px;
-    letter-spacing: 0.23px;
-  }
-  a {
-    letter-spacing: 0px;
-    color: #6f7172;
-  }
-  .checkBox {
-    margin-right: 6px;
-  }
-  .forgotPassword {
-    position: relative;
-    cursor: pointer;
-    font-size: 12px;
-
-    color: #1d2e88;
-  }
-`;
 export const ButtonWrapper = styled.div`
   margin-top: 3rem;
   button {
@@ -103,12 +50,7 @@ export const ButtonWrapper = styled.div`
     opacity: 0.4;
   }
 `;
-export const AccountContainer = styled.div`
-  display: flex;
-  width: 100%;
 
-  align-items: center;
-`;
 export const RegistrationContainer = styled.div`
   width: 100%;
   a {
@@ -118,7 +60,6 @@ export const RegistrationContainer = styled.div`
   .RememberSection {
   }
 `;
-export const ForgotPassword = styled.div``;
 export const IconInputField = styled.div`
   margin-bottom: 35px;
   position: relative;
@@ -137,12 +78,10 @@ export const IconInputField = styled.div`
       font-size: 16px;
       color: #9d9d9d;
     }
-
     :-ms-input-placeholder {
       font-size: 16px;
       color: #9d9d9d;
     }
-
     ::-ms-input-placeholder {
       font-size: 16px;
       color: #9d9d9d;
@@ -154,7 +93,6 @@ export const IconInputField = styled.div`
       max-width: 184px;
     }
   }
-
   Button {
     background: #9d9d9d;
   }

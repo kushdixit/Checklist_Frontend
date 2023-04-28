@@ -15,9 +15,7 @@ import { ImageWrapper } from "helpers/copy";
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
-  Section,
   CenterSection,
-  LeftContentWrapper,
 } from "styles/pages/Guest";
 import Navbar from "components/Navbar";
 
@@ -78,7 +76,7 @@ const Guest = () => {
   };
 
   return (
-    <Section>
+    <div>
       <DescriptionSliderModal
         isOpen={newmodal}
         togglefunction={toggleabc}
@@ -94,7 +92,7 @@ const Guest = () => {
       <ChecklistMainWrapper>
         <ChecklistSubWrapper>
           <CenterSection>
-            <LeftContentWrapper ref={reff}>
+            <div ref={reff}>
               <ChecklistTitle />
               <DescriptionTitle />
               {pathId && ChecklistDetail?.checklistImageId !== 0 && (
@@ -104,12 +102,12 @@ const Guest = () => {
                 />
               )}
               <TaskTitle toggleabc={toggleabc} />
-            </LeftContentWrapper>
+            </div>
           </CenterSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
       <Footer />
-    </Section>
+    </div>
   );
 };
 

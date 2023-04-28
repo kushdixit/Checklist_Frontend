@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "components/FormElements/TextInput";
 import ErrorComponent from "components/Error";
@@ -13,7 +13,6 @@ import { authLogin } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  BodyContainer,
   RegistrationContainer,
   FormContainer,
   IconInputField,
@@ -195,6 +194,6 @@ const SignIn = () => {
     );
   };
 
-  return <BodyContainer>{formFields()}</BodyContainer>;
+  return <div>{formFields()}</div>;
 };
 export default SignIn;
