@@ -256,9 +256,4 @@ export const IconInputFieldNew = styled.div`
       width: 46vw;
     }
   }
-  /* @media (max-width: 532px) {
-    input {
-      width: 70vw;
-    }
-  } */
 `;

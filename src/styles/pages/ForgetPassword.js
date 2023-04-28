@@ -8,18 +8,6 @@ export const MainWrapper = styled.div`
   justify-content: center;
 `;
 
-export const MainWrapperNew = styled.div`
-  width: 100%;
-  max-width: 215px;
-  height: 100%;
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-  margin: 0 auto;
-  padding: 0 0;
-`;
 export const Container = styled.div`
   height: 100%;
   width: 100%;
@@ -48,10 +36,8 @@ export const EmailWrapper = styled.div`
 `;
 export const ButtonWrapper = styled.div`
   border-radius: 5px;
-
   align-items: center;
   justify-content: center;
-
   color: #fff;
   padding: 0px 0px 10px;
 `;
@@ -73,17 +59,6 @@ export const DataInput = styled.div`
   }
 `;
 
-export const DataInputNew = styled.div`
-  display: flex;
-  font-size: 20px;
-  color: #1d2e88;
-  padding: 10px 0;
-  align-items: center;
-  svg {
-    width: 76px;
-    height: 50px;
-  }
-`;
 export const ResetWrapper = styled.button`
   border: 1px solid #008cba;
   border-radius: 5px;
@@ -99,9 +74,7 @@ export const ResetText = styled.div`
   font-size: 15px;
   font-weight: 700;
 `;
-export const ErrorMessage = styled.div`
-  color: red;
-`;
+
 export const ModalButton = styled.div`
   border: 1px solid transparent;
   background: #1d2e88;
@@ -121,69 +94,4 @@ export const ModalButton = styled.div`
   @media (max-width: 320px) {
     width: 20vw;
   }
-`;
-export const IconInputField = styled.div`
-  position: relative;
-
-  input {
-    position: relative;
-    text-align: left;
-    font-size: 14px;
-    padding: 12px 41.5px;
-    border: 1px solid #c9c9c9;
-    background: unset;
-
-    border-radius: 20px;
-    width: 100%;
-    max-width: 213px;
-
-    ::placeholder {
-      font-size: 16px;
-      color: #9d9d9d;
-    }
-
-    :-ms-input-placeholder {
-      font-size: 16px;
-      color: #9d9d9d;
-    }
-
-    ::-ms-input-placeholder {
-      font-size: 16px;
-      color: #9d9d9d;
-    }
-    :focus-visible {
-      outline: unset;
-    }
-  }
-  @media (max-width: 1012px) {
-    width: 100%;
-    max-width: 190px;
-    input {
-      width: unset;
-      max-width: unset;
-    }
-  }
-  @media (max-width: 1120px) {
-    width: 100%;
-    max-width: 190px;
-    padding-right: 30px;
-    input {
-      width: unset;
-      max-width: unset;
-    }
-  }
-  @media (max-width: 767px) {
-    width: 100%;
-    max-width: 77vw;
-    padding: 0 5.333vw;
-    input {
-      width: 100%;
-      max-width: 169.6vw;
-    }
-  }
-`;
-export const IconWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

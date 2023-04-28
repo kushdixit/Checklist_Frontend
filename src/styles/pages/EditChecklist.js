@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const Section = styled.div`
-  /* background: #f5f5f5; */
-`;
+export const Section = styled.div``;
 
 export const BodyWrapper = styled.div`
   padding-top: 1rem;

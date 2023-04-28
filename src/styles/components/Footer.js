@@ -14,10 +14,6 @@ export const FirstSection = styled.div`
   font-weight: 400;
   padding-bottom: 2px;
 `;
-export const SecondSection = styled.div`
-  font-size: 13px;
-  color: #aaa;
-`;
 
 export const SubSection = styled.div`
   border-top: 1px solid #ebebeb;

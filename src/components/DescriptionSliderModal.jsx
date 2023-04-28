@@ -1,5 +1,4 @@
 import React from "react";
-
 import DescriptionModal from "./DescriptionModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/SliderModal";
@@ -9,9 +8,6 @@ const DescriptionSliderModal = ({
   togglefunction,
   hideButton,
   notify,
-  modalType,
-  checklistId,
-  templateName,
   checklistDiscriptionId,
 }) => {
   return (
@@ -30,7 +26,7 @@ const DescriptionSliderModal = ({
           background: "rgb(255, 255, 255)",
           padding: "0px 20px",
           width: "46.5%",
-          height: modalType === "description" ? "100%" : "auto",
+          height: "100%",
           overflow: "hidden",
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
         },
@@ -40,13 +36,11 @@ const DescriptionSliderModal = ({
       <ButtonWrapper>
         <button onClick={() => togglefunction(false)}>x</button>
       </ButtonWrapper>
-      {modalType === "description" && (
-        <DescriptionModal
-          notify={notify}
-          togglefunction={togglefunction}
-          checklistDiscriptionId={checklistDiscriptionId}
-        />
-      )}
+      <DescriptionModal
+        notify={notify}
+        togglefunction={togglefunction}
+        checklistDiscriptionId={checklistDiscriptionId}
+      />
     </ReactModal>
   );
 };

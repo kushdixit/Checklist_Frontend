@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
-
   align-items: center;
   justify-content: center;
   h5 {
@@ -18,7 +17,6 @@ export const MainWrapper = styled.div`
 export const ImageSection = styled.div`
   display: flex;
   justify-content: center;
-
   flex-wrap: wrap;
   width: 100%;
   max-width: 1300px;
@@ -35,10 +33,6 @@ export const IconInputField = styled.div`
   input {
     text-align: left;
     font-size: 18px;
-    /* border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden; */
-    /* border-bottom-color: ${(props) => props.color}; */
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 9px 15px 9px 15px;
@@ -69,18 +63,6 @@ export const IconInputField = styled.div`
   }
 `;
 
-export const MainWrapperNew = styled.div`
-  width: 100%;
-  max-width: 215px;
-  height: 100%;
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-  margin: 0 auto;
-  padding: 0 0;
-`;
 export const Container = styled.div`
   justify-content: center;
   width: 100%;
@@ -120,17 +102,7 @@ export const SectionOne = styled.div`
   font-weight: 600;
   margin-top: 20px;
 `;
-export const MainTaskSectionForm = styled.div`
-  .checkBox {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    width: 26px;
-    height: 26px;
-    background-color: #999;
-    margin: 7px 7px 0 0;
-  }
-`;
+
 export const DataWrapper = styled.div`
   justify-content: center;
   width: 100%;
@@ -149,94 +121,6 @@ export const EmailWrapper = styled.div`
   margin-bottom: 30px;
   width: 100%;
   max-width: 400px;
-`;
-export const ButtonWrapper = styled.div`
-  border-radius: 5px;
-
-  align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  padding: 0px 0px 10px;
-`;
-export const DataInput = styled.div`
-  font-size: 15px;
-  color: #db221a;
-
-  padding: 15px;
-  margin-bottom: 12px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  text-align: center;
-  input {
-    max-width: 360px;
-    padding: 12px 19px;
-    border-radius: 5px;
-    border: 1px solid #c9c9c9;
-    ::placeholder {
-      font-family: "poppinsRegular" !important;
-      font-size: 14px !important;
-      color: #4f5270 !important;
-      padding-left: 10px;
-    }
-    @media (max-width: 873px) {
-      width: unset !important;
-    }
-  }
-`;
-
-export const DataInputNew = styled.div`
-  display: flex;
-  font-size: 20px;
-  color: #1d2e88;
-  padding: 10px 0;
-  align-items: center;
-  svg {
-    width: 76px;
-    height: 50px;
-  }
-`;
-export const ResetWrapper = styled.button`
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 15px 25px;
-`;
-export const ResetText = styled.div`
-  font-size: 17px;
-  font-weight: 400;
-  padding: 0 25px;
-`;
-
-export const BlankText = styled.div`
-  font-size: 17px;
-  font-weight: 400;
-  padding: 0 65px;
-`;
-export const ErrorMessage = styled.div`
-  color: red;
-`;
-export const ModalButton = styled.div`
-  border: 1px solid transparent;
-  background: #1d2e88;
-  border-radius: 8px;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-  width: 16vw;
-  margin: 10px 0;
-
-  @media (max-width: 1378px) {
-    width: 20vw;
-  }
-  @media (max-width: 862px) {
-    width: 20vw;
-  }
-  @media (max-width: 320px) {
-    width: 20vw;
-  }
 `;
 
 export const StatusBucketCards = styled.div`

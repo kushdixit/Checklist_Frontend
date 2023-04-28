@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const LandingContainer = styled.div`
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  /* max-width: 1735px; */
   h3 {
     display: flex;
     width: 100%;
@@ -189,10 +187,6 @@ export const RightSection = styled.div`
   }
 `;
 
-export const Border = styled.div`
-  border: 1px solid #e8e8e8;
-  margin: 20px 0;
-`;
 
 export const TextWrapper = styled.div`
   padding-left: 30px;

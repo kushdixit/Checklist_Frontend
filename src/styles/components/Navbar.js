@@ -23,11 +23,6 @@ export const FirstSection = styled.div`
   }
 `;
 
-export const EditSection = styled.div`
-  .button {
-    margin-right: 30px;
-  }
-`;
 export const LoginSection = styled.div`
   img {
     width: 35px;
@@ -61,10 +56,7 @@ export const FreeTemplatetext = styled.div`
     margin-right: 6px;
   }
 `;
-export const SpaceSection = styled.div`
-  width: 100%;
-  max-width: 80px;
-`;
+
 export const SecondSection = styled.div`
   position: relative;
   display: flex;
@@ -73,12 +65,6 @@ export const SecondSection = styled.div`
   width: 100%;
   max-width: 1446px;
   justify-content: right;
-  /* @media (max-width: 1000px) {
-    gap: 35px;
-  }
-  @media (max-width: 875px) {
-    gap: 15px;
-  } */
   @media (max-width: 767px) {
     display: none;
   }
@@ -103,22 +89,17 @@ export const LogoSearchSection = styled.div`
   }
 `;
 
-export const ButtonEditSection = styled.div`
-  margin-right: 20px;
-`;
 export const LogoSection = styled.div`
   display: none;
   cursor: pointer;
   @media (max-width: 767px) {
     display: flex;
     width: 100%;
-
     justify-content: center;
     color: #1d2e88;
     font-size: 2rem;
     font-weight: 700;
     max-width: 625px;
-    /* padding-right: 8px; */
   }
 `;
 export const BurgerSection = styled.div`
@@ -176,7 +157,6 @@ export const WrapperSize = styled.div`
   display: flex;
   font-size: 1.1rem;
 `;
-export const BurgerSubSection = styled.div``;
 export const SecondSubSection = styled.div`
   display: flex;
   margin-left: 20px;
@@ -189,22 +169,15 @@ export const SecondSubSection = styled.div`
     background: unset;
     border: unset;
   }
-  @media (max-width: 874px) {
-    /* margin-left: 0px; */
-  }
 `;
 
 export const SubNavSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* padding: 15px 0; */
   @media (max-width: 767px) {
     padding: 3px 1rem;
   }
-  /* @media (max-width: 1184px) {
-    padding: 15px 3rem;
-  } */
 `;
 export const ImageSubSection = styled.div``;
 export const Profile = styled.div`
@@ -314,7 +287,6 @@ export const IconInputField = styled.div`
   @media (max-width: 1120px) {
     width: 100%;
     max-width: 205px;
-    /* padding-right: 30px; */
     input {
       width: unset;
       max-width: unset;
@@ -334,7 +306,6 @@ export const IconInputField = styled.div`
 export const IconInputFieldNew = styled.div`
   position: relative;
   width: 100%;
-
   input {
     position: relative;
     text-align: left;
@@ -350,12 +321,10 @@ export const IconInputFieldNew = styled.div`
       font-size: 16px;
       color: #9d9d9d;
     }
-
     :-ms-input-placeholder {
       font-size: 16px;
       color: #9d9d9d;
     }
-
     ::-ms-input-placeholder {
       font-size: 16px;
       color: #9d9d9d;
@@ -364,10 +333,8 @@ export const IconInputFieldNew = styled.div`
       outline: unset;
     }
   }
-
   @media (max-width: 767px) {
     width: 100%;
-
     input {
       width: 100%;
       max-width: 79.6vw;
@@ -375,7 +342,6 @@ export const IconInputFieldNew = styled.div`
   }
   @media (max-width: 726px) {
     width: 100%;
-
     input {
       width: 100%;
     }
@@ -385,11 +351,6 @@ export const IconInputFieldNew = styled.div`
       width: 46vw;
     }
   }
-  /* @media (max-width: 532px) {
-    input {
-      width: 70vw;
-    }
-  } */
 `;
 export const Morecontent = styled.div`
   display: flex;
@@ -427,7 +388,6 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const IconWrapperNew = styled.div``;
 export const InitialsWrapper = styled.div`
   width: 3.2rem;
   height: 3.2rem;
@@ -441,35 +401,7 @@ export const InitialsWrapper = styled.div`
     font-size: 1.2rem;
   }
 `;
-export const DataWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-`;
-export const Heading = styled.div`
-  font-size: 35px;
-  font-weight: 500;
-  color: #1d2e8b;
-`;
 
-export const Section = styled.div`
-  position: absolute;
-  left: 0;
-`;
-export const ButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-bottom: 30px;
-`;
-export const ModalButton = styled.div`
-  border: 1px solid transparent;
-  background: #1d2e88;
-  border-radius: 8px;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-`;
 export const UseButton = styled.div`
   background-color: #007ccb;
   text-decoration: none;
@@ -478,7 +410,6 @@ export const UseButton = styled.div`
   border: 0px;
   padding: 10px 22px;
   color: #fff;
-  /* margin-left: 10px; */
   @media (max-width: 767px) {
     display: none;
   }

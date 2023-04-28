@@ -42,14 +42,10 @@ export const RightContainer = styled.div`
 
 export const WrapperSection = styled.div`
   width: 100%;
-  /* position: relative; */
   background: #fff;
   border: 1px solid #eee;
   max-width: 1095px;
   margin-top: 22px;
-  /* @media (max-width: 1010px) {
-    padding: 82px 50px;
-  } */
 `;
 
 export const LeftContentWrapper = styled.div`
@@ -70,8 +66,6 @@ export const Date = styled.h3`
   line-height: 31px;
 `;
 export const Helpers = styled.div`
-  /* position: absolute;
-  top: -55px; */
   width: 100%;
   max-width: 1089px;
   display: flex;

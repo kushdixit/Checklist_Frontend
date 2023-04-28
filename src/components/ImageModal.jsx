@@ -1,6 +1,5 @@
 import React from "react";
 import EditImageModal from "components/EditImageModal";
-import ShareModal from "components/ShareModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/ImageModal";
 
@@ -41,9 +40,6 @@ const ImageModal = ({
       </ButtonWrapper>
       {modalType === "editimage" && (
         <EditImageModal notify={notify} togglefunction={togglefunction} />
-      )}
-      {modalType === "share" && (
-        <ShareModal notify={notify} togglefunction={togglefunction} />
       )}
     </ReactModal>
   );

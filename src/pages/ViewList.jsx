@@ -91,10 +91,6 @@ const ViewList = () => {
     navigate(`/search/${title}`, {
       state: { tagTerm: title, searchedterm: "" },
     });
-
-    // const response = await dispatch(
-    //   SearchList(`?Name=${title}&Type=3&SortBy=false`)
-    // );
   };
 
   return (

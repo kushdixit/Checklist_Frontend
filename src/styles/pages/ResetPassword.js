@@ -35,14 +35,7 @@ export const PasswordInput = styled.div`
     color: red;
   }
 `;
-export const ConfirmWrapper = styled.input`
-  padding: 10px 0px;
-  border-radius: 5px;
-  border: 1px solid #fff;
-  ::placeholder {
-    padding-left: 10px;
-  }
-`;
+
 export const ResetButton = styled.button`
   background-color: #1d2e88;
   padding: 13px 0px;

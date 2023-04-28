@@ -128,7 +128,6 @@ const CreateList = () => {
   return (
     <Section>
       <DescriptionSliderModal
-        modalType="description"
         isOpen={newmodal}
         togglefunction={toggleabc}
         checklistDiscriptionId={checkListDiscriptionId}

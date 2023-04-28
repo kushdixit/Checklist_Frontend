@@ -8,7 +8,6 @@ import {
   DataWrapper,
   Heading,
   DataInput,
-  EmailWrapper,
   IconInputFieldTextArea,
   MainTaskSectionForm,
   EditorSection,
@@ -32,7 +31,7 @@ const DescriptionModal = ({ task, checklistDiscriptionId }) => {
   );
 
   const dispatch = useDispatch();
-  const { setValue, handleSubmit, control, reset } = useForm({
+  const { setValue } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
@@ -66,7 +65,6 @@ const DescriptionModal = ({ task, checklistDiscriptionId }) => {
               Delete
             </button>
           </Heading>
-          <EmailWrapper></EmailWrapper>
         </DataWrapper>
       </Container>
       <DataInput>MANAGER TRAINING</DataInput>

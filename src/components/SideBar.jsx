@@ -8,7 +8,6 @@ import {
   Second,
   DisabledText,
   LeftContainer,
-  ArrowImage,
 } from "styles/components/SideBar";
 import Plus from "assets/SVG/Plus";
 import List from "assets/images/list.png";
@@ -35,7 +34,7 @@ const SideBar = () => {
     <LandingContainer width={open} animate={{ x: 8 }}>
       <First position={open}>
         <button className="button" onClick={() => setOpen(!open)}>
-          <ArrowImage src={!open ? Forward : Backward} />
+          <img src={!open ? Forward : Backward} alt="image" />
         </button>
       </First>
       <LeftContainer>

@@ -19,7 +19,6 @@ import {
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import TextArea from "components/FormElements/TextArea";
 import { ShortBy, ModalContainer } from "styles/components/ModalContainer";
-// import Plus from "assets/SVG/Plus";
 import TaskColon from "components/TaskColon";
 import Plus from "assets/images/plus.png";
 const ItemTypes = {

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Radio, Space } from "antd";
-
 import { RadioSection } from "styles/components/RadioButton";
 const RadioButton = () => {
   const [value, setValue] = useState(1);
