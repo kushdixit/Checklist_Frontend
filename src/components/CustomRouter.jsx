@@ -1,28 +1,8 @@
-import React, { useEffect } from "react";
-import {
-  useNavigate,
-  BrowserRouter,
-  Routes as ReactRoutes,
-  Route,
-} from "react-router-dom";
-import { isUser } from "helpers/isUser";
+import React from "react";
+import { BrowserRouter, Routes as ReactRoutes, Route } from "react-router-dom";
 import PrivateRoutes from "components/PrivateRoute";
-import routes, { ProcessRoute } from "constants/routes";
-
-const PublicRoutes = ({ component: RouteComponent, restricted, path }) => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (
-      isUser() &&
-      path !== "/checklists/:id" &&
-      path !== "/search/:id" &&
-      path !== "/guest/:id"
-    ) {
-      navigate(ProcessRoute.path);
-    }
-  }, [restricted, navigate]);
-  return <RouteComponent />;
-};
+import PublicRoute from "components/PublicRoute";
+import routes from "constants/routes";
 
 const CustomRouter = () => (
   <BrowserRouter>
@@ -37,7 +17,7 @@ const CustomRouter = () => (
               restricted ? (
                 <PrivateRoutes component={Component} />
               ) : (
-                <PublicRoutes
+                <PublicRoute
                   restricted={false}
                   component={Component}
                   path={path}

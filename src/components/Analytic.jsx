@@ -87,14 +87,14 @@ const Analytic = () => {
           {details
             ?.filter((item, index) => index <= 39)
             ?.filter((item) => item?.pinned)
-            .map((item) => (
-              <ChecklistWrapper data={item} />
+            .map((item, id) => (
+              <ChecklistWrapper data={item} id={id} />
             ))}
           {details
             ?.filter((item, index) => index <= 39)
             ?.filter((item) => !item?.pinned)
-            .map((item) => (
-              <ChecklistWrapper data={item} />
+            .map((item, id) => (
+              <ChecklistWrapper data={item} id={id} />
             ))}
         </WrapperSection>
       </RightContainer>

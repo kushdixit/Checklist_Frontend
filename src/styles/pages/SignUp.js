@@ -163,6 +163,7 @@ export const ChecklistHeader = styled.div`
   width: 100%;
   max-width: 747px;
   margin: 4rem 0 0rem;
+  cursor: pointer;
   @media (max-width: 1024px) {
     font-size: 2.5rem;
   }
