@@ -1,9 +1,4 @@
-import React, { useEffect, useState } from "react";
-import DescriptionTitle from "components/DescriptionTitle";
-import ChecklistTitle from "components/ChecklistTitle";
-import DescriptionSliderModal from "components/DescriptionSliderModal";
-import Footer from "components/Footer";
-import TaskTitle from "components/TaskTitle";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { notification } from "antd";
@@ -17,7 +12,15 @@ import {
   ChecklistSubWrapper,
   CenterSection,
 } from "styles/pages/Guest";
-import Navbar from "components/Navbar";
+
+const Navbar = lazy(() => import("components/Navbar"));
+const DescriptionTitle = lazy(() => import("components/DescriptionTitle"));
+const ChecklistTitle = lazy(() => import("components/ChecklistTitle"));
+const TaskTitle = lazy(() => import("components/TaskTitle"));
+const Footer = lazy(() => import("components/Footer"));
+const DescriptionSliderModal = lazy(() =>
+  import("components/DescriptionSliderModal")
+);
 
 const reff = React.createRef();
 
@@ -77,36 +80,50 @@ const Guest = () => {
 
   return (
     <div>
-      <DescriptionSliderModal
-        isOpen={newmodal}
-        togglefunction={toggleabc}
-        checklistDiscriptionId={checkListDiscriptionId}
-      />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <DescriptionSliderModal
+          isOpen={newmodal}
+          togglefunction={toggleabc}
+          checklistDiscriptionId={checkListDiscriptionId}
+        />
+      </Suspense>
       {contextHolder}
-      <Navbar
-        search={false}
-        addButton={false}
-        getPayload={getPayload}
-        createList={true}
-      />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Navbar
+          search={false}
+          addButton={false}
+          getPayload={getPayload}
+          createList={true}
+        />
+      </Suspense>
       <ChecklistMainWrapper>
         <ChecklistSubWrapper>
           <CenterSection>
             <div ref={reff}>
-              <ChecklistTitle />
-              <DescriptionTitle />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <ChecklistTitle />
+              </Suspense>
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <DescriptionTitle />
+              </Suspense>
               {pathId && ChecklistDetail?.checklistImageId !== 0 && (
-                <ImageWrapper
-                  title={pathId ? ChecklistDetail?.checklistName : "untitled"}
-                  imageId={ChecklistDetail?.checklistImageId}
-                />
+                <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                  <ImageWrapper
+                    title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+                    imageId={ChecklistDetail?.checklistImageId}
+                  />
+                </Suspense>
               )}
-              <TaskTitle toggleabc={toggleabc} />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <TaskTitle toggleabc={toggleabc} />
+              </Suspense>
             </div>
           </CenterSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
-      <Footer />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

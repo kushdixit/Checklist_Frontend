@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTemplateByEmail } from "redux/actions/template";
 import { saveListByUser } from "redux/actions/checklist";
 import { isUser } from "helpers/isUser";
-import Footer from "components/Footer";
-import Analytic from "components/Analytic";
-import View from "components/View";
-import SideBar from "components/SideBar";
-import Insight from "components/insights";
-import Navbar from "components/Navbar";
-import CreateList from "components/CreateList";
 import Search from "./search";
 import { LandingContainer, MainSection } from "styles/pages/ChecklistDashboard";
+
+const Footer = lazy(() => import("components/Footer"));
+const Analytic = lazy(() => import("components/Analytic"));
+const View = lazy(() => import("components/View"));
+const SideBar = lazy(() => import("components/SideBar"));
+const Insight = lazy(() => import("components/insights"));
+const Navbar = lazy(() => import("components/Navbar"));
+const CreateList = lazy(() => import("components/CreateList"));
 
 const ChecklistDashboard = () => {
   const dispatch = useDispatch();
@@ -34,16 +35,44 @@ const ChecklistDashboard = () => {
 
   return (
     <LandingContainer>
-      <Navbar search={true} icon={true} navType="freeTemplate" />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Navbar search={true} icon={true} navType="freeTemplate" />
+      </Suspense>
       <MainSection>
-        {isUser() && <SideBar />}
-        {pathname.includes("/search") && <Search />}
-        {pathname === "/process" && <Analytic />}
-        {pathname.includes("/temp") && <View />}
-        {pathname.includes("/create-list") && <CreateList />}
-        {pathname.includes("/insight") && <Insight />}
+        {isUser() && (
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <SideBar />
+          </Suspense>
+        )}
+        {pathname.includes("/search") && (
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <Search />
+          </Suspense>
+        )}
+        {pathname === "/process" && (
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <Analytic />
+          </Suspense>
+        )}
+        {pathname.includes("/temp") && (
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <View />
+          </Suspense>
+        )}
+        {pathname.includes("/create-list") && (
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <CreateList />
+          </Suspense>
+        )}
+        {pathname.includes("/insight") && (
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <Insight />
+          </Suspense>
+        )}
       </MainSection>
-      <Footer />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Footer />
+      </Suspense>
     </LandingContainer>
   );
 };

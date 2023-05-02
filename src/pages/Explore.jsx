@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SearchList } from "redux/actions/checklist";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import { SET_SEARCH } from "redux/actions/action_types";
-import Navbar from "components/Navbar";
-import LandingCheckliCard from "components/LandingCheckliCard";
-import TextInput from "components/FormElements/TextInput";
-import SideTags from "components/SideTags";
-import Footer from "components/Footer";
 import {
   LandingContainer,
   NavSection,
   IconInputFieldNew,
   SearchSection,
-  LeftSection,
   SubMainSection,
-  SeeMore,
-  SeeMoreWrapper,
 } from "styles/pages/Explore";
+
+const Navbar = lazy(() => import("components/Navbar"));
+const MiniCardWrapper = lazy(() => import("components/MiniCardWrapper"));
+const TextInput = lazy(() => import("components//FormElements/TextInput"));
+const SideTags = lazy(() => import("components/SideTags"));
+const Footer = lazy(() => import("components/Footer"));
 
 const Explore = (search) => {
   const dispatch = useDispatch();
@@ -81,7 +79,9 @@ const Explore = (search) => {
   return (
     <LandingContainer>
       <NavSection>
-        <Navbar search={true} navType="freeTemplate" />
+        <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+          <Navbar search={true} navType="freeTemplate" />
+        </Suspense>
       </NavSection>
       <h1>Free Template Library</h1>
       <p>
@@ -92,66 +92,39 @@ const Explore = (search) => {
         {search && (
           <form onSubmit={submitData(searchData)}>
             <IconInputFieldNew>
-              <TextInput
-                name="listSearch"
-                type="text"
-                placeholder="Search"
-                control={formControl}
-                handleKeyDown={handleKeyDown}
-                handlekeyPress={(e) => {
-                  SetUpdateSearch((prev) => prev + e.key);
-                }}
-              />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <TextInput
+                  name="listSearch"
+                  type="text"
+                  placeholder="Search"
+                  control={formControl}
+                  handleKeyDown={handleKeyDown}
+                  handlekeyPress={(e) => {
+                    SetUpdateSearch((prev) => prev + e.key);
+                  }}
+                />
+              </Suspense>
             </IconInputFieldNew>
           </form>
         )}
       </SearchSection>
       <SubMainSection>
         <div>
-          <MiniCardWrapper data={Popular} title="Popular" />
-          <MiniCardWrapper data={New} title="New" />
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <MiniCardWrapper data={Popular} title="Popular" />
+          </Suspense>
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <MiniCardWrapper data={New} title="New" />
+          </Suspense>
         </div>
-        <SideTags />
+        <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+          <SideTags />
+        </Suspense>
       </SubMainSection>
-      <Footer />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Footer />
+      </Suspense>
     </LandingContainer>
-  );
-};
-
-const MiniCardWrapper = ({ data, title }) => {
-  return (
-    <>
-      <LeftSection>
-        <div
-          style={{
-            marginTop: "25px",
-            width: "100%",
-            display: "flex",
-          }}
-        >
-          <h4
-            style={{
-              paddingBottom: "20px",
-              fontWeight: "400",
-            }}
-          >
-            {title} Checklists
-          </h4>
-        </div>
-        {data.length > 0 ? (
-          data
-            ?.filter((item, index) => index <= 8)
-            ?.map((item) => <LandingCheckliCard data={item} />)
-        ) : (
-          <div style={{ color: "#d65e5e" }}>No Record Found.</div>
-        )}
-        {data.length > 0 && (
-          <SeeMoreWrapper>
-            <SeeMore href={`/explore/${title}`}>See More</SeeMore>
-          </SeeMoreWrapper>
-        )}
-      </LeftSection>
-    </>
   );
 };
 

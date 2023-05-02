@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes as ReactRoutes, Route } from "react-router-dom";
 import PrivateRoutes from "components/PrivateRoute";
 import PublicRoute from "components/PublicRoute";
@@ -15,13 +15,17 @@ const CustomRouter = () => (
             path={path}
             element={
               restricted ? (
-                <PrivateRoutes component={Component} />
+                <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                  <PrivateRoutes component={Component} />
+                </Suspense>
               ) : (
-                <PublicRoute
-                  restricted={false}
-                  component={Component}
-                  path={path}
-                />
+                <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                  <PublicRoute
+                    restricted={false}
+                    component={Component}
+                    path={path}
+                  />
+                </Suspense>
               )
             }
           />

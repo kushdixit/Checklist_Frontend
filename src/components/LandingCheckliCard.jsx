@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getChecklistBySubcategory } from "redux/actions/task";
-import ProcessOne from "assets/images/Process-One.png";
+import ProcessOne from "assets/images/Process-One.webp";
 import ChecklistImage from "assets/images/checklist-image.png";
 import {
   NewSection,
@@ -29,13 +29,23 @@ const LandingCheckliCard = ({ data, id }) => {
     >
       <ImageSection>
         <ProcessSection>
-          <img src={ProcessOne} alt="ProcessOne" />
+          <img
+            src={ProcessOne}
+            alt="ProcessOne"
+            width={"100%"}
+            height={"100%"}
+          />
         </ProcessSection>
         <HeaderSection>
           <Text>{data?.checklistName}</Text>
           <Small>{data?.viewCount} Views</Small>
           <ProgressSection>
-            <img src={ChecklistImage} alt="ChecklistImage" />
+            <img
+              src={ChecklistImage}
+              alt="ChecklistImage"
+              width={"100%"}
+              height={"100%"}
+            />
           </ProgressSection>
           <Name>
             <div>by:</div>

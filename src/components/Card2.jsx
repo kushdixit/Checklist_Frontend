@@ -25,7 +25,7 @@ const ItemTypes = {
   CARD: "card",
 };
 
-export const Card = ({
+const Card = ({
   id,
   text,
   index,
@@ -316,3 +316,5 @@ export const Card = ({
     </div>
   );
 };
+
+export default Card;

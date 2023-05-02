@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { SearchList } from "redux/actions/checklist";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
-import LandingCheckliCard from "components/LandingCheckliCard";
-import Navbar from "components/Navbar";
-import Footer from "components/Footer";
-import TextInput from "components/FormElements/TextInput";
 import { SET_SEARCH } from "redux/actions/action_types";
 import {
   LandingContainer,
@@ -17,6 +13,11 @@ import {
   IconInputFieldNew,
   SearchSection,
 } from "styles/pages/CategoryByName";
+
+const LandingCheckliCard = lazy(() => import("components/LandingCheckliCard"));
+const Navbar = lazy(() => import("components/Navbar"));
+const Footer = lazy(() => import("components/Footer"));
+const TextInput = lazy(() => import("components/FormElements/TextInput"));
 
 const CategoryByName = () => {
   const { id: pathId } = useParams();
@@ -88,22 +89,26 @@ const CategoryByName = () => {
   return (
     <LandingContainer>
       <NavSection>
-        <Navbar search={true} navType="home" />
+        <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+          <Navbar search={true} navType="home" />
+        </Suspense>
       </NavSection>
       <SubMainSection>
         <SearchSection>
           <form onSubmit={submitData(searchData)}>
             <IconInputFieldNew>
-              <TextInput
-                name="listSearch"
-                type="text"
-                placeholder="Search templates"
-                control={formControl}
-                handleKeyDown={handleKeyDown}
-                handlekeyPress={(e) => {
-                  SetUpdateSearch((prev) => prev + e.key);
-                }}
-              />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <TextInput
+                  name="listSearch"
+                  type="text"
+                  placeholder="Search templates"
+                  control={formControl}
+                  handleKeyDown={handleKeyDown}
+                  handlekeyPress={(e) => {
+                    SetUpdateSearch((prev) => prev + e.key);
+                  }}
+                />
+              </Suspense>
             </IconInputFieldNew>
           </form>
         </SearchSection>
@@ -115,15 +120,17 @@ const CategoryByName = () => {
         >
           <div style={{ paddingTop: "75px" }}>
             <LeftSection>
-              {Searched.length > 0 &&
-                Searched?.map((item, id) => (
-                  <LandingCheckliCard
-                    key={id}
-                    data={item}
-                    index={id}
-                    id={`card${id}`}
-                  />
-                ))}
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                {Searched.length > 0 &&
+                  Searched?.map((item, id) => (
+                    <LandingCheckliCard
+                      key={id}
+                      data={item}
+                      index={id}
+                      id={`card${id}`}
+                    />
+                  ))}
+              </Suspense>
             </LeftSection>
             {isLoading ? (
               <div style={{ color: "#007ccb", marginBottom: "10px" }}>
@@ -154,7 +161,9 @@ const CategoryByName = () => {
           </div>
         </div>
       </SubMainSection>
-      <Footer />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Footer />
+      </Suspense>
     </LandingContainer>
   );
 };

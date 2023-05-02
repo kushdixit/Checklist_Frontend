@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import { getAllTemplate } from "redux/actions/template";
 import { SearchList } from "redux/actions/checklist";
-import Navbar from "components/Navbar";
 import Button from "components/Button";
 import {
   LandingContainer,
@@ -30,6 +29,7 @@ import preview from "assets/images/preview.webp";
 const LandingCard = lazy(() => import("components/LandingCard"));
 const Footer = lazy(() => import("components/Footer"));
 const ClientCard = lazy(() => import("components/ClientCard"));
+const Navbar = lazy(() => import("components/Navbar"));
 
 const Tags = ["New", "Yoga", "Test", "Monday", "Education"];
 
@@ -62,7 +62,9 @@ const Landing = () => {
     <LandingContainer>
       <UpperContentWrapper>
         <NavSection>
-          <Navbar search={true} navType="home" />
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <Navbar search={true} navType="home" />
+          </Suspense>
         </NavSection>
         <Wrapper>
           <Heading>
@@ -114,14 +116,19 @@ const Landing = () => {
               marginBottom: "100px",
             }}
           >
-            <ChecklistImage src={preview} alt="Share" />
+            <ChecklistImage
+              src={preview}
+              alt="Share"
+              width={"100%"}
+              height={"100%"}
+            />
           </div>
           <SecondHeading>How it works</SecondHeading>
           <p style={{ paddingBottom: "50px" }}>
             Organize your mind or scale your bussiness the right way,every time.
           </p>
           <LandingCardSection>
-            <Suspense fallback={<h1>Loading…</h1>}>
+            <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
               <LandingCard />
             </Suspense>
           </LandingCardSection>
@@ -154,7 +161,7 @@ const Landing = () => {
           </LandingChecklistCardSection>
         </Wrapper>
       </UpperContentWrapper>
-      <Suspense fallback={<h1>Loading…</h1>}>
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
         <Footer />
       </Suspense>
     </LandingContainer>
@@ -177,7 +184,7 @@ const MiniCardWrapper = ({ data }) => {
             Popular
           </h2>
         </div>
-        <Suspense fallback={<h1>Loading…</h1>}>
+        <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
           <>
             <FirstSection>
               {data

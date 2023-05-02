@@ -47,3 +47,10 @@ code {
 button {
   cursor: pointer;
 }
+
+.fallback-css {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

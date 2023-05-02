@@ -1,10 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_SEARCH } from "redux/actions/action_types";
-import AlertModal from "components/AlertModal";
-import TextInput from "components/FormElements/TextInput";
-import Button from "components/Button";
 import {
   NavSection,
   FirstSection,
@@ -40,6 +37,11 @@ import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
 import PlusBlue from "assets/SVG/PlusBlue";
 import Login from "assets/images/login.png";
+
+const AlertModal = lazy(() => import("components/AlertModal"));
+const Button = lazy(() => import("components/Button"));
+const TextInput = lazy(() => import("components/FormElements/TextInput"));
+
 const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   const wrapperRef = useRef();
   const navigate = useNavigate();
@@ -126,149 +128,69 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   };
 
   return (
-    <NavSection>
-      <BurgerSection>
-        <HeaderWrapper>
-          {access_token ? (
-            <ImageSubSection>
-              <SecondSubSection>
-                <button
-                  className="button"
-                  ref={wrapperRef}
-                  onClick={() => setLogoutModal(!logoutModal)}
-                >
-                  <InitialsWrapperNew>
-                    <WrapperSize>
-                      <h4>{firstName[0].toUpperCase()}</h4>
-                      <h4> {lastName[0].toUpperCase()}</h4>
-                    </WrapperSize>
-                  </InitialsWrapperNew>
-                </button>
-              </SecondSubSection>
-              {logoutModal ? (
-                <Morecontent
-                  onClick={() => {
-                    toggleab(true);
-                  }}
-                >
-                  <Logout
-                    style={{
-                      width: "15px",
-                      marginRight: "0.25rem",
+    <>
+      <NavSection>
+        <BurgerSection>
+          <HeaderWrapper>
+            {access_token ? (
+              <ImageSubSection>
+                <SecondSubSection>
+                  <button
+                    className="button"
+                    ref={wrapperRef}
+                    onClick={() => setLogoutModal(!logoutModal)}
+                  >
+                    <InitialsWrapperNew>
+                      <WrapperSize>
+                        <h4>{firstName[0].toUpperCase()}</h4>
+                        <h4> {lastName[0].toUpperCase()}</h4>
+                      </WrapperSize>
+                    </InitialsWrapperNew>
+                  </button>
+                </SecondSubSection>
+                {logoutModal ? (
+                  <Morecontent
+                    onClick={() => {
+                      toggleab(true);
                     }}
-                  />
-                  <ContentItem>Logout</ContentItem>
-                </Morecontent>
-              ) : null}
-            </ImageSubSection>
-          ) : (
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <LoginSection onClick={() => navigate("/sign-in")}>
-                {" "}
-                <img src={Login} alt="img" />{" "}
-              </LoginSection>
-            </div>
-          )}
-          <LogoSearchSection>
-            <LogoSection
-              onClick={() =>
-                access_token ? navigate("/process") : navigate("/")
-              }
-            >
-              Checklist
-            </LogoSection>
-          </LogoSearchSection>
-          {addButton && (
-            <Footer>
-              <Button
-                className="button"
-                handleClick={() => newTemplateHandler()}
+                  >
+                    <Logout
+                      style={{
+                        width: "15px",
+                        marginRight: "0.25rem",
+                      }}
+                    />
+                    <ContentItem>Logout</ContentItem>
+                  </Morecontent>
+                ) : null}
+              </ImageSubSection>
+            ) : (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <LoginSection onClick={() => navigate("/sign-in")}>
+                  {" "}
+                  <img src={Login} alt="img" />{" "}
+                </LoginSection>
+              </div>
+            )}
+            <LogoSearchSection>
+              <LogoSection
+                onClick={() =>
+                  access_token ? navigate("/process") : navigate("/")
+                }
               >
-                +
-              </Button>
-            </Footer>
-          )}
-          {navType === "home" && (
-            <FreeTemplatetext onClick={() => navigate("/explore")}>
-              Free Template
-            </FreeTemplatetext>
-          )}
-        </HeaderWrapper>
-        <SearchSection>
-          {access_token && search && (
-            <form onSubmit={submitData(searchData)}>
-              <IconInputFieldNew>
-                <TextInput
-                  control={formControl}
-                  name="listSearch"
-                  type="text"
-                  placeholder="Search"
-                />
-              </IconInputFieldNew>
-            </form>
-          )}
-        </SearchSection>
-      </BurgerSection>
-      <SubNavSection>
-        <FirstSection>
-          <HeadingText
-            onClick={() =>
-              access_token ? navigate("/process") : navigate("/")
-            }
-          >
-            Checklist
-          </HeadingText>
-        </FirstSection>
-        <SecondSection>
-          {access_token && search && (
-            <IconInputField style={{ display: "flex" }}>
-              <form
-                style={{ width: "100%", display: "flex" }}
-                onSubmit={submitData(searchData)}
-              >
-                <IconInputField>
-                  <TextInput
-                    name="listSearch"
-                    type="text"
-                    placeholder="Search"
-                    control={formControl}
-                    handleKeyDown={handleKeyDown}
-                    handlekeyPress={(e) => {
-                      SetUpdateSearch((prev) => prev + e.key);
-                    }}
-                  />
-                </IconInputField>
-              </form>
-              <IconWrapper onClick={handleIconClick}>
-                <Button
-                  style={{
-                    background: "transparent",
-                    border: "none",
-                    boxShadow: "none",
-                    cursor: "text",
-                  }}
-                >
-                  {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
-                </Button>
-              </IconWrapper>
-            </IconInputField>
-          )}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "20px",
-              minHeight: "63px",
-            }}
-          >
+                Checklist
+              </LogoSection>
+            </LogoSearchSection>
             {addButton && (
               <Footer>
-                <Button
-                  className="button"
-                  handleClick={() => newTemplateHandler()}
-                >
-                  {`+ ${buttonType}`}
-                </Button>
+                <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                  <Button
+                    className="button"
+                    handleClick={() => newTemplateHandler()}
+                  >
+                    +
+                  </Button>
+                </Suspense>
               </Footer>
             )}
             {navType === "home" && (
@@ -276,72 +198,174 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                 Free Template
               </FreeTemplatetext>
             )}
-            {access_token ? (
-              <ImageSubSection>
-                <SecondSubSection>
-                  {icon && (
-                    <BlueIcon
-                      onClick={() => navigate("/create-list")}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <PlusBlue />
-                    </BlueIcon>
-                  )}
-                  <Profile>
-                    <h4 style={{ textTransform: "capitalize" }}>
-                      {firstName} {lastName}
-                    </h4>
-                  </Profile>
-                  <button
-                    style={{ cursor: "pointer" }}
-                    className="button"
-                    onClick={() => setLogoutModal(!logoutModal)}
-                    ref={wrapperRef}
+          </HeaderWrapper>
+          <SearchSection>
+            {access_token && search && (
+              <form onSubmit={submitData(searchData)}>
+                <IconInputFieldNew>
+                  <Suspense
+                    fallback={<h1 className="fallback-css">Loading…</h1>}
                   >
-                    <InitialsWrapper>
-                      <div>{firstName[0].toUpperCase()}</div>
-                      <div> {lastName[0].toUpperCase()}</div>
-                    </InitialsWrapper>
-                    {logoutModal ? (
-                      <Morecontent onClick={() => toggleab(true)}>
-                        <Logout
-                          style={{
-                            width: "15px",
-                            marginRight: "0.25rem",
-                          }}
-                        />
-                        <ContentItem>Logout</ContentItem>
-                      </Morecontent>
-                    ) : null}
-                  </button>
-                </SecondSubSection>
-              </ImageSubSection>
-            ) : (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <Logintext onClick={() => navigate("/sign-in")}>
-                  Login
-                </Logintext>
-
-                <UseButton>
-                  <Link
-                    to={"/sign-up"}
-                    style={{ textDecoration: "none", color: "white" }}
-                  >
-                    Use for free
-                  </Link>
-                </UseButton>
-              </div>
+                    <TextInput
+                      control={formControl}
+                      name="listSearch"
+                      type="text"
+                      placeholder="Search"
+                    />
+                  </Suspense>
+                </IconInputFieldNew>
+              </form>
             )}
-          </div>
-        </SecondSection>
-        <AlertModal
-          modalType="logout"
-          isOpen={modal}
-          togglefunction={toggleab}
-          notify={logout}
-        />
-      </SubNavSection>
-    </NavSection>
+          </SearchSection>
+        </BurgerSection>
+        <SubNavSection>
+          <FirstSection>
+            <HeadingText
+              onClick={() =>
+                access_token ? navigate("/process") : navigate("/")
+              }
+            >
+              Checklist
+            </HeadingText>
+          </FirstSection>
+          <SecondSection>
+            {access_token && search && (
+              <IconInputField style={{ display: "flex" }}>
+                <form
+                  style={{ width: "100%", display: "flex" }}
+                  onSubmit={submitData(searchData)}
+                >
+                  <IconInputField>
+                    <Suspense
+                      fallback={<h1 className="fallback-css">Loading…</h1>}
+                    >
+                      <TextInput
+                        name="listSearch"
+                        type="text"
+                        placeholder="Search"
+                        control={formControl}
+                        handleKeyDown={handleKeyDown}
+                        handlekeyPress={(e) => {
+                          SetUpdateSearch((prev) => prev + e.key);
+                        }}
+                      />
+                    </Suspense>
+                  </IconInputField>
+                </form>
+                <IconWrapper onClick={handleIconClick}>
+                  <Suspense
+                    fallback={<h1 className="fallback-css">Loading…</h1>}
+                  >
+                    <Button
+                      style={{
+                        background: "transparent",
+                        border: "none",
+                        boxShadow: "none",
+                        cursor: "text",
+                      }}
+                    >
+                      {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
+                    </Button>
+                  </Suspense>
+                </IconWrapper>
+              </IconInputField>
+            )}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                minHeight: "63px",
+              }}
+            >
+              {addButton && (
+                <Footer>
+                  <Suspense
+                    fallback={<h1 className="fallback-css">Loading…</h1>}
+                  >
+                    <Button
+                      className="button"
+                      handleClick={() => newTemplateHandler()}
+                    >
+                      {`+ ${buttonType}`}
+                    </Button>
+                  </Suspense>
+                </Footer>
+              )}
+              {navType === "home" && (
+                <FreeTemplatetext onClick={() => navigate("/explore")}>
+                  Free Template
+                </FreeTemplatetext>
+              )}
+              {access_token ? (
+                <ImageSubSection>
+                  <SecondSubSection>
+                    {icon && (
+                      <BlueIcon
+                        onClick={() => navigate("/create-list")}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <PlusBlue />
+                      </BlueIcon>
+                    )}
+                    <Profile>
+                      <h4 style={{ textTransform: "capitalize" }}>
+                        {firstName} {lastName}
+                      </h4>
+                    </Profile>
+                    <button
+                      style={{ cursor: "pointer" }}
+                      className="button"
+                      onClick={() => setLogoutModal(!logoutModal)}
+                      ref={wrapperRef}
+                    >
+                      <InitialsWrapper>
+                        <div>{firstName[0].toUpperCase()}</div>
+                        <div> {lastName[0].toUpperCase()}</div>
+                      </InitialsWrapper>
+                      {logoutModal ? (
+                        <Morecontent onClick={() => toggleab(true)}>
+                          <Logout
+                            style={{
+                              width: "15px",
+                              marginRight: "0.25rem",
+                            }}
+                          />
+                          <ContentItem>Logout</ContentItem>
+                        </Morecontent>
+                      ) : null}
+                    </button>
+                  </SecondSubSection>
+                </ImageSubSection>
+              ) : (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Logintext onClick={() => navigate("/sign-in")}>
+                    Login
+                  </Logintext>
+
+                  <UseButton>
+                    <Link
+                      to={"/sign-up"}
+                      style={{ textDecoration: "none", color: "white" }}
+                    >
+                      Use for free
+                    </Link>
+                  </UseButton>
+                </div>
+              )}
+            </div>
+          </SecondSection>
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <AlertModal
+              modalType="logout"
+              isOpen={modal}
+              togglefunction={toggleab}
+              notify={logout}
+            />
+          </Suspense>
+        </SubNavSection>
+      </NavSection>
+    </>
   );
 };
 export default NavBar;

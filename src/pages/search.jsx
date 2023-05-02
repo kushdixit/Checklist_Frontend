@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import { SearchList } from "redux/actions/checklist";
 import { SET_SEARCH } from "redux/actions/action_types";
-import LandingCheckliCard from "components/LandingCheckliCard";
 import {
   SearchWrapper,
   SearchText,
   SearchCardWrapper,
 } from "styles/pages/Search";
+
+const LandingCheckliCard = lazy(() => import("components/LandingCheckliCard"));
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -61,10 +62,12 @@ const Search = () => {
     <SearchWrapper>
       <SearchText>Search Results</SearchText>
       <SearchCardWrapper>
-        {Searched.length > 0 &&
-          Searched?.map((item, id) => (
-            <LandingCheckliCard key={id} data={item} index={id} />
-          ))}
+        <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+          {Searched.length > 0 &&
+            Searched?.map((item, id) => (
+              <LandingCheckliCard key={id} data={item} index={id} />
+            ))}
+        </Suspense>
       </SearchCardWrapper>
       {isLoading ? (
         <div style={{ color: "#007ccb", marginBottom: "10px" }}>Loading...</div>

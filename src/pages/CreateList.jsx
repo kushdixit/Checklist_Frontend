@@ -1,13 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
-import DescriptionTitle from "components/DescriptionTitle";
-import ChecklistTitle from "components/ChecklistTitle";
-import SubModal from "components/SubModal";
-import ImageModal from "components/ImageModal";
-import DescriptionSliderModal from "components/DescriptionSliderModal";
-import Footer from "components/Footer";
-import RightSectionCard from "components/RightSectionCard";
-import ShareSectionCard from "components/Share";
-import TaskTitle from "components/TaskTitle";
+import React, { useEffect, useState, useRef, lazy, Suspense } from "react";
 import { ImageWrapper } from "helpers/copy";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -26,7 +17,19 @@ import {
   RightCardWrapper,
   EditImage,
 } from "styles/pages/EditChecklist";
-import Navbar from "components/Navbar";
+
+const Navbar = lazy(() => import("components/Navbar"));
+const DescriptionTitle = lazy(() => import("components/DescriptionTitle"));
+const ChecklistTitle = lazy(() => import("components/ChecklistTitle"));
+const SubModal = lazy(() => import("components/SubModal"));
+const ImageModal = lazy(() => import("components/ImageModal"));
+const RightSectionCard = lazy(() => import("components/RightSectionCard"));
+const ShareSectionCard = lazy(() => import("components/Share"));
+const TaskTitle = lazy(() => import("components/TaskTitle"));
+const Footer = lazy(() => import("components/Footer"));
+const DescriptionSliderModal = lazy(() =>
+  import("components/DescriptionSliderModal")
+);
 
 const reff = React.createRef();
 
@@ -52,11 +55,13 @@ const ImageHandler = ({ imageId }) => {
   }
   return (
     <RightCardWrapper>
-      <ImageModal
-        modalType="editimage"
-        isOpen={modal}
-        togglefunction={toggleab}
-      />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <ImageModal
+          modalType="editimage"
+          isOpen={modal}
+          togglefunction={toggleab}
+        />
+      </Suspense>
       {imagePath && (
         <img
           src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
@@ -89,12 +94,10 @@ const CreateList = () => {
   const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
-    // const token = localStorage.getItem("access_token");
-    // if (!token) navigate("/sign-in");
     pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
-  const { control: checklistFormControl, getValues } = useForm({
+  const { getValues } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     defaultValues: {
@@ -133,36 +136,56 @@ const CreateList = () => {
         checklistDiscriptionId={checkListDiscriptionId}
       />
       {contextHolder}
-      <Navbar
-        search={false}
-        addButton={false}
-        getPayload={getPayload}
-        createList={true}
-      />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Navbar
+          search={false}
+          addButton={false}
+          getPayload={getPayload}
+          createList={true}
+        />
+      </Suspense>
       <ChecklistMainWrapper>
         <ChecklistSubWrapper>
           <LeftSection>
             <LeftContentWrapper ref={reff}>
-              <ChecklistTitle />
-              <DescriptionTitle />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <ChecklistTitle />
+              </Suspense>
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <DescriptionTitle />
+              </Suspense>
               {pathId && ChecklistDetail?.checklistImageId !== 0 && (
-                <ImageWrapper
-                  title={pathId ? ChecklistDetail?.checklistName : "untitled"}
-                  imageId={ChecklistDetail?.checklistImageId}
-                />
+                <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                  <ImageWrapper
+                    title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+                    imageId={ChecklistDetail?.checklistImageId}
+                  />
+                </Suspense>
               )}
-              <TaskTitle toggleabc={toggleabc} />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <TaskTitle toggleabc={toggleabc} />
+              </Suspense>
             </LeftContentWrapper>
           </LeftSection>
           <RightSection>
-            <RightSectionCard pathId={pathId} reff={reff} />
-            <ShareSectionCard pathId={pathId} />
-            <Style />
-            <ImageHandler imageId={ChecklistDetail?.checklistImageId} />
+            <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+              <RightSectionCard pathId={pathId} reff={reff} />
+            </Suspense>
+            <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+              <ShareSectionCard pathId={pathId} />
+            </Suspense>
+            <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+              <Style />
+            </Suspense>
+            <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+              <ImageHandler imageId={ChecklistDetail?.checklistImageId} />
+            </Suspense>
           </RightSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
-      <Footer />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Footer />
+      </Suspense>
     </Section>
   );
 };
@@ -170,11 +193,13 @@ const CreateList = () => {
 const Style = () => {
   return (
     <RightCardWrapper>
-      <SubModal
-        title="Styles"
-        text="Circles with numbers"
-        buttonName="Fonts/Colors"
-      />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <SubModal
+          title="Styles"
+          text="Circles with numbers"
+          buttonName="Fonts/Colors"
+        />
+      </Suspense>
     </RightCardWrapper>
   );
 };

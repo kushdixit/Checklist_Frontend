@@ -1,12 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchList } from "redux/actions/checklist";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
-import LandingCheckliCard from "components/LandingCheckliCard";
-import Navbar from "components/Navbar";
-import SideTags from "components/SideTags";
-import Footer from "components/Footer";
 import {
   LandingContainer,
   NavSection,
@@ -15,6 +11,11 @@ import {
   SubMainSection,
   CreateList,
 } from "styles/pages/Category";
+
+const LandingCheckliCard = lazy(() => import("components/LandingCheckliCard"));
+const Navbar = lazy(() => import("components/Navbar"));
+const SideTags = lazy(() => import("components/SideTags"));
+const Footer = lazy(() => import("components/Footer"));
 
 const Categories = () => {
   const { id: pathId } = useParams();
@@ -83,7 +84,9 @@ const Categories = () => {
   return (
     <LandingContainer>
       <NavSection>
-        <Navbar search={true} navType="home" />
+        <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+          <Navbar search={true} navType="home" />
+        </Suspense>
       </NavSection>
       <SubMainSection>
         <TextWrapper>
@@ -128,15 +131,17 @@ const Categories = () => {
               New Checklists
             </h4>
             <LeftSection>
-              {Searched.length > 0 &&
-                Searched?.map((item, id) => (
-                  <LandingCheckliCard
-                    key={id}
-                    data={item}
-                    index={id}
-                    id={`card${id}`}
-                  />
-                ))}
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                {Searched.length > 0 &&
+                  Searched?.map((item, id) => (
+                    <LandingCheckliCard
+                      key={id}
+                      data={item}
+                      index={id}
+                      id={`card${id}`}
+                    />
+                  ))}
+              </Suspense>
             </LeftSection>
             {isLoading ? (
               <div style={{ color: "#007ccb", marginBottom: "10px" }}>
@@ -165,10 +170,14 @@ const Categories = () => {
               </>
             )}
           </div>
-          <SideTags />
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            <SideTags />
+          </Suspense>
         </div>
       </SubMainSection>
-      <Footer />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Footer />
+      </Suspense>
     </LandingContainer>
   );
 };
