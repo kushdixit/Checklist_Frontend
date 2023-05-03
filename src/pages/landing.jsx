@@ -176,8 +176,7 @@ const MiniCardWrapper = ({ data }) => {
         <div style={{ width: "100%", display: "flex" }}>
           <h2
             style={{
-              paddingBottom: "10px",
-              marginLeft: "8px",
+              margin: "0px",
               fontWeight: "600",
             }}
           >

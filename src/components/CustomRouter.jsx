@@ -15,11 +15,11 @@ const CustomRouter = () => (
             path={path}
             element={
               restricted ? (
-                <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <Suspense fallback={<h1 className="fallback-css">..</h1>}>
                   <PrivateRoutes component={Component} />
                 </Suspense>
               ) : (
-                <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <Suspense fallback={<h1 className="fallback-css">..</h1>}>
                   <PublicRoute
                     restricted={false}
                     component={Component}

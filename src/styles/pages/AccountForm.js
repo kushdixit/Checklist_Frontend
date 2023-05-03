@@ -130,7 +130,9 @@ export const LeftContainer = styled.div`
   text-align: center;
   align-items: center;
   > img {
+    height: auto;
     margin: 0 auto;
+    width: auto;
   }
   @media (max-width: 1024px) {
     display: none;

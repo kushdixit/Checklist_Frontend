@@ -51,13 +51,6 @@ const Search = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(showAppLoader());
-  //   if (pathId === "New") ViewHandler(false);
-  //   else if (pathId === "Popular") ViewHandler(true);
-  //   else TagHandler();
-  // }, [count]);
-
   return (
     <SearchWrapper>
       <SearchText>Search Results</SearchText>

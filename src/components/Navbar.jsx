@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_SEARCH } from "redux/actions/action_types";
+import Button from "components/Button";
 import {
   NavSection,
   FirstSection,
@@ -39,7 +40,6 @@ import PlusBlue from "assets/SVG/PlusBlue";
 import Login from "assets/images/login.png";
 
 const AlertModal = lazy(() => import("components/AlertModal"));
-const Button = lazy(() => import("components/Button"));
 const TextInput = lazy(() => import("components/FormElements/TextInput"));
 
 const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
@@ -183,14 +183,12 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
             </LogoSearchSection>
             {addButton && (
               <Footer>
-                <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
-                  <Button
-                    className="button"
-                    handleClick={() => newTemplateHandler()}
-                  >
-                    +
-                  </Button>
-                </Suspense>
+                <Button
+                  className="button"
+                  handleClick={() => newTemplateHandler()}
+                >
+                  +
+                </Button>
               </Footer>
             )}
             {navType === "home" && (
@@ -203,9 +201,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
             {access_token && search && (
               <form onSubmit={submitData(searchData)}>
                 <IconInputFieldNew>
-                  <Suspense
-                    fallback={<h1 className="fallback-css">Loading…</h1>}
-                  >
+                  <Suspense fallback={<h1 className="">Loading…</h1>}>
                     <TextInput
                       control={formControl}
                       name="listSearch"
@@ -236,9 +232,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                   onSubmit={submitData(searchData)}
                 >
                   <IconInputField>
-                    <Suspense
-                      fallback={<h1 className="fallback-css">Loading…</h1>}
-                    >
+                    <Suspense fallback={<h1 className="">Loading…</h1>}>
                       <TextInput
                         name="listSearch"
                         type="text"
@@ -253,20 +247,16 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                   </IconInputField>
                 </form>
                 <IconWrapper onClick={handleIconClick}>
-                  <Suspense
-                    fallback={<h1 className="fallback-css">Loading…</h1>}
+                  <Button
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      boxShadow: "none",
+                      cursor: "text",
+                    }}
                   >
-                    <Button
-                      style={{
-                        background: "transparent",
-                        border: "none",
-                        boxShadow: "none",
-                        cursor: "text",
-                      }}
-                    >
-                      {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
-                    </Button>
-                  </Suspense>
+                    {updateSearch.length == 0 ? <SearchNew /> : <Cancel />}
+                  </Button>
                 </IconWrapper>
               </IconInputField>
             )}
@@ -280,16 +270,12 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
             >
               {addButton && (
                 <Footer>
-                  <Suspense
-                    fallback={<h1 className="fallback-css">Loading…</h1>}
+                  <Button
+                    className="button"
+                    handleClick={() => newTemplateHandler()}
                   >
-                    <Button
-                      className="button"
-                      handleClick={() => newTemplateHandler()}
-                    >
-                      {`+ ${buttonType}`}
-                    </Button>
-                  </Suspense>
+                    {`+ ${buttonType}`}
+                  </Button>
                 </Footer>
               )}
               {navType === "home" && (
@@ -355,7 +341,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
               )}
             </div>
           </SecondSection>
-          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+          <Suspense fallback={<h1 className=""></h1>}>
             <AlertModal
               modalType="logout"
               isOpen={modal}

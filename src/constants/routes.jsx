@@ -1,6 +1,4 @@
 import { lazy } from "react";
-// import ChecklistDashboard from "pages/ChecklistDashboard";
-
 const SignIn = lazy(() => import("pages/sign-in"));
 const SignUp = lazy(() => import("pages/sign-up"));
 const Landing = lazy(() => import("pages/landing"));

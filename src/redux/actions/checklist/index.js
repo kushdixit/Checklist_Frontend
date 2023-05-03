@@ -66,7 +66,6 @@ export const editChecklistApi = (checklistName, id) => async (dispatch) => {
       hideLoader: false,
     });
     return { error: false, message: response?.status };
-    // dispatch({ type: SET_CHECKLIST, payload: response.data });
   } catch (ex) {
     return { error: true, message: ex?.response?.data?.Message };
   }

@@ -85,10 +85,6 @@ export const editTask =
       taskBackgroundColor,
       style,
       imageUrl,
-      // taskTag: taskTag || "",
-      // taskBackgroundColor: taskBackgroundColor || "",
-      // style: style || "",
-      // imageUrl: imageUrl || "",
     };
     try {
       const response = await axioPath.put("v1/Task/tasks", payload, {

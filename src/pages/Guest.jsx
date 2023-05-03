@@ -42,12 +42,10 @@ const Guest = () => {
   const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
-    // const token = localStorage.getItem("access_token");
-    // if (!token) navigate("/sign-in");
     pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
-  const { control: checklistFormControl, getValues } = useForm({
+  const { getValues } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     defaultValues: {
