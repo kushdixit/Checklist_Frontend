@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,10 +35,6 @@ const Footer = lazy(() => import("components/Footer"));
 const ViewTask = lazy(() => import("components/ViewTask"));
 
 const ViewList = () => {
-  const [newmodal, setNewModal] = useState(false);
-  function toggleabc(data) {
-    setNewModal(data);
-  }
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,7 +43,9 @@ const ViewList = () => {
     pathId ? state.checklist : null
   );
   const [api, contextHolder] = notification.useNotification();
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getAllTemplate());
   }, []);
 
@@ -80,7 +78,7 @@ const ViewList = () => {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       const re = await dispatch(getChecklistBySubcategory(res?.id));
       re.error === false &&
-        navigate(`/temp/${res?.id}`, {
+        navigate(`/dashboard/${res?.id}`, {
           state: { showEditable: false, cardType: "user" },
         });
     }
@@ -118,7 +116,7 @@ const ViewList = () => {
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
               <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
-                <ViewTask toggleabc={toggleabc} />
+                <ViewTask />
               </Suspense>
             </LeftContentWrapper>
             <ProgressSection>

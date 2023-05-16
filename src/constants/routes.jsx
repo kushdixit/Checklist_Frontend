@@ -97,7 +97,7 @@ export const ViewListRouteById = {
 
 export const TempRoute = {
   component: ChecklistDashboard,
-  path: "/temp",
+  path: "/dashboard",
   exact: true,
   restricted: true,
 };
@@ -111,7 +111,7 @@ export const TempRouteeee = {
 
 export const TempRouteById = {
   component: ChecklistDashboard,
-  path: "/temp/:id",
+  path: "/dashboard/:id",
   exact: true,
   restricted: true,
 };

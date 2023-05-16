@@ -122,6 +122,7 @@ export const BurgerSection = styled.div`
 export const SearchSection = styled.div`
   display: none;
   @media (max-width: 767px) {
+    margin-top: 0.5rem;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -278,19 +279,9 @@ export const IconInputField = styled.div`
   }
   @media (max-width: 1012px) {
     width: 100%;
-    max-width: 190px;
-    input {
-      width: unset;
-      max-width: unset;
-    }
   }
   @media (max-width: 1120px) {
     width: 100%;
-    max-width: 205px;
-    input {
-      width: unset;
-      max-width: unset;
-    }
   }
   @media (max-width: 767px) {
     width: 100%;

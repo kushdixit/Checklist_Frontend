@@ -147,7 +147,7 @@ const ChecklistWrapper = ({ data }) => {
             }}
             onClick={() => {
               dispatch({ type: UPDATE_DATA, payload: {} });
-              navigate(`/temp/${data?.id}`, {
+              navigate(`/dashboard/${data?.id}`, {
                 state: { showEditable: false, cardType: "user" },
               });
             }}

@@ -68,7 +68,7 @@ export const Heading = styled.div`
 
 export const LandingChecklistCardSection = styled.div`
   margin: 195px 0 0 0;
-  h5 {
+  h3 {
     font-size: 32px;
     font-weight: 400;
     margin: 0;
@@ -138,8 +138,10 @@ export const ChecklistButton = styled.div`
 export const ChecklistImage = styled.img`
   border: 1px solid #eeeeee;
   box-shadow: 0 6px 15px 0 rgba(36, 37, 38, 0.08);
+  max-width: 100%;
   @media (max-width: 1200px) {
     width: 80%;
+    height: 80%;
   }
 `;
 

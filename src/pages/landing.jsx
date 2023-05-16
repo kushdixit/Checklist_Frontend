@@ -1,10 +1,12 @@
 import React, { useEffect, Suspense, lazy, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import { getAllTemplate } from "redux/actions/template";
 import { SearchList } from "redux/actions/checklist";
 import Button from "components/Button";
+import Navbar from "components/Navbar";
+import LandingCheckliCard from "components/LandingCheckliCard";
 import {
   LandingContainer,
   Heading,
@@ -28,8 +30,6 @@ import preview from "assets/images/preview.webp";
 
 const LandingCard = lazy(() => import("components/LandingCard"));
 const Footer = lazy(() => import("components/Footer"));
-const ClientCard = lazy(() => import("components/ClientCard"));
-const Navbar = lazy(() => import("components/Navbar"));
 
 const Tags = ["New", "Yoga", "Test", "Monday", "Education"];
 
@@ -53,7 +53,7 @@ const Landing = () => {
       if (searchError) setSearchError(false);
       setPopular(response?.data);
     }
-    if (response.message.response.status === 404) {
+    if (response?.message?.response?.status === 404) {
       setSearchError(true);
     }
   };
@@ -119,8 +119,8 @@ const Landing = () => {
             <ChecklistImage
               src={preview}
               alt="Share"
-              width={"100%"}
-              height={"100%"}
+              width={"800"}
+              height={"600"}
             />
           </div>
           <SecondHeading>How it works</SecondHeading>
@@ -133,7 +133,7 @@ const Landing = () => {
             </Suspense>
           </LandingCardSection>
           <LandingChecklistCardSection>
-            <h5>Free Template Library</h5>
+            <h3>Free Template Library</h3>
             <p>
               Copy, edit, and use thousands of free checklists and business
               processes for free.
@@ -142,15 +142,13 @@ const Landing = () => {
               <>
                 <ButtonSection>
                   {Tags?.map((item, id) => (
-                    <button
+                    <Link
                       className="button"
-                      onClick={() => {
-                        navigate(`/categories/${item}`);
-                      }}
+                      to={`/categories/${item}`}
                       key={id}
                     >
                       {item}
-                    </button>
+                    </Link>
                   ))}
                 </ButtonSection>
                 <MiniCardWrapper data={Popular} title="popular" />
@@ -169,7 +167,6 @@ const Landing = () => {
 };
 
 const MiniCardWrapper = ({ data }) => {
-  const navigate = useNavigate();
   return (
     <>
       <CardMainSection>
@@ -185,22 +182,19 @@ const MiniCardWrapper = ({ data }) => {
         </div>
         <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
           <>
-            <FirstSection>
+            <FirstSection
+              itemscope
+              itemtype="https://schema.org/BreadcrumbList"
+            >
               {data
                 ?.filter((subItem) => subItem.isActive)
                 ?.filter((item, index) => index < 9)
                 .map((subItem, id) => {
-                  return <ClientCard data={subItem} key={id} />;
+                  return <LandingCheckliCard data={subItem} key={id} />;
                 })}
             </FirstSection>
             <SeeMoreWrapper>
-              <SeeMore
-                onClick={() => {
-                  navigate(`/explore/New`);
-                }}
-              >
-                See More
-              </SeeMore>
+              <SeeMore to="/explore/New">See More</SeeMore>
             </SeeMoreWrapper>
           </>
         </Suspense>

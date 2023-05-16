@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 export const FirstSection = styled.div`
   display: flex;
   grid-gap: 20px;
@@ -57,7 +59,7 @@ export const SeeMoreWrapper = styled.div`
   color: #000;
 `;
 
-export const SeeMore = styled.a`
+export const SeeMore = styled(Link)`
   color: #777;
   font-size: 14px;
   border: 1px solid #ddd;

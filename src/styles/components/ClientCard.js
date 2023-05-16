@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FirstSection = styled.div`
+export const FirstSection = styled.ol`
   grid-gap: 20px;
   width: 100%;
   margin: 0 0 0 10px;
