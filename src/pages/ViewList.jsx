@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +7,6 @@ import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import { getAllTemplate } from "redux/actions/template";
-import SubModal from "components/SubModal";
-import Footer from "components/Footer";
-import ViewTask from "components/ViewTask";
 import { isUser } from "helpers/isUser";
 import { CopyHandler } from "helpers/copy";
 import { SET_SEARCH } from "redux/actions/action_types";
@@ -30,14 +27,14 @@ import {
   TagButton,
   TagContent,
 } from "styles/pages/EditChecklist";
-import Navbar from "components/Navbar";
 import Tick from "assets/images/tick.jpg";
 
+const Navbar = lazy(() => import("components/Navbar"));
+const SubModal = lazy(() => import("components/SubModal"));
+const Footer = lazy(() => import("components/Footer"));
+const ViewTask = lazy(() => import("components/ViewTask"));
+
 const ViewList = () => {
-  const [newmodal, setNewModal] = useState(false);
-  function toggleabc(data) {
-    setNewModal(data);
-  }
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,16 +43,17 @@ const ViewList = () => {
     pathId ? state.checklist : null
   );
   const [api, contextHolder] = notification.useNotification();
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getAllTemplate());
   }, []);
+
   useEffect(() => {
-    // const token = localStorage.getItem("access_token");
-    // if (!token) navigate("/sign-in");
     pathId && dispatch(getChecklistBySubcategory(pathId));
   }, []);
 
-  const { control: checklistFormControl, getValues } = useForm({
+  const { getValues } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     defaultValues: {
@@ -80,7 +78,7 @@ const ViewList = () => {
       dispatch({ type: SET_IS_EDITABLE, payload: true });
       const re = await dispatch(getChecklistBySubcategory(res?.id));
       re.error === false &&
-        navigate(`/temp/${res?.id}`, {
+        navigate(`/dashboard/${res?.id}`, {
           state: { showEditable: false, cardType: "user" },
         });
     }
@@ -96,12 +94,14 @@ const ViewList = () => {
   return (
     <Section>
       {contextHolder}
-      <Navbar
-        search={false}
-        addButton={false}
-        getPayload={getPayload}
-        createList={true}
-      />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Navbar
+          search={false}
+          addButton={false}
+          getPayload={getPayload}
+          createList={true}
+        />
+      </Suspense>
       <ChecklistMainWrapper>
         <ChecklistSubWrapper>
           <LeftSection>
@@ -115,7 +115,9 @@ const ViewList = () => {
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
               />
-              <ViewTask toggleabc={toggleabc} />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <ViewTask />
+              </Suspense>
             </LeftContentWrapper>
             <ProgressSection>
               <img src={Tick} alt="tick" />
@@ -157,7 +159,9 @@ const ViewList = () => {
           </RightViewSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
-      <Footer />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <Footer />
+      </Suspense>
     </Section>
   );
 };
@@ -180,12 +184,14 @@ const ImageWrapper = ({ title }) => {
 const CopyCard = ({ info }) => {
   return (
     <RightCardWrapper>
-      <SubModal
-        counts={true}
-        viewCount={info?.viewCount}
-        copyCount={info?.copyCount}
-        downloadCount={info?.downloadCount}
-      />
+      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+        <SubModal
+          counts={true}
+          viewCount={info?.viewCount}
+          copyCount={info?.copyCount}
+          downloadCount={info?.downloadCount}
+        />
+      </Suspense>
     </RightCardWrapper>
   );
 };

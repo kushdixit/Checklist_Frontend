@@ -2,11 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getChecklistBySubcategory } from "redux/actions/task";
-import ProcessOne from "assets/images/Process-One.png";
+import ProcessOne from "assets/images/Process-One.webp";
 import ChecklistImage from "assets/images/checklist-image.png";
 import {
   NewSection,
-  ImageSection,
   HeaderSection,
   Small,
   ProgressSection,
@@ -26,23 +25,37 @@ const LandingCheckliCard = ({ data, id }) => {
         const re = await dispatch(getChecklistBySubcategory(data.id));
         re.error === false && navigate(`/checklists/${data.id}`);
       }}
+      itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem"
     >
-      <ImageSection>
-        <ProcessSection>
-          <img src={ProcessOne} alt="ProcessOne" />
-        </ProcessSection>
-        <HeaderSection>
-          <Text>{data?.checklistName}</Text>
-          <Small>{data?.viewCount} Views</Small>
-          <ProgressSection>
-            <img src={ChecklistImage} alt="ChecklistImage" />
-          </ProgressSection>
-          <Name>
-            <div>by:</div>
-            {data?.createdBy?.split("@")[0]}
-          </Name>
-        </HeaderSection>
-      </ImageSection>
+      <ProcessSection>
+        <img
+          src={ProcessOne}
+          alt="ProcessOne"
+          width={"100%"}
+          height={"100%"}
+          itemprop="image"
+        />
+      </ProcessSection>
+      <HeaderSection>
+        <Text itemprop="name">{data?.checklistName}</Text>
+        <Small itemprop="potentialAction">{data?.viewCount} Views</Small>
+        <ProgressSection>
+          <img
+            src={ChecklistImage}
+            alt="ChecklistImage"
+            width={"100%"}
+            height={"100%"}
+            itemprop="image"
+          />
+        </ProgressSection>
+        <Name itemprop="disambiguatingDescription">
+          <div itemprop="name">by:</div>
+          {data?.createdBy?.split("@")[0]}
+        </Name>
+      </HeaderSection>
+      <meta itemprop="position" content={id} />
     </NewSection>
   );
 };

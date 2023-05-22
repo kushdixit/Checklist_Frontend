@@ -15,6 +15,7 @@ import {
   Paragraph,
   SeeDescription,
   SpanDescription,
+  ImageSection,
 } from "styles/pages/EditChecklist";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 import TextArea from "components/FormElements/TextArea";
@@ -25,7 +26,7 @@ const ItemTypes = {
   CARD: "card",
 };
 
-export const Card = ({
+const Card = ({
   id,
   text,
   index,
@@ -145,6 +146,10 @@ export const Card = ({
     setShowButtons(false);
   };
 
+  useEffect(() => {
+    if (!isHovering && isOpenSort) setIsOpenSort(false);
+  }, [isHovering]);
+
   return (
     <div ref={ref} style={{ opacity }} data-handler-id={handlerId}>
       <ChecklistTaskWrapper isHeading={data?.isHeading}>
@@ -162,13 +167,16 @@ export const Card = ({
               }}
             >
               <ShortBy>
-                <img
-                  src={Plus}
-                  alt="Plus"
-                  onClick={() => {
-                    toggleab(!modal);
-                  }}
-                />
+                <ImageSection>
+                  <img
+                    style={{ marginRight: "25px", paddingBottom: "3px" }}
+                    src={Plus}
+                    alt="Plus"
+                    onClick={() => {
+                      toggleab(!modal);
+                    }}
+                  />
+                </ImageSection>
                 {isOpenSort && (
                   <TaskColon
                     setIsHovering={setIsHovering}
@@ -316,3 +324,5 @@ export const Card = ({
     </div>
   );
 };
+
+export default Card;

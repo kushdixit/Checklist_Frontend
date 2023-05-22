@@ -3,6 +3,7 @@ import { SubSection, Wrap } from "styles/components/LandingCard";
 import List from "assets/SVG/List";
 import ShareSquare from "assets/SVG/ShareSquare";
 import BarChart from "assets/SVG/BarChart";
+
 const LandingCard = () => {
   const cardText = [
     {

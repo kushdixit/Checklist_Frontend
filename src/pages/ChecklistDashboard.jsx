@@ -39,7 +39,7 @@ const ChecklistDashboard = () => {
         {isUser() && <SideBar />}
         {pathname.includes("/search") && <Search />}
         {pathname === "/process" && <Analytic />}
-        {pathname.includes("/temp") && <View />}
+        {pathname.includes("/dashboard") && <View />}
         {pathname.includes("/create-list") && <CreateList />}
         {pathname.includes("/insight") && <Insight />}
       </MainSection>

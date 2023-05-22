@@ -28,7 +28,7 @@ import colorwheel from "assets/images/color-wheel.png";
 const FontColorsModal = ({ task, checkListId, showEditable }) => {
   const [subTaskEdit, setSubTaskEdit] = useState(false);
   const [isOpenSort, setIsOpenSort] = useState(false);
-  const [api, contextHolder] = notification.useNotification();
+  const [api] = notification.useNotification();
   const wrapperRef = useRef();
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const FontColorsModal = ({ task, checkListId, showEditable }) => {
   }, [wrapperRef]);
 
   const dispatch = useDispatch();
-  const { setValue, handleSubmit, control, reset, getValues } = useForm({
+  const { setValue, handleSubmit, control, reset } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,

@@ -1,8 +1,6 @@
-import React, {  useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { useForm } from "react-hook-form";
-import TextInput from "components/FormElements/TextInput";
 import { useNavigate } from "react-router-dom";
-import ErrorComponent from "components/Error";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
@@ -28,14 +26,12 @@ import { authSignup } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+const TextInput = lazy(() => import("components/FormElements/TextInput"));
+const ErrorComponent = lazy(() => import("components/Error"));
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [signinError, setSigninError] = useState(false);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("access_token");
-  //   token && navigate("/dashboard");
-  // }, []);
 
   let schema = yup.object().shape({
     firstName: yup
@@ -96,23 +92,28 @@ const SignUp = () => {
     <>
       <LoginContainer>
         <LeftContainer>
-          {" "}
-          <img src={Checklist} alt="Checklist" />
+          <img src={Checklist} alt="Checklist" width={"100%"} height={"100%"} />
         </LeftContainer>
         <RightContainer>
           <FormBody>
-            <ChecklistHeader>CheckList</ChecklistHeader>
+            <ChecklistHeader onClick={() => navigate("/")}>
+              CheckList
+            </ChecklistHeader>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
                   <Heading>Sign Up</Heading>
                   <IconInputField>
-                    <TextInput
-                      name="firstName"
-                      type="text"
-                      placeholder="First Name"
-                      control={control}
-                    />
+                    <Suspense
+                      fallback={<h1 className="fallback-css">Loading…</h1>}
+                    >
+                      <TextInput
+                        name="firstName"
+                        type="text"
+                        placeholder="First Name"
+                        control={control}
+                      />
+                    </Suspense>
                     {
                       <Error>
                         {errors.firstName && errors.firstName.message}
@@ -123,12 +124,16 @@ const SignUp = () => {
                     </UserLogoWrapper>
                   </IconInputField>
                   <IconInputField>
-                    <TextInput
-                      name="lastName"
-                      type="text"
-                      placeholder="Last Name"
-                      control={control}
-                    />
+                    <Suspense
+                      fallback={<h1 className="fallback-css">Loading…</h1>}
+                    >
+                      <TextInput
+                        name="lastName"
+                        type="text"
+                        placeholder="Last Name"
+                        control={control}
+                      />
+                    </Suspense>
                     {
                       <Error>
                         {errors.lastName && errors.lastName.message}
@@ -139,23 +144,31 @@ const SignUp = () => {
                     </UserLogoWrapper>
                   </IconInputField>
                   <IconInputField>
-                    <TextInput
-                      name="email"
-                      type="text"
-                      placeholder="Email Address"
-                      control={control}
-                    />
+                    <Suspense
+                      fallback={<h1 className="fallback-css">Loading…</h1>}
+                    >
+                      <TextInput
+                        name="email"
+                        type="text"
+                        placeholder="Email Address"
+                        control={control}
+                      />
+                    </Suspense>
                     {<Error>{errors.email && errors.email.message}</Error>}
                     <EmailIcon className="emailIcon" />
                   </IconInputField>
                   <div>
                     <IconInputField>
-                      <TextInput
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        control={control}
-                      />
+                      <Suspense
+                        fallback={<h1 className="fallback-css">Loading…</h1>}
+                      >
+                        <TextInput
+                          name="password"
+                          type="password"
+                          placeholder="Password"
+                          control={control}
+                        />
+                      </Suspense>
                       {
                         <Error>
                           {errors.password && errors.password.message}
@@ -164,12 +177,16 @@ const SignUp = () => {
                       <LockIcon className="startIcon" />
                     </IconInputField>
                     <IconInputField>
-                      <TextInput
-                        name="passwordConfirmation"
-                        type="password"
-                        placeholder="Confirm Password"
-                        control={control}
-                      />
+                      <Suspense
+                        fallback={<h1 className="fallback-css">Loading…</h1>}
+                      >
+                        <TextInput
+                          name="passwordConfirmation"
+                          type="password"
+                          placeholder="Confirm Password"
+                          control={control}
+                        />
+                      </Suspense>
                       {
                         <Error>
                           {errors.passwordConfirmation &&
@@ -186,11 +203,13 @@ const SignUp = () => {
               </RegistrationContainer>
             </form>
             {signinError && (
-              <ErrorComponent
-                message="Email already exist.Please try Logging in"
-                primary="#d65e5e"
-                secondary="#f0d3d3"
-              />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <ErrorComponent
+                  message="Email already exist.Please try Logging in"
+                  primary="#d65e5e"
+                  secondary="#f0d3d3"
+                />
+              </Suspense>
             )}
             <SignIn onClick={() => navigate("/sign-in")}>Sign In</SignIn>
           </FormBody>

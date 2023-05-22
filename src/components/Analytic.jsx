@@ -87,14 +87,14 @@ const Analytic = () => {
           {details
             ?.filter((item, index) => index <= 39)
             ?.filter((item) => item?.pinned)
-            .map((item) => (
-              <ChecklistWrapper data={item} />
+            .map((item, id) => (
+              <ChecklistWrapper data={item} id={id} />
             ))}
           {details
             ?.filter((item, index) => index <= 39)
             ?.filter((item) => !item?.pinned)
-            .map((item) => (
-              <ChecklistWrapper data={item} />
+            .map((item, id) => (
+              <ChecklistWrapper data={item} id={id} />
             ))}
         </WrapperSection>
       </RightContainer>
@@ -147,7 +147,7 @@ const ChecklistWrapper = ({ data }) => {
             }}
             onClick={() => {
               dispatch({ type: UPDATE_DATA, payload: {} });
-              navigate(`/temp/${data?.id}`, {
+              navigate(`/dashboard/${data?.id}`, {
                 state: { showEditable: false, cardType: "user" },
               });
             }}

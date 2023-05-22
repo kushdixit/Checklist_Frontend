@@ -1,14 +1,15 @@
-import SignIn from "pages/sign-in";
-import SignUp from "pages/sign-up";
-import Landing from "pages/landing";
-import Categories from "pages/Categories";
-import CreateList from "pages/CreateList";
-import FreeTemplate from "pages/FreeTemplate";
-import Explore from "pages/Explore";
-import ViewList from "pages/ViewList";
-import ChecklistDashboard from "pages/ChecklistDashboard";
-import Guest from "pages/Guest";
-import CategoryByName from "pages/CategoryByName";
+import { lazy } from "react";
+const SignIn = lazy(() => import("pages/sign-in"));
+const SignUp = lazy(() => import("pages/sign-up"));
+const Landing = lazy(() => import("pages/landing"));
+const Categories = lazy(() => import("pages/Categories"));
+const CreateList = lazy(() => import("pages/CreateList"));
+const FreeTemplate = lazy(() => import("pages/FreeTemplate"));
+const Explore = lazy(() => import("pages/Explore"));
+const ViewList = lazy(() => import("pages/ViewList"));
+const ChecklistDashboard = lazy(() => import("pages/ChecklistDashboard"));
+const Guest = lazy(() => import("pages/Guest"));
+const CategoryByName = lazy(() => import("pages/CategoryByName"));
 
 export const LandingRoute = {
   component: Landing,
@@ -96,7 +97,7 @@ export const ViewListRouteById = {
 
 export const TempRoute = {
   component: ChecklistDashboard,
-  path: "/temp",
+  path: "/dashboard",
   exact: true,
   restricted: true,
 };
@@ -110,7 +111,7 @@ export const TempRouteeee = {
 
 export const TempRouteById = {
   component: ChecklistDashboard,
-  path: "/temp/:id",
+  path: "/dashboard/:id",
   exact: true,
   restricted: true,
 };

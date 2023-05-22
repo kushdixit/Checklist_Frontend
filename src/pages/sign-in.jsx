@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { useForm } from "react-hook-form";
-import TextInput from "components/FormElements/TextInput";
-import ErrorComponent from "components/Error";
 import { useNavigate, useLocation } from "react-router-dom";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
 import Checklist from "assets/images/checklist.svg";
-import AlertModal from "components/AlertModal";
 import { store } from "redux/index";
 import { authLogin } from "../redux/actions/auth";
 import * as yup from "yup";
@@ -32,8 +29,12 @@ import {
   Forgot,
   ChecklistHeader,
 } from "styles/pages/AccountForm";
-import Google from "components/Google";
-import Facebook from "components/Facebook";
+
+const TextInput = lazy(() => import("components/FormElements/TextInput"));
+const ErrorComponent = lazy(() => import("components/Error"));
+const AlertModal = lazy(() => import("components/AlertModal"));
+const Google = lazy(() => import("components/Google"));
+const Facebook = lazy(() => import("components/Facebook"));
 
 const SignIn = () => {
   let schema = yup.object().shape({
@@ -60,15 +61,6 @@ const SignIn = () => {
     setShowError(true);
     setResetError(true);
   };
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("access_token");
-  //   if (token) navigate("/dashboard");
-  //   else
-  //     navigate("/sign-in", {
-  //       state,
-  //     });
-  // }, []);
 
   const {
     handleSubmit,
@@ -105,17 +97,21 @@ const SignIn = () => {
     return (
       <LoginContainer>
         <LeftContainer>
-          <img src={Checklist} alt="Checklist" />
+          <img src={Checklist} alt="Checklist" width={"100%"} height={"100%"} />
         </LeftContainer>
         <RightContainer>
           <FormBody>
-            <ChecklistHeader>CheckList</ChecklistHeader>
-            <AlertModal
-              modalType="forgot"
-              isOpen={modal}
-              togglefunction={toggleab}
-              notify={notify}
-            />
+            <ChecklistHeader onClick={() => navigate("/")}>
+              CheckList
+            </ChecklistHeader>
+            <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+              <AlertModal
+                modalType="forgot"
+                isOpen={modal}
+                togglefunction={toggleab}
+                notify={notify}
+              />
+            </Suspense>
             <form onSubmit={handleSubmit(formData)}>
               <RegistrationContainer>
                 <FormContainer>
@@ -123,33 +119,49 @@ const SignIn = () => {
                   <IconSection>
                     <LeftIconSection>
                       <IconText>
-                        <Facebook />
+                        <Suspense
+                          fallback={<h1 className="fallback-css">Loading…</h1>}
+                        >
+                          <Facebook />
+                        </Suspense>
                       </IconText>
                     </LeftIconSection>
                     <RightIconSection>
                       <IconText>
-                        <Google />
+                        <Suspense
+                          fallback={<h1 className="fallback-css">Loading…</h1>}
+                        >
+                          <Google />
+                        </Suspense>
                       </IconText>
                     </RightIconSection>
                   </IconSection>
                   <IconInputField>
-                    <TextInput
-                      name="email"
-                      type="text"
-                      placeholder="Email Address"
-                      control={control}
-                      showAutoComplete={true}
-                    />
+                    <Suspense
+                      fallback={<h1 className="fallback-css">Loading…</h1>}
+                    >
+                      <TextInput
+                        name="email"
+                        type="text"
+                        placeholder="Email Address"
+                        control={control}
+                        showAutoComplete={true}
+                      />
+                    </Suspense>
                     <Error>{errors.email && errors.email.message}</Error>
                     <EmailIcon className="emailIcon" />
                   </IconInputField>
                   <IconInputField>
-                    <TextInput
-                      name="password"
-                      type="password"
-                      placeholder="Password"
-                      control={control}
-                    />
+                    <Suspense
+                      fallback={<h1 className="fallback-css">Loading…</h1>}
+                    >
+                      <TextInput
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        control={control}
+                      />
+                    </Suspense>
                     {
                       <Error>
                         {showError &&
@@ -166,14 +178,18 @@ const SignIn = () => {
               </RegistrationContainer>
             </form>
             {loginError && (
-              <ErrorComponent
-                message=" User doesn't exist or password is wrong"
-                primary="#d65e5e"
-                secondary="#f0d3d3"
-              />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <ErrorComponent
+                  message=" User doesn't exist or password is wrong"
+                  primary="#d65e5e"
+                  secondary="#f0d3d3"
+                />
+              </Suspense>
             )}
             {resetError && (
-              <ErrorComponent message="Please check your mail for temporary password" />
+              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+                <ErrorComponent message="Please check your mail for temporary password" />
+              </Suspense>
             )}
 
             <UserHelper>

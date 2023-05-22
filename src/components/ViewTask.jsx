@@ -11,8 +11,6 @@ const ViewTask = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // const token = localStorage.getItem("access_token");
-    // if (!token) setEditable(true);
     setCards(ChecklistDetail?.tasks);
   }, []);
 

@@ -45,24 +45,13 @@ export const ProgressSection = styled.div`
   }
 `;
 
-export const NewSection = styled.div`
+export const NewSection = styled.li`
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   height: auto;
   cursor: pointer;
-`;
-
-export const Small = styled.div`
-  display: inline-block;
-  font-size: 13px;
-  color: #aeb2b4;
-  margin-left: 5px;
-  text-align: left;
-  width: 100%;
-`;
-
-export const ImageSection = styled.div`
   background: #fff;
   border: 1px solid #eee;
   box-shadow: 0 6px 15px 0 rgba(36, 37, 38, 0.08);
@@ -108,9 +97,17 @@ export const ImageSection = styled.div`
   }
 `;
 
+export const Small = styled.div`
+  display: inline-block;
+  font-size: 13px;
+  color: #aeb2b4;
+  margin-left: 5px;
+  text-align: left;
+  width: 100%;
+`;
+
 export const ProcessSection = styled.div`
   background: #fff;
-  /* border: 1px solid #eee; */
   border-radius: 26px 15px 0 0;
   width: 100%;
   max-width: 380px;

@@ -38,7 +38,6 @@ const SliderModal = ({
           x
         </button>
       </ButtonWrapper>
-
       {modalType === "fontcolors" && (
         <FontColorsModal notify={notify} togglefunction={togglefunction} />
       )}
