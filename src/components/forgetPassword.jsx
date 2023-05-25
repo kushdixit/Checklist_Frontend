@@ -13,7 +13,7 @@ import {
 } from "styles/pages/ForgetPassword";
 import { forgotPassword } from "../redux/actions/auth";
 import { store } from "redux/index";
-
+import { colors } from "constants/color";
 const ForgotPassword = ({ notify, togglefunction }) => {
   const { handleSubmit, control } = useForm({ mode: "onChange" });
   const forgotPass = async (data) => {
@@ -21,7 +21,10 @@ const ForgotPassword = ({ notify, togglefunction }) => {
     notify(res);
     if (res === 204) togglefunction(false);
   };
-
+  const style = {
+    backgroundColor: colors.backgroundColor,
+    color: colors.primaryColor,
+  };
   return (
     <MainWrapper>
       <Container>

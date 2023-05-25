@@ -38,7 +38,7 @@ import SearchNew from "assets/SVG/SearchNew";
 import Cancel from "assets/SVG/cancel";
 import PlusBlue from "assets/SVG/PlusBlue";
 import Login from "assets/images/login.png";
-
+import { colors } from "constants/color";
 const AlertModal = lazy(() => import("components/AlertModal"));
 const TextInput = lazy(() => import("components/FormElements/TextInput"));
 
@@ -52,7 +52,10 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
   const [modal, setModal] = useState(false);
   const firstName = useSelector((state) => state.auth?.userData?.firstName);
   const lastName = useSelector((state) => state.auth?.userData?.lastName);
-
+  const style = {
+    backgroundColor: colors.backgroundColor,
+    color: colors.primaryColor,
+  };
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current?.contains(event?.target)) {
@@ -142,8 +145,8 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                   >
                     <InitialsWrapperNew>
                       <WrapperSize>
-                        <h4>{firstName[0].toUpperCase()}</h4>
-                        <h4> {lastName[0].toUpperCase()}</h4>
+                        <h4 style={style}>{firstName[0].toUpperCase()}</h4>
+                        <h4 style={style}> {lastName[0].toUpperCase()}</h4>
                       </WrapperSize>
                     </InitialsWrapperNew>
                   </button>
@@ -248,6 +251,7 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                 </form>
                 <IconWrapper onClick={handleIconClick}>
                   <Button
+                    className="button"
                     style={{
                       background: "transparent",
                       border: "none",
@@ -328,7 +332,6 @@ const NavBar = ({ search, icon, buttonType, addButton, navType }) => {
                   <Logintext onClick={() => navigate("/sign-in")}>
                     Login
                   </Logintext>
-
                   <UseButton>
                     <Link
                       to={"/sign-up"}

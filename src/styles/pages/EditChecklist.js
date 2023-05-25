@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "constants/color";
 
 export const Section = styled.div``;
 

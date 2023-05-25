@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "constants/color";
 
 export const FormContainer = styled.div`
   max-width: 450px;
@@ -6,7 +7,7 @@ export const FormContainer = styled.div`
   margin: 0 auto;
 `;
 export const Heading = styled.h4`
-  color: #1d2e88;
+  color: ${colors.primaryColor};
   font-weight: 700;
   font-size: 25px;
 `;
@@ -119,7 +120,7 @@ export const LoginContainer = styled.div`
 export const LeftContainer = styled.div`
   flex: 1 1 0%;
   display: flex;
-  background: #1d2e88;
+  background: ${colors.backgroundColor};
   text-align: center;
   align-items: center;
   > img {
@@ -149,7 +150,7 @@ export const Error = styled.div`
 export const SignIn = styled.div`
   cursor: pointer;
   font-size: 17px;
-  color: #1d2e88;
+  color: ${colors.primaryColor};
   text-align: center;
   padding: 10px;
   font-weight: 400;
@@ -157,7 +158,7 @@ export const SignIn = styled.div`
 
 export const ChecklistHeader = styled.div`
   font-size: 2.7vw;
-  color: #1d2e88;
+  color: ${colors.primaryColor};
   font-weight: 700;
   display: flex;
   width: 100%;
