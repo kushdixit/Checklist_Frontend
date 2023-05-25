@@ -10,6 +10,8 @@ import { getAllTemplate } from "redux/actions/template";
 import { isUser } from "helpers/isUser";
 import { CopyHandler } from "helpers/copy";
 import { SET_SEARCH } from "redux/actions/action_types";
+import Button from "components/Button";
+import { colors } from "constants/color";
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
@@ -90,7 +92,10 @@ const ViewList = () => {
       state: { tagTerm: title, searchedterm: "" },
     });
   };
-
+  const style = {
+    backgroundColor: colors.backgroundColor,
+    color: colors.primaryColor,
+  };
   return (
     <Section>
       {contextHolder}
@@ -126,7 +131,7 @@ const ViewList = () => {
               This checklist was created by {ChecklistDetail?.createdBy}
             </LeftHeader>
             <ButtonSection>
-              <button
+              <Button
                 className="button"
                 onClick={() =>
                   CopyHandler(
@@ -137,7 +142,7 @@ const ViewList = () => {
                 }
               >
                 Save this checklist
-              </button>
+              </Button>
             </ButtonSection>
             <SecondContent>
               {ChecklistDetail?.copyCount} copies saved

@@ -9,6 +9,7 @@ import { store } from "redux/index";
 import { authLogin } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { colors } from "constants/color";
 import {
   RegistrationContainer,
   FormContainer,
@@ -92,6 +93,10 @@ const SignIn = () => {
       setLoginError(true);
       setResetError(false);
     }
+  };
+  const style = {
+    backgroundColor: colors.backgroundColor,
+    color: colors.primaryColor,
   };
   const formFields = () => {
     return (

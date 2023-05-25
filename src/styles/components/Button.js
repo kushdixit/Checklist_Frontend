@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { colors } from "constants/color";
 
 export const ButtonContainer = styled.div`
   .button.submit {
     width: 100%;
     max-width: 387px;
     min-height: 40px;
-    background: #1d2e88;
+    /* background: #1d2e88; */
     font-size: 17px;
     font-weight: 700;
   }
@@ -23,7 +24,7 @@ export const ButtonContainer = styled.div`
     cursor: pointer;
     user-select: none;
     border: 1px solid transparent;
-    background: #1d2e88;
+    background: ${colors.backgroundColor};
     border-radius: 8px;
     box-shadow: 0 3px 6px #00000029;
     &:disabled,

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { colors } from "constants/color";
+
 export const Section = styled.div`
   text-align: center;
   padding-bottom: 60px;
@@ -10,7 +12,7 @@ export const Section = styled.div`
 
 export const FirstSection = styled.div`
   font-size: 13px;
-  color: #007ccb;
+  color: ${colors.primaryColor};
   font-weight: 400;
   padding-bottom: 2px;
 `;

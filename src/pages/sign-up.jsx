@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import EmailIcon from "assets/SVG/EmailIcon";
 import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
+import { colors } from "constants/color";
 import { store } from "redux/index";
 import Checklist from "assets/images/checklist.svg";
 import User from "assets/SVG/User";
@@ -29,7 +30,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const TextInput = lazy(() => import("components/FormElements/TextInput"));
 const ErrorComponent = lazy(() => import("components/Error"));
 
-const SignUp = () => {
+const SignUp = (r) => {
   const navigate = useNavigate();
   const [signinError, setSigninError] = useState(false);
 
@@ -88,6 +89,12 @@ const SignUp = () => {
     else setSigninError(true);
   };
 
+  const style = {
+    backgroundColor: colors.backgroundColor,
+    color: colors.primaryColor,
+  };
+
+  // const newStyle = { backgroundColor: backgroundColor };
   return (
     <>
       <LoginContainer>
