@@ -28,7 +28,7 @@ const EditImageModal = ({ togglefunction }) => {
 
   const imageArray = useSelector((state) => state?.getImages?.images);
 
-  const { setValue, handleSubmit, control, reset, getValues } = useForm({
+  const { control } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     shouldFocusError: true,
@@ -84,13 +84,16 @@ const EditImageModal = ({ togglefunction }) => {
           </SecondHeading>
           <ImageSection>
             <StatusBucketCards>
-              {imageArray?.map((item) => (
-                <img
-                  src={`http://112.196.2.202:8080/ChecklistImages/${item?.imageName}`}
-                  alt="img"
-                  onClick={() => ImageUpdateHandler(item?.id)}
-                />
-              ))}
+              {imageArray?.map((item) => {
+                const imagePath = item?.imageName.split(".")[0] + ".jpg";
+                return (
+                  <img
+                    src={`http://112.196.2.202:8080/ChecklistImages/${imagePath}`}
+                    alt="img"
+                    onClick={() => ImageUpdateHandler(item?.id)}
+                  />
+                );
+              })}
             </StatusBucketCards>
           </ImageSection>
         </DataWrapper>
