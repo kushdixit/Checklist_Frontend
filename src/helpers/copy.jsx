@@ -16,7 +16,10 @@ export const ImageWrapper = ({ title, imageId }) => {
 
   const ImageHandler = async () => {
     const res = await dispatch(GetImage(imageId));
-    if (res?.status === 200) setImagePath(res?.data[0]?.imageName);
+    if (res?.status === 200) {
+      const path = res?.data[0].imageName.split(".")[0] + ".jpg";
+      setImagePath(path);
+    }
   };
 
   useEffect(() => {

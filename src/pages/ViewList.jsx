@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import { getAllTemplate } from "redux/actions/template";
+import { GetImage } from "redux/actions/task";
 import { isUser } from "helpers/isUser";
 import { CopyHandler } from "helpers/copy";
 import { SET_SEARCH } from "redux/actions/action_types";
@@ -119,6 +120,7 @@ const ViewList = () => {
               </ChecklistDescText>
               <ImageWrapper
                 title={pathId ? ChecklistDetail?.checklistName : "untitled"}
+                imageId={ChecklistDetail?.checklistImageId}
               />
               <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
                 <ViewTask />
@@ -171,14 +173,33 @@ const ViewList = () => {
   );
 };
 
-const ImageWrapper = ({ title }) => {
+const ImageWrapper = ({ title, imageId }) => {
+  const dispatch = useDispatch();
+  const [imagePath, setImagePath] = useState(null);
+  const idRef = useRef(null);
+
+  const ImageHandler = async () => {
+    const res = await dispatch(GetImage(imageId));
+    if (res?.status === 200) {
+      const path = res?.data[0].imageName.split(".")[0] + ".jpg";
+      setImagePath(path);
+    }
+  };
+
+  useEffect(() => {
+    if (imageId !== 0 && idRef?.current !== imageId) ImageHandler();
+    idRef.current = imageId;
+  }, [imageId]);
+
   return (
     <div style={{ marginBottom: "30px" }}>
-      <img
-        src="https://s3.amazonaws.com/checkli.com/featured/apple.png"
-        alt="pic"
-        style={{ width: "100%", maxWidth: "739px", height: "auto" }}
-      />
+      {imagePath && (
+        <img
+          src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}
+          alt="pic"
+          style={{ width: "100%", maxWidth: "739px", height: "auto" }}
+        />
+      )}
       <div style={{ fontSize: "12px", color: "#aaa", fontStyle: "italic" }}>
         {title}
       </div>
