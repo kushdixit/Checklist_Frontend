@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import { isUser } from "helpers/isUser";
 import { CopyHandler } from "helpers/copy";
+import Button from "components/Button";
+import { colors } from "constants/color";
 import {
   RightContentWrapper,
   ShareSection,
@@ -58,7 +60,10 @@ const SubModal = ({
       dispatch({ type: SET_BOX_TYPE, payload: "square" });
     else dispatch({ type: SET_BOX_TYPE, payload: "round" });
   }
-
+  const style = {
+    backgroundColor: colors.backgroundColor,
+    color: colors.primaryColor,
+  };
   return (
     <RightContentWrapper>
       {contextHolder}
@@ -71,7 +76,7 @@ const SubModal = ({
         {viewCount && (
           <ViewCount>
             <strong>{viewCount}</strong>
-            <br />
+            {/* <br /> */}
             <p>Views</p>
           </ViewCount>
         )}
@@ -83,7 +88,7 @@ const SubModal = ({
                 <br />
                 copies saved
               </p>
-              <button
+              <Button
                 onClick={() =>
                   CopyHandler(
                     pathId,
@@ -93,7 +98,7 @@ const SubModal = ({
                 }
               >
                 Copy
-              </button>
+              </Button>
             </CopyButtonWrapper>
             <CopyButtonWrapper btnColor="#f0f0f0" textColor="#000">
               <p>

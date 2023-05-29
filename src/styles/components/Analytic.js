@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "constants/color";
 
 export const LandingContainer = styled.div`
   width: 100%;
@@ -185,6 +186,9 @@ export const FourthSection = styled.div`
         height: 32px;
       }
     }
+  }
+  div {
+    color: ${colors.primaryColor};
   }
 `;
 export const WrapperSection = styled.div`

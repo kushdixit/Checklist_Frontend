@@ -187,7 +187,6 @@ export const RightSection = styled.div`
   }
 `;
 
-
 export const TextWrapper = styled.div`
   padding-left: 30px;
   text-align: left;
@@ -206,6 +205,6 @@ export const CreateList = styled.div`
   text-align: center;
   border: 0;
   cursor: pointer;
-  background: #007ccb;
+  background: #1d8388;
   color: white;
 `;

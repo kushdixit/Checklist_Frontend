@@ -14,6 +14,7 @@ import {
   FourthSection,
   IconInputFieldNew,
 } from "styles/components/Analytic";
+import { colors } from "constants/color";
 import { UPDATE_DATA } from "redux/actions/action_types";
 import Share from "assets/images/share.png";
 import ChartPie from "assets/images/chart-pie.png";
@@ -126,7 +127,10 @@ const ChecklistWrapper = ({ data }) => {
     const res = await dispatch(PinChecklist(data?.id, pinn));
     if (res?.status === 200) dispatch(getAllTemplateByEmail(userEmail));
   };
-
+  const style = {
+    backgroundColor: colors.backgroundColor,
+    color: colors.primaryColor,
+  };
   return (
     <FourthSection>
       {contextHolder}

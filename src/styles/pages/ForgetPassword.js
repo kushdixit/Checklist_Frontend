@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "constants/color";
 
 export const MainWrapper = styled.div`
   width: 100%;
@@ -26,7 +27,7 @@ export const DataWrapper = styled.form`
 export const Heading = styled.div`
   font-size: 20px;
   font-weight: 500;
-  color: #1d2e8b;
+  color: ${colors.primaryColor};
 `;
 export const EmailWrapper = styled.div`
   display: flex;
@@ -65,8 +66,7 @@ export const ResetWrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: #1d2e88;
+  background-color: ${colors.backgroundColor};
   color: #fff;
   padding: 10px 0px;
 `;
@@ -77,7 +77,7 @@ export const ResetText = styled.div`
 
 export const ModalButton = styled.div`
   border: 1px solid transparent;
-  background: #1d2e88;
+  background-color: ${colors.backgroundColor};
   border-radius: 8px;
   color: white;
   text-align: center;

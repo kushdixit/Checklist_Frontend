@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "constants/color";
 
 export const Section = styled.div``;
 
@@ -334,19 +335,24 @@ export const ImageSection = styled.div`
 `;
 
 export const ViewCount = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
   strong {
     display: inline-block;
     font-size: 28px;
     line-height: 0.7;
     color: #000;
-    padding-top: 10px;
   }
   p {
-    margin: 0px 0px 10px 0px;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 16px;
+    font-size: 19px;
+    margin: 0;
+    padding: 0;
   }
 `;
 export const CopyButtonWrapper = styled.div`

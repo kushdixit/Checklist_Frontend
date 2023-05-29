@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { colors } from "constants/color";
+
 export const NavSection = styled.div`
   display: flex;
   justify-content: space-between;
@@ -16,7 +18,7 @@ export const FirstSection = styled.div`
   display: flex;
   h1 {
     margin: 0;
-    color: #1d2e88;
+    color: ${colors.primaryColor};
   }
   @media (max-width: 767px) {
     display: none;
@@ -38,7 +40,7 @@ export const BlueIcon = styled.div`
 export const Logintext = styled.div`
   margin: 0px;
   padding: 0px 10px 0 10px;
-  color: rgb(45 66 177);
+  color: ${colors.primaryColor};
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
@@ -46,7 +48,7 @@ export const Logintext = styled.div`
 export const FreeTemplatetext = styled.div`
   margin: 0px;
   padding: 0px;
-  color: rgb(45 66 177);
+  color: ${colors.primaryColor};
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
@@ -71,7 +73,7 @@ export const SecondSection = styled.div`
 `;
 export const HeadingText = styled.div`
   font-size: 1.8rem;
-  color: #1d2e88;
+  color: ${colors.primaryColor};
   cursor: pointer;
   font-weight: 700;
   display: flex;
@@ -96,7 +98,7 @@ export const LogoSection = styled.div`
     display: flex;
     width: 100%;
     justify-content: center;
-    color: #1d2e88;
+    color: ${colors.primaryColor};
     font-size: 2rem;
     font-weight: 700;
     max-width: 625px;
@@ -150,7 +152,7 @@ export const InitialsWrapperNew = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  background: #1d2e88;
+  background: ${colors.backgroundColor};
   border-radius: 50%;
 `;
 
@@ -193,7 +195,7 @@ export const Profile = styled.div`
     text-align: center;
     margin: 0;
     padding: 0;
-    color: #1d2e88;
+    color: ${colors.primaryColor};
     font-weight: 400;
     font-size: 16px;
   }
@@ -378,6 +380,10 @@ export const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  .button {
+    background: unset !important ;
+    box-shadow: unset !important;
+  }
 `;
 export const InitialsWrapper = styled.div`
   width: 3.2rem;
@@ -386,7 +392,7 @@ export const InitialsWrapper = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  background: #1d2e88;
+  background: ${colors.backgroundColor};
   border-radius: 50%;
   div {
     font-size: 1.2rem;
@@ -394,7 +400,7 @@ export const InitialsWrapper = styled.div`
 `;
 
 export const UseButton = styled.div`
-  background-color: #007ccb;
+  background: ${colors.backgroundColor};
   text-decoration: none;
   font-size: 16px;
   border-radius: 6px;
