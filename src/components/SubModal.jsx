@@ -76,7 +76,7 @@ const SubModal = ({
         {viewCount && (
           <ViewCount>
             <strong>{viewCount}</strong>
-            <br />
+            {/* <br /> */}
             <p>Views</p>
           </ViewCount>
         )}
