@@ -28,7 +28,7 @@ export const ImageWrapper = ({ title, imageId }) => {
   }, [imageId]);
 
   return (
-    <div style={{ marginBottom: "30px" }}>
+    <div style={{ marginBottom: "30px", paddingLeft: "25px" }}>
       {imagePath && (
         <img
           src={`http://112.196.2.202:9005/ChecklistImages/${imagePath}`}

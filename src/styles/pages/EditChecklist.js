@@ -170,11 +170,13 @@ export const RightContentWrapper = styled.div`
   text-align: center;
 `;
 export const ChecklistTitleWrapper = styled.div`
+  padding-left: 25px;
   .app-input-text {
     width: 100%;
   }
 `;
 export const ChecklistDescriptionWrapper = styled.div`
+  padding-left: 25px;
   .app-input-text {
     width: 100%;
   }
@@ -192,6 +194,20 @@ export const ChecklistTaskWrapper = styled.div`
     align-items: baseline;
   }
 `;
+export const ChecklistAddTaskWrapper = styled.div`
+  padding-bottom: 4px;
+  padding-left: 25px;
+  margin-top: ${({ isHovering }) => (isHovering ? "12px" : "0px")};
+  .app-input-text {
+    width: 100%;
+  }
+  .task-form {
+    display: flex;
+    position: relative;
+    align-items: baseline;
+  }
+`;
+
 export const TaskContainer = styled.div`
   padding: 0px 40px 4px 0px;
   flex: 1;
@@ -330,8 +346,8 @@ export const Paragraph = styled.p`
 `;
 
 export const ImageSection = styled.div`
-  width: 40px;
-  height: 50px;
+  /* width: 40px; */
+  /* height: 50px; */
 `;
 
 export const ViewCount = styled.div`
