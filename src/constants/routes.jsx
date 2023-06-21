@@ -10,7 +10,8 @@ const ViewList = lazy(() => import("pages/ViewList"));
 const ChecklistDashboard = lazy(() => import("pages/ChecklistDashboard"));
 const Guest = lazy(() => import("pages/Guest"));
 const CategoryByName = lazy(() => import("pages/CategoryByName"));
-
+const CompleteForm = lazy(() => import("pages/complete-form"));
+const Articles = lazy(() => import("pages/articles"));
 export const LandingRoute = {
   component: Landing,
   path: "/",
@@ -143,6 +144,18 @@ export const GuestRoutes = {
   exact: true,
   restricted: false,
 };
+export const CompleteFormInRoutes = {
+  component: CompleteForm,
+  path: "/complete-form",
+  exact: true,
+  restricted: false,
+};
+export const ArticlesInRoutes = {
+  component: Articles,
+  path: "/articles",
+  exact: true,
+  restricted: false,
+};
 
 const ROUTES = [
   SignInRoute,
@@ -164,6 +177,8 @@ const ROUTES = [
   GuestRoutes,
   CategoryByNameRoute,
   TempRouteeee,
+  CompleteFormInRoutes,
+  ArticlesInRoutes,
 ];
 
 export default ROUTES;
