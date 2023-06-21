@@ -104,7 +104,7 @@ const TaskTitle = ({ toggleabc }) => {
                       toggleabc={toggleabc}
                       editable={editable}
                     />
-                    <AddTask pathId={pathId} />
+                    <AddTask pathId={pathId} key={index} />
                   </>
                 );
 

@@ -89,13 +89,13 @@ const SubModal = ({
                 copies saved
               </p>
               <Button
-                onClick={() =>
+                handleClick={() => {
                   CopyHandler(
                     pathId,
                     isUser() ? userEmail : "guest@gmail.com",
                     navigate
-                  )
-                }
+                  );
+                }}
               >
                 Copy
               </Button>

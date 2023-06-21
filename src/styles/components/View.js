@@ -51,6 +51,7 @@ export const WrapperSection = styled.div`
 export const LeftContentWrapper = styled.div`
   min-height: 1294px;
   padding: 90px;
+  padding-left: 65px;
 `;
 
 export const DetailWrapper = styled.div`
@@ -58,6 +59,7 @@ export const DetailWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 22px;
+  padding-left: 25px;
 `;
 export const Date = styled.h3`
   font-size: 16px;

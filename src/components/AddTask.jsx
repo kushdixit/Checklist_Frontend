@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getChecklistBySubcategory, addNewTask } from "redux/actions/task";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import {
-  ChecklistTaskWrapper,
+  ChecklistAddTaskWrapper,
   TaskFormSubWrapper,
   TaskContainer,
   AddTaskSubContainer,
@@ -36,7 +36,7 @@ const AddTask = ({ pathId }) => {
     }
   };
   return (
-    <ChecklistTaskWrapper>
+    <ChecklistAddTaskWrapper>
       <form className="task-form" onSubmit={handleSubmit(AddTaskHandler)}>
         <TaskContainer>
           <AddTaskSubContainer>
@@ -98,7 +98,7 @@ const AddTask = ({ pathId }) => {
           </AddTaskSubContainer>
         </TaskContainer>
       </form>
-    </ChecklistTaskWrapper>
+    </ChecklistAddTaskWrapper>
   );
 };
 

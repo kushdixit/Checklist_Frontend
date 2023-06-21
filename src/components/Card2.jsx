@@ -43,6 +43,7 @@ const Card = ({
   const [isHovering, setIsHovering] = useState(false);
   const dispatch = useDispatch();
   const wrapperRef = useRef();
+  const saveRef = useRef();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -56,6 +57,20 @@ const Card = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [wrapperRef]);
+
+  useEffect(() => {
+    function handleClickOutsideButton(event) {
+      if (saveRef.current && !saveRef.current?.contains(event?.target)) {
+        setShowButtons(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutsideButton);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideButton);
+    };
+  }, [saveRef]);
+
   function toggleab(data) {
     setModal(data);
   }
@@ -159,36 +174,35 @@ const Card = ({
           onMouseOut={() => setIsHovering(false)}
           onSubmit={handleSubmit(TaskUpdateHandler)}
         >
-          {isHovering && (
-            <ModalContainer
-              ref={wrapperRef}
-              onClick={() => {
-                setIsOpenSort(!isOpenSort);
-              }}
-            >
-              <ShortBy>
-                <ImageSection>
-                  <img
-                    style={{ marginRight: "25px", paddingBottom: "3px" }}
-                    src={Plus}
-                    alt="Plus"
-                    onClick={() => {
-                      toggleab(!modal);
-                    }}
-                  />
-                </ImageSection>
-                {isOpenSort && (
-                  <TaskColon
-                    setIsHovering={setIsHovering}
-                    pathId={pathId}
-                    taskOrder={taskOrder}
-                    data={data}
-                    toggleabc={toggleabc}
-                  />
-                )}
-              </ShortBy>
-            </ModalContainer>
-          )}
+          <ModalContainer
+            visibility={isHovering}
+            ref={wrapperRef}
+            onClick={() => {
+              setIsOpenSort(!isOpenSort);
+            }}
+          >
+            <ShortBy>
+              <ImageSection>
+                <img
+                  style={{ paddingBottom: "3px" }}
+                  src={Plus}
+                  alt="Plus"
+                  onClick={() => {
+                    toggleab(!modal);
+                  }}
+                />
+              </ImageSection>
+              {isOpenSort && (
+                <TaskColon
+                  setIsHovering={setIsHovering}
+                  pathId={pathId}
+                  taskOrder={taskOrder}
+                  data={data}
+                  toggleabc={toggleabc}
+                />
+              )}
+            </ShortBy>
+          </ModalContainer>
           <TaskContainer>
             <TaskSubContainer
               isPriority={data?.isPriority}
@@ -229,7 +243,7 @@ const Card = ({
                     />
                   </div>
                 )}
-                <TaskFormSubWrapper cursor="all-scroll">
+                <TaskFormSubWrapper cursor="all-scroll" ref={saveRef}>
                   {!showButtons && (
                     <Paragraph
                       isHeading={data?.isHeading}
@@ -263,7 +277,7 @@ const Card = ({
                       defaultValue={data?.taskName}
                       control={control}
                       // onFocus={() => setShowButtons(!showButtons)}
-                      onBlur={() => setShowButtons(false)}
+                      // onBlur={() => setShowButtons(false)}
                       handleKeyDown={(e) => {
                         if (e.key === "Enter") {
                           e.target.blur();
@@ -281,7 +295,6 @@ const Card = ({
                       }}
                     >
                       <button
-                        onClick={() => handleSubmit(TaskUpdateHandler)}
                         style={{
                           backgroundColor: "#007ccb",
                           color: "white",
