@@ -2,21 +2,8 @@ import React from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 import { ButtonContainer } from "styles/components/Button";
-import { colors } from "constants/color";
-const Button = ({
-  handleClick,
 
-  type,
-  children,
-  disabled,
-  id,
-  buttonType,
-  props,
-}) => {
-  const style = {
-    backgroundColor: colors.backgroundColor,
-    color: colors.primaryColor,
-  };
+const Button = ({ handleClick, type, children, disabled, id, buttonType }) => {
   return (
     <ButtonContainer>
       <button

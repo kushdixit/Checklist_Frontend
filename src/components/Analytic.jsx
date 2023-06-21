@@ -178,8 +178,8 @@ const ChecklistWrapper = ({ data }) => {
             onClick={() =>
               navigate(`/insight/${data?.id}`, {
                 state: {
-                  inProgress: data?.totalTaskCount,
-                  completed: data?.inCompleteTaskCount,
+                  inProgress: data?.inCompleteTaskCount,
+                  completed: data?.completedTaskCount,
                 },
               })
             }
