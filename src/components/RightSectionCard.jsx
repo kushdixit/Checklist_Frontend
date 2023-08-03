@@ -18,7 +18,7 @@ const RightSectionCard = ({ pathId, reff }) => {
 
   const CopyHandler = async () => {
     const res = await dispatch(CopyChecklist(pathId, userEmail));
-    !res?.error && navigate(`/createChecklist/${res?.data?.data}`);
+    !res?.error && navigate(`/dashboard/${res?.data?.data}`);
   };
 
   return (

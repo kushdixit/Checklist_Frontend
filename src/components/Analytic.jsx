@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
 import { deleteChecklist, PinChecklist } from "redux/actions/checklist/index";
@@ -13,6 +13,7 @@ import {
   ThirdSection,
   FourthSection,
   IconInputFieldNew,
+  DeleteIconWrapper,
 } from "styles/components/Analytic";
 import { colors } from "constants/color";
 import { UPDATE_DATA } from "redux/actions/action_types";
@@ -21,6 +22,7 @@ import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
 import Star from "assets/SVG/Star";
 import StarGrey from "assets/SVG/StarGrey";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const Analytic = () => {
   const [search, setSearch] = useState("");
@@ -92,6 +94,7 @@ const Analytic = () => {
               <ChecklistWrapper data={item} id={id} />
             ))}
           {details
+            ?.reverse()
             ?.filter((item, index) => index <= 39)
             ?.filter((item) => !item?.pinned)
             .map((item, id) => (
@@ -131,6 +134,7 @@ const ChecklistWrapper = ({ data }) => {
     backgroundColor: colors.backgroundColor,
     color: colors.primaryColor,
   };
+  // console.log("data", data);
   return (
     <FourthSection>
       {contextHolder}
@@ -160,16 +164,9 @@ const ChecklistWrapper = ({ data }) => {
           </div>
         </li>
         <li>
-          <img
-            src={Share}
-            alt="Share"
-            onClick={() => {
-              navigator.clipboard.writeText(
-                `http://112.196.2.202:3000/guest/${data?.id}`
-              );
-              openNotification("url copied");
-            }}
-          />
+          <Link to={`/guest/${data?.id}`} target="_blank">
+            <img src={Share} alt="Share" />
+          </Link>
         </li>
         <li>
           <img
@@ -178,15 +175,18 @@ const ChecklistWrapper = ({ data }) => {
             onClick={() =>
               navigate(`/insight/${data?.id}`, {
                 state: {
-                  inProgress: data?.inCompleteTaskCount,
-                  completed: data?.completedTaskCount,
+                  inProgress: data?.inCompletedProcessCount,
+                  completed: data?.completedProcessCount,
                 },
               })
             }
           />
         </li>
-        <li onClick={DeleteChecklist}>
-          <img src={Trash} alt="Trash" />
+        <li onClick={DeleteChecklist} className="delete-checklist-wrapper">
+          {/* <img src={Trash} alt="Trash" /> */}
+          <DeleteIconWrapper>
+            <DeleteOutlined />
+          </DeleteIconWrapper>
         </li>
       </ul>
     </FourthSection>

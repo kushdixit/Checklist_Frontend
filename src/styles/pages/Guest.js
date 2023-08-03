@@ -35,3 +35,16 @@ export const CenterSection = styled.div`
     max-width: 400px;
   }
 `;
+export const LeftSection = styled.div`
+  border: 1px solid #eee;
+  background: #ffffff;
+  padding: 90px 37px;
+  max-width: 900px;
+  width: 100%;
+  @media (min-width: 1300px) {
+    max-width: 835px;
+  }
+  @media (max-width: 767px) {
+    padding-bottom: 50px;
+  }
+`;

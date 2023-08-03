@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { ViewCard } from "components/ViewCard";
+import { RecurringCard } from "components/RecurringCard";
 
-const ViewTask = () => {
+const ViewTask = ({ checkedState }) => {
+  const { pathname } = useLocation();
   const { id: pathId } = useParams();
   const ChecklistDetail = useSelector((state) =>
     pathId ? state.checklist : null
@@ -20,9 +22,31 @@ const ViewTask = () => {
 
   return (
     <>
-      {cards?.map((item) => (
-        <ViewCard data={item} />
-      ))}
+      {pathname.includes("view/process") ? (
+        <>
+          {cards?.map((item) => (
+            <>
+              {console.log(item?.id, checkedState?.tasksChecked)}
+              <RecurringCard
+                data={item}
+                checkedState={checkedState}
+                isChecked={
+                  checkedState?.tasksChecked?.includes(item?.id) ? true : false
+                }
+              />
+            </>
+          ))}
+        </>
+      ) : (
+        <>
+          {cards?.map((item) => (
+            <>
+              {console.log("item", item)}
+              <ViewCard data={item} checkedState={checkedState} />
+            </>
+          ))}
+        </>
+      )}
     </>
   );
 };

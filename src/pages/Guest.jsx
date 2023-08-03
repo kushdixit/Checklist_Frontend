@@ -6,13 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChecklistBySubcategory } from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
+import { SET_SEARCH } from "redux/actions/action_types";
 import { ImageWrapper } from "helpers/copy";
 import {
   ChecklistMainWrapper,
   ChecklistSubWrapper,
-  CenterSection,
+  LeftSection,
 } from "styles/pages/Guest";
+import {
+  RightViewSection,
+  RightCardWrapper,
+  TagButton,
+  TagContent,
+} from "styles/pages/EditChecklist";
 
+const SubModal = lazy(() => import("components/SubModal"));
 const Navbar = lazy(() => import("components/Navbar"));
 const DescriptionTitle = lazy(() => import("components/DescriptionTitle"));
 const ChecklistTitle = lazy(() => import("components/ChecklistTitle"));
@@ -76,6 +84,13 @@ const Guest = () => {
     }
   };
 
+  const TagSearchHandler = (title) => {
+    dispatch({ type: SET_SEARCH, payload: title });
+    navigate(`/search/${title}`, {
+      state: { tagTerm: title, searchedterm: "" },
+    });
+  };
+
   return (
     <div>
       <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
@@ -96,7 +111,7 @@ const Guest = () => {
       </Suspense>
       <ChecklistMainWrapper>
         <ChecklistSubWrapper>
-          <CenterSection>
+          <LeftSection>
             <div ref={reff}>
               <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
                 <ChecklistTitle />
@@ -116,13 +131,51 @@ const Guest = () => {
                 <TaskTitle toggleabc={toggleabc} />
               </Suspense>
             </div>
-          </CenterSection>
+          </LeftSection>
+          <RightViewSection>
+            <ShareSectionCard pathId={pathId} />
+            {ChecklistDetail?.tag && <TagContent>Tags</TagContent>}
+            {ChecklistDetail?.tag?.split(",")?.map((title, index) => (
+              <TagButton key={index}>
+                <button
+                  className="button"
+                  onClick={() => TagSearchHandler(title)}
+                >
+                  {title}
+                </button>
+              </TagButton>
+            ))}
+          </RightViewSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
       <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
         <Footer />
       </Suspense>
     </div>
+  );
+};
+
+const ShareSectionCard = ({ pathId }) => {
+  return (
+    <RightCardWrapper>
+      <button
+        style={{
+          background: "#rgb(207 246 193)",
+          padding: "0.75rem 0.25rem",
+          marginBottom: "2rem",
+          fontWeight: "bold",
+          color: "green",
+          fontSize: "1rem",
+        }}
+      >
+        Run Process
+      </button>
+      <SubModal
+        title="Share Checklist"
+        link={`http://112.196.2.202:3000/guest/${pathId}`}
+        linkName="preview"
+      />
+    </RightCardWrapper>
   );
 };
 

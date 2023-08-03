@@ -1,5 +1,6 @@
 import React from "react";
 import EditImageModal from "components/EditImageModal";
+import ProcessModal from "components/ProcessModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/ImageModal";
 
@@ -15,7 +16,7 @@ const customStyles = {
     background: "rgb(255, 255, 255)",
     padding: "15px 0 24px 0",
     width: "100%",
-    height: "auto",
+    height: "100%",
   },
 };
 
@@ -25,6 +26,8 @@ const ImageModal = ({
   hideButton,
   notify,
   modalType,
+  cards,
+  pathId,
 }) => {
   return (
     <ReactModal
@@ -40,6 +43,14 @@ const ImageModal = ({
       </ButtonWrapper>
       {modalType === "editimage" && (
         <EditImageModal notify={notify} togglefunction={togglefunction} />
+      )}
+      {modalType === "processmodal" && (
+        <ProcessModal
+          notify={notify}
+          togglefunction={togglefunction}
+          cards={cards}
+          pathId={pathId}
+        />
       )}
     </ReactModal>
   );

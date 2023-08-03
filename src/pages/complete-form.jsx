@@ -1,10 +1,7 @@
 import React, { useState, lazy, Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
-import EmailIcon from "assets/SVG/EmailIcon";
-import LockIcon from "assets/SVG/LockIcon";
 import Button from "components/Button";
-import Checklist from "assets/images/checklist.svg";
 import { store } from "redux/index";
 import { authLogin } from "../redux/actions/auth";
 import * as yup from "yup";
@@ -16,19 +13,7 @@ import {
   IconInputField,
   FormBody,
   ButtonWrapper,
-  Heading,
   Container,
-  LeftContainer,
-  RightContainer,
-  IconSection,
-  LeftIconSection,
-  RightIconSection,
-  IconText,
-  Error,
-  SignUp,
-  UserHelper,
-  Forgot,
-  ChecklistHeader,
   Label,
   FirstSection,
   SecondSection,
@@ -37,10 +22,6 @@ import { Input } from "antd";
 
 const { TextArea } = Input;
 const TextInput = lazy(() => import("components/FormElements/TextInput"));
-const ErrorComponent = lazy(() => import("components/Error"));
-const AlertModal = lazy(() => import("components/AlertModal"));
-const Google = lazy(() => import("components/Google"));
-const Facebook = lazy(() => import("components/Facebook"));
 
 const CompleteForm = () => {
   let schema = yup.object().shape({
@@ -55,19 +36,6 @@ const CompleteForm = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [showError, setShowError] = useState(true);
-  const [loginError, setLoginError] = useState(false);
-  const [resetError, setResetError] = useState(false);
-  const [modal, setModal] = useState(false);
-
-  function toggleab(data) {
-    setModal(data);
-  }
-  const notify = (res) => {
-    setShowError(true);
-    setResetError(true);
-  };
-
   const {
     handleSubmit,
     formState: { errors },
@@ -80,7 +48,6 @@ const CompleteForm = () => {
   });
 
   const formData = async (data) => {
-    setLoginError(false);
     const payload = {
       email: data.email,
       password: data.password,
@@ -95,8 +62,6 @@ const CompleteForm = () => {
         },
       });
     else {
-      setLoginError(true);
-      setResetError(false);
     }
   };
   const style = {
@@ -108,7 +73,6 @@ const CompleteForm = () => {
       <Container>
         <FirstSection>Submit your complete work</FirstSection>
         <SecondSection>http;//www.checkli.com/process</SecondSection>
-
         <FormBody>
           <form onSubmit={handleSubmit(formData)}>
             <RegistrationContainer>

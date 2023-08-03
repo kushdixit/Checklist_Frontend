@@ -10,7 +10,7 @@ import {
 } from "styles/pages/EditChecklist";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 
-export const ViewCard = ({ data, checkedState }) => {
+export const RecurringCard = ({ data, isChecked }) => {
   const { pathname, state } = useLocation();
   const [isHovering, setIsHovering] = useState(false);
 
@@ -18,9 +18,11 @@ export const ViewCard = ({ data, checkedState }) => {
     mode: "onSubmit",
     reValidateMode: "onBlur",
     defaultValues: {
-      rememberMe: data?.ischecked,
+      rememberMe: isChecked,
     },
   });
+
+  console.log("wefwe");
 
   return (
     <div>
@@ -47,6 +49,7 @@ export const ViewCard = ({ data, checkedState }) => {
                       render={({ field }) => (
                         <CheckboxInput
                           className="checkBox"
+                          value={isChecked}
                           style={{
                             paddingTop: "10px",
                             width: "23px",

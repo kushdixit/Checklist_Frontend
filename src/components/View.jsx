@@ -16,6 +16,7 @@ import {
   Date,
   Helpers,
   ShareButton,
+  ShareLink,
 } from "styles/components/View";
 import { getChecklistBySubcategory } from "redux/actions/task";
 import DescriptionTitle from "components/DescriptionTitle";
@@ -76,7 +77,7 @@ const View = () => {
       <RightContainer>
         <Helpers>
           <div style={{ display: "flex", gap: "10px" }}>
-            <ShareButton
+            {/* <ShareButton
               onClick={() => {
                 navigator.clipboard.writeText(
                   `http://112.196.2.202:3000/guest/${pathId}`
@@ -85,7 +86,10 @@ const View = () => {
               }}
             >
               Share
-            </ShareButton>
+            </ShareButton> */}
+            <ShareLink to={`/guest/${pathId}`} target="_blank">
+              Preview
+            </ShareLink>
             <ShareButton>
               <DropdownBox reff={reff} toggleab={toggleab} />
             </ShareButton>

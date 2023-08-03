@@ -3,15 +3,17 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
-import { getChecklistBySubcategory } from "redux/actions/task";
+import {
+  getChecklistBySubcategory,
+  getChecklistByCopyId,
+} from "redux/actions/task";
 import { addTempChecklist } from "redux/actions/checklist";
 import { SET_IS_EDITABLE } from "redux/actions/action_types";
 import { getAllTemplate } from "redux/actions/template";
 import { GetImage } from "redux/actions/task";
-import { isUser } from "helpers/isUser";
-import { CopyHandler } from "helpers/copy";
 import { SET_SEARCH } from "redux/actions/action_types";
 import Button from "components/Button";
+import ImageModal from "components/ImageModal";
 import { colors } from "constants/color";
 import {
   ChecklistMainWrapper,
@@ -23,21 +25,15 @@ import {
   RightCardWrapper,
   ChecklistTitleText,
   ChecklistDescText,
-  ProgressSection,
-  LeftHeader,
-  ButtonSection,
-  SecondContent,
-  TagButton,
-  TagContent,
 } from "styles/pages/EditChecklist";
 import Tick from "assets/images/tick.jpg";
 
 const Navbar = lazy(() => import("components/Navbar"));
 const SubModal = lazy(() => import("components/SubModal"));
 const Footer = lazy(() => import("components/Footer"));
-const ViewTask = lazy(() => import("components/ViewTask"));
+const ProcessTask = lazy(() => import("components/ProcessTask"));
 
-const ViewList = () => {
+const ProcessPage = () => {
   const { pathname, state } = useLocation();
   const { id: pathId } = useParams();
   const dispatch = useDispatch();
@@ -47,15 +43,31 @@ const ViewList = () => {
     pathId ? state.checklist : null
   );
   const [api, contextHolder] = notification.useNotification();
+  const [cards, setCards] = useState([]);
+  const [cardsWithFlag, setCardsWithFlag] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [processData, setprocessData] = useState({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getAllTemplate());
+    pathId && dispatch(getChecklistByCopyId(pathId));
+    setCards(ChecklistDetail?.tasks);
+    setCardsWithFlag(ChecklistDetail?.tasks);
   }, []);
 
   useEffect(() => {
-    pathId && dispatch(getChecklistBySubcategory(pathId));
-  }, []);
+    setCards(ChecklistDetail?.tasks);
+    // const filterArray = ChecklistDetail?.tasks?.map((item) => {return {
+    //   item?.id, item?.ischecked;
+    // }});
+    // console.log("filterArray", filterArray);
+    setCardsWithFlag(ChecklistDetail?.tasks);
+    const filterData = ChecklistDetail?.checklistMasterCopyRelations?.filter(
+      (item) => item?.checklistCopiedId === pathId
+    );
+    setprocessData(filterData);
+  }, [ChecklistDetail]);
 
   const { getValues } = useForm({
     mode: "onSubmit",
@@ -71,6 +83,8 @@ const ViewList = () => {
       message,
     });
   };
+
+  console.log("processData", processData);
 
   const getPayload = async () => {
     const multipleValues = getValues(["checklist", "description"]);
@@ -99,17 +113,9 @@ const ViewList = () => {
     color: colors.primaryColor,
   };
 
-  const HandleProcess = async () => {
-    const res = await CopyHandler(
-      pathId,
-      isUser() ? userEmail : "guest@gmail.com",
-      true
-    );
-    res?.error === false &&
-      navigate(`/${res?.data?.data}/check`, {
-        state: { checklistId: pathId },
-      });
-  };
+  function toggleab(data) {
+    setModal(data);
+  }
 
   return (
     <Section>
@@ -137,64 +143,54 @@ const ViewList = () => {
                 imageId={ChecklistDetail?.checklistImageId}
               />
               <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
-                <ViewTask checkedState={state} />
+                <ProcessTask
+                  cards={cards}
+                  setCards={setCards}
+                  processData={processData}
+                />
               </Suspense>
-            </LeftContentWrapper>
-            {pathname.includes("checklists") && (
-              <>
-                <ProgressSection>
-                  <img src={Tick} alt="tick" />
-                </ProgressSection>
-                <LeftHeader>
-                  This checklist was created by {ChecklistDetail?.createdBy}
-                </LeftHeader>
-                <ButtonSection>
-                  <Button
-                    className="button"
-                    onClick={() =>
-                      CopyHandler(
-                        pathId,
-                        isUser() ? userEmail : "guest@gmail.com",
-                        false,
-                        navigate
-                      )
-                    }
+              {processData?.length > 0 && !processData[0]?.isDone && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "2rem",
+                  }}
+                >
+                  <button
+                    onClick={() => setModal(true)}
+                    style={{
+                      padding: "0.75rem 1.5rem",
+                      marginBottom: "2rem",
+                      fontWeight: "bold",
+                      color: "white",
+                      fontSize: "1rem",
+                      border: "none",
+                      background: "#ed5656",
+                      borderRadius: "3px",
+                    }}
                   >
-                    Save this checklist
-                  </Button>
-                </ButtonSection>
-                <SecondContent>
-                  {ChecklistDetail?.copyCount} copies saved
-                </SecondContent>
-              </>
-            )}
+                    Submit
+                  </button>
+                </div>
+              )}
+            </LeftContentWrapper>
           </LeftSection>
           <RightViewSection>
-            {pathname.includes("guest") && (
-              <ShareSectionCard pathId={pathId} HandleProcess={HandleProcess} />
-            )}
-            {pathname.includes("checklists") && (
-              <>
-                <CopyCard info={ChecklistDetail} />
-                {ChecklistDetail?.tag && <TagContent>Tags</TagContent>}
-                {ChecklistDetail?.tag?.split(",")?.map((title, index) => (
-                  <TagButton key={index}>
-                    <button
-                      className="button"
-                      onClick={() => TagSearchHandler(title)}
-                    >
-                      {title}
-                    </button>
-                  </TagButton>
-                ))}
-              </>
-            )}
+            <ShareSectionCard pathId={pathId} />
           </RightViewSection>
         </ChecklistSubWrapper>
       </ChecklistMainWrapper>
       <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
         <Footer />
       </Suspense>
+      <ImageModal
+        modalType="processmodal"
+        isOpen={modal}
+        togglefunction={toggleab}
+        cards={cards}
+        pathId={pathId}
+      />
     </Section>
   );
 };
@@ -233,45 +229,17 @@ const ImageWrapper = ({ title, imageId }) => {
   );
 };
 
-const CopyCard = ({ info }) => {
+const ShareSectionCard = ({ pathId }) => {
   return (
     <RightCardWrapper>
-      <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
-        <SubModal
-          counts={true}
-          viewCount={info?.viewCount}
-          copyCount={info?.copyCount}
-          downloadCount={info?.downloadCount}
-        />
-      </Suspense>
-    </RightCardWrapper>
-  );
-};
-
-const ShareSectionCard = ({ pathId, HandleProcess }) => {
-  return (
-    <RightCardWrapper>
-      <button
-        onClick={HandleProcess}
-        style={{
-          padding: "0.75rem 0.25rem",
-          marginBottom: "2rem",
-          fontWeight: "bold",
-          color: "green",
-          fontSize: "1rem",
-          border: "none",
-          background: "#cff6c1",
-        }}
-      >
-        Run Process
-      </button>
       <SubModal
-        title="Share Checklist"
-        link={`http://112.196.2.202:3000/guest/${pathId}`}
+        title="Save for later"
+        link={`http://112.196.2.202:3000/${pathId}/check`}
         linkName="preview"
+        // isCopied="true"
       />
     </RightCardWrapper>
   );
 };
 
-export default ViewList;
+export default ProcessPage;
