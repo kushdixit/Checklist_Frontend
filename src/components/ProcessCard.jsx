@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
 import {
   ChecklistTaskWrapper,
   TaskFormSubWrapper,
@@ -10,11 +9,17 @@ import {
 } from "styles/pages/EditChecklist";
 import CheckboxInput from "components/FormElements/CheckboxInput";
 
-export const ViewCard = ({ data, checkedState }) => {
-  const { pathname, state } = useLocation();
+export const ProcessCard = ({
+  data,
+  setCards,
+  cards,
+  updateBool,
+  index,
+  processData,
+}) => {
   const [isHovering, setIsHovering] = useState(false);
 
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, reset } = useForm({
     mode: "onSubmit",
     reValidateMode: "onBlur",
     defaultValues: {
@@ -52,16 +57,22 @@ export const ViewCard = ({ data, checkedState }) => {
                             width: "23px",
                             height: "23px",
                             margin: "0px",
-                            // outline: " #006db3 ",
                           }}
                           {...field}
-                          onChange={(e) => {}}
+                          onChange={(e) => {
+                            if (!processData[0].isDone) {
+                              reset({
+                                rememberMe: e,
+                              });
+                              updateBool(index, e);
+                            }
+                          }}
                         />
                       )}
                     />
                   </div>
                 )}
-                <TaskFormSubWrapper cursor="not-allowed">
+                <TaskFormSubWrapper>
                   <Paragraph
                     isHeading={data?.isHeading}
                     style={{ margin: "0px" }}

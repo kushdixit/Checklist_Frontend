@@ -1,5 +1,7 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getChecklistBySubcategory } from "redux/actions/task";
 import {
   LandingContainer,
   RightContainer,
@@ -13,7 +15,19 @@ import {
 } from "styles/components/insights";
 
 const Insight = () => {
+  const { id: pathId } = useParams();
+  const dispatch = useDispatch();
   const { state } = useLocation();
+  const ChecklistDetail = useSelector((state) =>
+    pathId ? state.checklist : null
+  );
+
+  useEffect(() => {
+    pathId && dispatch(getChecklistBySubcategory(pathId));
+  }, []);
+
+  console.log("state", ChecklistDetail);
+
   return (
     <LandingContainer>
       <RightContainer>
@@ -23,14 +37,14 @@ const Insight = () => {
           </Title>
           <CardWrapper>
             <CardDiv>
-              <Card>
-                <Count>{state?.completed}</Count>
+              <Card to={`/completed/${pathId}`}>
+                <Count>{ChecklistDetail?.completedProcessCount}</Count>
                 <CountTitle>completions</CountTitle>
               </Card>
             </CardDiv>
             <CardDiv>
-              <Card>
-                <Count>{state?.inProgress}</Count>
+              <Card to={`/progress/${pathId}`}>
+                <Count>{ChecklistDetail?.inCompletedProcessCount}</Count>
                 <CountTitle>in progress</CountTitle>
               </Card>
             </CardDiv>

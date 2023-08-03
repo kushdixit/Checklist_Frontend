@@ -274,3 +274,50 @@ export const UpdateChecklistImage = (id, checkListImageId) => async () => {
     return ex.response;
   }
 };
+
+export const getChecklistByCopyId = (Checklistid) => (dispatch) =>
+  axioPath
+    .get("v1/CheckList/GetChecklistByCheckListCopiedId/" + Checklistid)
+    .then((response) => {
+      dispatch({ type: UPDATE_DATA, payload: response.data });
+      return { error: false, data: response.data };
+    })
+    .catch((ex) => {
+      if (typeof ex == "string") {
+        return { ex: { message: ex } };
+      }
+      return { error: true, data: ex };
+    });
+
+    export const ChecklistProcessUpdate = (checklistMasterId, checklistCopiedId, formState, tasks) => async () => {
+      const payload = {
+        checklistMasterId,
+        checklistCopiedId,
+        name: formState?.input1,
+        submitTo: formState?.input2,
+        notes: formState?.textarea,
+        tasks
+        // tasks: [{
+        //   taskId: 1117,
+        //   ischecked: true
+        // },
+        // {
+        //   taskId: 1118,
+        //   ischecked: true
+        // }]
+      }
+      try {
+        await axioPath.put(
+          "v1/CheckList/checklistTaskCompleteUpdate",
+          payload,
+          {
+            hideLoader: false,
+          }
+        );
+    
+        return { error: false };
+      } catch (ex) {
+        console.log('ex', ex);
+        return { error: true, message: ex };
+      }
+    };

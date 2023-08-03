@@ -72,7 +72,7 @@ const CreateList = () => {
       <RightContainer>
         <Helpers>
           <div style={{ display: "flex", gap: "10px" }}>
-            <ShareButton
+            {/* <ShareButton
               onClick={() => {
                 navigator.clipboard.writeText(
                   `http://112.196.2.202:3000/guest/${pathId}`
@@ -81,10 +81,10 @@ const CreateList = () => {
               }}
             >
               Share
-            </ShareButton>
-            <ShareButton>
+            </ShareButton> */}
+            {/* <ShareButton>
               <DropdownBox reff={reff} toggleab={toggleab} />
-            </ShareButton>
+            </ShareButton> */}
           </div>
         </Helpers>
         <WrapperSection>

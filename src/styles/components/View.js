@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const LandingContainer = styled.div`
   width: 100%;
@@ -6,21 +7,21 @@ export const LandingContainer = styled.div`
   ${({ boxType }) => boxType === "round" && "font-size:14px;font-weight:400"};
   span {
     ${({ boxType }) =>
-      boxType === "round" &&
-      "color: #131313;font-family: 'Lato', sans-serif;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;white-space: nowrap;"};
+    boxType === "round" &&
+    "color: #131313;font-family: 'Lato', sans-serif;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;white-space: nowrap;"};
   }
   input[type="checkbox"] {
     ${({ boxType }) => boxType === "round" && "display: none;"};
   }
   input[type="checkbox"] + span:before {
     ${({ boxType }) =>
-      boxType === "round" &&
-      "    width: 18px;height: 18px;border: 1.5px solid #f0f0f0;content: '';display: inline-block;margin: 0 16px 0 0;padding: 0;vertical-align: top; border-radius: 50%;"};
+    boxType === "round" &&
+    "    width: 18px;height: 18px;border: 1.5px solid #f0f0f0;content: '';display: inline-block;margin: 0 16px 0 0;padding: 0;vertical-align: top; border-radius: 50%;"};
   }
   input[type="checkbox"]:checked + span:before {
     ${({ boxType }) =>
-      boxType === "round" &&
-      "background: #1460c8;border: 1.5px solid #1460c8;box-shadow: inset 0px 0px 0px 1px #fff;color: #333;content: '';text-align: center;border-radius: 50%;"};
+    boxType === "round" &&
+    "background: #1460c8;border: 1.5px solid #1460c8;box-shadow: inset 0px 0px 0px 1px #fff;color: #333;content: '';text-align: center;border-radius: 50%;"};
   }
   input[type="checkbox"]:focus + span::before {
     ${({ boxType }) => boxType === "round" && "outline: 0;"};
@@ -85,4 +86,17 @@ export const ShareButton = styled.button`
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   line-height: 1.2;
+`;
+export const ShareLink = styled(Link)`
+  color: #5b5757;
+  font-size: 13px;
+  padding: 10px 15px;
+  min-width: max-content;
+  background-color: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration:none
 `;

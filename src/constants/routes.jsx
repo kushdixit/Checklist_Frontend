@@ -10,6 +10,9 @@ const ViewList = lazy(() => import("pages/ViewList"));
 const ChecklistDashboard = lazy(() => import("pages/ChecklistDashboard"));
 const Guest = lazy(() => import("pages/Guest"));
 const CategoryByName = lazy(() => import("pages/CategoryByName"));
+const CompleteForm = lazy(() => import("pages/complete-form"));
+const Articles = lazy(() => import("pages/articles"));
+const ProcessPage = lazy(() => import("pages/ProcessPage"));
 
 export const LandingRoute = {
   component: Landing,
@@ -137,11 +140,58 @@ export const InsightRoutes = {
   restricted: true,
 };
 
+// export const GuestRoutes = {
+//   component: Guest,
+//   path: "/guest/:id",
+//   exact: true,
+//   restricted: false,
+// };
+export const CompleteFormInRoutes = {
+  component: CompleteForm,
+  path: "/complete-form",
+  exact: true,
+  restricted: false,
+};
+export const ArticlesInRoutes = {
+  component: Articles,
+  path: "/articles",
+  exact: true,
+  restricted: false,
+};
+
 export const GuestRoutes = {
-  component: Guest,
+  component: ViewList,
   path: "/guest/:id",
   exact: true,
   restricted: false,
+};
+
+export const ProcessByIdRoute = {
+  component: ProcessPage,
+  path: "/:id/check",
+  exact: true,
+  restricted: false,
+};
+
+export const CompletedProcessRoute = {
+  component: ChecklistDashboard,
+  path: "/completed/:id",
+  exact: true,
+  restricted: true,
+};
+
+export const InProgressProcessRoute = {
+  component: ChecklistDashboard,
+  path: "/progress/:id",
+  exact: true,
+  restricted: true,
+};
+
+export const ViewProcessRoute = {
+  component: ViewList,
+  path: "/view/process/:id",
+  exact: true,
+  restricted: true,
 };
 
 const ROUTES = [
@@ -164,6 +214,12 @@ const ROUTES = [
   GuestRoutes,
   CategoryByNameRoute,
   TempRouteeee,
+  CompleteFormInRoutes,
+  ArticlesInRoutes,
+  ProcessByIdRoute,
+  CompletedProcessRoute,
+  InProgressProcessRoute,
+  ViewProcessRoute,
 ];
 
 export default ROUTES;

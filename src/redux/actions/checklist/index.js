@@ -110,10 +110,11 @@ export const ChecklistCompleted = (id, ischecked) => async (dispatch) => {
   }
 };
 
-export const CopyChecklist = (id, email) => async (dispatch) => {
+export const CopyChecklist = (id, email, isCopied) => async (dispatch) => {
   const payload = {
     id,
     email,
+    isCopied: isCopied || false
   };
   try {
     const res = await axioPath.post("v1/CheckList/checklistscopy", payload, {

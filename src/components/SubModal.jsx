@@ -17,6 +17,7 @@ import {
   StyleButtonWrapper,
   ViewCount,
   CopyButtonWrapper,
+  PreviewLink,
 } from "styles/pages/EditChecklist";
 import SliderModal from "components/SliderModal";
 import { Select } from "antd";
@@ -89,12 +90,14 @@ const SubModal = ({
                 copies saved
               </p>
               <Button
-                handleClick={() => {
-                  CopyHandler(
+                handleClick={async () => {
+                  const res = await CopyHandler(
                     pathId,
                     isUser() ? userEmail : "guest@gmail.com",
-                    navigate
+                    false
                   );
+                  res?.error === false &&
+                    navigate(`/dashboard/${res?.data?.data}`);
                 }}
               >
                 Copy
@@ -116,18 +119,19 @@ const SubModal = ({
             <Preview onClick={() => toggleab(true)}>{buttonName}</Preview>
           )}
           {linkName && (
-            <Preview
-              href="#"
-              onClick={() => {
-                linkName === "copy" &&
-                  navigator.clipboard.writeText(
-                    `http://112.196.2.202:3000/guest/${pathId}`
-                  );
-                openNotification("url copied");
-              }}
+            <PreviewLink
+              to={`/guest/${pathId}`}
+              target="_blank"
+              // onClick={() => {
+              //   linkName === "preview" &&
+              //     navigator.clipboard.writeText(
+              //       `http://112.196.2.202:3000/guest/${pathId}`
+              //     );
+              //   openNotification("url copied");
+              // }}
             >
               {linkName}
-            </Preview>
+            </PreviewLink>
           )}
         </ShareTextWrapper>
       </ShareSection>

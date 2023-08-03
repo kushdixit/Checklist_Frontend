@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "constants/color";
+import { Link } from "react-router-dom";
 
 export const Section = styled.div``;
 
@@ -277,6 +278,14 @@ export const ChecklistDescText = styled.div`
   text-transform: capitalize;
 `;
 export const Preview = styled.a`
+  text-decoration: none;
+  font-size: 14px;
+  display: inline;
+  float: right;
+  cursor: pointer;
+  color: rgb(0, 0, 238);
+`;
+export const PreviewLink = styled(Link)`
   text-decoration: none;
   font-size: 14px;
   display: inline;

@@ -11,6 +11,7 @@ import SideBar from "components/SideBar";
 import Insight from "components/insights";
 import Navbar from "components/Navbar";
 import CreateList from "components/CreateList";
+import Completed from "components/Completed";
 import Search from "./search";
 import { LandingContainer, MainSection } from "styles/pages/ChecklistDashboard";
 
@@ -42,6 +43,8 @@ const ChecklistDashboard = () => {
         {pathname.includes("/dashboard") && <View />}
         {pathname.includes("/create-list") && <CreateList />}
         {pathname.includes("/insight") && <Insight />}
+        {pathname.includes("/completed") && <Completed />}
+        {pathname.includes("/progress") && <Completed />}
       </MainSection>
       <Footer />
     </LandingContainer>
