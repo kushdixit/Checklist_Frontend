@@ -68,7 +68,6 @@ const CompleteForm = () => {
     backgroundColor: colors.backgroundColor,
     color: colors.primaryColor,
   };
-
   const formFields = () => {
     return (
       <Container>
