@@ -1,0 +1,136 @@
+import React, { useEffect, useState, useCallback, lazy, Suspense } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getChecklistBySubcategory } from "redux/actions/task";
+import { SET_TASK } from "redux/actions/action_types";
+import { MoveTask } from "redux/actions/task";
+import update from "immutability-helper";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
+const AddTask = lazy(() => import("components/AddTask"));
+const Card = lazy(() => import("components/Card2"));
+
+const TaskTitle = ({ toggleabc }) => {
+  const { id: pathId } = useParams();
+  const dispatch = useDispatch();
+  const ChecklistDetail = useSelector((state) =>
+    pathId ? state.checklist : null
+  );
+  const addTask = useSelector((state) => state.addTask?.addTask);
+  const [cards, setCards] = useState([]);
+  const [editable, setEditable] = useState(false);
+  const [taskOrder, setTaskOrder] = useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) setEditable(true);
+    setCards(ChecklistDetail?.tasks);
+  }, []);
+
+  useEffect(() => {
+    setCards(ChecklistDetail?.tasks);
+  }, [ChecklistDetail]);
+
+  const getTaskOrder = () => {
+    const data = cards?.reduce(
+      (total, item, index) => (index === 0 ? item?.id : total + "," + item?.id),
+      ""
+    );
+    setTaskOrder(data);
+  };
+
+  useEffect(() => {
+    let timer1 = setTimeout(async () => {
+      getTaskOrder();
+    }, 500);
+
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, [cards]);
+
+  //If a new task is added, state value will change & it will hit this function.To stop the move api from running here, we are wrapping it in a condition where addTask!=0
+  // & if the condition is false we will set the context value back to zero as we have added the new task.
+  const UpdateTaskOrder = async () => {
+    if (addTask !== 0) {
+      const res = await dispatch(MoveTask(taskOrder));
+      res.status === 204 && dispatch(getChecklistBySubcategory(pathId));
+    } else {
+      dispatch({ type: SET_TASK, payload: 0 });
+    }
+  };
+
+  useEffect(() => {
+    if (taskOrder?.length) UpdateTaskOrder();
+  }, [taskOrder]);
+
+  const moveCard = useCallback((dragIndex, hoverIndex) => {
+    setCards((prevCards) =>
+      update(prevCards, {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, prevCards[dragIndex]],
+        ],
+      })
+    );
+  }, []);
+
+  return (
+    <>
+      <DndProvider backend={HTML5Backend}>
+        <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+          {pathId && ChecklistDetail?.tasks?.length === 0 && (
+            <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+              {" "}
+              <AddTask pathId={pathId} />
+            </Suspense>
+          )}
+          <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
+            {" "}
+            {cards?.map((item, index) => {
+              if (item?.id === addTask)
+                return (
+                  <>
+                    <Card
+                      key={index}
+                      index={index}
+                      id={index}
+                      text={item?.taskName}
+                      moveCard={moveCard}
+                      data={item}
+                      taskOrder={taskOrder}
+                      pathId={pathId}
+                      toggleabc={toggleabc}
+                      editable={editable}
+                    />
+                    <AddTask pathId={pathId} key={index} />
+                  </>
+                );
+
+              return (
+                <Card
+                  key={index}
+                  index={index}
+                  id={index}
+                  text={item?.taskName}
+                  moveCard={moveCard}
+                  data={item}
+                  taskOrder={taskOrder}
+                  pathId={pathId}
+                  toggleabc={toggleabc}
+                  editable={editable}
+                />
+              );
+            })}
+          </Suspense>
+          {localStorage.getItem("access_token") &&
+            pathId &&
+            ChecklistDetail?.tasks?.length !== 0 && <AddTask pathId={pathId} />}
+        </Suspense>
+      </DndProvider>
+    </>
+  );
+};
+
+export default TaskTitle;
