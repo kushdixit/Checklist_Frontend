@@ -91,7 +91,11 @@ const View = () => {
               Preview
             </ShareLink>
             <ShareButton>
-              <DropdownBox reff={reff} toggleab={toggleab} />
+              <DropdownBox
+                reff={reff}
+                toggleab={toggleab}
+                openNotification={openNotification}
+              />
             </ShareButton>
           </div>
         </Helpers>

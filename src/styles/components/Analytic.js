@@ -262,12 +262,12 @@ export const IconInputFieldNew = styled.div`
   }
 `;
 export const DeleteIconWrapper = styled.div`
-background: #f5f5f5;
-font-size: 20px;
-color: black !important;
-padding: 8px;
-border: 1px solid #ddd;
-:hover {
-  color:red !important;
-}
-`
+  background: #f5f5f5;
+  font-size: 20px;
+  color: black !important;
+  padding: 8px;
+  border: 1px solid #ddd;
+  :hover {
+    color: red !important;
+  }
+`;

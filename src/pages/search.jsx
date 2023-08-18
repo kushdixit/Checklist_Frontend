@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
 import { SearchList } from "redux/actions/checklist";
 import { SET_SEARCH } from "redux/actions/action_types";
@@ -18,7 +18,8 @@ const Search = () => {
   const [count, setCount] = useState(1);
   const [Searched, setSearched] = useState([]);
   const [searchError, setSearchError] = useState(false);
-  const { searchedterm, tagTerm } = state;
+  const { id } = useParams();
+
   const isLoading = useSelector((state) => state?.loader?.loaderVisible);
 
   const SearchHandler = async (title, type) => {
@@ -36,11 +37,11 @@ const Search = () => {
   };
 
   useEffect(() => {
-    if (searchedterm !== undefined && searchedterm !== "")
-      SearchHandler(searchedterm, 1);
-    else if (tagTerm !== undefined && tagTerm !== "") SearchHandler(tagTerm, 3);
+    if (id !== undefined && id !== "") SearchHandler(id, 1);
+    else if (state?.tagTerm !== undefined && state?.tagTerm !== "")
+      SearchHandler(state?.tagTerm, 3);
     else dispatch(hideAppLoader());
-  }, [searchedterm, tagTerm, count]);
+  }, [id, state?.tagTerm, count]);
 
   useEffect(() => {
     dispatch(showAppLoader());

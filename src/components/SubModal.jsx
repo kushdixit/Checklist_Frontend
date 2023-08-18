@@ -6,6 +6,7 @@ import { isUser } from "helpers/isUser";
 import { CopyHandler } from "helpers/copy";
 import Button from "components/Button";
 import { colors } from "constants/color";
+import { PublicprivateChecklist } from "redux/actions/checklist";
 import {
   RightContentWrapper,
   ShareSection,
@@ -39,11 +40,13 @@ const SubModal = ({
   copyCount,
   downloadCount,
   counts,
+  createrEmail,
 }) => {
   const { id: pathId } = useParams();
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
+  const { id: taskId, isPrivate } = useSelector((state) => state?.checklist);
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const [api, contextHolder] = notification.useNotification();
 
@@ -65,6 +68,21 @@ const SubModal = ({
     backgroundColor: colors.backgroundColor,
     color: colors.primaryColor,
   };
+
+  const MoveChecklistData = async () => {
+    try {
+      const res = await dispatch(PublicprivateChecklist(taskId, !isPrivate));
+      if (!res.error) {
+        openNotification("moved successfully");
+        navigate("/process");
+      } else {
+        openNotification("error");
+      }
+    } catch (error) {
+      openNotification(error);
+    }
+  };
+
   return (
     <RightContentWrapper>
       {contextHolder}
@@ -111,6 +129,15 @@ const SubModal = ({
               </p>
               <button onClick={() => navigate("/sign-in")}>pdf</button>
             </CopyButtonWrapper>
+            {userEmail === createrEmail ? (
+              <CopyButtonWrapper
+                btnColor="#ec4e20"
+                textColor="#fff"
+                onClick={MoveChecklistData}
+              >
+                <Button>Move</Button>
+              </CopyButtonWrapper>
+            ) : null}
           </>
         )}
         <ShareTextWrapper>

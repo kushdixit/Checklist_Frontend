@@ -11,6 +11,7 @@ const PublicRoutes = ({ component: RouteComponent, restricted, path }) => {
       path !== "/checklists/:id" &&
       path !== "/search/:id" &&
       path !== "/:id/check" &&
+      path !== "/explore" &&
       path !== "/guest/:id"
     ) {
       navigate(ProcessRoute.path);

@@ -1,6 +1,7 @@
 import React from "react";
 import ForgotPassword from "./forgetPassword";
 import LogoutModal from "./LogoutModal";
+import ShareModal from "./ShareModal";
 import FontColorsModal from "./FontColorsModal";
 import ReactModal from "react-modal";
 import { ButtonWrapper } from "styles/components/AlertModal";
@@ -37,7 +38,12 @@ const AlertModal = ({
       contentLabel="Example Modal"
     >
       <ButtonWrapper>
-        <button className="button" onClick={() => togglefunction(false)}>
+        <button
+          className="button"
+          onClick={() => {
+            togglefunction(false);
+          }}
+        >
           x
         </button>
       </ButtonWrapper>
@@ -60,6 +66,9 @@ const AlertModal = ({
       )}
       {modalType === "fontcolors" && (
         <FontColorsModal notify={notify} togglefunction={togglefunction} />
+      )}
+      {modalType === "share" && (
+        <ShareModal notify={notify} togglefunction={togglefunction} />
       )}
     </ReactModal>
   );

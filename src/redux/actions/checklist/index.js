@@ -114,7 +114,7 @@ export const CopyChecklist = (id, email, isCopied) => async (dispatch) => {
   const payload = {
     id,
     email,
-    isCopied: isCopied || false
+    isCopied: isCopied || false,
   };
   try {
     const res = await axioPath.post("v1/CheckList/checklistscopy", payload, {
@@ -160,6 +160,26 @@ export const MoveChecklist = (id, templateId) => async (dispatch) => {
     return { error: true, message: ex?.response?.data?.Errors[0] };
   }
 };
+
+export const PublicprivateChecklist =
+  (checklistId, isPrivate) => async (dispatch) => {
+    const payload = {
+      checklistId,
+      isPrivate,
+    };
+    try {
+      const res = await axioPath.put(
+        "v1/CheckList/checklistspublicprivate",
+        payload,
+        {
+          hideLoader: false,
+        }
+      );
+      return { error: false };
+    } catch (ex) {
+      return { error: true, message: ex?.response?.data?.Errors[0] };
+    }
+  };
 
 export const PinChecklist = (id, pinned) => async (dispatch) => {
   const payload = {

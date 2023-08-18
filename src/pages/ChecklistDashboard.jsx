@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTemplateByEmail } from "redux/actions/template";
 import { saveListByUser } from "redux/actions/checklist";
@@ -17,20 +17,25 @@ import { LandingContainer, MainSection } from "styles/pages/ChecklistDashboard";
 
 const ChecklistDashboard = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const { pathname, state } = useLocation();
 
   const listUserHelper = async () => {
-    const res = await dispatch(saveListByUser(state?.id, userEmail));
+    const res = await dispatch(saveListByUser(id, userEmail));
     if (res.status === 200) {
-      state.userApi = false;
+      if (state !== null) {
+        state.userApi = false;
+      }
       dispatch(getAllTemplateByEmail(userEmail));
     }
   };
 
   useEffect(() => {
     dispatch(getAllTemplateByEmail(userEmail));
-    if (state?.userApi) listUserHelper();
+    if (state?.userApi) {
+      listUserHelper();
+    }
   }, []);
 
   return (

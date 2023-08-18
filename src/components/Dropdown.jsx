@@ -4,19 +4,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
 import Pdf from "react-to-pdf";
-import { deleteChecklist } from "redux/actions/checklist/index";
+import {
+  deleteChecklist,
+  PublicprivateChecklist,
+} from "redux/actions/checklist/index";
 import { SET_BOX_TYPE } from "redux/actions/action_types";
 
-const DropdownBox = ({ reff, toggleab }) => {
+const DropdownBox = ({ reff, toggleab, openNotification }) => {
   const { id: pathId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const boxType = useSelector((state) => state?.checkBox?.boxType);
+  const taskIsPrivate = useSelector((state) => state?.checklist?.isPrivate);
 
   const DeleteChecklist = async () => {
     const res = await dispatch(deleteChecklist(pathId));
     if (res.status === 204) {
       navigate("/process");
+    }
+  };
+
+  const MoveChecklistData = async () => {
+    try {
+      const res = await dispatch(
+        PublicprivateChecklist(pathId, !taskIsPrivate)
+      );
+      if (!res?.error) {
+        openNotification("moved successfully");
+      }
+    } catch (error) {
+      openNotification("error");
     }
   };
 
@@ -73,6 +90,11 @@ const DropdownBox = ({ reff, toggleab }) => {
     },
     {
       key: "4",
+      danger: false,
+      label: <div onClick={MoveChecklistData}>Move</div>,
+    },
+    {
+      key: "5",
       danger: true,
       label: <div onClick={DeleteChecklist}>Delete checklist</div>,
     },

@@ -22,8 +22,10 @@ const LandingCheckliCard = ({ data, id }) => {
     <NewSection
       id={id}
       onClick={async () => {
-        const re = await dispatch(getChecklistBySubcategory(data.id));
-        re.error === false && navigate(`/checklists/${data.id}`);
+        // const re = await dispatch(getChecklistBySubcategory(data.id));
+        // if (re.error === false) {
+        navigate(`/checklists/${data.id}`);
+        // }
       }}
       itemprop="itemListElement"
       itemscope

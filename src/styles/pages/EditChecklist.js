@@ -166,6 +166,7 @@ export const RightCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 export const LeftCardWrapper = styled.div``;
 export const RightContentWrapper = styled.div`
   text-align: center;

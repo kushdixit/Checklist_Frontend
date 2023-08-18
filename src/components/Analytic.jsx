@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTemplate, getAllTemplateByEmail } from "redux/actions/template";
 import { deleteChecklist, PinChecklist } from "redux/actions/checklist/index";
@@ -22,6 +22,7 @@ import ChartPie from "assets/images/chart-pie.png";
 import Trash from "assets/images/trash.png";
 import Star from "assets/SVG/Star";
 import StarGrey from "assets/SVG/StarGrey";
+import ShareModal from "./ShareModal";
 import { DeleteOutlined } from "@ant-design/icons";
 
 const Analytic = () => {
@@ -88,17 +89,16 @@ const Analytic = () => {
             </ul>
           </ThirdSection>
           {details
-            ?.filter((item, index) => index <= 39)
             ?.filter((item) => item?.pinned)
             .map((item, id) => (
-              <ChecklistWrapper data={item} id={id} />
+              <ChecklistWrapper key={id} data={item} id={id} />
             ))}
           {details
-            ?.reverse()
-            ?.filter((item, index) => index <= 39)
             ?.filter((item) => !item?.pinned)
+            .reverse()
+            ?.slice(0, 40)
             .map((item, id) => (
-              <ChecklistWrapper data={item} id={id} />
+              <ChecklistWrapper key={id} data={item} id={id} />
             ))}
         </WrapperSection>
       </RightContainer>
@@ -107,8 +107,15 @@ const Analytic = () => {
 };
 
 const ChecklistWrapper = ({ data }) => {
+  const [userDataId, setUserDataID] = useState("");
+  const [modal, setModal] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  function togglefunction(data) {
+    setModal(data);
+  }
   const userEmail = useSelector((state) => state.auth?.userData?.email);
   const [api, contextHolder] = notification.useNotification();
 
@@ -121,6 +128,7 @@ const ChecklistWrapper = ({ data }) => {
   const DeleteChecklist = async () => {
     const res = await dispatch(deleteChecklist(data?.id));
     if (res.status === 204) {
+      openNotification("Checklist Deleted Successfully");
       dispatch(getAllTemplateByEmail(userEmail));
     }
   };
@@ -134,6 +142,7 @@ const ChecklistWrapper = ({ data }) => {
     backgroundColor: colors.backgroundColor,
     color: colors.primaryColor,
   };
+
   // console.log("data", data);
   return (
     <FourthSection>
@@ -158,15 +167,24 @@ const ChecklistWrapper = ({ data }) => {
               navigate(`/dashboard/${data?.id}`, {
                 state: { showEditable: false, cardType: "user" },
               });
+              window.scroll(0, 0);
             }}
           >
             {data?.checklistName}
           </div>
         </li>
         <li>
-          <Link to={`/guest/${data?.id}`} target="_blank">
+          {/* <Link to={`/guest/${data?.id}`} target="_blank">
             <img src={Share} alt="Share" />
-          </Link>
+          </Link> */}
+          <div
+            onClick={() => {
+              setUserDataID(data?.id);
+              togglefunction(true);
+            }}
+          >
+            <img src={Share} alt="Share" />
+          </div>
         </li>
         <li>
           <img
@@ -189,6 +207,15 @@ const ChecklistWrapper = ({ data }) => {
           </DeleteIconWrapper>
         </li>
       </ul>
+      <ShareModal
+        isOpen={modal}
+        togglefunction={togglefunction}
+        linkto={data?.id}
+        userDataId={userDataId}
+        isPrivate={data?.isPrivate}
+        openNotification={openNotification}
+        userEmail={userEmail}
+      />
     </FourthSection>
   );
 };

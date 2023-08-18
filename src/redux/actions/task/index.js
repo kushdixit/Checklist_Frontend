@@ -1,19 +1,20 @@
 import axioPath from "api/axioPath";
 import { UPDATE_DATA, GET_IMAGES } from "redux/actions/action_types";
 
-export const getChecklistBySubcategory = (Checklistid) => (dispatch) =>
-  axioPath
-    .get("v1/Task/GetChecklistByCheckList/" + Checklistid)
-    .then((response) => {
-      dispatch({ type: UPDATE_DATA, payload: response.data });
-      return { error: false, data: response.data };
-    })
-    .catch((ex) => {
-      if (typeof ex == "string") {
-        return { ex: { message: ex } };
-      }
-      return { error: true, data: ex };
-    });
+export const getChecklistBySubcategory = (Checklistid) => async (dispatch) => {
+  try {
+    const response = await axioPath.get(
+      "v1/Task/GetChecklistByCheckList/" + Checklistid
+    );
+    dispatch({ type: UPDATE_DATA, payload: response.data });
+    return { error: false, data: response.data };
+  } catch (ex) {
+    if (typeof ex == "string") {
+      return { ex: { message: ex } };
+    }
+    return { error: true, data: ex };
+  }
+};
 
 export const addNewTask = (data) => async (dispatch) => {
   try {
@@ -289,35 +290,32 @@ export const getChecklistByCopyId = (Checklistid) => (dispatch) =>
       return { error: true, data: ex };
     });
 
-    export const ChecklistProcessUpdate = (checklistMasterId, checklistCopiedId, formState, tasks) => async () => {
-      const payload = {
-        checklistMasterId,
-        checklistCopiedId,
-        name: formState?.input1,
-        submitTo: formState?.input2,
-        notes: formState?.textarea,
-        tasks
-        // tasks: [{
-        //   taskId: 1117,
-        //   ischecked: true
-        // },
-        // {
-        //   taskId: 1118,
-        //   ischecked: true
-        // }]
-      }
-      try {
-        await axioPath.put(
-          "v1/CheckList/checklistTaskCompleteUpdate",
-          payload,
-          {
-            hideLoader: false,
-          }
-        );
-    
-        return { error: false };
-      } catch (ex) {
-        console.log('ex', ex);
-        return { error: true, message: ex };
-      }
+export const ChecklistProcessUpdate =
+  (checklistMasterId, checklistCopiedId, formState, tasks) => async () => {
+    const payload = {
+      checklistMasterId,
+      checklistCopiedId,
+      name: formState?.input1,
+      submitTo: formState?.input2,
+      notes: formState?.textarea,
+      tasks,
+      // tasks: [{
+      //   taskId: 1117,
+      //   ischecked: true
+      // },
+      // {
+      //   taskId: 1118,
+      //   ischecked: true
+      // }]
     };
+    try {
+      await axioPath.put("v1/CheckList/checklistTaskCompleteUpdate", payload, {
+        hideLoader: false,
+      });
+
+      return { error: false };
+    } catch (ex) {
+      console.log("ex", ex);
+      return { error: true, message: ex };
+    }
+  };

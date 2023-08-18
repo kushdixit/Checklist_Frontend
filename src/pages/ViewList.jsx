@@ -54,8 +54,10 @@ const ViewList = () => {
   }, []);
 
   useEffect(() => {
-    pathId && dispatch(getChecklistBySubcategory(pathId));
-  }, []);
+    if (pathId) {
+      dispatch(getChecklistBySubcategory(pathId));
+    }
+  }, [dispatch, pathId]);
 
   const { getValues } = useForm({
     mode: "onSubmit",
@@ -94,6 +96,7 @@ const ViewList = () => {
       state: { tagTerm: title, searchedterm: "" },
     });
   };
+
   const style = {
     backgroundColor: colors.backgroundColor,
     color: colors.primaryColor,
@@ -109,6 +112,23 @@ const ViewList = () => {
       navigate(`/${res?.data?.data}/check`, {
         state: { checklistId: pathId },
       });
+  };
+
+  const CopyCheckList = async () => {
+    if (userEmail) {
+      try {
+        const res = await CopyHandler(
+          pathId,
+          isUser() ? userEmail : "guest@gmail.com",
+          false
+        );
+        if (res?.error === false) {
+          navigate(`/dashboard/${res?.data?.data}`);
+        }
+      } catch (error) {
+        openNotification("Error");
+      }
+    } else navigate("/sign-in");
   };
 
   return (
@@ -151,7 +171,7 @@ const ViewList = () => {
                 <ButtonSection>
                   <Button
                     className="button"
-                    onClick={() =>
+                    handleClick={() =>
                       CopyHandler(
                         pathId,
                         isUser() ? userEmail : "guest@gmail.com",
@@ -171,7 +191,11 @@ const ViewList = () => {
           </LeftSection>
           <RightViewSection>
             {pathname.includes("guest") && (
-              <ShareSectionCard pathId={pathId} HandleProcess={HandleProcess} />
+              <ShareSectionCard
+                pathId={pathId}
+                HandleProcess={HandleProcess}
+                CopyCheckList={CopyCheckList}
+              />
             )}
             {pathname.includes("checklists") && (
               <>
@@ -234,6 +258,8 @@ const ImageWrapper = ({ title, imageId }) => {
 };
 
 const CopyCard = ({ info }) => {
+  const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const createrEmail = useSelector((state) => state?.checklist?.createdBy);
   return (
     <RightCardWrapper>
       <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
@@ -242,17 +268,33 @@ const CopyCard = ({ info }) => {
           viewCount={info?.viewCount}
           copyCount={info?.copyCount}
           downloadCount={info?.downloadCount}
+          createrEmail={createrEmail}
+          userEmail={userEmail}
         />
       </Suspense>
     </RightCardWrapper>
   );
 };
 
-const ShareSectionCard = ({ pathId, HandleProcess }) => {
+const ShareSectionCard = ({ pathId, HandleProcess, CopyCheckList }) => {
   return (
     <RightCardWrapper>
       <button
         onClick={HandleProcess}
+        style={{
+          padding: "0.75rem 0.25rem",
+          marginBottom: "1rem",
+          fontWeight: "bold",
+          color: "green",
+          fontSize: "1rem",
+          border: "none",
+          background: "#cff6c1",
+        }}
+      >
+        Run Process
+      </button>
+      <button
+        onClick={CopyCheckList}
         style={{
           padding: "0.75rem 0.25rem",
           marginBottom: "2rem",
@@ -263,7 +305,7 @@ const ShareSectionCard = ({ pathId, HandleProcess }) => {
           background: "#cff6c1",
         }}
       >
-        Run Process
+        Copy
       </button>
       <SubModal
         title="Share Checklist"
