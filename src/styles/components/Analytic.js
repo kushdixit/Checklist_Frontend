@@ -203,6 +203,25 @@ export const WrapperSection = styled.div`
   @media (max-width: 1010px) {
     padding: 82px 50px;
   }
+  .button {
+    color: #777;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 17px;
+    padding: 8px 15px;
+    margin: 20px 0 30px;
+    cursor: pointer;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+  @media (max-width: 1276px) {
+    .button {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+  }
 `;
 
 export const IconInputFieldNew = styled.div`

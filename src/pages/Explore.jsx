@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SearchList } from "redux/actions/checklist";
 import { showAppLoader, hideAppLoader } from "redux/actions/loader";
@@ -22,6 +22,8 @@ const Footer = lazy(() => import("components/Footer"));
 const Explore = (search) => {
   const dispatch = useDispatch();
   const [updateSearch, SetUpdateSearch] = useState("");
+  const isUserActive = useSelector((state) => state?.auth?.userData?.email);
+
   const navigate = useNavigate();
   const [Popular, setPopular] = useState([]);
   const [New, setNew] = useState([]);
@@ -89,23 +91,29 @@ const Explore = (search) => {
         Copy, complete, or download for free.
       </p>
       <SearchSection>
-        {search && (
-          <form onSubmit={submitData(searchData)}>
-            <IconInputFieldNew>
-              <Suspense fallback={<h1 className="fallback-css">Loading…</h1>}>
-                <TextInput
-                  name="listSearch"
-                  type="text"
-                  placeholder="Search"
-                  control={formControl}
-                  handleKeyDown={handleKeyDown}
-                  handlekeyPress={(e) => {
-                    SetUpdateSearch((prev) => prev + e.key);
-                  }}
-                />
-              </Suspense>
-            </IconInputFieldNew>
-          </form>
+        {!isUserActive && (
+          <>
+            {search && (
+              <form onSubmit={submitData(searchData)}>
+                <IconInputFieldNew>
+                  <Suspense
+                    fallback={<h1 className="fallback-css">Loading…</h1>}
+                  >
+                    <TextInput
+                      name="listSearch"
+                      type="text"
+                      placeholder="Search"
+                      control={formControl}
+                      handleKeyDown={handleKeyDown}
+                      handlekeyPress={(e) => {
+                        SetUpdateSearch((prev) => prev + e.key);
+                      }}
+                    />
+                  </Suspense>
+                </IconInputFieldNew>
+              </form>
+            )}
+          </>
         )}
       </SearchSection>
       <SubMainSection>

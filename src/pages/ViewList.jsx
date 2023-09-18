@@ -258,7 +258,7 @@ const ImageWrapper = ({ title, imageId }) => {
 };
 
 const CopyCard = ({ info }) => {
-  const userEmail = useSelector((state) => state.auth?.userData?.email);
+  const userEmail = useSelector((state) => state?.auth?.userData?.email);
   const createrEmail = useSelector((state) => state?.checklist?.createdBy);
   return (
     <RightCardWrapper>

@@ -105,7 +105,11 @@ const View = () => {
               <div>
                 <Date>
                   {pathId
-                    ? `Created: ${ChecklistDetail?.dateCreated?.split("T")[0]}`
+                    ? `Created: ${
+                        new window.Date(ChecklistDetail?.dateCreated)
+                          .toLocaleString()
+                          ?.split(",")[0]
+                      }`
                     : `Date: ${
                         new window.Date().toLocaleString()?.split(",")[0]
                       }`}

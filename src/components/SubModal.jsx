@@ -109,13 +109,19 @@ const SubModal = ({
               </p>
               <Button
                 handleClick={async () => {
-                  const res = await CopyHandler(
-                    pathId,
-                    isUser() ? userEmail : "guest@gmail.com",
-                    false
-                  );
-                  res?.error === false &&
-                    navigate(`/dashboard/${res?.data?.data}`);
+                  if (isUser() === true) {
+                    const res = await CopyHandler(
+                      pathId,
+                      isUser() ? userEmail : "guest@gmail.com",
+                      false
+                    );
+                    res?.error === false &&
+                      navigate(`/dashboard/${res?.data?.data}`);
+                  } else {
+                    navigate("/sign-in", {
+                      state: { copyChecklistPath: pathId },
+                    });
+                  }
                 }}
               >
                 Copy

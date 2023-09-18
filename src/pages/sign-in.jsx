@@ -10,6 +10,7 @@ import { authLogin } from "../redux/actions/auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { colors } from "constants/color";
+import { CopyHandler } from "helpers/copy";
 import {
   RegistrationContainer,
   FormContainer,
@@ -38,6 +39,8 @@ const Google = lazy(() => import("components/Google"));
 const Facebook = lazy(() => import("components/Facebook"));
 
 const SignIn = () => {
+  const location = useLocation();
+  console.log("location", location?.state?.copyChecklistPath);
   let schema = yup.object().shape({
     email: yup
       .string()
@@ -82,14 +85,22 @@ const SignIn = () => {
       issocial: 0,
     };
     const res = await store.dispatch(authLogin(payload));
-    if (res?.data?.accessToken)
+    if (res?.data?.accessToken) {
+      if (location?.state?.copyChecklistPath) {
+        await CopyHandler(
+          location?.state?.copyChecklistPath,
+          res?.data?.email,
+          false
+        );
+      }
+
       navigate(state?.redirect || "/process", {
         state: {
           userApi: state?.userApi || false,
           id: state?.id,
         },
       });
-    else {
+    } else {
       setLoginError(true);
       setResetError(false);
     }

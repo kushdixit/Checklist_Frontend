@@ -64,6 +64,18 @@ const Analytic = () => {
     setSearch(e?.target?.value);
   };
 
+  const initialDisplayCount = 40;
+  const [displayCount, setDisplayCount] = useState(initialDisplayCount);
+  const displayedItems = details
+    ?.filter((item) => !item?.pinned)
+    .reverse()
+    .slice(0, displayCount);
+
+  const handleSeeMoreClick = () => {
+    // Increment the displayCount by 40 when the button is clicked
+    setDisplayCount(displayCount + 40);
+  };
+
   return (
     <LandingContainer>
       <RightContainer>
@@ -93,13 +105,17 @@ const Analytic = () => {
             .map((item, id) => (
               <ChecklistWrapper key={id} data={item} id={id} />
             ))}
-          {details
-            ?.filter((item) => !item?.pinned)
-            .reverse()
-            ?.slice(0, 40)
-            .map((item, id) => (
-              <ChecklistWrapper key={id} data={item} id={id} />
-            ))}
+          {displayedItems.map((item, id) => (
+            <ChecklistWrapper key={id} data={item} id={id} />
+          ))}
+
+          {details?.length > displayCount && (
+            <div style={{ paddingTop: "60px" }}>
+              <button className="button" onClick={handleSeeMoreClick}>
+                See More
+              </button>
+            </div>
+          )}
         </WrapperSection>
       </RightContainer>
     </LandingContainer>

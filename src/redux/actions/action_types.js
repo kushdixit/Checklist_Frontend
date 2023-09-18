@@ -11,3 +11,4 @@ export const SET_SEARCH = "SET_SEARCH";
 export const SET_TASK = "SET_TASK";
 export const GET_IMAGES = "GET_IMAGES";
 export const SET_BOX_TYPE = "SET_BOX_TYPE";
+export const RESET_STORE = "RESET_STORE";

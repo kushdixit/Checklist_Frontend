@@ -9,6 +9,7 @@ import search from "redux/reducers/searched";
 import addTask from "redux/reducers/addTask";
 import getImages from "redux/reducers/images";
 import checkBox from "redux/reducers/boxType";
+import resetReducer from "redux/reducers/reset";
 
 export default combineReducers({
   loader,
@@ -21,4 +22,5 @@ export default combineReducers({
   addTask,
   getImages,
   checkBox,
+  reset: resetReducer,
 });
